@@ -1,3 +1,0 @@
-bitbucket-pipelines.yml
-calibo.yaml
-docker-compose.yml
