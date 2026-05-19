@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Smart Inventory Replenishment Advisor
 
 An AI-powered internal store operations tool that analyses sales history, detects patterns, and generates replenishment recommendations for store managers. Admins manage products, suppliers, users, and AI configuration through a separate panel.
