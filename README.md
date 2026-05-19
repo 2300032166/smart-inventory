@@ -62,7 +62,7 @@ cp .env.example .env
 # Edit .env and set at minimum: JWT_SECRET_KEY
 
 # Run the API server
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn main:app --host 0.0.0.0 --port 8001 --reload
 ```
 
 ### Frontend
