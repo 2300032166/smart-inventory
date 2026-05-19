@@ -8,8 +8,6 @@ An AI-powered internal store operations tool that analyses sales history, detect
 ## Prerequisites
 
 - Python 3.11+
-- Docker & Docker Compose (for the easiest setup)
-- No Node.js required — frontend is pure HTML/CSS/JavaScript
 
 ---
 
@@ -20,28 +18,7 @@ An AI-powered internal store operations tool that analyses sales history, detect
 | Admin   | admin@store.com     | Admin@123    |
 | Manager | manager@store.com   | Manager@123  |
 
----
 
-## Local Setup (with Docker — recommended)
-
-```bash
-# 1. Clone the repository
-git clone <your-repo-url>
-cd smart-inventory-advisor
-
-# 2. Create the .env file
-cp backend/.env.example backend/.env
-# Edit backend/.env and set JWT_SECRET_KEY and AI credentials
-
-# 3. Start both services
-docker-compose up --build
-
-# 4. Open the app
-# Frontend: http://localhost:3000
-# API docs: http://localhost:8000/docs
-```
-
----
 
 ## Local Setup (without Docker)
 
@@ -67,59 +44,15 @@ uvicorn main:app --host 0.0.0.0 --port 8001 --reload
 
 ### Frontend
 
-Serve the frontend with any static file server that proxies /api/ to localhost:8000.
+Serve the frontend with any static file server that proxies /api/ to localhost:8001.
 
-**Option A — Python**
+
 ```bash
 cd frontend
 python -m http.server 3000
 ```
 Then edit your browser's requests to point to the backend, or use the nginx setup below.
 
-**Option B — nginx (local)**
-```bash
-# Point nginx root to the frontend/ folder
-# Use nginx/nginx.conf as your site config
-# Update the proxy_pass to http://localhost:8000/api/
-```
-
----
-
-## Environment Variables
-
-Copy `backend/.env.example` to `backend/.env` and fill in:
-
-| Variable              | Description                                     | Default                  |
-|-----------------------|-------------------------------------------------|--------------------------|
-| `JWT_SECRET_KEY`      | Secret key for JWT signing (change this!)       | *required*               |
-| `AI_PROVIDER`         | `claude` or `ollama`                            | `claude`                 |
-| `ANTHROPIC_API_KEY`   | Your Anthropic API key                          | —                        |
-| `CLAUDE_MODEL`        | Claude model name                               | `claude-sonnet-4-20250514` |
-| `OLLAMA_URL`          | Ollama server URL (if using local AI)           | `http://localhost:11434` |
-| `OLLAMA_MODEL`        | Ollama model name                               | `llama3`                 |
-| `BRIEF_CACHE_HOURS`   | How long to cache the daily brief               | `6`                      |
-| `CONFIDENCE_THRESHOLD`| Min confidence % to include in brief            | `60`                     |
-| `MAX_BRIEF_ITEMS`     | Max products in one brief                       | `10`                     |
-| `PAYDAY_DATES`        | Comma-separated day-of-month numbers for payday | `25,26,27`              |
-
-**Note:** The app works fully without an AI key — all pages load and function. Only the Daily Brief page requires an AI provider to generate AI reasoning text.
-
----
-
-## Calibo Sandbox Deployment
-
-```bash
-# Install Calibo CLI
-npm install -g @calibo/cli
-
-# Login
-calibo login
-
-# Deploy
-calibo deploy --env sandbox
-```
-
-The `calibo.yaml` file defines both the backend (Python/uvicorn) and frontend (static) services. Ensure your environment variables are configured in the Calibo project settings before deploying.
 
 ---
 
@@ -170,7 +103,7 @@ All data is stored as flat files — no database required:
 
 ## API Documentation
 
-When the backend is running, visit `http://localhost:8000/docs` for the interactive Swagger API documentation.
+When the backend is running, visit `http://localhost:8001/docs` for the interactive Swagger API documentation.
 
 ---
 
@@ -179,17 +112,12 @@ When the backend is running, visit `http://localhost:8000/docs` for the interact
 1. Sales history is read from `sales.csv` using Pandas
 2. For each product, daily averages, payday spikes, and trends are detected
 3. A reorder score and recommended quantity are calculated
-4. A prompt is built and sent to Claude API (falls back to Ollama, then fallback text)
+4. A prompt is built and sent to Gemini API 
 5. The AI's reasoning paragraph is attached to each recommendation
 6. The full brief is cached for `BRIEF_CACHE_HOURS` to avoid repeated API calls
 =======
 **Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
-
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
-
----
 
 ## Edit a file
 
