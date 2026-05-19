@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — Inventory Advisor</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-title">Settings</div>
+        <div class="page-subtitle">Manage your profile and preferences</div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <div class="card mb-24">
+            <div class="card-title mb-16">Profile</div>
+            <div id="profile-msg" class="alert-msg"></div>
+            <form id="profile-form">
+              <div class="form-group">
+                <label>Display name</label>
+                <input type="text" id="display-name" placeholder="Your name">
+              </div>
+              <div class="form-group">
+                <label>Email address</label>
+                <input type="email" id="email" readonly>
+              </div>
+              <div class="form-group">
+                <label>Role</label>
+                <input type="text" id="role-field" readonly>
+              </div>
+              <button type="submit" class="btn btn-primary" id="profile-btn">Save profile</button>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="card-title mb-16">Notification Preferences</div>
+            <div id="notif-msg" class="alert-msg"></div>
+            <div class="form-group">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                <input type="checkbox" id="notif-brief" style="width:auto;height:auto;"> New brief ready
+              </label>
+            </div>
+            <div class="form-group">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                <input type="checkbox" id="notif-stockout" style="width:auto;height:auto;" checked> Stockout warning
+              </label>
+            </div>
+            <div class="form-group">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                <input type="checkbox" id="notif-weekly" style="width:auto;height:auto;"> Weekly summary
+              </label>
+            </div>
+            <button class="btn btn-primary" id="notif-btn">Save preferences</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title mb-16">Security</div>
+          <div id="security-msg" class="alert-msg"></div>
+          <form id="security-form">
+            <div class="form-group">
+              <label>Current password</label>
+              <input type="password" id="current-pw" placeholder="Current password">
+            </div>
+            <div class="form-group">
+              <label>New password</label>
+              <input type="password" id="new-pw" placeholder="New password">
+            </div>
+            <div class="form-group">
+              <label>Confirm new password</label>
+              <input type="password" id="confirm-pw" placeholder="Confirm new password">
+            </div>
+            <button type="submit" class="btn btn-primary" id="security-btn">Update password</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="../app.js"></script>
+<script src="../js/settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory — Inventory Advisor</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-title">Inventory / Stock Levels</div>
+        <div class="page-subtitle">Real-time stock status across all products</div>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="search" placeholder="Search by name or SKU…" style="width:220px;">
+        <select id="status-filter">
+          <option value="">All statuses</option>
+          <option value="at_risk">At risk</option>
+          <option value="ok">OK</option>
+          <option value="overstocked">Overstocked</option>
+        </select>
+        <select id="sort-by">
+          <option value="">Sort by…</option>
+          <option value="days_asc">Days remaining (low → high)</option>
+          <option value="stock_desc">Stock (high → low)</option>
+          <option value="name_asc">Name A–Z</option>
+        </select>
+        <span id="count-label" class="text-muted" style="margin-left:auto;font-size:13px;"></span>
+      </div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>SKU</th><th>Product</th><th>Category</th>
+                <th>Current Stock</th><th>Reorder Point</th>
+                <th>Days Remaining</th><th>Lead Time</th>
+                <th>Supplier</th><th>Status</th>
+                <th id="action-col" style="display:none;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inv-tbody"></tbody>
+          </table>
+        </div>
+        <div id="inv-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="../app.js"></script>
+<script src="../js/inventory.js"></script>
+</body>
+</html>

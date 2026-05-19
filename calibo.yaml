@@ -1,0 +1,25 @@
+app:
+  name: smart-inventory-advisor
+  version: "1.0"
+  description: AI-powered inventory replenishment advisor for store operations
+
+environments:
+  - name: sandbox
+    services:
+      - name: backend
+        runtime: python
+        version: "3.11"
+        working_directory: backend
+        command: uvicorn main:app --host 0.0.0.0 --port 8000
+        port: 8000
+        env_file: .env
+        volumes:
+          - ./data:/app/data
+
+      - name: frontend
+        runtime: static
+        root: frontend
+        port: 3000
+        proxy:
+          - path: /api/
+            target: http://backend:8000/api/

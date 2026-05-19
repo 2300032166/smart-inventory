@@ -1,0 +1,7 @@
+supplier_id,name,contact_person,phone,email,default_lead_time_days,delivery_schedule,notes
+SUP001,GrainCo Suppliers,James Tan,+65-9111-2222,james@grainco.com,5,Monday and Thursday,Bulk grain and dry goods supplier
+SUP002,OilTrade Ltd,Maria Santos,+65-9222-3333,maria@oiltrade.com,7,Wednesday,Edible oils and fats
+SUP003,CleanSupply Co,David Lim,+65-9333-4444,david@cleansupply.com,3,Tuesday Friday and Saturday,Cleaning and household products
+SUP004,SweetSource Inc,Priya Nair,+65-9444-5555,priya@sweetsource.com,4,Monday Wednesday Friday,Sugar and sweeteners
+SUP005,FreshFarm Foods,Wei Chen,+65-9555-6666,wei@freshfarm.com,6,Tuesday and Friday,Canned and preserved foods
+SUP006,SaltMine Corp,Alex Brown,+65-9666-7777,alex@saltmine.com,10,First Monday of month,Salt and mineral products

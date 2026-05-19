@@ -1,0 +1,452 @@
+[
+  {
+    "id": "b49cf851-7f9c-48d9-b8eb-541dc7ad42e5",
+    "timestamp": "2026-05-16T13:52:13.428869+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "df6e5349-d8ab-44c3-a167-ed841866580a",
+    "timestamp": "2026-05-16T13:53:58.553348+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3c72c873-d06c-4122-b9eb-75752da10085",
+    "timestamp": "2026-05-16T13:54:09.674518+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "90d85102-c3d0-43ea-92e3-923bcca2dfd7",
+    "timestamp": "2026-05-16T13:54:19.248250+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "0ed7365c-58b3-417c-b8df-1b21e222e84a",
+    "timestamp": "2026-05-16T13:54:52.387775+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "5bab97ea-8a04-4ef4-bb82-2c30b5a75817",
+    "timestamp": "2026-05-16T13:56:51.318937+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "172.31.125.2"
+  },
+  {
+    "id": "0227fb4f-df23-4141-86ae-7f57f140548f",
+    "timestamp": "2026-05-16T13:57:32.199212+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "172.31.125.2"
+  },
+  {
+    "id": "e7a90ca6-7532-4ea9-adbc-3d6b0f24d6ce",
+    "timestamp": "2026-05-16T13:57:42.862496+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Sunflower Oil 1L (SKU: SKU002), qty: 100.0",
+    "ip_address": "172.31.125.2"
+  },
+  {
+    "id": "cb694cef-ac24-4986-a67b-18d8e4e43162",
+    "timestamp": "2026-05-16T13:57:45.963719+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_SKIPPED",
+    "description": "Skipped order for Vegetable Oil 2L (SKU: SKU009), qty: 0.0",
+    "ip_address": "172.31.125.2"
+  },
+  {
+    "id": "b1aab0aa-b1b2-40e3-9582-c30e879e512c",
+    "timestamp": "2026-05-16T13:57:52.597064+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Sunflower Oil 1L (SKU: SKU002), qty: 100.0",
+    "ip_address": "172.31.125.2"
+  },
+  {
+    "id": "98e8756c-50a6-4794-bb6a-8a116da56377",
+    "timestamp": "2026-05-16T13:57:54.630320+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_SKIPPED",
+    "description": "Skipped order for Vegetable Oil 2L (SKU: SKU009), qty: 0.0",
+    "ip_address": "172.31.125.2"
+  },
+  {
+    "id": "5f418980-545d-4214-818a-9a408c509a1a",
+    "timestamp": "2026-05-16T15:06:09.218279+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e9fb952b-b6f6-45dd-8fb2-657b666afcad",
+    "timestamp": "2026-05-16T15:07:13.017571+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "736c06a8-6127-4e16-b93f-0323f9360ce8",
+    "timestamp": "2026-05-16T15:07:18.401359+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Sunflower Oil 1L (SKU: SKU002), qty: 100.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "103de6f6-cbcc-4dee-9a8e-6f0dbebd703f",
+    "timestamp": "2026-05-16T15:07:48.029119+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_SKIPPED",
+    "description": "Skipped order for Sunflower Oil 1L (SKU: SKU002), qty: 0.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e69b5a55-1144-4f98-a7ef-0f0247fb0788",
+    "timestamp": "2026-05-16T15:08:32.301406+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Sunflower Oil 1L (SKU: SKU002), qty: 100.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b4fd1c23-0c66-4da8-aa94-8052d2ba4ec0",
+    "timestamp": "2026-05-19T03:52:48.427478+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e0a45113-6aef-47d8-851f-a04959edcdc0",
+    "timestamp": "2026-05-19T03:56:01.597116+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "4b249aa8-d80f-4025-a868-7d1d611a5f24",
+    "timestamp": "2026-05-19T07:03:27.843118+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e1037dd3-a704-43c3-96d9-2350c1b16926",
+    "timestamp": "2026-05-19T07:04:38.279548+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "DATA_UPLOAD",
+    "description": "Uploaded sales CSV: sales.csv, 8000 rows",
+    "ip_address": "unknown"
+  },
+  {
+    "id": "0f26bc9a-58bf-46df-b818-1284f6227232",
+    "timestamp": "2026-05-19T07:07:51.199722+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "91e340a6-4395-4b6e-97ec-f213b46ce12b",
+    "timestamp": "2026-05-19T07:08:11.202700+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "DATA_UPLOAD",
+    "description": "Uploaded sales CSV: sales.csv, 7062 rows",
+    "ip_address": "unknown"
+  },
+  {
+    "id": "7697dda3-7306-4c79-84a0-80b62b9e7672",
+    "timestamp": "2026-05-19T08:09:49.693739+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "cf38be0e-3a64-419c-abef-408352614e5c",
+    "timestamp": "2026-05-19T08:24:31.329011+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "9d040221-b750-4cca-be32-1bf5f443dc6e",
+    "timestamp": "2026-05-19T09:13:48.622715+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b72ffcaf-7db2-4484-ae35-dc01c3560615",
+    "timestamp": "2026-05-19T09:14:31.270673+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Sunflower Oil 1L (SKU: SKU002), qty: 149.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d627332d-bacf-4552-80cb-291be2263db2",
+    "timestamp": "2026-05-19T09:14:34.047143+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Vegetable Oil 2L (SKU: SKU009), qty: 189.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "74e29cce-9e36-43e6-9972-5922c42e1cda",
+    "timestamp": "2026-05-19T09:14:34.844515+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Jasmine Rice 5kg (SKU: SKU001), qty: 139.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "56b6c87a-2307-49ea-9b2e-246f8fadd414",
+    "timestamp": "2026-05-19T09:14:35.596402+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for White Sugar 1kg (SKU: SKU005), qty: 126.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c9d9f103-e549-42fb-a873-2e909d6122df",
+    "timestamp": "2026-05-19T09:14:36.087597+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Laundry Detergent 1kg (SKU: SKU010), qty: 118.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "42fb8a04-eceb-4df5-abd7-f8269f759712",
+    "timestamp": "2026-05-19T09:14:36.710593+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Soy Sauce 500ml (SKU: SKU014), qty: 25.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c7ef9fb0-ff22-4aa2-9c49-10a9c8db6dc7",
+    "timestamp": "2026-05-19T09:16:03.967625+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a12a67e2-68a9-4953-ac62-5129c67a60f1",
+    "timestamp": "2026-05-19T09:19:40.925572+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "ae25870d-e3b8-4a91-a375-dd77d8d39e58",
+    "timestamp": "2026-05-19T09:20:19.062119+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Sunflower Oil 1L (SKU: SKU002), qty: 149.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "6ef5313c-990d-4714-9fce-b11e387e3e11",
+    "timestamp": "2026-05-19T09:20:22.317674+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Vegetable Oil 2L (SKU: SKU009), qty: 189.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "52bc8fd1-ecd7-49ad-b95d-005916d64e33",
+    "timestamp": "2026-05-19T09:20:23.999325+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Jasmine Rice 5kg (SKU: SKU001), qty: 139.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "696dfcf0-2648-45dd-95be-4c39bdfc8579",
+    "timestamp": "2026-05-19T09:31:35.163609+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Wheat Flour 1kg (SKU: GR008), qty: 87.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c979bc2b-2f55-48b3-a157-e0c3e53505a5",
+    "timestamp": "2026-05-19T09:31:45.583794+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Wheat Flour 1kg (SKU: GR008), qty: 87.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "df8e4d02-49ce-4e46-932a-5d7cd3578d77",
+    "timestamp": "2026-05-19T09:31:50.275442+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Wheat Flour 1kg (SKU: GR008), qty: 87.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "976f4c32-b7bc-4c86-836f-e9b0bd5dea2a",
+    "timestamp": "2026-05-19T09:39:39.129109+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "83286449-734a-448b-b551-476d4c6fd867",
+    "timestamp": "2026-05-19T09:40:36.146057+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Wheat Flour 1kg (SKU: GR008), qty: 87.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d80053ed-ea3b-4268-af85-fef5b3eeb924",
+    "timestamp": "2026-05-19T09:41:35.472211+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "7106c686-c8f3-46c2-81ff-7a938b2d4995",
+    "timestamp": "2026-05-19T09:43:00.280005+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "ad257d82-dd76-46d3-a646-730ab394d720",
+    "timestamp": "2026-05-19T09:47:26.184315+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Wheat Flour 1kg (SKU: GR008), qty: 87.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "38dfd0ce-378d-4dde-a9a5-9f263cdcf747",
+    "timestamp": "2026-05-19T09:48:16.780293+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Wheat Flour 1kg (SKU: GR008), qty: 87.0",
+    "ip_address": "127.0.0.1"
+  }
+]

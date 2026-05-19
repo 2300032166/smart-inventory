@@ -1,0 +1,16 @@
+sku,name,unit,current_stock,reorder_threshold,supplier_name,lead_time_days,category,notes
+GR001,Milk 1L,bottle,60.0,20.0,FreshDairy,2,Dairy,Fresh milk
+GR002,Bread,pack,40.0,15.0,BakeryHub,1,Bakery,Daily bread
+GR003,Eggs Pack (12),pack,90.0,30.0,FarmEggs,2,Dairy,Farm fresh eggs
+GR004,Basmati Rice 1kg,bag,120.0,40.0,GrainStore,5,Grains,Premium rice
+GR005,Sugar 1kg,bag,50.0,20.0,SugarMill,4,Grocery,Refined sugar
+GR006,Sunflower Oil 1L,bottle,160.0,50.0,OilCorp,6,Cooking Oil,Healthy cooking oil
+GR007,Tea Powder 500g,pack,140.0,40.0,TeaWorld,5,Beverages,Strong tea powder
+GR008,Wheat Flour 1kg,bag,69.0,20.0,CleanSupply Co,5,Grains,Whole wheat flour
+GR009,Butter 100g,pack,60.0,20.0,DairyBest,2,Dairy,Cream butter
+GR010,Yogurt 200g,cup,25.0,10.0,FreshDairy,2,Dairy,Fresh yogurt
+GR011,Bananas 1 dozen,dozen,50.0,15.0,FruitFarm,1,Fruits,Organic bananas
+GR012,Potatoes 1kg,kg,30.0,10.0,VegMarket,2,Vegetables,Fresh potatoes
+GR013,Onions 1kg,kg,35.0,10.0,VegMarket,2,Vegetables,Red onions
+GR014,Tomatoes 1kg,kg,40.0,12.0,VegMarket,1,Vegetables,Fresh tomatoes
+GR015,Salt 1kg,pack,20.0,8.0,SpiceHub,4,Grocery,Iodized salt

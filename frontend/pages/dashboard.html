@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Inventory Advisor</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-title">Dashboard</div>
+        <div class="page-subtitle" id="today-date"></div>
+      </div>
+
+      <div class="stat-cards" id="stat-cards">
+        <div class="stat-card"><div class="stat-label">Pending Review</div><div class="stat-value" id="stat-pending">—</div><div class="stat-sub">items today</div></div>
+        <div class="stat-card"><div class="stat-label">Stockout Risk</div><div class="stat-value text-danger" id="stat-risk">—</div><div class="stat-sub">products critical</div></div>
+        <div class="stat-card"><div class="stat-label">Orders This Week</div><div class="stat-value" id="stat-orders">—</div><div class="stat-sub">decisions recorded</div></div>
+        <div class="stat-card"><div class="stat-label">AI Accuracy</div><div class="stat-value text-success" id="stat-accuracy">—</div><div class="stat-sub">approval rate</div></div>
+      </div>
+
+      <div class="flex-between mb-16">
+        <div class="card-title" style="font-size:16px;">Pending Recommendations</div>
+        <a href="brief.html" class="btn btn-secondary btn-sm">View all</a>
+      </div>
+
+      <div id="msg" class="alert-msg"></div>
+      <div id="rec-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+      <div id="rec-list"></div>
+
+      <div class="card mt-16">
+        <div class="card-header">
+          <span class="card-title">Recent Alerts</span>
+          <a href="alerts.html" style="font-size:13px;color:var(--color-primary);text-decoration:none;">View all</a>
+        </div>
+        <div id="alerts-list"><div class="text-muted" style="font-size:13px;">Loading alerts…</div></div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="../app.js"></script>
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

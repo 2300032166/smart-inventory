@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order History — Inventory Advisor</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="flex-between mb-16">
+        <div>
+          <div class="page-title">Order History</div>
+          <div class="page-subtitle">All replenishment decisions</div>
+        </div>
+        <button class="btn btn-secondary" id="export-btn">Export CSV</button>
+      </div>
+
+      <div class="filter-bar card mb-16" style="padding:14px 20px;">
+        <input type="date" id="date-from" style="width:160px;height:34px;">
+        <span style="font-size:13px;color:var(--color-text-hint);">to</span>
+        <input type="date" id="date-to" style="width:160px;height:34px;">
+        <input type="text" id="search" placeholder="Search product…" style="width:180px;height:34px;">
+        <select id="decision-filter" style="height:34px;width:160px;">
+          <option value="">All decisions</option>
+          <option value="approved">Approved</option>
+          <option value="overridden">Overridden</option>
+          <option value="skipped">Skipped</option>
+        </select>
+        <button class="btn btn-primary btn-sm" id="filter-btn">Filter</button>
+      </div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th><th>Product</th><th>AI Suggested Qty</th>
+                <th>Actual Qty</th><th>Decision</th><th>Override Reason</th><th>Manager</th>
+              </tr>
+            </thead>
+            <tbody id="history-tbody"></tbody>
+          </table>
+        </div>
+        <div id="hist-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="../app.js"></script>
+<script src="../js/order-history.js"></script>
+</body>
+</html>

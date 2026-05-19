@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Upload — Inventory Advisor</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-title">Data Upload</div>
+        <div class="page-subtitle">Upload new sales CSV data to update recommendations</div>
+      </div>
+
+      <div class="card mb-24">
+        <div class="card-title mb-16">Step 1 — Select file</div>
+        <div class="drop-zone" id="drop-zone">
+          <div class="drop-zone-icon">📂</div>
+          <div class="drop-zone-text">Drag and drop a CSV file here, or click to browse</div>
+          <div class="drop-zone-hint">Expected columns: InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID</div>
+        </div>
+        <input type="file" id="file-input" accept=".csv" style="display:none;">
+      </div>
+
+      <div id="preview-section" style="display:none;">
+        <div class="card mb-24">
+          <div class="card-title mb-12">Step 2 — Preview &amp; column check</div>
+          <div class="card-title mb-8" style="font-size:13px;font-weight:500;">Column Mapping</div>
+          <div id="col-check" class="col-check-grid mb-16"></div>
+          <div id="missing-warning" class="alert-msg" style="display:none;"></div>
+          <div class="card-title mb-8" style="font-size:13px;font-weight:500;">First 10 rows preview</div>
+          <div class="table-wrap" id="preview-table-wrap"></div>
+        </div>
+
+        <div class="card mb-24" id="confirm-section">
+          <div class="card-title mb-16">Step 3 — Confirm upload</div>
+          <div id="upload-msg" class="alert-msg"></div>
+          <div id="upload-progress" style="display:none;margin-bottom:16px;">
+            <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+          </div>
+          <button class="btn btn-primary" id="confirm-btn">Confirm &amp; Upload</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Upload History</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Filename</th><th>Date</th><th>Rows</th><th>Status</th></tr></thead>
+            <tbody id="history-tbody"></tbody>
+          </table>
+        </div>
+        <div id="hist-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="../app.js"></script>
+<script src="../js/data-upload.js"></script>
+</body>
+</html>

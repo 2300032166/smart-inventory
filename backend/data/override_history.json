@@ -1,0 +1,41 @@
+[
+  {
+    "id": "53629612-9cb2-4865-8461-5ad4ee18adf6",
+    "timestamp": "2026-05-19T09:40:36.142011+00:00",
+    "sku": "GR008",
+    "product_name": "Wheat Flour 1kg",
+    "ai_suggested_qty": 87.0,
+    "actual_qty": 87.0,
+    "decision": "approved",
+    "reason_category": "",
+    "reason_text": "",
+    "manager_id": "USR002",
+    "manager_name": "Store Manager"
+  },
+  {
+    "id": "1a035e31-bfa7-4717-9ce5-90f71ed2b3d6",
+    "timestamp": "2026-05-19T09:47:26.181791+00:00",
+    "sku": "GR008",
+    "product_name": "Wheat Flour 1kg",
+    "ai_suggested_qty": 87.0,
+    "actual_qty": 87.0,
+    "decision": "approved",
+    "reason_category": "",
+    "reason_text": "",
+    "manager_id": "USR002",
+    "manager_name": "Store Manager"
+  },
+  {
+    "id": "a792584b-729c-4c6a-ab9f-56cea78fde9a",
+    "timestamp": "2026-05-19T09:48:16.777176+00:00",
+    "sku": "GR008",
+    "product_name": "Wheat Flour 1kg",
+    "ai_suggested_qty": 87.0,
+    "actual_qty": 87.0,
+    "decision": "approved",
+    "reason_category": "",
+    "reason_text": "",
+    "manager_id": "USR002",
+    "manager_name": "Store Manager"
+  }
+]

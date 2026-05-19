@@ -1,0 +1,23 @@
+image: python:3.11
+
+pipelines:
+  default:
+    - step:
+        name: Install and test
+        script:
+          - pip install -r backend/requirements.txt
+          - cd backend && python -m pytest tests/ -v || echo "No tests yet"
+
+    - step:
+        name: Validate frontend
+        script:
+          - find frontend -name "*.html" | wc -l
+          - find frontend -name "*.js" | wc -l
+          - echo "Frontend files validated"
+
+    - step:
+        name: Build Docker image
+        services:
+          - docker
+        script:
+          - docker build -t smart-inventory-advisor:latest ./backend

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Brief — Inventory Advisor</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="flex-between mb-16">
+        <div>
+          <div class="page-title">Today's Replenishment Brief</div>
+          <div class="page-subtitle" id="brief-date"></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <input type="date" id="date-picker" style="width:auto;height:36px;">
+          <button class="btn btn-secondary" id="refresh-btn">↻ Refresh</button>
+        </div>
+      </div>
+
+      <div class="card mb-24" id="progress-card" style="display:none;">
+        <div class="flex-between mb-8">
+          <span class="card-title" id="progress-text">0 of 0 items decided</span>
+        </div>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+      </div>
+
+      <div id="msg" class="alert-msg"></div>
+      <div id="brief-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+      <div id="brief-list"></div>
+    </main>
+  </div>
+</div>
+<script src="../app.js"></script>
+<script src="../js/brief.js"></script>
+</body>
+</html>

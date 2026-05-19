@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Inventory Advisor</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="flex-between mb-16">
+        <div>
+          <div class="page-title">Products</div>
+          <div class="page-subtitle">Manage your product catalogue</div>
+        </div>
+        <button class="btn btn-primary" id="add-btn">+ Add product</button>
+      </div>
+
+      <div class="filter-bar mb-16">
+        <input type="text" id="search" placeholder="Search products…" style="width:240px;">
+        <span id="count-label" class="text-muted" style="font-size:13px;margin-left:auto;"></span>
+      </div>
+
+      <div id="msg" class="alert-msg"></div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>SKU</th><th>Name</th><th>Category</th><th>Current Stock</th>
+                <th>Reorder Point</th><th>Supplier</th><th>Lead Time</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="products-tbody"></tbody>
+          </table>
+        </div>
+        <div id="prod-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal-overlay" id="product-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">Add Product</div>
+    <div id="modal-msg" class="alert-msg"></div>
+    <form id="product-form">
+      <div class="form-row">
+        <div class="form-group"><label>SKU *</label><input type="text" id="f-sku" required></div>
+        <div class="form-group"><label>Unit</label><input type="text" id="f-unit" placeholder="kg, bag, bottle…"></div>
+      </div>
+      <div class="form-group"><label>Product Name *</label><input type="text" id="f-name" required></div>
+      <div class="form-row">
+        <div class="form-group"><label>Category</label><input type="text" id="f-category"></div>
+        <div class="form-group"><label>Supplier</label><select id="f-supplier"></select></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Current Stock</label><input type="number" id="f-stock" min="0" value="0"></div>
+        <div class="form-group"><label>Reorder Threshold</label><input type="number" id="f-threshold" min="0" value="0"></div>
+      </div>
+      <div class="form-group"><label>Lead Time (days)</label><input type="number" id="f-lead" min="1" value="7"></div>
+      <div class="form-group"><label>Notes</label><textarea id="f-notes" rows="2"></textarea></div>
+    </form>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('product-modal')">Cancel</button>
+      <button class="btn btn-primary" id="save-btn">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal-box">
+    <div class="modal-title">Delete Product</div>
+    <p style="font-size:13px;color:var(--color-text-secondary);">Are you sure you want to delete <strong id="delete-name"></strong>? This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('delete-modal')">Cancel</button>
+      <button class="btn btn-danger" id="confirm-delete-btn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="../app.js"></script>
+<script src="../js/products.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Log — Inventory Advisor</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="flex-between mb-16">
+        <div>
+          <div class="page-title">Audit Log</div>
+          <div class="page-subtitle">Read-only record of all system actions</div>
+        </div>
+        <button class="btn btn-secondary" id="export-btn">Export CSV</button>
+      </div>
+
+      <div class="filter-bar card mb-16" style="padding:14px 20px;flex-wrap:wrap;">
+        <input type="date" id="date-from" style="width:160px;height:34px;">
+        <span style="font-size:13px;color:var(--color-text-hint);">to</span>
+        <input type="date" id="date-to" style="width:160px;height:34px;">
+        <select id="action-filter" style="height:34px;width:180px;">
+          <option value="">All action types</option>
+          <option value="LOGIN">Login</option>
+          <option value="ORDER_APPROVED">Order Approved</option>
+          <option value="ORDER_OVERRIDDEN">Order Overridden</option>
+          <option value="ORDER_SKIPPED">Order Skipped</option>
+          <option value="USER_CREATE">User Created</option>
+          <option value="USER_UPDATE">User Updated</option>
+          <option value="USER_STATUS_CHANGE">User Status Changed</option>
+          <option value="DATA_UPLOAD">Data Upload</option>
+          <option value="AI_CONFIG_UPDATE">AI Config Updated</option>
+        </select>
+        <button class="btn btn-primary btn-sm" id="filter-btn">Filter</button>
+      </div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Timestamp</th><th>User</th><th>Role</th><th>Action Type</th><th>Description</th><th>IP Address</th></tr>
+            </thead>
+            <tbody id="audit-tbody"></tbody>
+          </table>
+        </div>
+        <div id="audit-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="../app.js"></script>
+<script src="../js/audit-log.js"></script>
+</body>
+</html>

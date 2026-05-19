@@ -1,0 +1,87 @@
+{
+  "2026-05-19": {
+    "generated_at": "2026-05-19T09:39:51.542700+00:00",
+    "items": [
+      {
+        "sku": "GR008",
+        "product_name": "Wheat Flour 1kg",
+        "category": "Grains",
+        "current_stock": 55,
+        "unit": "bag",
+        "avg_daily_sales": 11.84,
+        "days_remaining": 4.6,
+        "lead_time_days": 5,
+        "recommended_qty": 87,
+        "urgency": "urgent",
+        "ai_reasoning": "Based on current stock levels and historical sales patterns, this product requires replenishment before the supplier lead time is exceeded. Order now to avoid a potential stockout and ensure continuous availability for customers.",
+        "confidence_score": 100,
+        "payday_spike": false,
+        "declining_trend": false
+      },
+      {
+        "sku": "GR015",
+        "product_name": "Salt 1kg",
+        "category": "Grocery",
+        "current_stock": 20,
+        "unit": "pack",
+        "avg_daily_sales": 11.69,
+        "days_remaining": 1.7,
+        "lead_time_days": 4,
+        "recommended_qty": 109,
+        "urgency": "urgent",
+        "ai_reasoning": "Based on current stock levels and historical sales patterns, this product requires replenishment before the supplier lead time is exceeded. Order now to avoid a potential stockout and ensure continuous availability for customers.",
+        "confidence_score": 100,
+        "payday_spike": false,
+        "declining_trend": false
+      },
+      {
+        "sku": "GR005",
+        "product_name": "Sugar 1kg",
+        "category": "Grocery",
+        "current_stock": 50,
+        "unit": "bag",
+        "avg_daily_sales": 11.46,
+        "days_remaining": 4.4,
+        "lead_time_days": 4,
+        "recommended_qty": 76,
+        "urgency": "normal",
+        "ai_reasoning": "Based on current stock levels and historical sales patterns, this product requires replenishment before the supplier lead time is exceeded. Order now to avoid a potential stockout and ensure continuous availability for customers.",
+        "confidence_score": 60,
+        "payday_spike": false,
+        "declining_trend": false
+      },
+      {
+        "sku": "GR010",
+        "product_name": "Yogurt 200g",
+        "category": "Dairy",
+        "current_stock": 25,
+        "unit": "cup",
+        "avg_daily_sales": 11.58,
+        "days_remaining": 2.2,
+        "lead_time_days": 2,
+        "recommended_qty": 79,
+        "urgency": "normal",
+        "ai_reasoning": "Based on current stock levels and historical sales patterns, this product requires replenishment before the supplier lead time is exceeded. Order now to avoid a potential stockout and ensure continuous availability for customers.",
+        "confidence_score": 60,
+        "payday_spike": false,
+        "declining_trend": false
+      },
+      {
+        "sku": "GR012",
+        "product_name": "Potatoes 1kg",
+        "category": "Vegetables",
+        "current_stock": 30,
+        "unit": "kg",
+        "avg_daily_sales": 11.8,
+        "days_remaining": 2.5,
+        "lead_time_days": 2,
+        "recommended_qty": 76,
+        "urgency": "normal",
+        "ai_reasoning": "Based on current stock levels and historical sales patterns, this product requires replenishment before the supplier lead time is exceeded. Order now to avoid a potential stockout and ensure continuous availability for customers.",
+        "confidence_score": 60,
+        "payday_spike": false,
+        "declining_trend": false
+      }
+    ]
+  }
+}

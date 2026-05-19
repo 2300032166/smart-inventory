@@ -1,0 +1,16 @@
+[
+  {
+    "id": "9ac0b336-9865-4dd8-b23c-cfbc86689718",
+    "filename": "sales.csv",
+    "date": "2026-05-19T07:08:11.200531+00:00",
+    "rows": 7062,
+    "status": "success"
+  },
+  {
+    "id": "5b927510-72bc-4004-b799-3d66bf0654c7",
+    "filename": "sales.csv",
+    "date": "2026-05-19T07:04:38.277947+00:00",
+    "rows": 8000,
+    "status": "success"
+  }
+]
