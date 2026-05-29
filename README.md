@@ -21,7 +21,7 @@ An AI-powered internal store operations platform that transforms retail data int
 
 - **Python 3.11+**
 - **Docker & Docker Compose** (Recommended for easiest setup)
-- **Node.js**: Not required—the frontend is built with pure Vanilla HTML5/CSS3/JavaScript.
+- Vanilla HTML5/CSS3/JavaScript.
 
 ### Local Setup (with Docker)
 
