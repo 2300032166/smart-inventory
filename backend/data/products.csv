@@ -1,5 +1,5 @@
 sku,name,unit,current_stock,reorder_threshold,supplier_name,lead_time_days,category,notes
-GR001,Milk 1L,bottle,60.0,20.0,FreshDairy,2,Dairy,Fresh milk
+GR001,Milk 1L,bottle,2.0,20.0,FreshDairy,2,Dairy,Fresh milk
 GR002,Bread,pack,40.0,15.0,BakeryHub,1,Bakery,Daily bread
 GR003,Eggs Pack (12),pack,90.0,30.0,FarmEggs,2,Dairy,Farm fresh eggs
 GR004,Basmati Rice 1kg,bag,120.0,40.0,GrainStore,5,Grains,Premium rice

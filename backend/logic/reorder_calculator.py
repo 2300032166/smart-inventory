@@ -46,12 +46,21 @@ def calculate_reorder(product: dict, pattern: dict) -> dict:
     else:
         recommended_qty = 0
 
+    # Risk level decision logic
+    if days_remaining <= lead_time:
+        risk_level = "CRITICAL_STOCKOUT"
+    elif recommended_qty == 0 and days_remaining > lead_time + 14:
+        risk_level = "OVERSTOCK"
+    else:
+        risk_level = "NORMAL"
+
     urgency_score_map = {"urgent": 100, "normal": 60, "low": 20}
     confidence_score = urgency_score_map.get(urgency, 20)
 
     return {
         "days_remaining": days_remaining,
         "urgency": urgency,
+        "risk_level": risk_level,
         "recommended_qty": max(0, recommended_qty),
         "confidence_score": confidence_score,
     }

@@ -12,6 +12,17 @@ def load_sales() -> pd.DataFrame:
     return df
 
 
+def get_effective_today(df: pd.DataFrame = None) -> datetime:
+    """Return the max date in sales.csv as 'today' for historical analysis.
+    If df is not provided, load it.
+    """
+    if df is None or df.empty:
+        df = load_sales()
+    if df.empty:
+        return datetime.now()
+    return df["InvoiceDate"].max()
+
+
 def get_payday_dates():
     import json
     cfg_path = os.path.join(DATA_DIR, "ai_config.json")
@@ -39,7 +50,7 @@ def analyse_sku(sku: str, df: pd.DataFrame = None) -> dict:
             "pattern_dates": [],
         }
 
-    today = datetime.now().date()
+    today = get_effective_today(df)
     cutoff_30 = pd.Timestamp(today - timedelta(days=30))
     recent = sku_df[sku_df["InvoiceDate"] >= cutoff_30]
 

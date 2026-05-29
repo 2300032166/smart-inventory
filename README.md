@@ -1,159 +1,117 @@
 
-# Smart Inventory Replenishment Advisor
+# Smart Inventory Replenishment Advisor 🛒🤖
 
-An AI-powered internal store operations tool that analyses sales history, detects patterns, and generates replenishment recommendations for store managers. Admins manage products, suppliers, users, and AI configuration through a separate panel.
-
----
-
-## Prerequisites
-
-- Python 3.11+
+An AI-powered internal store operations platform that transforms retail data into actionable inventory decisions. This tool analyzes sales history, predicts demand patterns (including payday spikes and historical trends), and generates intelligent replenishment recommendations for store managers.
 
 ---
 
-## Default Login Credentials
+## ✨ Core Features
+
+- **AI-Powered Daily Briefs**: Get natural language explanations for replenishment needs using state-of-the-art LLMs (Gemini, Groq, Claude).
+- **Intelligent Pattern Detection**: Automatically detects **Payday Spikes** (days 25-27) and **Declining Trends** to optimize stock levels.
+- **Synchronized Risk Metrics**: Real-time synchronization between dashboard statistics and recommendations. Handled items are immediately removed from the "Stockout Risk" count across a 48-hour window to maintain single-source-of-truth accuracy.
+- **Review Mode**: A high-efficiency "Review Flow" for managers with keyboard shortcuts (`A` for Approve, `S` for Skip) to process orders rapidly.
+- **Admin Control Panel**: Manage the product catalog, monitor supplier lead times, configure AI behavior, and view detailed audit logs.
+- **Zero-Infrastructure Portability**: Built using a flat-file architecture (CSV/JSON)—no complex database setup required.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- **Python 3.11+**
+- **Docker & Docker Compose** (Recommended)
+- **An API Key** for Groq or Gemini (Optional, for AI reasoning)
+
+### Quick Start (with Docker)
+
+```bash
+# 1. Clone the repository
+cd Store-Advisor/smart-inventory-advisor
+
+# 2. Create the .env file
+cp backend/.env.example backend/.env
+# Edit backend/.env and set your API keys
+
+# 3. Start the services
+docker compose up --build
+
+# 4. Access the application
+# URL: http://localhost:8001
+```
+
+### Manual Setup
+
+```bash
+# 1. Install Backend Dependencies
+cd backend
+pip install -r requirements.txt
+
+# 2. Configure Environment
+cp .env.example .env
+# Edit .env and set your JWT_SECRET_KEY and API Keys
+
+# 3. Start the Server
+uvicorn main:app --host 0.0.0.0 --port 8001 --reload
+```
+*Note: The backend automatically serves the frontend at http://localhost:8001.*
+
+---
+
+## 🔑 Default Login Credentials
 
 | Role    | Email               | Password     |
 |---------|---------------------|--------------|
-| Admin   | admin@store.com     | Admin@123    |
-| Manager | manager@store.com   | Manager@123  |
-
-
-
-## Local Setup (without Docker)
-
-### Backend
-
-```bash
-cd backend
-
-# Create virtual environment (optional but recommended)
-python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Create .env
-cp .env.example .env
-# Edit .env and set at minimum: JWT_SECRET_KEY
-
-# Run the API server
-uvicorn main:app --host 0.0.0.0 --port 8001 --reload
-```
-
-### Frontend
-
-Serve the frontend with any static file server that proxies /api/ to localhost:8001.
-
-
-```bash
-cd frontend
-python -m http.server 3000
-```
-Then edit your browser's requests to point to the backend, or use the nginx setup below.
-
+| **Admin**   | `admin@store.com`     | `Admin@123`    |
+| **Manager** | `manager@store.com`   | `Manager@123`  |
 
 ---
 
-## Project Structure
+## ⚙️ Environment Variables
 
-```
+Copy `backend/.env.example` to `backend/.env` and configure:
+
+| Variable              | Description                                     | Supported Values |
+|-----------------------|-------------------------------------------------|-----------------------------|
+| `AI_PROVIDER`         | The primary AI engine to use                    | `gemini`, `groq`, `claude`, `ollama` |
+| `GROQ_API_KEY`        | Groq Cloud API Key                              | — |
+| `GEMINI_API_KEY`      | Google Gemini API Key                           | — |
+| `BRIEF_CACHE_HOURS`   | How long to cache the AI daily brief            | `1` (Default) |
+| `PAYDAY_DATES`        | Days of the month to expect sales spikes        | `25,26,27` |
+
+---
+
+## 🏗️ Project Architecture
+
+```text
 smart-inventory-advisor/
-├── frontend/               Static HTML/CSS/JS frontend
-│   ├── index.html          Redirects to login
-│   ├── style.css           Global design system
-│   ├── app.js              Auth, API wrapper, sidebar/topbar
-│   ├── pages/              One HTML file per page (18 pages)
-│   └── js/                 One JS file per page
-├── backend/
-│   ├── main.py             FastAPI app entry point
-│   ├── requirements.txt    Python dependencies
-│   ├── .env.example        Environment variable template
-│   ├── data/               CSV and JSON data files
-│   ├── routes/             FastAPI route handlers
-│   ├── logic/              Business logic (AI, patterns, reorder)
-│   └── middleware/         JWT auth middleware
-├── nginx/
-│   └── nginx.conf          Nginx config (proxies /api/ to backend)
-├── docker-compose.yml      Runs frontend + backend together
-├── bitbucket-pipelines.yml CI/CD pipeline
-└── calibo.yaml             Calibo Sandbox deployment config
+├── frontend/               # Premium Vanilla JS/CSS Frontend
+│   ├── pages/              # 18+ interactive control screens
+│   ├── style.css           # Global Design System & Components
+│   └── app.js              # Auth & API core logic
+├── backend/                # FastAPI Application
+│   ├── data/               # CSV/JSON storage (The "Database")
+│   ├── logic/              # AI Clients, Pattern Detectors, Calculators
+│   ├── routes/             # RESTful API Endpoints (/api/...)
+│   └── main.py             # App Entry & Static File Mounting
+├── docker-compose.yml      # Orchestration
+└── calibo.yaml             # Cloud Sandbox Deployment settings
 ```
 
 ---
 
-## Data Files
+## 📊 Inventory Decision Logic
 
-All data is stored as flat files — no database required:
-
-| File                         | Purpose                              |
-|------------------------------|--------------------------------------|
-| `backend/data/products.csv`  | Product catalogue with stock levels  |
-| `backend/data/suppliers.csv` | Supplier contacts and lead times     |
-| `backend/data/sales.csv`     | Sales history (Kaggle format)        |
-| `backend/data/users.json`    | User accounts with hashed passwords  |
-| `backend/data/override_history.json` | Replenishment decisions      |
-| `backend/data/audit_log.json` | Full system audit trail             |
-| `backend/data/alerts.json`   | User notifications                   |
-| `backend/data/ai_config.json` | AI model configuration              |
-| `backend/data/brief_log.json` | Cached AI briefs (by date)          |
+1. **Extraction**: Sales data is pulled from `sales.csv` using Pandas.
+2. **Analysis**: The `PatternDetector` identifies seasonal spikes and sales velocity.
+3. **Calculation**: `ReorderCalculator` suggests quantities based on stock levels, lead times, and detected patterns.
+4. **AI Reasoning**: The `AI Client` translates technical data into natural language suggestions to help managers understand *why* an order is needed.
+5. **Real-time Sync**: Manager decisions are logged in `override_history.json`, instantly updating dashboard risk metrics and removing the item from the daily brief.
 
 ---
 
-## API Documentation
-
-When the backend is running, visit `http://localhost:8001/docs` for the interactive Swagger API documentation.
-
----
-
-## How AI Brief Generation Works
-
-1. Sales history is read from `sales.csv` using Pandas
-2. For each product, daily averages, payday spikes, and trends are detected
-3. A reorder score and recommended quantity are calculated
-4. A prompt is built and sent to Gemini API 
-5. The AI's reasoning paragraph is attached to each recommendation
-6. The full brief is cached for `BRIEF_CACHE_HOURS` to avoid repeated API calls
-=======
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
-
-
-## Edit a file
-
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
-
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
-
----
-
-## Create a file
-
-Next, you’ll add a new file to this repository.
-
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
-
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
-
----
-
-## Clone a repository
-
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
-
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
-
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
->>>>>>> 304f9a5407d22c20a132de112aac9212541b8e73
+## 🎨 Design System
+This project follows a **Premium Operations** aesthetic:
+- **Dark Mode First**: Optimized for high-contrast visibility.
+- **Glassmorphism**: Subtle translucent layers for depth.
+- **Responsive**: Fully functional on tablets and desktops.

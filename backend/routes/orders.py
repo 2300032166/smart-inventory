@@ -1,10 +1,12 @@
 from fastapi import APIRouter, Depends, Query, HTTPException, Request
 from pydantic import BaseModel
 from typing import Optional
-import json, os, uuid
+import json, os, uuid, logging
 from datetime import datetime, timezone
 
 from middleware.auth_middleware import require_role
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
@@ -12,7 +14,7 @@ OVERRIDE_FILE = os.path.join(DATA_DIR, "override_history.json")
 AUDIT_FILE = os.path.join(DATA_DIR, "audit_log.json")
 
 
-def load_overrides():
+def load_overrides() -> list:
     try:
         with open(OVERRIDE_FILE) as f:
             return json.load(f)
@@ -25,7 +27,7 @@ def save_overrides(data: list):
         json.dump(data, f, indent=2)
 
 
-def load_audit():
+def load_audit() -> list:
     try:
         with open(AUDIT_FILE) as f:
             return json.load(f)
@@ -49,9 +51,15 @@ class DecisionRequest(BaseModel):
 
 
 @router.post("/decide")
-def record_decision(body: DecisionRequest, request: Request, payload: dict = Depends(require_role("manager"))):
+def record_decision(
+    body: DecisionRequest,
+    request: Request,
+    payload: dict = Depends(require_role("manager")),
+):
     if body.decision not in ("approved", "overridden", "skipped"):
-        raise HTTPException(status_code=400, detail="decision must be approved, overridden, or skipped")
+        raise HTTPException(
+            status_code=400, detail="decision must be approved, overridden, or skipped"
+        )
 
     overrides = load_overrides()
     record = {
@@ -79,12 +87,33 @@ def record_decision(body: DecisionRequest, request: Request, payload: dict = Dep
         "user_name": payload.get("name"),
         "role": payload.get("role"),
         "action_type": f"ORDER_{body.decision.upper()}",
-        "description": f"{body.decision.title()} order for {body.product_name} (SKU: {body.sku}), qty: {body.actual_qty}",
+        "description": (
+            f"{body.decision.title()} order for {body.product_name} "
+            f"(SKU: {body.sku}), qty: {body.actual_qty}"
+        ),
         "ip_address": ip,
     })
     save_audit(audit)
 
+    logger.info(
+        "[Orders] Decision recorded | sku=%s | decision=%s | manager=%s",
+        body.sku, body.decision, payload.get("name"),
+    )
     return {"message": "Decision recorded", "id": record["id"]}
+
+
+@router.get("/reviewed")
+def get_reviewed_by_date(
+    date: str = Query(None),
+    payload: dict = Depends(require_role("manager"))
+):
+    """Return all manager decisions made on a specific date (or today if None)."""
+    target_date = date or datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    overrides = load_overrides()
+    day_items = [o for o in overrides if o.get("timestamp", "")[:10] == target_date]
+    day_items.sort(key=lambda x: x.get("timestamp", ""), reverse=True)
+    logger.info("[Orders] Reviewed on %s: %d items", target_date, len(day_items))
+    return day_items
 
 
 @router.get("/history")

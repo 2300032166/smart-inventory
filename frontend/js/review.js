@@ -1,113 +1,163 @@
 requireRole('manager');
 initShell();
 
-let allItems = [];
-const decided = new Map();
+// ── Review Orders page ────────────────────────────────────────────────────────
+// Data source: override_history.json (via /orders/reviewed)
+// Shows all manager decisions recorded TODAY: Product, SKU, Decision,
+// Suggested qty, Final qty, Timestamp.
+// This page is READ-ONLY — decisions are made on the Daily Brief page.
+// ─────────────────────────────────────────────────────────────────────────────
 
-async function load() {
-  const spinner = document.getElementById('review-spinner');
-  try {
-    const items = await apiFetch('/brief/today');
-    if (!items) return;
-    allItems = items;
-    spinner.style.display = 'none';
-    render();
-    updateProgress();
-  } catch (err) {
-    spinner.style.display = 'none';
-    showError(document.getElementById('msg'), 'Could not load brief: ' + err.message);
-  }
+const DECISION_LABELS = {
+  approved: { label: 'Approved', color: 'var(--color-success)', icon: '✓' },
+  overridden: { label: 'Changed Qty', color: 'var(--color-warning)', icon: '✎' },
+  skipped: { label: 'Skipped', color: 'var(--color-danger)', icon: '✕' },
+};
+
+const datePicker = document.getElementById('date-picker');
+const dateText = document.getElementById('review-date');
+
+// Use local date for todayStr (YYYY-MM-DD)
+const now = new Date();
+const todayStr = [
+  now.getFullYear(),
+  String(now.getMonth() + 1).padStart(2, '0'),
+  String(now.getDate()).padStart(2, '0')
+].join('-');
+
+datePicker.value = todayStr;
+datePicker.max = todayStr;
+
+function updateDateText(dateStr) {
+  if (!dateStr) return;
+  const [y, m, d] = dateStr.split('-');
+  dateText.textContent = `${d}-${m}-${y}`;
 }
 
-function updateProgress() {
-  const total = allItems.length;
-  const done = decided.size;
-  document.getElementById('progress-text').textContent = `${done} of ${total} reviewed`;
-  document.getElementById('progress-fill').style.width = total ? `${(done/total)*100}%` : '0%';
-}
+updateDateText(todayStr);
 
-function render() {
-  const list = document.getElementById('review-list');
-  const undecided = allItems.filter(i => !decided.has(i.sku));
-  if (!undecided.length && !allItems.length) {
-    list.innerHTML = '<div class="card" style="font-size:13px;color:var(--color-text-hint);padding:24px;">No brief available yet.</div>'; return;
-  }
-  if (!undecided.length) {
-    list.innerHTML = '<div class="card" style="font-size:13px;color:var(--color-success);padding:24px;">✓ All items reviewed for today!</div>'; return;
-  }
-  const item = undecided[0];
-  const isCritical = item.days_remaining < item.lead_time_days;
-
-  list.innerHTML = `
-  <div class="rec-card">
-    <div style="font-size:12px;color:var(--color-text-hint);margin-bottom:10px;">${allItems.indexOf(item)+1} of ${allItems.length}</div>
-    <div class="rec-card-header">
-      <div>
-        <div class="rec-card-title">${item.product_name}</div>
-        <div class="rec-card-sku">${item.sku} &bull; ${item.category}</div>
-      </div>
-      ${urgencyBadge(item.urgency)}
-    </div>
-    <div class="rec-meta">
-      <div class="rec-meta-item">Stock: <strong>${item.current_stock} ${item.unit}</strong></div>
-      <div class="rec-meta-item">Avg daily: <strong>${item.avg_daily_sales}</strong></div>
-      <div class="rec-meta-item ${isCritical?'critical':''}">Days left: <strong>${item.days_remaining}</strong></div>
-      <div class="rec-meta-item">Lead time: <strong>${item.lead_time_days}d</strong></div>
-      <div class="rec-meta-item">Suggested qty: <strong>${item.recommended_qty}</strong></div>
-    </div>
-    <div class="ai-box mb-16"><span class="ai-box-icon">🤖</span><span>${item.ai_reasoning}</span></div>
-    <div class="rec-actions">
-      <button class="btn btn-success" onclick="decide('${item.sku}','${item.product_name}',${item.recommended_qty},'approved',${item.recommended_qty})">✓ Approve (A)</button>
-      <button class="btn btn-secondary" onclick="toggleExpand('expand-main')">Change quantity</button>
-      <button class="btn btn-danger" onclick="decide('${item.sku}','${item.product_name}',${item.recommended_qty},'skipped',0)">✕ Skip (S)</button>
-    </div>
-    <div class="rec-expand" id="expand-main">
-      <div class="form-row" style="margin-bottom:10px;">
-        <div class="form-group" style="margin-bottom:0;">
-          <label>New quantity</label>
-          <input type="number" id="qty-input" value="${item.recommended_qty}" min="0">
-        </div>
-        <div class="form-group" style="margin-bottom:0;">
-          <label>Reason category</label>
-          <select id="reason-cat">
-            <option>Seasonal adjustment</option><option>Supplier issue</option>
-            <option>Budget constraint</option><option>Overstock risk</option><option>Other</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Notes</label><textarea id="reason-text" rows="2"></textarea>
-      </div>
-      <button class="btn btn-primary btn-sm" onclick="submitOverride('${item.sku}','${item.product_name}',${item.recommended_qty})">Confirm</button>
-    </div>
-  </div>`;
-
-  window._currentItem = item;
-}
-
-function toggleExpand(id) { document.getElementById(id)?.classList.toggle('open'); }
-
-async function decide(sku, name, aiQty, decision, actualQty, reasonCat = '', reasonText = '') {
-  try {
-    await apiFetch('/orders/decide', { method: 'POST', body: { sku, product_name: name, decision, ai_suggested_qty: aiQty, actual_qty: actualQty, reason_category: reasonCat, reason_text: reasonText } });
-    decided.set(sku, decision);
-    render();
-    updateProgress();
-  } catch (err) { showError(document.getElementById('msg'), err.message); }
-}
-
-async function submitOverride(sku, name, aiQty) {
-  const qty = parseFloat(document.getElementById('qty-input')?.value || 0);
-  const cat = document.getElementById('reason-cat')?.value || '';
-  const text = document.getElementById('reason-text')?.value || '';
-  await decide(sku, name, aiQty, qty === aiQty ? 'approved' : 'overridden', qty, cat, text);
-}
-
-document.addEventListener('keydown', e => {
-  const item = window._currentItem;
-  if (!item) return;
-  if (e.key === 'a' || e.key === 'A') decide(item.sku, item.product_name, item.recommended_qty, 'approved', item.recommended_qty);
-  if (e.key === 's' || e.key === 'S') decide(item.sku, item.product_name, item.recommended_qty, 'skipped', 0);
+datePicker.addEventListener('change', () => {
+  updateDateText(datePicker.value);
+  loadReviewed();
 });
 
-load();
+async function loadReviewed() {
+  const spinner = document.getElementById('review-spinner');
+  const container = document.getElementById('review-list');
+  const msg = document.getElementById('msg');
+  const summary = document.getElementById('summary-bar');
+  hideMsg(msg);
+  spinner.style.display = 'flex';
+  container.innerHTML = '';
+
+  try {
+    // Load decisions for the selected date
+    const selectedDate = datePicker.value;
+    const items = await apiFetch(`/orders/reviewed?date=${selectedDate}`);
+    if (!items) return;
+
+    spinner.style.display = 'none';
+    renderSummary(items, summary, selectedDate);
+    renderTable(items, container, selectedDate);
+  } catch (err) {
+    spinner.style.display = 'none';
+    showError(msg, 'Could not load reviewed orders: ' + err.message);
+  }
+}
+
+function renderSummary(items, bar) {
+  const total = items.length;
+  const approved = items.filter(i => i.decision === 'approved').length;
+  const overridden = items.filter(i => i.decision === 'overridden').length;
+  const skipped = items.filter(i => i.decision === 'skipped').length;
+
+  if (total === 0) {
+    bar.innerHTML = '<span style="color:var(--color-text-hint);font-size:13px;">No decisions recorded yet today. Go to <a href="brief.html">Daily Brief</a> to review pending items.</span>';
+    return;
+  }
+
+  bar.innerHTML = `
+    <div class="review-summary-chips">
+      <span class="review-chip total">${total} reviewed</span>
+      ${approved ? `<span class="review-chip approved">✓ ${approved} approved</span>` : ''}
+      ${overridden ? `<span class="review-chip overridden">✎ ${overridden} changed</span>` : ''}
+      ${skipped ? `<span class="review-chip skipped">✕ ${skipped} skipped</span>` : ''}
+    </div>`;
+}
+
+function renderTable(items, container) {
+  if (!items.length) {
+    container.innerHTML = `
+      <div class="card" style="padding:32px;text-align:center;">
+        <div style="font-size:36px;margin-bottom:12px;">📋</div>
+        <div style="font-size:15px;font-weight:600;margin-bottom:6px;">No decisions yet today</div>
+        <div style="font-size:13px;color:var(--color-text-hint);">
+          Visit <a href="brief.html" style="color:var(--color-primary);">Daily Brief</a>
+          to approve, change, or skip pending replenishment recommendations.
+        </div>
+      </div>`;
+    return;
+  }
+
+  const rows = items.map(item => {
+    const d = DECISION_LABELS[item.decision] || { label: item.decision, color: '#888', icon: '?' };
+    const ts = item.timestamp
+      ? new Date(item.timestamp).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
+      : '—';
+    const qtyChanged = item.decision === 'overridden'
+      ? `<span style="color:var(--color-warning);">${item.actual_qty}</span>`
+      : `${item.actual_qty}`;
+    const reasonHtml = item.reason_text
+      ? `<div class="review-reason">${item.reason_text}</div>`
+      : '';
+
+    return `
+      <tr>
+        <td>
+          <div class="review-product-name">${item.product_name || '—'}</div>
+          <div class="review-sku-label">${item.sku}</div>
+        </td>
+        <td>
+          <span class="review-decision-badge" style="background:${d.color}20;color:${d.color};border:1px solid ${d.color}40;">
+            ${d.icon} ${d.label}
+          </span>
+        </td>
+        <td class="review-qty">${item.ai_suggested_qty ?? '—'}</td>
+        <td class="review-qty">${qtyChanged}</td>
+        <td>
+          ${item.reason_category ? `<span class="badge badge-gray">${item.reason_category}</span>` : '—'}
+          ${reasonHtml}
+        </td>
+        <td class="review-time">${ts}</td>
+        <td class="review-manager">${item.manager_name || '—'}</td>
+      </tr>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table class="review-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Decision</th>
+            <th>Suggested Qty</th>
+            <th>Final Qty</th>
+            <th>Reason</th>
+            <th>Time</th>
+            <th>Manager</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+document.getElementById('refresh-btn').addEventListener('click', () => {
+  datePicker.value = todayStr;
+  updateDateText(todayStr);
+  loadReviewed();
+});
+
+loadReviewed();

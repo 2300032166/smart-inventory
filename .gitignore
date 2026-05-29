@@ -1,10 +1,26 @@
-# Ignore specific files
+# Ignore virtual environment
+backend/venv/
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment file
+.env
+
+# Logs
+*.log
+
+# Config / CI files (if not needed in repo)
 bitbucket-pipelines.yml
 calibo.yaml
 docker-compose.yml
 
-# Ignore env file
-.env
+# IDE files
+.vscode/
+.idea/
 
-# Ignore logs
-*.log
+# OS files
+.DS_Store
+Thumbs.db

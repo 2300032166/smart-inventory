@@ -42,22 +42,11 @@ def build_prompt(product: dict, pattern: dict, reorder: dict) -> str:
 
     if not template:
         template = (
-            "You are a store inventory advisor. Analyse the following product and "
-            "generate a plain-English replenishment recommendation.\n\n"
-            "Product: {product_name} (SKU: {sku})\n"
-            "Current stock: {current_stock} {unit}\n"
-            "Average daily sales (last 30 days): {avg_daily_sales} {unit}/day\n"
-            "Days of stock remaining: {days_remaining} days\n"
-            "Supplier lead time: {lead_time_days} days\n"
-            "Calculated recommended order quantity: {recommended_qty} {unit}\n"
-            "Payday spike detected: {payday_spike}\n"
-            "Declining trend: {declining_trend}\n\n"
-            "Override history (last 5 decisions for this product):\n"
-            "{override_history_summary}\n\n"
-            "Write exactly 2-3 sentences explaining WHY this order is recommended, "
-            "in plain English that a store manager can understand. Mention specific "
-            "patterns detected. Do not repeat the numbers — the UI already shows them. "
-            "Do not use bullet points. Just write the reasoning paragraph."
+            "Product: {product_name}.\n"
+            "Stock details: {current_stock} currently in store. It sells about {avg_daily_sales} per day. "
+            "We will run out in {days_remaining} days. The supplier takes {lead_time_days} days to bring more.\n"
+            "Decision: Order {recommended_qty} {unit}.\n\n"
+            "Helpful Suggestion (2 natural sentences):"
         )
 
     override_summary = get_override_history_summary(product.get("sku", ""))
@@ -71,6 +60,7 @@ def build_prompt(product: dict, pattern: dict, reorder: dict) -> str:
         days_remaining=reorder.get("days_remaining", 0),
         lead_time_days=product.get("lead_time_days", 7),
         recommended_qty=reorder.get("recommended_qty", 0),
+        risk_level=reorder.get("risk_level", "NORMAL"),
         payday_spike=pattern.get("payday_spike", False),
         declining_trend=pattern.get("declining_trend", False),
         override_history_summary=override_summary,

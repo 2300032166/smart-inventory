@@ -1,12 +1,13 @@
 {
-  "ai_provider": "gemini",
+  "ai_provider": "groq",
   "gemini_api_key": "",
-  "gemini_model": "gemini-1.5-flash",
+  "gemini_model": "gemini-2.5-flash-lite",
+  "groq_api_key": "",
+  "groq_model": "llama-3.3-70b-versatile",
   "ollama_url": "http://localhost:11434",
   "ollama_model": "llama3",
   "confidence_threshold": 60,
   "max_brief_items": 10,
   "payday_dates": [25, 26, 27],
-  "brief_cache_hours": 6,
-  "prompt_template": "You are a store inventory advisor. Analyse the following product and generate a plain-English replenishment recommendation.\n\nProduct: {product_name} (SKU: {sku})\nCurrent stock: {current_stock} {unit}\nAverage daily sales (last 30 days): {avg_daily_sales} {unit}/day\nDays of stock remaining: {days_remaining} days\nSupplier lead time: {lead_time_days} days\nCalculated recommended order quantity: {recommended_qty} {unit}\nPayday spike detected: {payday_spike}\nDeclining trend: {declining_trend}\n\nOverride history (last 5 decisions for this product):\n{override_history_summary}\n\nWrite exactly 2-3 sentences explaining WHY this order is recommended, in plain English that a store manager can understand. Mention specific patterns detected. Do not repeat the numbers — the UI already shows them. Do not use bullet points. Just write the reasoning paragraph."
+  "brief_cache_hours": 6
 }

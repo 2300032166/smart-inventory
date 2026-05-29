@@ -7,19 +7,37 @@ let isHistoryMode = false;
 
 const dateEl = document.getElementById('brief-date');
 const picker = document.getElementById('date-picker');
-const todayStr = new Date().toISOString().slice(0, 10);
+
+// Use local date for todayStr (YYYY-MM-DD)
+const now = new Date();
+const todayStr = [
+  now.getFullYear(),
+  String(now.getMonth() + 1).padStart(2, '0'),
+  String(now.getDate()).padStart(2, '0')
+].join('-');
+
 picker.value = todayStr;
 picker.max = todayStr;
-dateEl.textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+function updateDateText(dateStr) {
+  if (!dateStr) return;
+  const [y, m, d] = dateStr.split('-');
+  dateEl.textContent = `${d}-${m}-${y}`;
+}
+
+updateDateText(todayStr);
 
 picker.addEventListener('change', () => {
   isHistoryMode = picker.value !== todayStr;
+  updateDateText(picker.value);
   loadBrief();
 });
 
 document.getElementById('refresh-btn').addEventListener('click', () => {
   picker.value = todayStr;
+  updateDateText(todayStr);
   isHistoryMode = false;
+  decided.clear();
   loadBrief();
 });
 
@@ -34,9 +52,12 @@ async function loadBrief() {
   try {
     let items;
     if (isHistoryMode) {
+      // History mode: show full brief for that date (read-only)
       items = await apiFetch(`/brief/history?date=${picker.value}`);
     } else {
-      items = await apiFetch('/brief/today');
+      // Today: fetch only PENDING items (not yet decided by manager)
+      // Data source: brief_log.json ∩ NOT in override_history.json for today
+      items = await apiFetch('/brief/pending');
     }
     if (!items) return;
     allItems = items;
@@ -55,17 +76,27 @@ function updateProgress() {
   const card = document.getElementById('progress-card');
   const text = document.getElementById('progress-text');
   const fill = document.getElementById('progress-fill');
-  if (total > 0) {
-    card.style.display = 'block';
-    text.textContent = `${done} of ${total} items decided`;
-    fill.style.width = `${Math.round((done / total) * 100)}%`;
+  card.style.display = 'block';
+  if (isHistoryMode) {
+    text.textContent = `${total} items in brief`;
+    fill.style.width = '100%';
+  } else {
+    text.textContent = total === 0
+      ? '✓ All items reviewed for today'
+      : `${total} item${total !== 1 ? 's' : ''} pending review`;
+    fill.style.width = total === 0 ? '100%' : `${Math.round(((done) / (total + done)) * 100)}%`;
   }
 }
 
 function renderBrief() {
   const list = document.getElementById('brief-list');
+
   if (!allItems.length) {
-    list.innerHTML = '<div class="card" style="font-size:13px;color:var(--color-text-hint);padding:24px;">No recommendations for this date. All stock levels look good.</div>';
+    if (isHistoryMode) {
+      list.innerHTML = '<div class="card" style="font-size:13px;color:var(--color-text-hint);padding:24px;">No recommendations found for this date.</div>';
+    } else {
+      list.innerHTML = '<div class="card" style="font-size:13px;color:var(--color-success);padding:24px;">✓ All items have been reviewed today. Check <a href="review.html">Review Orders</a> to see decisions.</div>';
+    }
     return;
   }
 
@@ -89,45 +120,55 @@ function renderBrief() {
         <div class="rec-meta-item">Suggested: <strong>${item.recommended_qty} ${item.unit}</strong></div>
       </div>
       <div class="ai-box mb-16"><span class="ai-box-icon">🤖</span><span>${item.ai_reasoning}</span></div>
-      ${d ? `
-        <div class="rec-decided" style="color:${d==='approved'?'var(--color-success)':d==='skipped'?'var(--color-danger)':'var(--color-warning)'}">
-          ✓ Decision recorded: ${d}
-        </div>` : (isHistoryMode ? '<div class="text-muted" style="font-size:13px;">Past brief — read only</div>' : `
-        <div class="rec-actions">
-          <button class="btn btn-success btn-sm" onclick="decide('${item.sku}','${item.product_name}',${item.recommended_qty},'approved',${item.recommended_qty})">✓ Approve</button>
-          <button class="btn btn-secondary btn-sm" onclick="toggleExpand('${item.sku}')">Change quantity</button>
-          <button class="btn btn-danger btn-sm" onclick="decide('${item.sku}','${item.product_name}',${item.recommended_qty},'skipped',0)">✕ Skip</button>
-        </div>
-        <div class="rec-expand" id="expand-${item.sku}">
-          <div class="form-row" style="margin-bottom:10px;">
-            <div class="form-group" style="margin-bottom:0;">
-              <label>New quantity</label>
-              <input type="number" id="qty-${item.sku}" value="${item.recommended_qty}" min="0">
-            </div>
-            <div class="form-group" style="margin-bottom:0;">
-              <label>Reason category</label>
-              <select id="reason-cat-${item.sku}">
-                <option>Seasonal adjustment</option><option>Supplier issue</option>
-                <option>Budget constraint</option><option>Overstock risk</option><option>Other</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Additional notes</label>
-            <textarea id="reason-${item.sku}" rows="2" placeholder="Why are you changing the quantity?"></textarea>
-          </div>
-          <button class="btn btn-primary btn-sm" onclick="submitOverride('${item.sku}','${item.product_name}',${item.recommended_qty})">Confirm order</button>
-        </div>`)}
+      ${d
+        ? `<div class="rec-decided" style="color:${d === 'approved' ? 'var(--color-success)' : d === 'skipped' ? 'var(--color-danger)' : 'var(--color-warning)'}">
+             ✓ Decision recorded: ${d}
+           </div>`
+        : isHistoryMode
+          ? '<div class="text-muted" style="font-size:13px;">Past brief — read only</div>'
+          : `<div class="rec-actions">
+               <button class="btn btn-success btn-sm" onclick="decide('${item.sku}','${item.product_name}',${item.recommended_qty},'approved',${item.recommended_qty})">✓ Approve</button>
+               <button class="btn btn-secondary btn-sm" onclick="toggleExpand('${item.sku}')">Change quantity</button>
+               <button class="btn btn-danger btn-sm" onclick="decide('${item.sku}','${item.product_name}',${item.recommended_qty},'skipped',0)">✕ Skip</button>
+             </div>
+             <div class="rec-expand" id="expand-${item.sku}">
+               <div class="form-row" style="margin-bottom:10px;">
+                 <div class="form-group" style="margin-bottom:0;">
+                   <label>New quantity</label>
+                   <input type="number" id="qty-${item.sku}" value="${item.recommended_qty}" min="0">
+                 </div>
+                 <div class="form-group" style="margin-bottom:0;">
+                   <label>Reason category</label>
+                   <select id="reason-cat-${item.sku}">
+                     <option>Seasonal adjustment</option><option>Supplier issue</option>
+                     <option>Budget constraint</option><option>Overstock risk</option><option>Other</option>
+                   </select>
+                 </div>
+               </div>
+               <div class="form-group">
+                 <label>Additional notes</label>
+                 <textarea id="reason-${item.sku}" rows="2" placeholder="Why are you changing the quantity?"></textarea>
+               </div>
+               <button class="btn btn-primary btn-sm" onclick="submitOverride('${item.sku}','${item.product_name}',${item.recommended_qty})">Confirm order</button>
+             </div>`
+      }
     </div>`;
   }).join('');
 }
 
-function toggleExpand(sku) { document.getElementById(`expand-${sku}`)?.classList.toggle('open'); }
+function toggleExpand(sku) {
+  document.getElementById(`expand-${sku}`)?.classList.toggle('open');
+}
 
 async function decide(sku, name, aiQty, decision, actualQty, reasonCat = '', reasonText = '') {
   try {
-    await apiFetch('/orders/decide', { method: 'POST', body: { sku, product_name: name, decision, ai_suggested_qty: aiQty, actual_qty: actualQty, reason_category: reasonCat, reason_text: reasonText } });
+    await apiFetch('/orders/decide', {
+      method: 'POST',
+      body: { sku, product_name: name, decision, ai_suggested_qty: aiQty, actual_qty: actualQty, reason_category: reasonCat, reason_text: reasonText }
+    });
     decided.set(sku, decision);
+    // Remove from allItems so the card disappears after decision
+    allItems = allItems.filter(i => i.sku !== sku);
     renderBrief();
     updateProgress();
   } catch (err) {

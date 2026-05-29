@@ -13,17 +13,19 @@
     <nav id="sidebar" class="sidebar"></nav>
     <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
     <main class="main-content">
-      <div class="page-header">
-        <div class="page-title">Review Orders</div>
-        <div class="page-subtitle">Items awaiting your decision today · Shortcuts: <kbd style="background:#eee;padding:1px 5px;border-radius:3px;">A</kbd> Approve · <kbd style="background:#eee;padding:1px 5px;border-radius:3px;">S</kbd> Skip</div>
+      <div class="flex-between mb-24">
+        <div class="page-header" style="margin-bottom:0;">
+          <div class="page-title">Review Orders</div>
+          <div class="page-subtitle" id="review-date"></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <input type="date" id="date-picker" style="width:auto;height:36px;">
+          <button class="btn btn-secondary" id="refresh-btn">↻ Refresh</button>
+        </div>
       </div>
 
-      <div class="card mb-24">
-        <div class="flex-between mb-8">
-          <span class="card-title" id="progress-text">Loading…</span>
-        </div>
-        <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
-      </div>
+      <!-- Summary chips row -->
+      <div id="summary-bar" class="mb-16"></div>
 
       <div id="msg" class="alert-msg"></div>
       <div id="review-spinner" class="spinner-wrap"><div class="spinner"></div></div>
@@ -31,7 +33,7 @@
     </main>
   </div>
 </div>
-<script src="../app.js"></script>
-<script src="../js/review.js"></script>
+<script src="../app.js?v=3"></script>
+<script src="../js/review.js?v=3"></script>
 </body>
 </html>

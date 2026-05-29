@@ -24,6 +24,10 @@ def save_alerts(data: list):
 
 @router.get("")
 def get_alerts(payload: dict = Depends(verify_token)):
+    # Trigger alert generation if needed (lazy-load style)
+    # We can't easily import advisor here due to circular imports,
+    # but we can implement a basic scan or just wait for the user to visit the dashboard.
+    # Actually, let's just ensure the types match the frontend icons.
     user_id = payload.get("sub")
     alerts = load_alerts()
     user_alerts = [a for a in alerts if a.get("user_id") == user_id or a.get("user_id") == "all"]

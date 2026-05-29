@@ -8,9 +8,8 @@ const decided = new Set();
 
 async function loadStats() {
   try {
-    const d = await apiFetch('/sales/summary');
+    const d = await apiFetch(`/sales/summary?t=${Date.now()}`);
     if (!d) return;
-    document.getElementById('stat-pending').textContent = d.pending_review ?? '—';
     document.getElementById('stat-risk').textContent = d.stockout_risk ?? '—';
     document.getElementById('stat-orders').textContent = d.orders_this_week ?? '—';
     document.getElementById('stat-accuracy').textContent = d.ai_accuracy_pct != null ? d.ai_accuracy_pct + '%' : '—';
@@ -21,8 +20,9 @@ async function loadBrief() {
   const spinner = document.getElementById('rec-spinner');
   const list = document.getElementById('rec-list');
   try {
-    const items = await apiFetch('/brief/today');
+    const items = await apiFetch(`/brief/pending?t=${Date.now()}`);
     if (!items) return;
+    document.getElementById('stat-pending').textContent = items.length;
     allItems = items.slice(0, 3);
     spinner.style.display = 'none';
     renderCards();

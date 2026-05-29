@@ -776,3 +776,121 @@ input[type=range] {
   .main-content { padding: 16px; }
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
 }
+
+/* ── Review Orders — Summary Chips ────────────────────── */
+.review-summary-chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.review-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.review-chip.total    { background: #EDEDEC; color: var(--color-text-secondary); }
+.review-chip.approved { background: var(--color-success-light); color: var(--color-success); }
+.review-chip.overridden { background: var(--color-warning-light); color: var(--color-warning); }
+.review-chip.skipped  { background: var(--color-danger-light); color: var(--color-danger); }
+
+/* ── Review Orders — Table ─────────────────────────────── */
+.review-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.review-table thead tr {
+  background: var(--color-bg-page);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.review-table thead th {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  padding: 12px 16px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.review-table tbody tr {
+  border-bottom: 1px solid var(--color-border);
+  transition: background 0.12s;
+}
+
+.review-table tbody tr:hover { background: #F5F4F2; }
+
+.review-table td {
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--color-text-primary);
+  vertical-align: middle;
+}
+
+.review-product-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.review-sku-label {
+  font-size: 11px;
+  color: var(--color-text-hint);
+  margin-top: 2px;
+  font-family: monospace;
+  letter-spacing: 0.04em;
+}
+
+.review-decision-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.review-qty {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.review-time {
+  white-space: nowrap;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.review-manager {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.review-reason {
+  font-size: 12px;
+  color: var(--color-text-hint);
+  margin-top: 4px;
+  font-style: italic;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, Query
 import pandas as pd
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from middleware.auth_middleware import verify_token
-from logic.pattern_detector import load_sales, analyse_sku
+from logic.pattern_detector import load_sales, analyse_sku, get_effective_today
 
 router = APIRouter()
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
@@ -19,7 +19,7 @@ def get_trends(
     df = load_sales()
     sku_df = df[df["StockCode"] == sku].copy()
 
-    today = datetime.now().date()
+    today = get_effective_today(df)
     cutoff = pd.Timestamp(today - timedelta(days=days))
     sku_df = sku_df[sku_df["InvoiceDate"] >= cutoff]
 
@@ -68,31 +68,47 @@ def get_summary(payload: dict = Depends(verify_token)):
     products_csv = os.path.join(DATA_DIR, "products.csv")
     products = pd.read_csv(products_csv).fillna("").to_dict(orient="records")
 
-    today = datetime.now().date()
-    week_start = pd.Timestamp(today - timedelta(days=7))
-    week_df = df[df["InvoiceDate"] >= week_start]
+    # Data 'today' for inventory analysis
+    data_today = get_effective_today(df)
+    
+    # Real 'today' for tracking manager decisions/orders
+    real_today = datetime.now(timezone.utc)
+    real_week_start = real_today - timedelta(days=7)
 
     from logic.pattern_detector import analyse_sku
-    from logic.reorder_calculator import calculate_reorder
-
-    stockout_risk = 0
-    for p in products:
-        pattern = analyse_sku(p["sku"], df)
-        reorder = calculate_reorder(p, pattern)
-        if reorder["urgency"] == "urgent":
-            stockout_risk += 1
+    from logic.reorder_calculator import calculate_reorder, load_ai_config, should_include_in_brief
 
     override_path = os.path.join(DATA_DIR, "override_history.json")
     import json
+
+    # Decision metrics use real-time
     try:
         with open(override_path) as f:
             overrides = json.load(f)
     except Exception:
         overrides = []
 
+    # Use a 48-hour window to be safe against server/client time drifts
+    recent_limit = (real_today - timedelta(hours=48)).isoformat()
+    decided_skus = {str(o.get("sku", "")).strip().upper() for o in overrides if o.get("timestamp", "") >= recent_limit}
+
+    stockout_risk = 0
+    cfg = load_ai_config()
+    for p in products:
+        sku = str(p.get("sku", "")).strip().upper()
+        if sku in decided_skus:
+            continue
+            
+        pattern = analyse_sku(p.get("sku"), df)
+        reorder = calculate_reorder(p, pattern)
+        
+        # Match the filtering logic of the Daily Brief exactly
+        if reorder["urgency"] == "urgent" and should_include_in_brief(reorder, cfg):
+            stockout_risk += 1
+
     week_orders = [
         o for o in overrides
-        if o.get("timestamp", "") >= week_start.isoformat()
+        if o.get("timestamp", "") >= real_week_start.isoformat()
         and o.get("decision") in ("approved", "overridden")
     ]
 
@@ -100,10 +116,7 @@ def get_summary(payload: dict = Depends(verify_token)):
     total_decided = len([o for o in overrides if o.get("decision") in ("approved", "overridden", "skipped")])
     accuracy = round(len(approved) / total_decided * 100) if total_decided > 0 else 0
 
-    pending = len(products) - len([o for o in overrides if o.get("timestamp", "")[:10] == today.isoformat()])
-
     return {
-        "pending_review": max(0, pending),
         "stockout_risk": stockout_risk,
         "orders_this_week": len(week_orders),
         "ai_accuracy_pct": accuracy,

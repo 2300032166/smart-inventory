@@ -448,5 +448,315 @@
     "action_type": "ORDER_APPROVED",
     "description": "Approved order for Wheat Flour 1kg (SKU: GR008), qty: 87.0",
     "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "ed12e53d-a740-41fc-a0ed-4bd68d738996",
+    "timestamp": "2026-05-23T12:06:01.253807+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3f8ead04-0f39-4d0a-97a2-8577b1049f25",
+    "timestamp": "2026-05-23T12:16:12.128117+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Salt 1kg (SKU: GR015), qty: 109.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "edbf43b6-360c-4478-b639-b6a16bd60c10",
+    "timestamp": "2026-05-23T12:16:22.742912+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "8f5fcbe5-28c2-46d6-8e8e-a53deac3f943",
+    "timestamp": "2026-05-23T12:16:25.444793+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Salt 1kg (SKU: GR015), qty: 109.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "4923d55b-2112-46ed-b349-fb44d31c7303",
+    "timestamp": "2026-05-23T12:25:17.642892+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "5fd9a119-46c5-4947-ae26-27a1d516feca",
+    "timestamp": "2026-05-23T12:26:00.378018+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "7fe5d2f0-3efa-4dac-96a1-56e01d95c828",
+    "timestamp": "2026-05-23T12:30:55.707960+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e6ee9171-ec57-453a-b317-552d9150fa58",
+    "timestamp": "2026-05-23T12:57:44.160976+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Salt 1kg (SKU: GR015), qty: 109.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "2febc008-a6f8-41ab-bb6e-78bac1286088",
+    "timestamp": "2026-05-23T13:01:12.034966+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Salt 1kg (SKU: GR015), qty: 109.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "078c1a87-5e85-4781-81e5-6f89541ca0ca",
+    "timestamp": "2026-05-23T13:01:17.729950+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "60dc7c37-c94c-4d23-a2c7-70935421df35",
+    "timestamp": "2026-05-23T13:01:20.388892+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Salt 1kg (SKU: GR015), qty: 109.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "4502a669-e21d-4fa2-b23a-540172797486",
+    "timestamp": "2026-05-23T13:01:21.612257+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Sugar 1kg (SKU: GR005), qty: 76.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "9b54895e-3447-4768-a7a3-f35632ff7a5b",
+    "timestamp": "2026-05-23T13:01:22.106735+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Wheat Flour 1kg (SKU: GR008), qty: 73.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "28987165-6bea-4b9d-8761-fce7b3d776f2",
+    "timestamp": "2026-05-23T13:01:22.524009+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Yogurt 200g (SKU: GR010), qty: 79.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "64b20c00-2ffb-460e-bc78-47fc49384d24",
+    "timestamp": "2026-05-23T13:01:23.008836+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Potatoes 1kg (SKU: GR012), qty: 76.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1b26abe4-69e8-42fc-a1e3-ee16e9db8f95",
+    "timestamp": "2026-05-23T13:07:34.176441+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_SKIPPED",
+    "description": "Skipped order for Salt 1kg (SKU: GR015), qty: 0.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d3c2c203-c651-4b32-b5f9-31e50a9544b5",
+    "timestamp": "2026-05-23T13:10:53.969307+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "44490a36-f703-4853-b5d5-569640554d9b",
+    "timestamp": "2026-05-23T13:12:51.711181+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a6ebbd3a-595a-4aa5-bb4e-332d34325d97",
+    "timestamp": "2026-05-23T13:26:15.490352+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Milk 1L (SKU: GR001), qty: 97.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "9247a2bd-491b-421d-8f2b-5902223e4966",
+    "timestamp": "2026-05-23T13:26:29.213051+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Salt 1kg (SKU: GR015), qty: 109.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "34286a6f-8660-4090-b185-a9b633774a47",
+    "timestamp": "2026-05-28T05:08:17.383285+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d5ec6c5d-e1bb-4b22-a987-aee0123a20ef",
+    "timestamp": "2026-05-28T05:09:05.621501+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c4bdaa4d-ee14-49eb-859d-7100ed08f113",
+    "timestamp": "2026-05-28T05:09:27.794041+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Milk 1L (SKU: GR001), qty: 97.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "086bfef9-9618-4fa4-ab6e-1ae4d565a4e5",
+    "timestamp": "2026-05-28T14:43:33.794319+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "876642ad-9aaf-4c5f-9c05-2a9dfeff8de3",
+    "timestamp": "2026-05-28T15:57:31.993382+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "bc243936-8823-4dc7-b161-dfd970ee7487",
+    "timestamp": "2026-05-28T16:04:22.796675+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "84971c21-7c95-4058-b417-082db4161ae3",
+    "timestamp": "2026-05-28T16:10:55.702380+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Salt 1kg (SKU: GR015), qty: 109.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "71efe442-fb4b-4800-b73b-c5543195f6e9",
+    "timestamp": "2026-05-29T13:16:30.907569+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e9e1ee62-6c21-4812-a826-8135947d8ed2",
+    "timestamp": "2026-05-29T13:17:07.542101+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d6b19d3f-866c-4df3-806d-cf56d249214a",
+    "timestamp": "2026-05-29T13:17:18.924381+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Milk 1L (SKU: GR001), qty: 86.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3dbe62f7-d5a3-4902-acdc-adc8f5827ba8",
+    "timestamp": "2026-05-29T13:25:56.722473+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Sugar 1kg (SKU: GR005), qty: 98.0",
+    "ip_address": "127.0.0.1"
   }
 ]
