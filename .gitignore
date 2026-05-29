@@ -1,26 +1,61 @@
-# Virtual environment
+# =========================
+# Virtual Environment
+# =========================
 backend/venv/
 venv/
 
+# =========================
 # Python cache
+# =========================
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# Environment file
+# =========================
+# Environment variables
+# =========================
 .env
+.env.*
 
+# =========================
 # Logs
+# =========================
 *.log
+logs/
 
-# CI / config
-bitbucket-pipelines.yml
-calibo.yaml
-docker-compose.yml
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
 
-# IDE
+# =========================
+# IDE files
+# =========================
 .vscode/
 .idea/
 
-# OS
-.DS_Store
-Thumbs.db
+# =========================
+# Node / Frontend (if any)
+# =========================
+node_modules/
+dist/
+build/
+
+# =========================
+# Python packaging
+# =========================
+*.egg-info/
+dist/
+build/
+
+# =========================
+# Jupyter Notebook checkpoints
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Docker / CI (optional)
+# =========================
+docker-compose.override.yml

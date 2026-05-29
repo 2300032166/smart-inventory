@@ -1,7 +1,6 @@
-
 # Smart Inventory Replenishment Advisor 🛒🤖
 
-An AI-powered internal store operations platform that transforms retail data into actionable inventory decisions. This tool analyzes sales history, predicts demand patterns (including payday spikes and historical trends), and generates intelligent replenishment recommendations for store managers.
+An AI-powered internal store operations platform that transforms retail data into actionable inventory decisions. This tool analyzes sales history, predicts demand patterns (including payday spikes and trends), and generates intelligent replenishment recommendations for store managers.
 
 ---
 
@@ -9,7 +8,7 @@ An AI-powered internal store operations platform that transforms retail data int
 
 - **AI-Powered Daily Briefs**: Get natural language explanations for replenishment needs using state-of-the-art LLMs (Gemini, Groq, Claude).
 - **Intelligent Pattern Detection**: Automatically detects **Payday Spikes** (days 25-27) and **Declining Trends** to optimize stock levels.
-- **Synchronized Risk Metrics**: Real-time synchronization between dashboard statistics and recommendations. Handled items are immediately removed from the "Stockout Risk" count across a 48-hour window to maintain single-source-of-truth accuracy.
+- **Smart Risk Metrics**: Real-time synchronization between dashboard statistics and recommendations. Approved items are immediately removed from the "Stockout Risk" count to ensure data accuracy.
 - **Review Mode**: A high-efficiency "Review Flow" for managers with keyboard shortcuts (`A` for Approve, `S` for Skip) to process orders rapidly.
 - **Admin Control Panel**: Manage the product catalog, monitor supplier lead times, configure AI behavior, and view detailed audit logs.
 - **Zero-Infrastructure Portability**: Built using a flat-file architecture (CSV/JSON)—no complex database setup required.
@@ -19,14 +18,16 @@ An AI-powered internal store operations platform that transforms retail data int
 ## 🚀 Getting Started
 
 ### Prerequisites
-- **Python 3.11+**
-- **Docker & Docker Compose** (Recommended)
-- **An API Key** for Groq or Gemini (Optional, for AI reasoning)
 
-### Quick Start (with Docker)
+- **Python 3.11+**
+- **Docker & Docker Compose** (Recommended for easiest setup)
+- **Node.js**: Not required—the frontend is built with pure Vanilla HTML5/CSS3/JavaScript.
+
+### Local Setup (with Docker)
 
 ```bash
 # 1. Clone the repository
+git clone <your-repo-url>
 cd Store-Advisor/smart-inventory-advisor
 
 # 2. Create the .env file
@@ -34,27 +35,25 @@ cp backend/.env.example backend/.env
 # Edit backend/.env and set your API keys
 
 # 3. Start the services
-docker compose up --build
+docker-compose up --build
 
 # 4. Access the application
-# URL: http://localhost:8001
+# Frontend: http://localhost:8000
+# API docs: http://localhost:8000/docs
 ```
 
-### Manual Setup
+### Local Setup (Manual)
 
 ```bash
-# 1. Install Backend Dependencies
-cd backend
+cd smart-inventory-advisor/backend
+
+# Install dependencies
 pip install -r requirements.txt
 
-# 2. Configure Environment
-cp .env.example .env
-# Edit .env and set your JWT_SECRET_KEY and API Keys
-
-# 3. Start the Server
-uvicorn main:app --host 0.0.0.0 --port 8001 --reload
+# Run the server
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
-*Note: The backend automatically serves the frontend at http://localhost:8001.*
+*Note: The backend automatically serves the frontend at the root URL.*
 
 ---
 
@@ -71,13 +70,17 @@ uvicorn main:app --host 0.0.0.0 --port 8001 --reload
 
 Copy `backend/.env.example` to `backend/.env` and configure:
 
-| Variable              | Description                                     | Supported Values |
+| Variable              | Description                                     | Supported Providers / Values |
 |-----------------------|-------------------------------------------------|-----------------------------|
 | `AI_PROVIDER`         | The primary AI engine to use                    | `gemini`, `groq`, `claude`, `ollama` |
-| `GROQ_API_KEY`        | Groq Cloud API Key                              | — |
 | `GEMINI_API_KEY`      | Google Gemini API Key                           | — |
-| `BRIEF_CACHE_HOURS`   | How long to cache the AI daily brief            | `1` (Default) |
+| `GROQ_API_KEY`        | Groq Cloud API Key                              | — |
+| `ANTHROPIC_API_KEY`   | Anthropic API Key                               | — |
+| `OLLAMA_URL`          | Local Ollama instance URL                       | `http://localhost:11434` |
+| `BRIEF_CACHE_HOURS`   | How long to cache the AI daily brief            | `6` (Default) |
 | `PAYDAY_DATES`        | Days of the month to expect sales spikes        | `25,26,27` |
+
+**Note:** The application functions fully even without an AI key. Only the "Daily Brief" reasoning text requires an active AI provider.
 
 ---
 
@@ -88,30 +91,33 @@ smart-inventory-advisor/
 ├── frontend/               # Premium Vanilla JS/CSS Frontend
 │   ├── pages/              # 18+ interactive control screens
 │   ├── style.css           # Global Design System & Components
-│   └── app.js              # Auth & API core logic
+│   └── app.js              # Auth & API core
 ├── backend/                # FastAPI Application
 │   ├── data/               # CSV/JSON storage (The "Database")
 │   ├── logic/              # AI Clients, Pattern Detectors, Calculators
-│   ├── routes/             # RESTful API Endpoints (/api/...)
+│   ├── routes/             # RESTful API Endpoints
 │   └── main.py             # App Entry & Static File Mounting
 ├── docker-compose.yml      # Orchestration
-└── calibo.yaml             # Cloud Sandbox Deployment settings
+└── calibo.yaml             # Cloud Sandbox Deployment
 ```
+
+---
+
+## 🎨 Design Aesthetics & UX
+
+This project prioritizes a **Premium Store Operations Experience**:
+- **Modern UI**: Dark-mode optimized with sleek gradients and glassmorphism.
+- **Micro-Animations**: Subtle hover effects and transitions for a responsive feel.
+- **Visual Feedback**: Real-time status indicators (e.g., Stockout Risk, Pending Orders) that update instantly upon manager interaction.
+- **Typography**: Clean, professional fonts (Inter/Outfit) for maximum readability in high-speed retail environments.
 
 ---
 
 ## 📊 Inventory Decision Logic
 
 1. **Extraction**: Sales data is pulled from `sales.csv` using Pandas.
-2. **Analysis**: The `PatternDetector` identifies seasonal spikes and sales velocity.
+2. **Analysis**: The `PatternDetector` identifies seasonal spikes and velocity.
 3. **Calculation**: `ReorderCalculator` suggests quantities based on stock levels, lead times, and detected patterns.
-4. **AI Reasoning**: The `AI Client` translates technical data into natural language suggestions to help managers understand *why* an order is needed.
-5. **Real-time Sync**: Manager decisions are logged in `override_history.json`, instantly updating dashboard risk metrics and removing the item from the daily brief.
+4. **Execution**: The `AI Client` (Gemini/Groq/Claude) adds natural language "Reasoning" to help the manager understand *why* an order is needed.
+5. **Sync**: Decisions are logged in `override_history.json`, instantly updating dashboard KPIs.
 
----
-
-## 🎨 Design System
-This project follows a **Premium Operations** aesthetic:
-- **Dark Mode First**: Optimized for high-contrast visibility.
-- **Glassmorphism**: Subtle translucent layers for depth.
-- **Responsive**: Fully functional on tablets and desktops.
