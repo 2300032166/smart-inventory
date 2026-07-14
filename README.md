@@ -1,8 +1,8 @@
 # 🛍️ SIRA — Smart Inventory & Retail Assistant
 
-[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.103+-009688.svg?logo=fastapi)](https://fastapi.tiangolo.com/)
-[![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](#license)
+[![Python]](https://www.python.org/)
+[![FastAPI]](https://fastapi.tiangolo.com/)
+[![License: Proprietary]](#license)
 
 **SIRA** is an advanced, AI-driven inventory management platform and modern retail storefront. Built with a robust backend architecture using **FastAPI** and a premium, glassmorphism-styled frontend built purely in **HTML, CSS, and vanilla JS**, SIRA empowers retail ecosystems on all fronts.
 
@@ -94,7 +94,7 @@ CONFIDENCE_THRESHOLD=60
 MAX_BRIEF_ITEMS=100
 PAYDAY_DATES=25,26,27
 ```
-> **⚠️ Information Security Standard:** Do not commit credentials to source control. Please use `.env` securely or bind them via Docker/Kubernetes secrets mapping during production deployment.
+
 
 ### 3. Initialize Server
 Shift directory and execute the ASGI web server directly:
@@ -102,7 +102,7 @@ Shift directory and execute the ASGI web server directly:
 cd backend
 python main.py
 ```
-> *SIRA binds automatically to port `4040` (and `0.0.0.0`) by default, proxying frontend assets immediately from the `../frontend` directive.*
+
 
 ### 4. Experience SIRA 
 Navigate directly to [http://localhost:4040](http://localhost:4040).
@@ -125,15 +125,3 @@ Authenticate with respective RBAC boundaries using identities populated in `back
 | `/api/admin` | Admin | Cross-level system config and user state handling |
 
 ---
-
-## 🚢 DevOps Lifecycle
-
-SIRA is structured for seamless scaling:
-* **Docker Context:** Simply run `docker build -t sira-app .` following internal `.dockerignore` filters.
-* **Kubernetes Support:** Utilize `helm upgrade --install sira ./helm_chart` for containerized cluster management.
-* **Pipelines:** Multi-staged testing and deployments managed automatically by associated `Jenkinsfile` configurations.
-
----
-
-## 📜 Legal & Licensing
-**Proprietary** — Developed and Maintained for the SIRA Capstone ecosystem.
