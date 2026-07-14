@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="flex-between mb-16">
+        <div>
+          <div class="page-title">Users</div>
+          <div class="page-subtitle">Manage accounts and access control</div>
+        </div>
+        <button class="btn btn-primary" id="add-btn">+ Add user</button>
+      </div>
+
+      <div id="msg" class="alert-msg"></div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Last Login</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="users-tbody"></tbody>
+          </table>
+        </div>
+        <div id="users-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal-overlay" id="user-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">Add User</div>
+    <div id="modal-msg" class="alert-msg"></div>
+    <form id="user-form">
+      <div class="form-group"><label>Full Name *</label><input type="text" id="f-name" required></div>
+      <div class="form-group"><label>Email *</label><input type="email" id="f-email" required></div>
+      <div class="form-group">
+        <label>Role *</label>
+        <select id="f-role">
+          <option value="manager">Manager</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <div class="form-group" id="pw-group">
+        <label>Password *</label>
+        <input type="password" id="f-password" placeholder="Set initial password">
+      </div>
+    </form>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('user-modal')">Cancel</button>
+      <button class="btn btn-primary" id="save-btn">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reset Password Result Modal -->
+<div class="modal-overlay" id="reset-modal">
+  <div class="modal-box">
+    <div class="modal-title">Temporary Password</div>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:16px;">Share this temporary password with the user. They should change it on next login.</p>
+    <div style="background:var(--color-bg-page);border:1px solid var(--color-border);border-radius:7px;padding:12px;font-family:monospace;font-size:15px;" id="temp-password-display"></div>
+    <div class="modal-actions"><button class="btn btn-primary" onclick="closeModal('reset-modal')">Done</button></div>
+  </div>
+</div>
+
+<script src="../app.js?v=62"></script>
+<script src="../js/users.js"></script>
+</body>
+</html>

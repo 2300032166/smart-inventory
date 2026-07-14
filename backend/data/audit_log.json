@@ -1,0 +1,3923 @@
+[
+  {
+    "id": "92c99ca2-196e-47f1-953b-77e2684dcd52",
+    "timestamp": "2026-06-24T13:43:52.399444+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "313c6112-5b73-49fe-ad32-760361b6f53f",
+    "timestamp": "2026-06-24T13:48:45.390055+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "266d969b-a915-46c6-a041-0a3af41c516e",
+    "timestamp": "2026-06-24T14:57:50.543760+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Premium Baby Medium - 40 Diaper Pants (SKU: BB-10515), qty: 73.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "28a80cfc-c324-4da2-a024-b3a0e6931162",
+    "timestamp": "2026-06-24T15:04:56.667689+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f5a960e3-c729-4c23-8e3a-b8a4b0e83574",
+    "timestamp": "2026-06-24T15:05:48.142071+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d5adca8e-1687-46d4-ae45-054bfd1b28ac",
+    "timestamp": "2026-06-24T15:05:57.053863+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Baby Cereal - Ragi Almond & Banana, 6-8 Months, No Preservatives, No Artificial Colours (SKU: BB-110), qty: 28.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b560199b-4eed-47a2-bb30-6c038bf87a50",
+    "timestamp": "2026-06-25T04:23:17.762289+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "8663b12a-e62f-4f50-810c-7c57e28614fa",
+    "timestamp": "2026-06-25T08:21:48.960353+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Organic Classic Peach Ice Tea (SKU: BB-1763), qty: 283.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a2c9bb2b-bb66-4df1-b923-318fc2d4cdff",
+    "timestamp": "2026-06-25T09:42:03.047469+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Berries & Seeds (SKU: BB-25079), qty: 150.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "ec193d12-bbf1-4a37-8e5a-ea5558bad47a",
+    "timestamp": "2026-06-25T12:32:11.851167+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "23e7ff6d-45b5-416d-aa19-913e15158a22",
+    "timestamp": "2026-06-25T13:26:10.831420+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Tejas LED Bulb - 7 Watt, White, Cool Day, B22 (SKU: BB-18100), qty: 321.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "41375e8a-3c14-4162-8a79-cd18aea74231",
+    "timestamp": "2026-06-25T13:30:53.054006+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Mix - Rice Idli (SKU: BB-19930), qty: 75.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f0f7f30f-cb6a-41d2-8db7-9615bef4609d",
+    "timestamp": "2026-06-25T13:30:58.922593+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID d8d6ffce-082e-404a-a756-89755c7cca9a (SKU: BB-19930) from approved to cancelled.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e3ff9663-df81-4cba-b29c-3b4ec4c624f1",
+    "timestamp": "2026-06-25T13:32:18.772120+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Pork Streaky Bacon (SKU: BB-556), qty: 211.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "cece4a78-0db8-45fa-a665-f19f78389720",
+    "timestamp": "2026-06-25T13:32:25.083359+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID fc2d4dd8-aa47-4576-ae9d-cbb493ae1810 (SKU: BB-556) from approved to cancelled.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "afe83af1-6aed-4a36-bd2b-e0c9e21c3294",
+    "timestamp": "2026-06-25T13:33:05.479837+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Disposable Maternity & Nursing Breast Pads For Women (SKU: BB-12288), qty: 1065.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3622e8cc-0d86-44de-a416-e4bdc8cfef47",
+    "timestamp": "2026-06-25T13:44:09.029118+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID 6602f15c-86bd-4ac9-9cd1-fd725c1c135d (SKU: BB-12288) from approved to cancelled.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "404493d7-779d-4302-be31-b17af13fd0b9",
+    "timestamp": "2026-06-26T06:54:44.875435+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "75e62498-dd68-4760-8cf7-3c6b9cbc11e2",
+    "timestamp": "2026-06-26T06:59:25.892151+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_OVERRIDDEN",
+    "description": "Overridden order for Disposable Maternity & Nursing Breast Pads For Women (SKU: BB-12288), qty: 10.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "6707eb4c-8f4f-4640-95e4-db6170cbbdb6",
+    "timestamp": "2026-06-26T06:59:44.494790+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID fb38ce46-9d05-48f7-8b14-1a4e088e445e (SKU: BB-12288) from overridden to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "516bcec5-acb7-40a2-b67c-b4198fe5e97b",
+    "timestamp": "2026-06-26T07:00:15.834070+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID fb38ce46-9d05-48f7-8b14-1a4e088e445e (SKU: BB-12288) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "461088d6-e090-4b68-b1c7-efb9df3d22b9",
+    "timestamp": "2026-06-26T07:29:41.184698+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Tejas LED Bulb - 7 Watt, White, Cool Day, B22 (SKU: BB-18100), qty: 320.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "fc79e322-b76e-439d-b35a-0a8265d2ed2e",
+    "timestamp": "2026-06-26T07:29:50.558232+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID b615b963-36bb-468b-a0e3-da94eb49f261 (SKU: BB-18100) from approved to cancelled.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b2eb1235-9eca-44bf-9f93-f44fa8150a55",
+    "timestamp": "2026-06-26T08:00:14.953569+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Mix - Rice Idli (SKU: BB-19930), qty: 75.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d70da7fb-3051-4f86-b3cb-b4d8e9f9e3de",
+    "timestamp": "2026-06-26T08:02:17.569190+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID ffcb228a-b7d6-4a3e-8ce0-bd2304bd9588 (SKU: BB-19930) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "71c4ba28-9256-471e-854d-a66cdd12cf4a",
+    "timestamp": "2026-06-27T08:32:30.358315+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "23b64c74-7e89-4494-803f-40c98bc8a05d",
+    "timestamp": "2026-06-28T06:22:37.085732+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "da618fb7-f0c9-46c1-a3ae-e6595c23c668",
+    "timestamp": "2026-06-28T06:54:49.855130+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Shankhapushpi Syrup - Memory & Concentration Booster, For All Ages (SKU: BB-8681), qty: 130.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "96c01c50-62cf-4470-a2ad-5bdac38a34a4",
+    "timestamp": "2026-06-28T06:54:57.425235+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID c18e8868-0e9e-4c1c-99ce-a8507fe558f4 (SKU: BB-8681) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e1eb28c2-5c22-47a4-88da-a122ce61bf16",
+    "timestamp": "2026-06-28T07:01:55.769091+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Under The Ocean Lotion (SKU: BB-20031), qty: 128.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "6adbf32a-4077-47e4-aef0-86aa68ddefce",
+    "timestamp": "2026-06-28T07:02:00.532997+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 26403460-e423-4c02-ac9d-5f44fd9f9e31 (SKU: BB-20031) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "91fa4cee-c469-428e-80d3-fd708601a98b",
+    "timestamp": "2026-06-28T07:04:38.211624+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 26403460-e423-4c02-ac9d-5f44fd9f9e31 (SKU: BB-20031) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "0f72a675-4c7e-40b0-af7b-fa902bd6bd11",
+    "timestamp": "2026-06-28T10:02:49.505496+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID c18e8868-0e9e-4c1c-99ce-a8507fe558f4 (SKU: BB-8681) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "0d727545-6000-4bf2-98b5-231f6489d259",
+    "timestamp": "2026-06-28T10:04:34.335423+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Palette Intensive Colour Cream Long Lasting Intensity 7-0 Medium Blonde (SKU: BB-17269), qty: 116.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "7ed1c019-7c4c-4d39-bf63-6223ccd392bf",
+    "timestamp": "2026-06-28T10:04:48.305207+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 8435be2f-a00b-4933-b348-e9c73eab7bf9 (SKU: BB-17269) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "ccd913b8-0c02-4b77-8c3d-5d1916e001de",
+    "timestamp": "2026-06-28T10:05:06.132279+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 8435be2f-a00b-4933-b348-e9c73eab7bf9 (SKU: BB-17269) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "2fa935ba-7f52-4a88-8618-846de460e014",
+    "timestamp": "2026-06-28T10:21:19.218031+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Organic - Mustard/Sasive/Rai, Small (SKU: BB-3462), qty: 127.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "5594085a-a0d6-45a3-b9d4-131991605edc",
+    "timestamp": "2026-06-28T10:21:21.275109+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Dark Soya Sauce (SKU: BB-2087), qty: 145.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f31c7234-3250-40b7-b77a-a3496e0d20b3",
+    "timestamp": "2026-06-28T10:21:35.235454+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_OVERRIDDEN",
+    "description": "Overridden order for Banana Deeply Nourishing Shampoo (SKU: BB-19968), qty: 18.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a9e69271-c80f-4ced-aa51-8492d44bfc94",
+    "timestamp": "2026-06-28T10:21:42.012430+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Organic - Saffron (SKU: BB-611), qty: 124.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e5e20ed1-41d4-430f-a8d2-8b07cea1fa45",
+    "timestamp": "2026-06-28T10:21:42.445732+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Soap - Neem & Turmeric (SKU: BB-20494), qty: 65.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "8ae8106e-3f31-4739-a34e-d3b9259d24f9",
+    "timestamp": "2026-06-28T10:21:43.873332+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Vacuum Fried Chickpea - Chilli (SKU: BB-7329), qty: 368.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1fd20dd5-1da9-4ae6-ae0e-d0042ff0777b",
+    "timestamp": "2026-06-28T10:21:44.820667+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Intense Gel Mountain Fresh (SKU: BB-20461), qty: 123.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "5a732edf-06bc-4f57-a05b-124793c2bfff",
+    "timestamp": "2026-06-28T10:21:46.031212+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Salsa Stir-fry Sauce (SKU: BB-1565), qty: 385.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "79524947-8877-4a28-a9c8-b4b25fe85189",
+    "timestamp": "2026-06-28T10:21:46.543344+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Namkeen - Corn Flakes Mixture (SKU: BB-21863), qty: 134.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f76e2091-8dad-4287-b47e-9277d9f6649d",
+    "timestamp": "2026-06-28T10:21:47.661264+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Swag Avatar Deodorant & Body Spray Perfume For Men (SKU: BB-13267), qty: 185.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "05357e28-5f0d-49d3-86ba-5f8e58767c74",
+    "timestamp": "2026-06-28T10:21:48.655096+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Crunchy Honey Peanut Butter (SKU: BB-464), qty: 155.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b2d89733-420e-401c-a04c-9c376fe77198",
+    "timestamp": "2026-06-28T10:21:49.754287+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for 100 % Pure Honey - Lemon (SKU: BB-24824), qty: 184.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f41ceeb5-1d70-4bb7-ac87-15b08f0d5cab",
+    "timestamp": "2026-06-28T10:22:00.650326+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Dry Dog Food - Chicken & Rice, For Senior Dogs, 7 Years+ (SKU: BB-19812), qty: 82.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3ab3d1f2-9e9b-42c7-a10a-07f50d4d65da",
+    "timestamp": "2026-06-28T10:22:01.805557+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for LED Bulb - 3-Watt, Base B22 1pc + LED Bulb - 5-Watt, Base B22 1pc (SKU: BB-23092), qty: 158.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "de847034-fc45-4095-beb4-1260a5afd62c",
+    "timestamp": "2026-06-28T10:22:02.555126+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Organic Coriander Whole/Dhania Whole/Coriander Seeds/Kottambari Beeja (SKU: BB-24436), qty: 166.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "fd30c05f-f71b-450e-8752-d971ffbc82a6",
+    "timestamp": "2026-06-28T10:22:03.308489+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for HMT Kolam Rice/Akki (SKU: BB-21701), qty: 90.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3c629627-df66-47a3-aedd-10e58b8d5ffa",
+    "timestamp": "2026-06-28T10:22:04.700185+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Pazzta Cheese Macaroni Family Saver Pack Pouch (SKU: BB-524), qty: 153.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "75cd5e19-cee5-4d81-8e18-abc919d554cc",
+    "timestamp": "2026-06-28T10:22:05.605165+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Sausage - Pork (SKU: BB-10077), qty: 184.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "0a48df55-05df-43de-b868-7ed99e795599",
+    "timestamp": "2026-06-28T10:22:06.578400+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Baking Powder - Double Acting (SKU: BB-1393), qty: 142.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a614b085-b899-411d-a448-8793dc93ecfa",
+    "timestamp": "2026-06-28T10:22:08.123020+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Face Scrub - Enriched With Kiwi Extract & Natural Exfoilant (SKU: BB-17797), qty: 55.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "4f848e5b-29b5-4893-9fc3-a48a04f0f908",
+    "timestamp": "2026-06-28T10:22:09.299663+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Caffeine Series - De Tan Coffee Face Scrub (SKU: BB-18674), qty: 109.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "474a738b-3874-476f-99e2-4337abd1f5b2",
+    "timestamp": "2026-06-28T10:22:10.565009+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Spanish Olives Sliced Green (SKU: BB-10102), qty: 182.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c8048cd9-1dda-44d4-9654-186f418cffc9",
+    "timestamp": "2026-06-28T10:22:12.269870+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for After Lunch With Green Tea, Ginger, Tulsi, Rock Salt (SKU: BB-14905), qty: 185.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "75a85f4b-a362-423a-ac81-0c9e556e8253",
+    "timestamp": "2026-06-28T10:22:13.037448+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Napkin Tissue - Eco (SKU: BB-22337), qty: 47.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "027d7ac2-102c-42d0-934c-f76ab5e5e209",
+    "timestamp": "2026-06-28T10:22:13.716089+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Energy - Deostick For Men, Cream Based Deodorant (SKU: BB-9416), qty: 52.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d25a39f8-575a-499b-9e75-367c9e9fc8c2",
+    "timestamp": "2026-06-28T10:22:14.491809+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Natura Rice & Walnut Drink, Vegan (SKU: BB-22867), qty: 249.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "69c9fce6-c4f2-4a33-8079-e0702062a56a",
+    "timestamp": "2026-06-28T10:22:24.247870+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_OVERRIDDEN",
+    "description": "Overridden order for Ylang Ylang Essential Oil (SKU: BB-15593), qty: 55.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "7bfc7344-2d23-4a3c-8b0d-c3eea3f35c48",
+    "timestamp": "2026-06-28T10:22:42.797653+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID b97426ac-d7c0-40ef-ac73-9735744c160a (SKU: BB-15593) from overridden to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "25080a97-92b8-41de-a8cd-9c46dfd9b72b",
+    "timestamp": "2026-06-28T10:22:51.885633+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID b97426ac-d7c0-40ef-ac73-9735744c160a (SKU: BB-15593) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "2d767761-2624-4c73-8ecc-59de43869b41",
+    "timestamp": "2026-06-28T10:22:54.562947+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 2f20fc9f-f191-42d8-a3df-40f7479f1a0e (SKU: BB-22867) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "aeb76c7a-84f6-4454-aa7a-5927a722fd71",
+    "timestamp": "2026-06-28T10:23:06.649397+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 2f20fc9f-f191-42d8-a3df-40f7479f1a0e (SKU: BB-22867) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "edcea7e4-2184-4342-b482-f86b96184a70",
+    "timestamp": "2026-06-28T10:23:10.751068+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 038c2576-bc5f-43c2-af9a-8caf2b87cc15 (SKU: BB-9416) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e0ae4482-77e9-4774-9950-6a18ad73e5c7",
+    "timestamp": "2026-06-28T10:23:29.030304+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 038c2576-bc5f-43c2-af9a-8caf2b87cc15 (SKU: BB-9416) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "369c1ab3-2e14-4c17-a527-c5a793815667",
+    "timestamp": "2026-06-28T10:23:31.460102+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID a4f25e01-7691-458f-a4c7-5c0a3a3d33d9 (SKU: BB-22337) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "679c0673-cd08-4564-9730-c558b70f71e9",
+    "timestamp": "2026-06-28T10:23:43.147782+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID a4f25e01-7691-458f-a4c7-5c0a3a3d33d9 (SKU: BB-22337) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "4c417900-42c6-4857-95fa-28c488b071a4",
+    "timestamp": "2026-06-28T10:23:46.133009+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID ff64c2b1-61b6-4bb1-a249-bf67d121fef7 (SKU: BB-14905) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "bc9f2a36-0071-46d4-89a8-98833cf567ff",
+    "timestamp": "2026-06-28T10:23:56.402517+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID ff64c2b1-61b6-4bb1-a249-bf67d121fef7 (SKU: BB-14905) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "89074771-f1db-4494-b071-f29b88793b81",
+    "timestamp": "2026-06-28T10:23:59.205667+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 8b851f20-61f3-4b53-af43-8da219e6eb2a (SKU: BB-10102) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e7a3f932-5a55-4c37-802a-2d349ab030b7",
+    "timestamp": "2026-06-28T10:24:15.540229+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 8b851f20-61f3-4b53-af43-8da219e6eb2a (SKU: BB-10102) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e42a4404-7c99-41e1-9ca4-3b2976e7db95",
+    "timestamp": "2026-06-28T10:24:22.287133+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 25f1f127-8c5e-4f7f-b609-3a99f775da1d (SKU: BB-18674) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "99444250-3bfd-4f3e-bc96-7482443adb90",
+    "timestamp": "2026-06-28T10:24:33.906122+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 25f1f127-8c5e-4f7f-b609-3a99f775da1d (SKU: BB-18674) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "bc72ea21-83fb-4e28-9469-3c28304403d9",
+    "timestamp": "2026-06-28T10:24:40.932372+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID c9654579-0fb1-4ca0-9661-a496237023a9 (SKU: BB-1393) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c27ef1f9-3b29-4ef4-a313-d135aa6a3df0",
+    "timestamp": "2026-06-28T10:24:56.789883+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID c9654579-0fb1-4ca0-9661-a496237023a9 (SKU: BB-1393) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1d7329e4-41c3-48f1-b283-441e6699bf21",
+    "timestamp": "2026-06-28T10:25:21.443407+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 92d2948e-56cb-475c-862f-9c608959f946 (SKU: BB-2087) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c4ca4eb6-4f5d-4ac5-8c3c-29811927b7e6",
+    "timestamp": "2026-06-28T10:25:38.487673+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 92d2948e-56cb-475c-862f-9c608959f946 (SKU: BB-2087) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "cfda74ae-132c-4228-9ef1-5c5420643718",
+    "timestamp": "2026-06-28T10:25:45.399961+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID cc9683f2-fa3a-4cbb-8b6f-9a3aca0bc4ef (SKU: BB-17797) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1ef8240b-8f2c-4bec-a8c9-d53cd4356800",
+    "timestamp": "2026-06-28T10:25:48.878508+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID cc9683f2-fa3a-4cbb-8b6f-9a3aca0bc4ef (SKU: BB-17797) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d7c7161c-4588-42fc-970d-c783dd81b0af",
+    "timestamp": "2026-06-28T10:25:55.723703+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 3de99938-eec9-4908-a8ed-738ddf9a8445 (SKU: BB-21701) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "8d94e407-4247-456b-8b86-bc25c896d5f6",
+    "timestamp": "2026-06-28T10:26:09.591560+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 3de99938-eec9-4908-a8ed-738ddf9a8445 (SKU: BB-21701) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b5540a58-eeb3-4f79-af5e-6e535d5c063d",
+    "timestamp": "2026-06-28T10:26:19.378557+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 5d60a7a1-7390-4fa4-8d4c-fa63c9b397c4 (SKU: BB-24824) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "988b5b1e-043a-4717-8f39-cbf8245d1ffd",
+    "timestamp": "2026-06-28T10:26:45.046815+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 5d60a7a1-7390-4fa4-8d4c-fa63c9b397c4 (SKU: BB-24824) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "6e90d793-b76e-463b-9d35-b8c72579efd8",
+    "timestamp": "2026-06-28T10:26:56.851118+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 5aee4693-2cf9-466f-acbc-206856aa94d7 (SKU: BB-19968) from overridden to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "86a696f6-c267-4e74-b650-bf49dbdb3d29",
+    "timestamp": "2026-06-28T10:27:02.354652+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID d1f31ab5-15fc-4015-9d52-bde917992244 (SKU: BB-464) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "11409890-f088-45b3-8c95-2efc8a43fc6a",
+    "timestamp": "2026-06-28T10:27:06.483058+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID c6ce33cc-e0f0-48ce-b70f-d1ffaf555617 (SKU: BB-10077) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f482dd31-d580-4cc9-832a-8c40ad1135c4",
+    "timestamp": "2026-06-28T10:27:20.259137+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID c6ce33cc-e0f0-48ce-b70f-d1ffaf555617 (SKU: BB-10077) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b41719e2-5d54-487a-94a8-6ae06102fa29",
+    "timestamp": "2026-06-28T10:27:26.393688+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID f249f848-06d5-4f17-9b35-042c84f10402 (SKU: BB-23092) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "0a39cabb-16c7-4551-9bb2-a734cdfb6706",
+    "timestamp": "2026-06-28T10:27:39.399810+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID f249f848-06d5-4f17-9b35-042c84f10402 (SKU: BB-23092) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f4bd401e-430b-488d-b066-343b57fd79e8",
+    "timestamp": "2026-06-28T10:27:47.194976+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 5d9023ae-44ec-4a7a-8ee4-04a5fa702b9e (SKU: BB-24436) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b1ac232a-7614-4570-8c7c-e9e7158f78f8",
+    "timestamp": "2026-06-28T10:27:50.678736+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID d6d5c437-91a5-43cf-8c3a-31af5a8b8c2a (SKU: BB-524) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "75831acb-3ef6-4640-b82c-ecd1566f8135",
+    "timestamp": "2026-06-28T10:28:04.445919+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID d6d5c437-91a5-43cf-8c3a-31af5a8b8c2a (SKU: BB-524) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "aa870689-b0dd-40af-982e-da6005fd1d77",
+    "timestamp": "2026-06-28T10:28:07.560649+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 762fa97b-abc6-4877-91de-a29d1de720b1 (SKU: BB-20494) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e979376e-d61d-44e7-988a-4eb9e9fabb43",
+    "timestamp": "2026-06-28T10:28:21.018520+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 5d9023ae-44ec-4a7a-8ee4-04a5fa702b9e (SKU: BB-24436) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "faa4a524-04ed-4cd3-ab5b-e82758ae2151",
+    "timestamp": "2026-06-28T10:28:32.291344+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 5aee4693-2cf9-466f-acbc-206856aa94d7 (SKU: BB-19968) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c8dcc8ea-2e77-48b8-8da2-7687ec3b51cf",
+    "timestamp": "2026-06-28T10:28:37.591686+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 8cbfd868-c008-4563-9c96-f55eb3884019 (SKU: BB-1565) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "53dafc1d-2332-4674-960e-c689b7a69aa1",
+    "timestamp": "2026-06-28T10:28:50.108658+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID d1f31ab5-15fc-4015-9d52-bde917992244 (SKU: BB-464) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1dab1801-e6ee-49ab-aa19-213f02d6215a",
+    "timestamp": "2026-06-28T10:28:54.600559+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID b4f913ce-654d-4343-a1eb-8e1bf890ce93 (SKU: BB-19812) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "46440add-9096-472b-8a5e-94841e8f90ae",
+    "timestamp": "2026-06-28T10:29:05.683540+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID b4f913ce-654d-4343-a1eb-8e1bf890ce93 (SKU: BB-19812) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "670d1b1f-5111-415a-b1af-98b28926b428",
+    "timestamp": "2026-06-28T10:29:12.693244+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID fdfa259c-d21d-40ab-bee0-9c466cadb81c (SKU: BB-13267) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e6b1e708-134c-47bb-92e9-a04acffb8206",
+    "timestamp": "2026-06-28T10:29:18.783344+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID fdfa259c-d21d-40ab-bee0-9c466cadb81c (SKU: BB-13267) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b30a84dc-9276-4ba7-b694-28932c36726f",
+    "timestamp": "2026-06-28T10:29:23.759172+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 823d2392-b27f-4e2a-a0f7-e4d7667bb9ae (SKU: BB-21863) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d8baed4a-950c-4a67-8152-abb18c348297",
+    "timestamp": "2026-06-28T10:29:35.517450+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 823d2392-b27f-4e2a-a0f7-e4d7667bb9ae (SKU: BB-21863) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c114ee2e-7b7c-45c1-bc16-28c0b735a727",
+    "timestamp": "2026-06-28T10:29:45.046177+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 8cbfd868-c008-4563-9c96-f55eb3884019 (SKU: BB-1565) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a75b53c2-ece4-4617-961b-e29904aad3ca",
+    "timestamp": "2026-06-28T10:29:53.117955+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 73dc7068-7396-4639-b9c1-a03018ddb1e2 (SKU: BB-3462) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "6d908177-657a-45d7-83db-5cc5daa9de84",
+    "timestamp": "2026-06-28T10:29:56.963758+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 7d672365-4d6c-4984-a593-e9ff25990019 (SKU: BB-20461) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "188928d0-d630-4387-8158-c7262a9cd0cf",
+    "timestamp": "2026-06-28T10:30:31.944152+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 7d672365-4d6c-4984-a593-e9ff25990019 (SKU: BB-20461) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "bf143d24-2725-4c68-ab64-e8c88dc0d84d",
+    "timestamp": "2026-06-28T10:30:38.512195+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 199470a8-3990-43ce-9c88-76d44f51b798 (SKU: BB-611) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c83116e5-f6b4-440b-9335-2ee5b470db78",
+    "timestamp": "2026-06-28T10:30:55.664506+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 630f76f4-5638-4cbd-954c-69a38c6bb9a5 (SKU: BB-7329) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3f4e9cdb-787b-4e74-a359-b87386fe0039",
+    "timestamp": "2026-06-28T10:31:06.955428+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 630f76f4-5638-4cbd-954c-69a38c6bb9a5 (SKU: BB-7329) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "016a1580-fb99-4b4a-85fe-a3f2960eea02",
+    "timestamp": "2026-06-28T10:31:16.210482+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 762fa97b-abc6-4877-91de-a29d1de720b1 (SKU: BB-20494) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "fb1df318-d2c5-453c-b9c4-0f2a6aa7a8f9",
+    "timestamp": "2026-06-28T10:31:25.536344+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 199470a8-3990-43ce-9c88-76d44f51b798 (SKU: BB-611) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "37990840-6a45-4f6c-96b5-48a1c8580120",
+    "timestamp": "2026-06-28T10:31:39.063859+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 73dc7068-7396-4639-b9c1-a03018ddb1e2 (SKU: BB-3462) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "ca933f11-4c22-40a2-a79e-cbd4c6e3d4fb",
+    "timestamp": "2026-06-28T14:28:49.658572+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1f2c88ae-27e3-462d-b42b-6ca336298fc9",
+    "timestamp": "2026-06-28T15:12:05.712461+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Green Chilli Rice Papad (SKU: BB-10059), qty: 57.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e3e94803-7e48-45a2-aced-c8063f5c8405",
+    "timestamp": "2026-06-28T15:15:23.519588+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for All Natural Probiotics Shampoo Bar - For Normal Hair (SKU: BB-10306), qty: 152.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a45253c4-cb18-4ebe-95f5-e87e2c2c9b1a",
+    "timestamp": "2026-06-28T15:15:26.964976+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Wet Mop - Floor Cleaning Cotton With Steel Stick, Medium (SKU: BB-10800), qty: 58.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "fbe63f7d-1fc5-47ef-a2a0-90ef24e93f0e",
+    "timestamp": "2026-06-28T15:15:33.664324+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for De-Tangling Comb - 1 Row, 1266 (SKU: BB-10884), qty: 61.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "8a2442fa-3980-4ed2-8c87-244de3bd7363",
+    "timestamp": "2026-06-28T15:15:35.190734+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Pain Relief Spray - For Quick Action & Lasting Relief From Swelling (SKU: BB-10958), qty: 180.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e6859067-2fb3-42a0-8420-500646fec3ef",
+    "timestamp": "2026-06-28T15:15:39.221869+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Plastic Dustbin - Peach (SKU: BB-11243), qty: 66.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c4bdd675-15e0-42e2-9a7f-3025cc3319da",
+    "timestamp": "2026-06-28T15:15:41.749465+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Banana Jaggery Chips (SKU: BB-12671), qty: 60.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1c716e1b-88f3-4c8c-aa80-e5c37e1f31df",
+    "timestamp": "2026-06-28T15:15:43.656520+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Grated Mango Pickle (SKU: BB-12728), qty: 60.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f48485b5-4279-463d-8d89-d3ec991b665b",
+    "timestamp": "2026-06-28T15:15:47.510121+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Alphanso Mango Ice Cream (SKU: BB-13121), qty: 140.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "56a32604-d478-4688-82f3-b66bf8125d48",
+    "timestamp": "2026-06-28T15:15:50.234880+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Two Tone Plastic Bowl/ Fruits & Vegetable Basket - No. 2, White Base With Pink Ring, L2302 (SKU: BB-13132), qty: 194.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "0788cb0c-8bbc-4392-930e-ab42d8ca5475",
+    "timestamp": "2026-06-28T15:15:52.292902+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Sour Cream (SKU: BB-13149), qty: 56.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "5b832a28-cf3c-4533-beaf-aff0f43b80c9",
+    "timestamp": "2026-06-28T15:15:54.550329+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Gas Lighter, Deluxe (SKU: BB-13625), qty: 106.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b3f453b9-82f4-4cff-8bd4-a16e6b6ed3f0",
+    "timestamp": "2026-06-28T15:15:58.406274+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Nilgiri Oolong Tea - Wa (SKU: BB-14853), qty: 156.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "9fe83533-0d06-451e-913c-c26bfb4aee51",
+    "timestamp": "2026-06-28T15:15:59.827448+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Ragi Flour/Ragi Hittu (SKU: BB-14912), qty: 63.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "ffaf0542-6c4a-47f0-94c4-bbac94a87b9c",
+    "timestamp": "2026-06-28T15:16:01.646584+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Gel Pen - Black, Octane (SKU: BB-15061), qty: 136.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "5bfe0281-146d-4c8f-b631-96c5c7908837",
+    "timestamp": "2026-06-28T15:16:05.004907+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Dietary Supplement - Deep Sea Salmon Fish Oil, Premium (SKU: BB-15079), qty: 57.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b123eb07-8710-4ddd-ba76-3d91ef255581",
+    "timestamp": "2026-06-28T15:16:08.778402+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Disney Minnie Mouse Plastic Kids Sipper Bottle (SKU: BB-15165), qty: 57.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "97ec0586-21db-4667-8273-7670e8ccaf50",
+    "timestamp": "2026-06-28T15:16:13.151277+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Baby Corn - Unpeeled (SKU: BB-16765), qty: 111.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "ba9720f9-4947-4bec-abe2-01f04b0c7b8c",
+    "timestamp": "2026-06-28T15:16:16.559684+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Fortified Rice Bran Oil (SKU: BB-1679), qty: 70.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d7153e61-7dcf-425f-ae78-8f0c4767ae3d",
+    "timestamp": "2026-06-28T15:16:18.796462+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Envelope - Brown, 10.5 x 4.5 inches (SKU: BB-17000), qty: 56.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f32de010-75b7-4aeb-890d-2c9d6ae1e174",
+    "timestamp": "2026-06-28T15:16:40.423685+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 19f16bb3-f94f-4a1e-9547-26cf3d4768bd (SKU: BB-17000) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "145b06e0-de59-4fed-932b-e451e0cf7b83",
+    "timestamp": "2026-06-28T15:16:59.246442+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 19f16bb3-f94f-4a1e-9547-26cf3d4768bd (SKU: BB-17000) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "0e4e4efa-e03b-44b8-bd88-1d6210ec3857",
+    "timestamp": "2026-06-28T15:17:01.322288+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 48f7834e-1017-47c0-938c-f309325f3761 (SKU: BB-1679) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "0771c535-6037-4dbd-acfc-3e05f4728cba",
+    "timestamp": "2026-06-28T15:17:20.889216+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 48f7834e-1017-47c0-938c-f309325f3761 (SKU: BB-1679) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "07d462b0-e04a-47d4-bd17-a3cde081e61c",
+    "timestamp": "2026-06-28T15:17:23.141762+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID 3d3e9be4-9a80-4011-85c1-04ae4eafa633 (SKU: BB-16765) from approved to cancelled.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "afe10319-35dd-4e18-bb94-05624a7756b9",
+    "timestamp": "2026-06-28T15:17:40.349465+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Baby Corn - Unpeeled (SKU: BB-16765), qty: 111.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "6cabad9c-ec71-4871-bf75-351495f1d1c7",
+    "timestamp": "2026-06-28T15:17:45.400452+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 0a302985-523a-4462-bf1f-5feea44db172 (SKU: BB-16765) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "df2d1f55-7128-4036-aae3-f0df187e2d33",
+    "timestamp": "2026-06-28T15:17:55.339213+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 0a302985-523a-4462-bf1f-5feea44db172 (SKU: BB-16765) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c661f4a5-8239-46b6-bbe9-e93ec97eeaf3",
+    "timestamp": "2026-06-28T15:18:07.399487+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID d5551638-c6ad-44cc-ae79-8a1735373172 (SKU: BB-10059) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "fe77adf2-6474-419d-9106-fd5fff426b17",
+    "timestamp": "2026-06-28T15:18:09.760204+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 617fae6d-6373-4806-837b-d969030fa198 (SKU: BB-15165) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "15463f60-22cc-4c16-9984-3cda8cdcf767",
+    "timestamp": "2026-06-28T15:18:20.131756+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 617fae6d-6373-4806-837b-d969030fa198 (SKU: BB-15165) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "2505658a-f471-4339-9c4a-34d474364df6",
+    "timestamp": "2026-06-28T15:18:22.988710+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID aeb29b94-36ff-41fa-bac1-0d5803ef8ef3 (SKU: BB-15079) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "0a826c4e-242c-4c1b-a405-77a87b6b2da9",
+    "timestamp": "2026-06-28T15:18:30.866634+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID aeb29b94-36ff-41fa-bac1-0d5803ef8ef3 (SKU: BB-15079) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "6c637d87-3f24-4e55-b385-3a39b7c9f86f",
+    "timestamp": "2026-06-28T15:18:34.826239+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 25fb5423-5c47-443c-b10d-5784aff414ee (SKU: BB-15061) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "98924587-eaae-4e7e-a2c7-41d9b7be28dc",
+    "timestamp": "2026-06-28T15:18:42.354399+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 25fb5423-5c47-443c-b10d-5784aff414ee (SKU: BB-15061) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "dcacae6f-d746-429d-92dd-22fd2863f17f",
+    "timestamp": "2026-06-28T15:20:30.808431+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 37b9eb8e-5e1c-4259-b253-a4d9ed8d3e02 (SKU: BB-14912) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e5dc1b99-b118-42da-9c93-f6074416feb5",
+    "timestamp": "2026-06-28T15:20:42.708181+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 37b9eb8e-5e1c-4259-b253-a4d9ed8d3e02 (SKU: BB-14912) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "4269d772-9726-43cd-a38e-e0042b60911c",
+    "timestamp": "2026-06-28T15:20:45.181214+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID fcce4f14-060a-47c1-87d4-54573c6b216b (SKU: BB-14853) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f0f5904b-a6a5-41a5-ab7a-d088c241fd9d",
+    "timestamp": "2026-06-28T15:20:52.949922+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID fcce4f14-060a-47c1-87d4-54573c6b216b (SKU: BB-14853) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "5bf80bb2-0106-4e17-b52c-537978130c89",
+    "timestamp": "2026-06-28T15:20:56.738430+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 9c2b796f-806e-4a96-90f8-cf0964f9b3fd (SKU: BB-13625) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "304b86f6-e598-49ef-8df6-b796353c367a",
+    "timestamp": "2026-06-28T15:21:09.387342+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 9c2b796f-806e-4a96-90f8-cf0964f9b3fd (SKU: BB-13625) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "95add979-9848-4cca-8952-fcaebfe6a50a",
+    "timestamp": "2026-06-28T15:21:22.284091+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID d5551638-c6ad-44cc-ae79-8a1735373172 (SKU: BB-10059) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "9bbc2b01-f32a-4a00-b5f2-1b2bf68f0751",
+    "timestamp": "2026-06-28T15:21:25.048710+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID a4d3a417-3887-4e6b-ba4d-94bd4b4a7dc4 (SKU: BB-13132) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f5f18c64-381e-4a29-ab4b-917d393638ea",
+    "timestamp": "2026-06-28T15:21:35.158371+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID a4d3a417-3887-4e6b-ba4d-94bd4b4a7dc4 (SKU: BB-13132) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "0eb44301-e77d-4e30-acba-d59016b8e12c",
+    "timestamp": "2026-06-28T15:21:37.922762+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID be051bfa-f670-4505-ad25-1479dcbc49ca (SKU: BB-10800) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "8f12242f-cbb7-49e4-97df-b76b5e0e15fb",
+    "timestamp": "2026-06-28T15:21:42.467842+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID a013382e-cb01-4a91-9db4-775dc33b3b0a (SKU: BB-13149) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b3bdd8c0-80a6-4cda-be03-2e7e71d6dc6f",
+    "timestamp": "2026-06-28T15:21:52.658628+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID a013382e-cb01-4a91-9db4-775dc33b3b0a (SKU: BB-13149) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f6ffe7d8-845c-4d6e-9b2c-5822b2984224",
+    "timestamp": "2026-06-28T15:22:02.456868+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID be051bfa-f670-4505-ad25-1479dcbc49ca (SKU: BB-10800) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "4fd6141d-7568-44c4-bc17-bec1e3afa902",
+    "timestamp": "2026-06-28T15:22:04.926963+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID cac69531-4c79-4cb5-a55d-b993596bba31 (SKU: BB-12728) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3a195d20-3716-4a95-955d-4c87c4c0c140",
+    "timestamp": "2026-06-28T15:22:22.295051+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID cac69531-4c79-4cb5-a55d-b993596bba31 (SKU: BB-12728) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c8617513-a2b1-4149-8190-e871318f791b",
+    "timestamp": "2026-06-28T15:58:02.904627+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID ef84592f-3717-4dac-b8d7-f56f8d69a6e0 (SKU: BB-13121) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "405c6c15-fb49-486e-8876-20e7de42df28",
+    "timestamp": "2026-06-28T15:58:13.279621+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID ef84592f-3717-4dac-b8d7-f56f8d69a6e0 (SKU: BB-13121) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1fcda720-0a1e-4dc7-8f21-00de19bb142b",
+    "timestamp": "2026-06-28T15:58:16.468677+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 834db12b-a205-4bc6-b4bf-cf090b637eda (SKU: BB-12671) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d56b5900-cc69-46f1-ba7e-7a7629f42aec",
+    "timestamp": "2026-06-28T15:58:26.104910+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 834db12b-a205-4bc6-b4bf-cf090b637eda (SKU: BB-12671) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b4764205-1b6e-4ffb-9f77-5cac1dcd511e",
+    "timestamp": "2026-06-28T15:58:29.118532+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID e1d6862e-a635-415f-9251-6e514661c311 (SKU: BB-11243) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "91c4e981-094f-4c97-8fa8-dd6e1353a1f4",
+    "timestamp": "2026-06-28T15:58:32.366349+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID e1d6862e-a635-415f-9251-6e514661c311 (SKU: BB-11243) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "50e784bc-833a-4f77-88d9-4fa1c001503f",
+    "timestamp": "2026-06-28T15:58:36.289072+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 85bfe876-4867-481e-a4cb-826e46319e8a (SKU: BB-10958) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "6148d500-35af-4369-8202-eef4fcea5b5a",
+    "timestamp": "2026-06-28T15:58:41.867723+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 85bfe876-4867-481e-a4cb-826e46319e8a (SKU: BB-10958) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a7f72dcb-02a2-48f3-8f97-a7563e1d6b3e",
+    "timestamp": "2026-06-28T15:58:44.765168+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID a7f2119e-7479-4143-bc94-8a0c679707ff (SKU: BB-10884) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "2e08ab8b-1214-4222-b6c0-232c1c28a354",
+    "timestamp": "2026-06-28T15:58:48.469715+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID a7f2119e-7479-4143-bc94-8a0c679707ff (SKU: BB-10884) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3c4c3115-63a4-46c1-99ca-a2ccb26aae5d",
+    "timestamp": "2026-06-28T15:58:51.528756+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 68100f00-3071-420b-bdac-ac5b075e7340 (SKU: BB-10306) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "9b76ab1d-7b0c-41ce-8e4a-2e572de308bb",
+    "timestamp": "2026-06-28T15:58:59.331903+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 68100f00-3071-420b-bdac-ac5b075e7340 (SKU: BB-10306) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d228f275-8edd-4a27-8403-2c5141e6fe9a",
+    "timestamp": "2026-06-29T08:40:09.686082+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b8cfa4d4-2b81-44b5-84f9-9f1029551f33",
+    "timestamp": "2026-06-29T09:22:33.725689+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID ffcb228a-b7d6-4a3e-8ce0-bd2304bd9588 (SKU: BB-19930) from ordered to cancelled.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "8055af4a-9557-4b4a-825a-fa8965806af6",
+    "timestamp": "2026-06-30T06:35:05.177692+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "0d356b21-81cd-445b-8902-f794e76a7c28",
+    "timestamp": "2026-06-30T07:46:18.461352+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Kidney Detox With Varun, Punerneva & Ganoderma (SKU: BB-18874), qty: 59.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3eeda900-6e2f-4513-a74e-423fbe10d077",
+    "timestamp": "2026-06-30T07:48:03.278597+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 19ae19ab-2e51-448e-bc80-7838ded63ef7 (SKU: BB-18874) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a9419e8b-ab9e-4e6f-900d-a7e9bbfbd6be",
+    "timestamp": "2026-06-30T07:48:26.157034+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 19ae19ab-2e51-448e-bc80-7838ded63ef7 (SKU: BB-18874) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "56549e9c-47bf-442c-b221-0b5beee80060",
+    "timestamp": "2026-06-30T08:53:31.330060+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "23a29181-c226-4d8e-a3dd-2ea494a1f552",
+    "timestamp": "2026-06-30T08:54:50.840260+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "aab45f4d-417c-4aa6-b0f2-7a4bf4649cb4",
+    "timestamp": "2026-06-30T14:56:50.900521+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3ddfa4c2-34a0-4cff-abac-713733d0cfe6",
+    "timestamp": "2026-06-30T14:57:19.340924+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "27fa80de-68c3-4d46-9311-bf919bf466ca",
+    "timestamp": "2026-07-01T09:45:52.701424+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f2f0bcce-ec05-4b3f-98d8-9ef84bca61c6",
+    "timestamp": "2026-07-03T09:12:32.673469+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.62.11.143"
+  },
+  {
+    "id": "068a043d-1298-49e3-8dea-aa32a76ce2da",
+    "timestamp": "2026-07-03T09:13:19.928157+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f9d162f3-b6c5-4b44-b3e4-25152bde8bba",
+    "timestamp": "2026-07-03T09:13:28.145557+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "ad286cdc-6436-411d-9a9c-7b96174a8331",
+    "timestamp": "2026-07-03T09:13:42.571439+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "7de53431-5de7-459a-a7bc-5ea3184bb88f",
+    "timestamp": "2026-07-03T09:14:09.127651+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "76bda79d-d970-41f0-916a-a1c29b2380d9",
+    "timestamp": "2026-07-03T09:14:42.958673+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for DC 4 U Exclusive For Men (SKU: BB-11216), qty: 169.0",
+    "ip_address": "10.62.5.59"
+  },
+  {
+    "id": "49caa136-663a-4fa1-b403-ec8dcb83016c",
+    "timestamp": "2026-07-03T09:14:49.029704+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 96082657-fe0d-45f8-b674-284597f83ef9 (SKU: BB-11216) from approved to ordered.",
+    "ip_address": "10.62.9.102"
+  },
+  {
+    "id": "ab7b21b2-5250-4083-8261-5c84093c1b58",
+    "timestamp": "2026-07-03T09:16:54.683197+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "691c70d1-e692-4c28-930e-0878930dcf26",
+    "timestamp": "2026-07-03T09:17:20.402709+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f7b39545-950e-4eb9-bba8-541f0e9e53cb",
+    "timestamp": "2026-07-03T09:44:34.153408+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "340f4bd4-2cb2-4405-a05c-2496f73a35a1",
+    "timestamp": "2026-07-03T11:45:57.407817+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "6dc4c824-7557-4a4a-be3c-27eed87af396",
+    "timestamp": "2026-07-03T12:09:23.456129+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "cd41c8e9-b4ef-494a-a490-7bde0f9ae6b8",
+    "timestamp": "2026-07-03T12:09:38.386149+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "294c0cc3-92e2-407f-a5a5-3aed37ad6b61",
+    "timestamp": "2026-07-03T12:09:45.137613+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a023e494-071a-412a-9d23-2d5aff13824f",
+    "timestamp": "2026-07-03T12:09:52.640224+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "01c7111d-3f66-4674-95bd-8efed0632dfe",
+    "timestamp": "2026-07-03T12:10:01.702164+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "52c2084c-7c5b-4b7c-a5d1-184863e011d5",
+    "timestamp": "2026-07-03T12:10:55.097785+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "79cdaba8-2c3b-4932-9d0a-39d8dacd751e",
+    "timestamp": "2026-07-03T12:22:22.717783+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.60.8.112"
+  },
+  {
+    "id": "afe60753-22c0-494c-b94d-2dae454e3933",
+    "timestamp": "2026-07-03T12:30:54.165493+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.13.66"
+  },
+  {
+    "id": "73ffeeae-0949-49fc-9b8c-1b3c15a3830b",
+    "timestamp": "2026-07-03T12:32:10.529620+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.60.5.49"
+  },
+  {
+    "id": "122d6be6-fa22-4315-84a1-4550cf5ccb55",
+    "timestamp": "2026-07-03T12:34:40.011487+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "91711287-19c9-4770-b42c-bf04e6d3a609",
+    "timestamp": "2026-07-03T12:35:08.642803+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "5c34cf15-8a85-4a51-b971-5537b0eeb89f",
+    "timestamp": "2026-07-03T12:35:57.135166+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.60.0.126"
+  },
+  {
+    "id": "43f5bfe2-14b9-4ba4-8bf1-3d102e088773",
+    "timestamp": "2026-07-03T12:43:51.367516+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "5604d77d-1c37-4b8f-b89a-1eea00b12fa0",
+    "timestamp": "2026-07-03T12:45:17.650208+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1c849940-c3e0-445b-9298-87712253b551",
+    "timestamp": "2026-07-03T12:50:05.635286+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.60.0.123"
+  },
+  {
+    "id": "ad92d502-0fae-4c75-91f1-61f9a1187d28",
+    "timestamp": "2026-07-04T05:52:58.959105+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.5.49"
+  },
+  {
+    "id": "6d16088e-c6a2-4e1b-a6a9-a29f083ac061",
+    "timestamp": "2026-07-04T06:04:38.836801+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1ca9fcb3-4a40-418b-ae0b-5915bb49d982",
+    "timestamp": "2026-07-04T06:10:12.881680+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a56f76d2-d098-4fab-a0ad-9c9c9b4cfcbd",
+    "timestamp": "2026-07-04T06:10:30.238366+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d412881e-436a-4183-8bf9-5f29989a3fb3",
+    "timestamp": "2026-07-04T06:11:37.379541+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.0.126"
+  },
+  {
+    "id": "255b2012-4222-4edf-b115-78189ff53177",
+    "timestamp": "2026-07-04T06:16:53.063655+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "fb8962b4-f272-409e-84dc-ff47068c8c14",
+    "timestamp": "2026-07-04T06:17:01.484691+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "36eb528c-5397-4801-952d-5db194c3388f",
+    "timestamp": "2026-07-04T06:19:34.353331+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1101185d-a861-45c2-ab26-cca2556261b8",
+    "timestamp": "2026-07-04T06:25:56.100306+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "df36e241-b10e-448c-8597-01bdefcc899b",
+    "timestamp": "2026-07-04T06:26:13.314839+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "5f3981fa-01ac-4ffb-ac53-343665c04e3e",
+    "timestamp": "2026-07-04T06:27:17.111790+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.60.13.66"
+  },
+  {
+    "id": "29d9c2b4-31e4-490b-a5b6-f6f12de7095d",
+    "timestamp": "2026-07-04T06:27:42.030932+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.60.0.126"
+  },
+  {
+    "id": "771e33ac-014e-4626-9f14-789ac3d142f9",
+    "timestamp": "2026-07-04T16:34:13.793772+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.60.1.58"
+  },
+  {
+    "id": "349a2800-53ca-4cf3-86c3-581c67cb1fc0",
+    "timestamp": "2026-07-04T16:35:57.766244+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.0.123"
+  },
+  {
+    "id": "ac1e50d0-5928-4561-a264-f3bbdf8ee5aa",
+    "timestamp": "2026-07-05T02:51:10.912938+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.62.2.10"
+  },
+  {
+    "id": "9533d8e0-2caa-423d-8cff-84a78b26e13f",
+    "timestamp": "2026-07-05T05:10:36.464758+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.62.7.16"
+  },
+  {
+    "id": "cfee7e51-12f5-466c-89b5-31b6c859d845",
+    "timestamp": "2026-07-05T06:26:44.872374+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.62.4.8"
+  },
+  {
+    "id": "1255bc5e-5a2c-41ce-a78b-c5df9704cf92",
+    "timestamp": "2026-07-05T06:28:39.621726+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Cold Glaze Neutral (SKU: BB-15442), qty: 103.0",
+    "ip_address": "10.62.8.6"
+  },
+  {
+    "id": "ba5fac8f-3f9c-4022-a117-d220523bbb56",
+    "timestamp": "2026-07-05T06:28:45.898264+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 9bc720ae-52e8-4c8f-9843-14b71606e245 (SKU: BB-15442) from approved to ordered.",
+    "ip_address": "10.62.0.5"
+  },
+  {
+    "id": "b03a4aca-a8dc-40db-a73a-bfda42953928",
+    "timestamp": "2026-07-05T06:28:56.593882+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID 9bc720ae-52e8-4c8f-9843-14b71606e245 (SKU: BB-15442) from ordered to received.",
+    "ip_address": "10.62.5.16"
+  },
+  {
+    "id": "99ac3914-17d6-40ed-99ab-0cb3de636197",
+    "timestamp": "2026-07-05T06:30:33.129186+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.62.0.5"
+  },
+  {
+    "id": "3d304ef8-ca91-4f1e-a4c2-a8d48774832c",
+    "timestamp": "2026-07-05T06:31:18.469021+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.62.8.6"
+  },
+  {
+    "id": "707fced1-5a2d-4b1f-a402-c8a85b0f592e",
+    "timestamp": "2026-07-05T12:29:02.682853+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.7.33"
+  },
+  {
+    "id": "fa33925b-32c4-4636-9475-7399d1641fb6",
+    "timestamp": "2026-07-05T12:29:55.109510+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Stage 2 Formula - After 6 Months (SKU: BB-25867), qty: 181.0",
+    "ip_address": "10.60.5.10"
+  },
+  {
+    "id": "a428a82f-525f-4397-8a48-de02b50af90e",
+    "timestamp": "2026-07-05T12:30:27.657577+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID fdb30ff6-724e-4e1d-b77e-47ea8ed2409b (SKU: BB-25867) from approved to ordered.",
+    "ip_address": "10.60.8.7"
+  },
+  {
+    "id": "921d6b52-3399-4a03-9ce1-0f4cc0ba10ef",
+    "timestamp": "2026-07-05T12:30:38.699890+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID fdb30ff6-724e-4e1d-b77e-47ea8ed2409b (SKU: BB-25867) from ordered to received.",
+    "ip_address": "10.60.7.33"
+  },
+  {
+    "id": "af11949c-980d-4a63-9e2f-e076d5a418b5",
+    "timestamp": "2026-07-05T12:32:19.918003+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.60.1.17"
+  },
+  {
+    "id": "2b949e1c-77f3-480c-b634-2717e8d84416",
+    "timestamp": "2026-07-05T13:51:19.161428+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.9.24"
+  },
+  {
+    "id": "9350f69c-c5eb-4a9e-94cd-83f0e5e28047",
+    "timestamp": "2026-07-05T13:56:47.192709+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.3.32"
+  },
+  {
+    "timestamp": "2026-07-05T14:15:18",
+    "action": "DISCOUNT_APPROVED",
+    "detail": "Coccinia (SKU: BB-1032) \u2014 60% off. Reason: Approaching Expiry",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "timestamp": "2026-07-05T14:15:18",
+    "action": "DISCOUNT_APPROVED",
+    "detail": "Fizz - Lime Lemon Classic Cola 300 ml + Fizz - Lime Lemon 300 ml (SKU: BB-10136) \u2014 40% off. Reason: Approaching Expiry",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "timestamp": "2026-07-05T14:15:18",
+    "action": "DISCOUNT_APPROVED",
+    "detail": "Swiss Roll - Cream & Real Strawberry Jam (SKU: BB-10263) \u2014 15% off. Reason: Approaching Expiry",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "timestamp": "2026-07-05T14:15:18",
+    "action": "DISCOUNT_APPROVED",
+    "detail": "Awakening Aromatherapy Diffuser Oil (SKU: BB-10007) \u2014 25% off. Reason: Dead Stock",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "timestamp": "2026-07-05T14:15:18",
+    "action": "DISCOUNT_APPROVED",
+    "detail": "Spanish Olives Sliced Green (SKU: BB-10102) \u2014 15% off. Reason: Slow Moving Product",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "timestamp": "2026-07-05T14:15:34",
+    "action": "DISCOUNT_REJECTED",
+    "detail": "Daily Fresh Dahi (SKU: BB-10280) discount rejected. Notes: Margin too thin at this discount tier, will revisit closer to expiry",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "id": "5417649b-2cc5-4f1a-b446-247b17fe2beb",
+    "timestamp": "2026-07-05T14:17:28.768548+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.62.8.6"
+  },
+  {
+    "timestamp": "2026-07-05T14:19:54",
+    "action": "DISCOUNT_APPROVED",
+    "detail": "Chutney Mix (SKU: BB-10657) \u2014 60% off. Reason: Approaching Expiry",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "id": "a9172d38-208e-40b8-95f8-0678565b8a62",
+    "timestamp": "2026-07-05T14:21:20.495475+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.62.8.6"
+  },
+  {
+    "id": "d6c5a72d-d736-4fc0-b8a7-b9105bdc9a4b",
+    "timestamp": "2026-07-05T14:27:29.666952+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.62.4.8"
+  },
+  {
+    "id": "fc0db718-8d04-4271-b38f-a84fe1cd8130",
+    "timestamp": "2026-07-05T15:52:36.423499+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "ea9b33ec-5a07-41dd-bd41-5bd497283c08",
+    "timestamp": "2026-07-06T02:01:03.863241+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "ef46af17-602d-4cdb-8b8a-8c03b4f1496e",
+    "timestamp": "2026-07-06T06:11:21.472795+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "435743aa-75a6-4e34-8fba-0ffe3881b294",
+    "timestamp": "2026-07-06T06:12:56.001972+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Ready to Eat - Rajma Masala (SKU: BB-17088), qty: 62.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b834f654-209d-4849-815b-13cac5149721",
+    "timestamp": "2026-07-06T06:13:20.310645+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 641bbaa6-65f2-4d9f-bfea-26c3c0093355 (SKU: BB-17088) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "4c20107d-e5ec-4cbe-87ce-8ce0fc833839",
+    "timestamp": "2026-07-06T06:15:31.013763+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b2c83f46-7d41-4e8e-8329-479748e2aeb5",
+    "timestamp": "2026-07-06T14:23:01.084387+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.1.17"
+  },
+  {
+    "id": "a8f588b2-2f64-437f-a9fe-f60097774ab0",
+    "timestamp": "2026-07-06T14:32:24.682983+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.9.24"
+  },
+  {
+    "id": "2a86f31d-b1c7-43e9-a1c4-c7ced83336d5",
+    "timestamp": "2026-07-06T14:55:42.878925+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "4128263a-97b9-454c-bc17-1a72cdddf2b9",
+    "timestamp": "2026-07-06T14:57:47.077629+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.7.33"
+  },
+  {
+    "id": "f7c18414-08ff-4ba5-96b2-1d2d220a26ea",
+    "timestamp": "2026-07-06T15:16:43.815964+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.10.54"
+  },
+  {
+    "id": "0e887ddf-c0e6-4cb8-ad85-c3635290103e",
+    "timestamp": "2026-07-07T09:50:50.099778+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.10.118"
+  },
+  {
+    "id": "c42b98a6-8a67-408a-bb07-1fb02efc07c7",
+    "timestamp": "2026-07-07T12:33:07.780456+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e927dd64-da63-4c71-a330-ac3979227f43",
+    "timestamp": "2026-07-07T16:24:31.083745+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d956b068-3ee7-4eac-bd9a-5bd26b182702",
+    "timestamp": "2026-07-07T16:24:39.097562+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3fd9d923-6290-46e6-a33e-a39e27ad4434",
+    "timestamp": "2026-07-07T16:24:43.526033+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "42d1cc89-11ed-4112-9866-e1940d026b3c",
+    "timestamp": "2026-07-07T16:37:26.748645+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "867034e3-2d6b-405b-8291-5f5f2d5abc9f",
+    "timestamp": "2026-07-07T16:38:06.238384+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "13ab5a7e-549d-48de-9346-462d27a43d58",
+    "timestamp": "2026-07-07T16:51:46.670370+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f630ac49-6852-4e29-85e3-96980a08908a",
+    "timestamp": "2026-07-07T16:53:13.234092+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "bc4b4acd-98e1-423c-a5b4-9e5aaaf746b3",
+    "timestamp": "2026-07-07T16:55:52.650235+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e4fe2493-f920-4548-a72d-c7772ee36ff0",
+    "timestamp": "2026-07-07T16:56:10.968742+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d8438ba7-a1b7-4e16-b807-4b6e82e8f540",
+    "timestamp": "2026-07-07T16:56:37.455283+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "2395d0bc-c5de-4289-8939-96923f01f707",
+    "timestamp": "2026-07-07T16:57:06.392906+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "4be16bd9-d839-46b5-bfa0-f33dac318d77",
+    "timestamp": "2026-07-07T16:57:34.232196+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1e04741d-614b-42ed-bec7-77358c259ba5",
+    "timestamp": "2026-07-07T16:58:03.463580+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "272eee36-b1ba-47c1-81c9-296a270cf61c",
+    "timestamp": "2026-07-07T16:58:39.950276+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "6d113feb-4969-4a78-bb96-a86c740735d9",
+    "timestamp": "2026-07-07T17:00:59.183874+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a5e7eef0-9902-4855-aa88-d6d6c801b402",
+    "timestamp": "2026-07-08T01:58:18.208970+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "4173d02c-0a69-475e-9746-9035300e37d7",
+    "timestamp": "2026-07-09T04:18:54.518478+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "94c56bdd-b9a3-4658-93db-2700b12eff99",
+    "timestamp": "2026-07-09T04:21:58.769491+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.62.1.221"
+  },
+  {
+    "id": "89029ac4-2e6b-450b-a0a4-4c2f1bd3d5d8",
+    "timestamp": "2026-07-10T05:48:25.672236+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.8.26"
+  },
+  {
+    "id": "870cb0f2-63e5-4886-9a81-9ac00942c3c6",
+    "timestamp": "2026-07-10T06:21:43.530171+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "96435288-a27f-441b-bdd9-433ba3a8a0d1",
+    "timestamp": "2026-07-10T06:40:46.470650+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "5bb75be3-e202-4171-b963-521cfd778db7",
+    "timestamp": "2026-07-10T06:50:26.885337+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Fizz - Lime Lemon Classic Cola 300 ml + Fizz - Lime Lemon 300 ml (SKU: BB-10136), qty: 42.0",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "7d527824-9871-4c16-9c46-4fc53f37081e",
+    "timestamp": "2026-07-10T06:50:37.648294+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID b1de280c-d7b3-4084-9c45-e6eccced360a (SKU: BB-10136) from approved to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "8a2e4610-149c-4c91-868f-e8513b122603",
+    "timestamp": "2026-07-10T06:50:45.557280+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID b1de280c-d7b3-4084-9c45-e6eccced360a (SKU: BB-10136) from ordered to cancelled.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "dd515238-7579-4481-8824-3a207b27ff91",
+    "timestamp": "2026-07-11T04:27:42.896142+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "5b9a4c51-2c26-4452-a01d-4cc1f6f4206d",
+    "timestamp": "2026-07-11T12:21:37.007001+00:00",
+    "user_id": "USR001",
+    "user_name": "Test",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Test Product (SKU: BB-10257), qty: 10.0, supplier: LittleOnes Care",
+    "ip_address": "testclient"
+  },
+  {
+    "id": "ff20cc78-62e7-4c1c-aa75-ee8569a21543",
+    "timestamp": "2026-07-11T12:21:38.378534+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.5.254"
+  },
+  {
+    "id": "90651eb4-efcb-4485-a451-5c750254aa88",
+    "timestamp": "2026-07-11T12:23:17.528707+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Fizz - Lime Lemon Classic Cola 300 ml + Fizz - Lime Lemon 300 ml (SKU: BB-10136), qty: 41.0, supplier: ",
+    "ip_address": "10.60.5.254"
+  },
+  {
+    "id": "37253fb6-1aba-4ff8-8036-98aa538d7c37",
+    "timestamp": "2026-07-11T12:38:10.268846+00:00",
+    "user_id": "USR001",
+    "user_name": "Test",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Test Product (SKU: BB-10257), qty: 10.0, supplier: LittleOnes Care",
+    "ip_address": "testclient"
+  },
+  {
+    "id": "7d650144-f903-44fc-809e-ef50e1272437",
+    "timestamp": "2026-07-11T12:38:10.462829+00:00",
+    "user_id": "USR001",
+    "user_name": "Test",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID cd3348d9-7611-4cd2-a70f-e8aef50a9449 (SKU: BB-10257) from approved to received.",
+    "ip_address": "testclient"
+  },
+  {
+    "timestamp": "2026-07-11T12:39:01",
+    "action": "DISCOUNT_REVOKED",
+    "detail": "Swiss Roll - Cream & Real Strawberry Jam (SKU: BB-10263) discount revoked. Notes: ",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "id": "a47d962f-0b25-4833-8653-d1230022846d",
+    "timestamp": "2026-07-11T12:39:41.545546+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Coccinia (SKU: BB-1032), qty: 516.0, supplier: FreshFarm Veg Market",
+    "ip_address": "10.60.5.254"
+  },
+  {
+    "id": "87b16897-36bd-4ccd-937c-0770545ca5bb",
+    "timestamp": "2026-07-11T12:39:54.049288+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID e693457e-4ad1-4dac-ad70-5e73277681fa (SKU: BB-1032) from approved to ordered.",
+    "ip_address": "10.60.5.254"
+  },
+  {
+    "id": "d4f244a7-a184-435d-8c65-c098d80eb867",
+    "timestamp": "2026-07-11T12:42:08.891342+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID e693457e-4ad1-4dac-ad70-5e73277681fa (SKU: BB-1032) from ordered to cancelled.",
+    "ip_address": "10.60.5.254"
+  },
+  {
+    "id": "3fe1eb54-d02c-48a4-b8ac-b72049674bd5",
+    "timestamp": "2026-07-11T12:46:35.688956+00:00",
+    "user_id": "USR001",
+    "user_name": "Test",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Test Cancel Product (SKU: BB-10258), qty: 8.0, supplier: LittleOnes Care",
+    "ip_address": "testclient"
+  },
+  {
+    "id": "07bf48fb-4ebc-408f-b93f-bfdd3c16e7f7",
+    "timestamp": "2026-07-11T12:46:35.784805+00:00",
+    "user_id": "USR001",
+    "user_name": "Test",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID 321bae97-60ce-4822-b962-787263d86860 (SKU: BB-10258) from approved to cancelled.",
+    "ip_address": "testclient"
+  },
+  {
+    "id": "1fbba45b-5c3b-4b2b-8ba0-cfbe28859c4a",
+    "timestamp": "2026-07-11T12:46:35.908909+00:00",
+    "user_id": "USR001",
+    "user_name": "Test",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Test Change Product (SKU: BB-10259), qty: 5.0, supplier: LittleOnes Care",
+    "ip_address": "testclient"
+  },
+  {
+    "id": "99707992-68de-4a67-acc1-34884e8d77f8",
+    "timestamp": "2026-07-11T12:48:34.608402+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID 09aaafb7-d0e3-4d3c-872b-ea0c5cff2149 (SKU: BB-10136) from approved to cancelled.",
+    "ip_address": "10.60.5.254"
+  },
+  {
+    "id": "28dc7730-986d-4a4b-b404-9c583e0dae4c",
+    "timestamp": "2026-07-11T12:49:25.008398+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Fizz - Lime Lemon Classic Cola 300 ml + Fizz - Lime Lemon 300 ml (SKU: BB-10136), qty: 41.0, supplier: Hydration Hub",
+    "ip_address": "10.60.1.71"
+  },
+  {
+    "id": "abe8e227-8c2b-4b9c-b963-a6fe6c8c332f",
+    "timestamp": "2026-07-11T12:51:52.434037+00:00",
+    "user_id": "USR001",
+    "user_name": "Test",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Dashboard Test (SKU: BB-10260), qty: 6.0, supplier: BabyBase Supplies",
+    "ip_address": "testclient"
+  },
+  {
+    "id": "1e33559a-4a2f-41e0-9d3a-8975103745a9",
+    "timestamp": "2026-07-11T13:04:35.249878+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Coccinia (SKU: BB-1032), qty: 516.0, supplier: FreshFarm Veg Market",
+    "ip_address": "10.60.1.71"
+  },
+  {
+    "id": "574800fe-4d48-4689-8b6a-b5586186a1ea",
+    "timestamp": "2026-07-11T13:04:49.935928+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 3ecee9b7-7705-4a35-94cc-11906112ae38 (SKU: BB-1032) from approved to ordered.",
+    "ip_address": "10.60.1.71"
+  },
+  {
+    "id": "715d7ce1-c078-4aaa-a262-0c3ecfc48842",
+    "timestamp": "2026-07-11T13:05:14.520418+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID 3ecee9b7-7705-4a35-94cc-11906112ae38 (SKU: BB-1032) from ordered to cancelled.",
+    "ip_address": "10.60.11.70"
+  },
+  {
+    "id": "06918616-9c0f-48f7-afe9-5d6047119a15",
+    "timestamp": "2026-07-11T13:05:15.910223+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID ae43c90b-1568-4e06-8f6a-905a81b8aa88 (SKU: BB-10136) from approved to cancelled.",
+    "ip_address": "10.60.11.70"
+  },
+  {
+    "id": "41184bb9-b211-4819-ab72-a217e13016bd",
+    "timestamp": "2026-07-11T13:05:45.263252+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Chicken - Seek Kabab (SKU: BB-10512), qty: 169.0, supplier: FreshCatch Meats",
+    "ip_address": "10.60.11.70"
+  },
+  {
+    "id": "4f1bf486-306c-4faf-acc0-287a901a3b3a",
+    "timestamp": "2026-07-11T13:05:49.577796+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID a8db3bbf-edf4-40ff-b64e-ae9c5df08c81 (SKU: BB-10512) from approved to ordered.",
+    "ip_address": "10.60.11.70"
+  },
+  {
+    "id": "3c56ca8f-2984-4ab0-a35f-982333ef918e",
+    "timestamp": "2026-07-11T13:05:57.454478+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID a8db3bbf-edf4-40ff-b64e-ae9c5df08c81 (SKU: BB-10512) from ordered to received.",
+    "ip_address": "10.60.11.70"
+  },
+  {
+    "id": "11bed7bc-1b33-4028-b12a-f9e56cedc934",
+    "timestamp": "2026-07-12T05:00:55.147038+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.2.147"
+  },
+  {
+    "id": "839cc9fa-6c43-43f1-bc2f-2c6b3e262ff3",
+    "timestamp": "2026-07-12T05:02:54.631059+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.60.11.70"
+  },
+  {
+    "id": "28cc2e40-b63c-4e5b-8c27-b937b26b46a8",
+    "timestamp": "2026-07-12T05:13:02.605639+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.11.70"
+  },
+  {
+    "id": "55df82c4-de48-4a68-958f-1795216f9f56",
+    "timestamp": "2026-07-13T04:16:41.882557+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.4.134"
+  },
+  {
+    "id": "d8f52d21-795e-4c79-8893-095588d75ab5",
+    "timestamp": "2026-07-13T04:18:03.002837+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "bulk_discount_apply",
+    "description": "Bulk applied 2 discounts (mode=active). Reason: Bulk apply from Discount Manager",
+    "ip_address": "unknown"
+  },
+  {
+    "timestamp": "2026-07-13T04:18:03",
+    "action": "BULK_DISCOUNT_APPLY",
+    "detail": "Created 2 discount records in mode 'active'. Reason: Bulk apply from Discount Manager",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "id": "77b4bcb6-7435-4b6d-9214-6d23971be461",
+    "timestamp": "2026-07-13T04:25:51.928499+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e5670226-0949-4940-b96e-cc8b48783d66",
+    "timestamp": "2026-07-13T04:25:52.117614+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "bulk_stock_update",
+    "description": "Bulk updated stock for 0 products. Reason: Test bulk update",
+    "ip_address": "unknown"
+  },
+  {
+    "id": "8bb8f445-e26f-4aaf-98e7-69a13df4a167",
+    "timestamp": "2026-07-13T04:25:52.176267+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "bulk_discount_apply",
+    "description": "Bulk applied 0 discounts (mode=active). Reason: Test discount",
+    "ip_address": "unknown"
+  },
+  {
+    "timestamp": "2026-07-13T04:25:52",
+    "action": "BULK_DISCOUNT_APPLY",
+    "detail": "Created 0 discount records in mode 'active'. Reason: Test discount",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "id": "928f47e5-81ff-4fe2-81ee-d7738a2f0490",
+    "timestamp": "2026-07-13T04:25:52.204195+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "bulk_dispose_batches",
+    "description": "Bulk disposed 0 batches. Reasons: Expired",
+    "ip_address": "unknown"
+  },
+  {
+    "id": "dd21cfc7-c7cf-4699-b7e8-92bcb2113e30",
+    "timestamp": "2026-07-13T04:26:06.365453+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "6dd90735-e573-48e6-82c2-73f47a275ca7",
+    "timestamp": "2026-07-13T04:26:06.502701+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "bulk_stock_update",
+    "description": "Bulk updated stock for 2 products. Reason: Test bulk update",
+    "ip_address": "unknown"
+  },
+  {
+    "id": "afc829ce-9bbf-40bd-84f6-e27c71d0b14a",
+    "timestamp": "2026-07-13T04:26:06.604605+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "bulk_discount_apply",
+    "description": "Bulk applied 1 discounts (mode=active). Reason: Test discount",
+    "ip_address": "unknown"
+  },
+  {
+    "timestamp": "2026-07-13T04:26:06",
+    "action": "BULK_DISCOUNT_APPLY",
+    "detail": "Created 1 discount records in mode 'active'. Reason: Test discount",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "id": "be5abb5f-4a6a-4179-95cc-a91d6aa2ca0d",
+    "timestamp": "2026-07-13T04:26:06.632239+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "bulk_dispose_batches",
+    "description": "Bulk disposed 1 batches. Reasons: Expired",
+    "ip_address": "unknown"
+  },
+  {
+    "id": "dbd80e63-4b29-45e1-a02d-8b3b40641df9",
+    "timestamp": "2026-07-13T04:27:07.206637+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "bulk_dispose_batches",
+    "description": "Bulk disposed 2 batches. Reasons: Expired, Expired",
+    "ip_address": "unknown"
+  },
+  {
+    "timestamp": "2026-07-13T04:27:38",
+    "action": "DISCOUNT_REVOKED",
+    "detail": "Awakening Aromatherapy Diffuser Oil (SKU: BB-10007) discount revoked. Notes: ",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "id": "297058ab-f5b2-4e0a-846f-61ea18711ef3",
+    "timestamp": "2026-07-13T04:28:04.600052+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "bulk_discount_apply",
+    "description": "Bulk applied 2 discounts (mode=active). Reason: Bulk apply from Discount Manager",
+    "ip_address": "unknown"
+  },
+  {
+    "timestamp": "2026-07-13T04:28:04",
+    "action": "BULK_DISCOUNT_APPLY",
+    "detail": "Created 2 discount records in mode 'active'. Reason: Bulk apply from Discount Manager",
+    "user": "USR002",
+    "module": "Discounts"
+  },
+  {
+    "id": "48605d49-98d6-44b0-9299-4cdd502347de",
+    "timestamp": "2026-07-13T04:28:36.656937+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "bulk_stock_update",
+    "description": "Bulk updated stock for 2 products. Reason: ",
+    "ip_address": "unknown"
+  },
+  {
+    "id": "86733f1e-522a-4ec8-b9eb-3dda017924a3",
+    "timestamp": "2026-07-13T04:36:59.154870+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "0d1a389b-314b-4b31-a8db-e128138f9f63",
+    "timestamp": "2026-07-13T04:39:37.827115+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.60.5.254"
+  },
+  {
+    "id": "b1fc2750-1c2d-422c-a3ba-d2c8be58c86b",
+    "timestamp": "2026-07-13T04:43:34.467329+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.5.254"
+  },
+  {
+    "id": "082bd211-3f72-4f0a-8dc3-9961d121a1d3",
+    "timestamp": "2026-07-13T12:23:34.966160+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.10.21"
+  },
+  {
+    "id": "598ba0d8-9a1a-40e2-bc2a-89978001e251",
+    "timestamp": "2026-07-13T12:36:07.525009+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c5cefc94-bb9f-4a9f-a4f7-f717e80a8030",
+    "timestamp": "2026-07-13T12:37:56.959848+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "62972348-37a6-439a-95cb-029412d0fa7e",
+    "timestamp": "2026-07-13T12:40:16.219574+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.60.4.134"
+  },
+  {
+    "id": "52f754a8-c9ed-4385-8c71-3fcdab05df71",
+    "timestamp": "2026-07-13T12:46:46.782375+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "cc193b75-e00c-4c07-bd1a-076ff6b11fb3",
+    "timestamp": "2026-07-13T12:48:01.659042+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f3665fe3-8130-4884-a239-4aa1288acd57",
+    "timestamp": "2026-07-13T12:52:43.950783+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Coconut Water With Lychee (SKU: BB-10060), qty: 131.0, supplier: Chef's Basket Supplies",
+    "ip_address": "10.60.4.134"
+  },
+  {
+    "id": "32dd2b1a-b029-4fe2-9d34-d0ec343a0098",
+    "timestamp": "2026-07-13T12:52:48.329344+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID 2b0b9981-eba8-4373-8b64-f0fe5c183d28 (SKU: BB-10060) from approved to ordered.",
+    "ip_address": "10.60.4.134"
+  },
+  {
+    "id": "dc906d3d-9ac9-4ba7-9e77-26812fb0ef5a",
+    "timestamp": "2026-07-13T12:52:54.213884+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3b30967f-05da-4861-9467-fe02eb29c6a6",
+    "timestamp": "2026-07-13T12:54:57.067909+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "fc6c5ce2-2aeb-4887-98fc-20220283cef9",
+    "timestamp": "2026-07-13T13:43:54.014589+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.62.5.194"
+  },
+  {
+    "id": "8a839ce2-02c4-4df7-ad89-717bfbe67eb5",
+    "timestamp": "2026-07-13T14:10:45.463866+00:00",
+    "user_id": "USR_TEST_001",
+    "user_name": "Test Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: test.manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "33b5c682-00d0-4603-991c-b2a53f0ca863",
+    "timestamp": "2026-07-13T14:11:12.602828+00:00",
+    "user_id": "USR_TEST_001",
+    "user_name": "Test Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: test.manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "8b41b986-6917-41fd-92a9-f028d9bf8621",
+    "timestamp": "2026-07-13T14:11:48.906875+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "10.62.3.147"
+  },
+  {
+    "id": "328b07ea-e22f-4461-8baf-af76691ba475",
+    "timestamp": "2026-07-13T14:11:59.405344+00:00",
+    "user_id": "USR_TEST_001",
+    "user_name": "Test Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: test.manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d7e8ad68-2f92-42c6-b280-82f4fb22572d",
+    "timestamp": "2026-07-13T14:12:31.036209+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.62.2.86"
+  },
+  {
+    "id": "1c936ab6-ad9a-40ae-8ac8-e4ae58d83058",
+    "timestamp": "2026-07-13T14:23:46.060025+00:00",
+    "user_id": "USR_TEST_002",
+    "user_name": "Test Manager 2",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: test.manager2@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "8a02b55d-ba42-4675-9d80-5e9f3e2367ce",
+    "timestamp": "2026-07-13T14:24:57.472779+00:00",
+    "user_id": "USR_TEST_003",
+    "user_name": "Test Manager 3",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: test.manager3@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c00916f1-b756-4f6a-9ae4-e1b9cb4a6311",
+    "timestamp": "2026-07-13T14:26:38.158569+00:00",
+    "user_id": "USR_TEST_004",
+    "user_name": "Test Manager 4",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: test.manager4@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d32024a7-aed7-4c2f-b839-fbf7ce7dc163",
+    "timestamp": "2026-07-13T14:28:32.014652+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Fizz - Lime Lemon Classic Cola 300 ml + Fizz - Lime Lemon 300 ml (SKU: BB-10136), qty: 37.0, supplier: Hydration Hub",
+    "ip_address": "10.62.2.86"
+  },
+  {
+    "id": "57257e9c-8633-43ab-bc78-d6e09fc372db",
+    "timestamp": "2026-07-13T14:29:46.838929+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID d6b9cdfc-82cd-45bd-b909-be9662d52cdd (SKU: BB-10136) from approved to ordered.",
+    "ip_address": "10.62.2.86"
+  },
+  {
+    "id": "62f78fcf-a501-41c4-b464-37c64862edcf",
+    "timestamp": "2026-07-14T03:33:22.193053+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "7bf55739-9600-4cbc-9d07-ca5d553df4a6",
+    "timestamp": "2026-07-14T03:38:53.796394+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_SKIPPED",
+    "description": "Skipped order for Coccinia (SKU: BB-1032), qty: 0.0, supplier: ",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c7152f56-b108-4f83-8322-6726e8c46a44",
+    "timestamp": "2026-07-14T03:46:43.163831+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_SKIPPED",
+    "description": "Skipped order for Lakadong Turmeric (SKU: BB-10455), qty: 0.0, supplier: ",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "44dc4adf-3793-44cc-b1cc-28a198ee4668",
+    "timestamp": "2026-07-14T03:46:58.369610+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID 5482513f-7f09-48fb-a320-f9d329858aa5 (SKU: BB-10455) from skipped to cancelled.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "dc293cc4-44e9-4097-b9aa-f38602668ac8",
+    "timestamp": "2026-07-14T03:49:59.261958+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID 3533e41f-8cff-45b9-9f19-3420d469ed9a (SKU: BB-1032) from skipped to cancelled.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "e342c593-0df7-479d-a56f-ef66f56b768c",
+    "timestamp": "2026-07-14T03:57:01.012284+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Lakadong Turmeric (SKU: BB-10455), qty: 130.0, supplier: Continental Flavors",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "8f2d39e8-3df2-45f4-af82-55c1edbe1590",
+    "timestamp": "2026-07-14T04:02:14.638468+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Coccinia (SKU: BB-1032), qty: 516.0, supplier: FreshFarm Veg Market",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "2ccc336e-43bd-4706-845a-07385945fb2b",
+    "timestamp": "2026-07-14T04:11:55.430446+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_CANCELLED",
+    "description": "Changed status of order ID 91d9b35e-b450-4f38-9446-90752b43c699 (SKU: BB-1032) from approved to cancelled.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "bbd86764-1855-4491-80ba-ac9c91907d9c",
+    "timestamp": "2026-07-14T04:12:30.495594+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_OVERRIDDEN",
+    "description": "Overridden order for Premium Kasundi (SKU: BB-22926), qty: 12.0, supplier: Chef's Basket Supplies",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "7dd137f0-b28e-4a0f-9de2-436b7bd8f743",
+    "timestamp": "2026-07-14T04:12:46.581280+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID cc9e322a-04ec-4160-835a-f025d81b3d1b (SKU: BB-22926) from overridden to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "06642f4a-3ab2-4ae6-8540-fde67de37911",
+    "timestamp": "2026-07-14T04:13:09.644243+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID cc9e322a-04ec-4160-835a-f025d81b3d1b (SKU: BB-22926) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "bd7a69f6-99d6-478c-831d-bd269ef90147",
+    "timestamp": "2026-07-14T04:17:14.193164+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_OVERRIDDEN",
+    "description": "Overridden order for Sapota (SKU: BB-7494), qty: 11.0, supplier: FreshFarm Veg Market",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "3cfb4f08-d5c7-45e3-8ac0-9e256dbce252",
+    "timestamp": "2026-07-14T04:17:38.315964+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_ORDERED",
+    "description": "Changed status of order ID e784d31c-4095-4a43-a54b-02d507b4a930 (SKU: BB-7494) from overridden to ordered.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "8bd02c4a-1125-4dd6-b108-2ca8232ad9b7",
+    "timestamp": "2026-07-14T04:17:53.240339+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_RECEIVED",
+    "description": "Changed status of order ID e784d31c-4095-4a43-a54b-02d507b4a930 (SKU: BB-7494) from ordered to received.",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b45135fd-1ccd-475d-aa2b-4f04408ad3e3",
+    "timestamp": "2026-07-14T04:21:36.170040+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "2160ab54-442d-40d0-8365-25fca056b68c",
+    "timestamp": "2026-07-14T05:40:11.923022+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f69308a4-6aa3-44c9-8ef0-ca838cfbcb80",
+    "timestamp": "2026-07-14T06:17:47.738259+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "74d05232-9886-436b-9683-ebf344413ae9",
+    "timestamp": "2026-07-14T07:30:29.642012+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "4ee48e8b-3cae-41cb-9fb9-afb81471cade",
+    "timestamp": "2026-07-14T07:30:39.066085+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b19f3641-1081-4edb-9074-7abaf2c6eb83",
+    "timestamp": "2026-07-14T07:30:44.286345+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "10.62.8.219"
+  },
+  {
+    "id": "68698d0f-7590-4e9e-ae49-7494dc6189ee",
+    "timestamp": "2026-07-14T07:30:52.202758+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "aa3bc987-d5be-4992-b1f9-591442c30178",
+    "timestamp": "2026-07-14T07:31:49.266116+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "df0e1368-2657-434c-b141-1bb671a7ea0a",
+    "timestamp": "2026-07-14T07:47:58.119238+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "822f4a62-a1c7-4087-adab-e97e82a8de4b",
+    "timestamp": "2026-07-14T07:52:25.804337+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "1d1c1a64-6c5c-49c7-ad65-193f72a32d51",
+    "timestamp": "2026-07-14T08:09:05.487695+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "a32b41c9-3576-4a43-8bc6-b1251e4ebb2f",
+    "timestamp": "2026-07-14T08:09:09.397814+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "483d9997-dfe1-4ea3-bebb-c518fe06fc66",
+    "timestamp": "2026-07-14T11:42:29.942806+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "c97fbeca-d776-46c9-bf19-a350fe690d98",
+    "timestamp": "2026-07-14T11:43:01.270856+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "ORDER_APPROVED",
+    "description": "Approved order for Coccinia (SKU: BB-1032), qty: 709.0, supplier: FreshFarm Veg Market",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "9616607f-5bde-47d2-9b2e-7b751208b7ea",
+    "timestamp": "2026-07-14T12:15:15.113515+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "979ad22c-837a-486e-a392-12cf0534db32",
+    "timestamp": "2026-07-14T12:22:48.788824+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "bed9a4e8-0f3a-4f21-b861-d8d18fab45d9",
+    "timestamp": "2026-07-14T12:25:16.811497+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "d0d430d0-722b-4aae-b744-997a0ff26b63",
+    "timestamp": "2026-07-14T12:32:02.502929+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "f667cb5d-a954-4f1c-88c0-0d11a6d0784e",
+    "timestamp": "2026-07-14T12:32:48.679161+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "68b88af6-3314-41ac-9f9e-4a75c65bff08",
+    "timestamp": "2026-07-14T12:42:03.438922+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "241577c5-18ad-4412-98ea-65150a5f21cf",
+    "timestamp": "2026-07-14T12:44:39.632795+00:00",
+    "user_id": "USR001",
+    "user_name": "Admin User",
+    "role": "admin",
+    "action_type": "LOGIN",
+    "description": "User logged in: admin@store.com",
+    "ip_address": "127.0.0.1"
+  }
+]

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Orders — SIRA Admin</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-title">Customer Orders</div>
+        <div class="page-subtitle">Orders placed by customers on the storefront</div>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="stat-cards mb-24" id="summary-cards">
+        <div class="stat-card"><div class="stat-label">Total Orders</div><div class="stat-value" id="sum-total">—</div><div class="stat-sub">all time</div></div>
+        <div class="stat-card"><div class="stat-label">Today's Orders</div><div class="stat-value text-success" id="sum-today">—</div><div class="stat-sub">placed today</div></div>
+        <div class="stat-card"><div class="stat-label">Total Revenue</div><div class="stat-value" id="sum-revenue">—</div><div class="stat-sub">from customer orders</div></div>
+        <div class="stat-card"><div class="stat-label">Avg Order Value</div><div class="stat-value" id="sum-avg">—</div><div class="stat-sub">per order</div></div>
+      </div>
+
+      <!-- Filters & Actions -->
+      <div class="card mb-16">
+        <div class="card-header">
+          <div class="card-title">Filters</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn btn-primary btn-sm" onclick="uploadToSales()" id="upload-btn">
+              ⬆️ Upload to Sales Data
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="exportOrders()">
+              📥 Export CSV
+            </button>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;align-items:center">
+          <input class="input" type="text" id="f-search" placeholder="Search by name, email, order ID…" style="width:240px" oninput="debounceLoad()">
+          <select class="input" id="f-status" style="width:160px" onchange="loadOrders()">
+            <option value="">All Statuses</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="shipped">Shipped</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+          <input class="input" type="date" id="f-from" onchange="loadOrders()" style="width:150px">
+          <input class="input" type="date" id="f-to" onchange="loadOrders()" style="width:150px">
+          <button class="btn btn-secondary btn-sm" onclick="clearFilters()">Clear</button>
+        </div>
+      </div>
+
+      <div id="msg" class="alert-msg"></div>
+      <div id="spinner" class="spinner-wrap"><div class="spinner"></div></div>
+
+      <!-- Orders Table -->
+      <div class="card" id="orders-card" style="display:none">
+        <div class="card-header">
+          <div class="card-title" id="table-count"></div>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="data-table" id="orders-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Products</th>
+                <th>Amount</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>In Sales</th>
+              </tr>
+            </thead>
+            <tbody id="orders-tbody"></tbody>
+          </table>
+        </div>
+        <!-- Pagination -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:16px;border-top:1px solid var(--color-border);flex-wrap:wrap;gap:10px">
+          <div style="font-size:13px;color:var(--color-text-secondary)" id="page-info"></div>
+          <div style="display:flex;gap:6px" id="pagination"></div>
+        </div>
+      </div>
+
+      <div id="empty-state" style="display:none">
+        <div style="text-align:center;padding:60px 24px">
+          <div style="font-size:48px;margin-bottom:12px">📭</div>
+          <div style="font-size:16px;font-weight:600;margin-bottom:8px">No orders found</div>
+          <div style="font-size:13px;color:var(--color-text-secondary)">Customer orders placed on the storefront will appear here.</div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="../app.js?v=62"></script>
+<script>
+  initShell();
+  if (!requireRole('admin')) throw new Error('Admin only');
+
+  const PER_PAGE = 15;
+  let currentPage = 1;
+  let allOrders = [];
+  let summary = {};
+
+  async function loadOrders() {
+    document.getElementById('spinner').style.display = 'flex';
+    document.getElementById('orders-card').style.display = 'none';
+    document.getElementById('empty-state').style.display = 'none';
+    hideMsg(document.getElementById('msg'));
+
+    const search = document.getElementById('f-search').value.trim();
+    const status = document.getElementById('f-status').value;
+    const from = document.getElementById('f-from').value;
+    const to = document.getElementById('f-to').value;
+
+    const q = new URLSearchParams({ page: currentPage, per_page: PER_PAGE });
+    if (search) q.set('search', search);
+    if (status) q.set('status', status);
+    if (from) q.set('date_from', from);
+    if (to) q.set('date_to', to);
+
+    try {
+      const data = await apiFetch(`/admin/customer-orders/?${q}`);
+      if (!data) return;
+      summary = data.summary || {};
+      renderSummary();
+
+      document.getElementById('spinner').style.display = 'none';
+      if (!data.orders || !data.orders.length) {
+        document.getElementById('empty-state').style.display = 'block';
+        return;
+      }
+      renderTable(data.orders);
+      renderPagination(data.total, data.total_pages);
+      document.getElementById('orders-card').style.display = 'block';
+      document.getElementById('table-count').textContent = `${data.total} order${data.total !== 1 ? 's' : ''} found`;
+    } catch (e) {
+      document.getElementById('spinner').style.display = 'none';
+      showError(document.getElementById('msg'), e.message);
+    }
+  }
+
+  function renderSummary() {
+    document.getElementById('sum-total').textContent = summary.total_orders ?? '—';
+    document.getElementById('sum-today').textContent = summary.today_orders ?? '—';
+    document.getElementById('sum-revenue').textContent = '₹' + (summary.total_revenue || 0).toLocaleString('en-IN');
+    document.getElementById('sum-avg').textContent = '₹' + (summary.avg_order_value || 0).toFixed(0);
+  }
+
+  const PM_LABELS = { cod: 'Cash on Delivery', upi: 'UPI', card: 'Card' };
+  const STATUS_CLASSES = { confirmed: 'badge-success', shipped: 'badge-normal', delivered: 'badge-success', cancelled: 'badge-urgent', pending: 'badge-warning' };
+
+  function renderTable(orders) {
+    const tbody = document.getElementById('orders-tbody');
+    tbody.innerHTML = orders.map(o => `
+      <tr>
+        <td><span style="font-family:monospace;font-weight:600;font-size:12px;color:var(--color-primary)">${o.order_id}</span></td>
+        <td>
+          <div style="font-weight:600;font-size:13px">${o.customer_name}</div>
+          <div style="font-size:11px;color:var(--color-text-secondary)">${o.customer_email}</div>
+          <div style="font-size:11px;color:var(--color-text-secondary)">${o.customer_mobile}</div>
+        </td>
+        <td style="max-width:200px">
+          <div style="font-size:12px;color:var(--color-text-secondary)">${o.product_names?.slice(0,80)}${o.product_names?.length > 80 ? '…' : ''}</div>
+        </td>
+        <td><strong style="color:var(--color-primary)">₹${Number(o.total_amount).toLocaleString('en-IN')}</strong></td>
+        <td style="font-size:12px">${PM_LABELS[o.payment_method] || o.payment_method}</td>
+        <td><span class="badge ${STATUS_CLASSES[o.status] || 'badge-gray'}">${o.status}</span></td>
+        <td style="font-size:12px">${formatDateTime(o.order_date)}</td>
+        <td>
+          <span class="badge ${o.uploaded_to_sales === 'True' ? 'badge-success' : 'badge-gray'}">
+            ${o.uploaded_to_sales === 'True' ? '✓ Uploaded' : 'Pending'}
+          </span>
+        </td>
+      </tr>`).join('');
+  }
+
+  function renderPagination(total, totalPages) {
+    document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages} (${total} orders)`;
+    const pag = document.getElementById('pagination');
+    let html = `<button class="btn btn-secondary btn-sm" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`;
+    for (let i = 1; i <= Math.min(totalPages, 7); i++) {
+      html += `<button class="btn btn-sm ${i===currentPage?'btn-primary':'btn-secondary'}" onclick="goPage(${i})">${i}</button>`;
+    }
+    html += `<button class="btn btn-secondary btn-sm" onclick="goPage(${currentPage+1})" ${currentPage>=totalPages?'disabled':''}>›</button>`;
+    pag.innerHTML = html;
+  }
+
+  function goPage(p) { currentPage = p; loadOrders(); }
+  function clearFilters() {
+    document.getElementById('f-search').value = '';
+    document.getElementById('f-status').value = '';
+    document.getElementById('f-from').value = '';
+    document.getElementById('f-to').value = '';
+    currentPage = 1;
+    loadOrders();
+  }
+
+  let _debounce;
+  function debounceLoad() { clearTimeout(_debounce); _debounce = setTimeout(() => { currentPage = 1; loadOrders(); }, 400); }
+
+  async function uploadToSales() {
+    const btn = document.getElementById('upload-btn');
+    btn.disabled = true;
+    btn.textContent = '⟳ Uploading…';
+    try {
+      const data = await apiFetch('/admin/customer-orders/upload-to-sales', { method: 'POST' });
+      if (!data) return;
+      showToast(data.message, data.appended > 0 ? 'success' : 'info');
+      loadOrders();
+    } catch (e) { showToast(e.message, 'error'); }
+    finally { btn.disabled = false; btn.textContent = '⬆️ Upload to Sales Data'; }
+  }
+
+  async function exportOrders() {
+    const search = document.getElementById('f-search').value.trim();
+    const status = document.getElementById('f-status').value;
+    const q = new URLSearchParams();
+    if (search) q.set('search', search);
+    if (status) q.set('status', status);
+    try {
+      const data = await apiFetch(`/admin/customer-orders/export?${q}`);
+      if (!data || !data.length) { showToast('No orders to export', 'info'); return; }
+      const headers = Object.keys(data[0]);
+      const rows = data.map(r => headers.map(h => r[h]));
+      exportToCsv(headers, rows, `customer-orders-${new Date().toISOString().slice(0,10)}.csv`);
+      showToast(`Exported ${data.length} orders`, 'success');
+    } catch (e) { showToast(e.message, 'error'); }
+  }
+
+  loadOrders();
+</script>
+</body>
+</html>

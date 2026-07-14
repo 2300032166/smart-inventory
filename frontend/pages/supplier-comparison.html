@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supplier Comparison — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+  <style>
+    /* ── Shared styles ──────────────────────────────────────── */
+    .weight-panel { background:var(--color-bg-card); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:20px 24px; margin-bottom:20px; box-shadow:var(--shadow-sm); }
+    .weight-row { display:flex; align-items:center; gap:14px; margin-bottom:10px; }
+    .weight-row:last-child { margin-bottom:0; }
+    .weight-label { width:160px; font-size:var(--text-sm); font-weight:500; flex-shrink:0; }
+    .weight-row input[type=range] { flex:1; height:4px; accent-color:var(--color-primary); }
+    .weight-pct { width:44px; text-align:right; font-size:var(--text-sm); font-weight:700; color:var(--color-primary); }
+    .weight-total { font-size:var(--text-sm); font-weight:600; margin-top:10px; }
+    .weight-total.ok   { color:var(--color-success); }
+    .weight-total.warn { color:var(--color-danger); }
+    .rank-badge { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:50%; font-size:var(--text-sm); font-weight:700; }
+    .rank-1 { background:#FEF3C7; color:#92400E; border:2px solid #F59E0B; }
+    .rank-2 { background:#F1F5F9; color:#334155; border:2px solid #94A3B8; }
+    .rank-3 { background:#FEF3C7; color:#78350F; border:2px solid #D97706; }
+    .rank-n { background:#F8FAFC; color:#64748B; border:1px solid var(--color-border); }
+    .score-bar-wrap { display:flex; align-items:center; gap:8px; }
+    .score-bar-track { width:80px; height:6px; background:var(--color-border); border-radius:3px; overflow:hidden; }
+    .score-bar-fill  { height:100%; border-radius:3px; }
+    .perf-badge { display:inline-block; padding:2px 8px; border-radius:var(--radius-full); font-size:11px; font-weight:600; }
+    .perf-Excellent { background:#ECFDF5; color:#059669; }
+    .perf-Very-Good { background:#EFF6FF; color:#2563EB; }
+    .perf-Good      { background:#FFFBEB; color:#D97706; }
+    .perf-Average   { background:#FFF7ED; color:#EA580C; }
+    .perf-Poor      { background:#FEF2F2; color:#DC2626; }
+    .best-row td { background:#F0FDF4 !important; }
+    .star-filled { color:#F59E0B; }
+    .pw-prod-search-row { display:flex; gap:10px; margin-top:8px; }
+    .pw-prod-search-row input { flex:1; }
+    .pw-rec-card { background:linear-gradient(135deg,#1e3a5f 0%,#2563EB 100%); border-radius:var(--radius-lg); padding:24px 28px; color:#fff; margin-bottom:20px; }
+    .pw-rec-card .rec-header { font-size:11px; opacity:.72; text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px; }
+    .pw-rec-card .rec-name { font-size:26px; font-weight:800; line-height:1.15; }
+    .pw-rec-card .rec-company { font-size:13px; opacity:.75; margin-top:3px; }
+    .pw-rec-chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+    .pw-rec-chip { background:rgba(255,255,255,.18); border-radius:20px; padding:4px 12px; font-size:12px; font-weight:600; }
+    .pw-rec-why { flex:1; min-width:220px; }
+    .pw-rec-why-label { font-size:11px; opacity:.72; text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px; }
+    .pw-rec-why-text { font-size:13px; line-height:1.65; opacity:.95; }
+    .pw-rec-inner { display:flex; align-items:flex-start; gap:28px; flex-wrap:wrap; }
+    .pw-badge-recommended { background:linear-gradient(90deg,#F59E0B,#D97706); color:#fff; border-radius:var(--radius-full); font-size:10px; font-weight:700; padding:2px 8px; letter-spacing:.03em; vertical-align:middle; margin-left:6px; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+
+      <div class="page-header mb-16">
+        <div class="page-title">Product-wise Supplier Comparison</div>
+        <div class="page-subtitle">Search a product — adjust weights to instantly re-rank its mapped suppliers and find the best one</div>
+      </div>
+
+      <!-- ── Weight Sliders (always visible at top) ──────────── -->
+      <div class="weight-panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <div>
+            <div class="card-title" style="margin:0;">⚙ Comparison Weights</div>
+            <div style="font-size:var(--text-xs);color:var(--color-text-hint);margin-top:2px;">Adjust priorities — ranks update instantly when a product is selected</div>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btn-reset-weights">Reset Defaults</button>
+        </div>
+        <div class="weight-row">
+          <span class="weight-label">Reliability Score</span>
+          <input type="range" id="w-reliability" min="0" max="100" step="5" value="40">
+          <span class="weight-pct" id="lbl-w-reliability">40%</span>
+        </div>
+        <div class="weight-row">
+          <span class="weight-label">Lead Time</span>
+          <input type="range" id="w-leadtime" min="0" max="100" step="5" value="30">
+          <span class="weight-pct" id="lbl-w-leadtime">30%</span>
+        </div>
+        <div class="weight-row">
+          <span class="weight-label">Quality Rating</span>
+          <input type="range" id="w-quality" min="0" max="100" step="5" value="20">
+          <span class="weight-pct" id="lbl-w-quality">20%</span>
+        </div>
+        <div class="weight-row">
+          <span class="weight-label">Fill Rate</span>
+          <input type="range" id="w-fillrate" min="0" max="100" step="5" value="10">
+          <span class="weight-pct" id="lbl-w-fillrate">10%</span>
+        </div>
+        <div class="weight-total ok" id="weight-total">Total: 100% ✓</div>
+      </div>
+
+      <!-- ── Product Search ──────────────────────────────────── -->
+      <div class="card mb-20">
+        <div class="card-header">
+          <div class="card-title">Select a Product</div>
+          <span id="pw-selected-badge" style="display:none;font-size:var(--text-xs);background:var(--color-success-light);color:var(--color-success);border-radius:var(--radius-full);padding:3px 10px;font-weight:600;"></span>
+        </div>
+        <div class="pw-prod-search-row">
+          <input type="text" id="pw-prod-input" placeholder="Type product name or SKU and press Search…" class="form-control">
+          <button class="btn btn-primary" id="pw-btn-search">Search</button>
+        </div>
+        <div id="pw-prod-results" style="margin-top:10px;"></div>
+      </div>
+
+      <!-- ── AI Recommendation Card (shown after product selected) ── -->
+      <div id="pw-rec-card" style="display:none;"></div>
+
+      <!-- Spinner -->
+      <div id="pw-spinner" class="spinner-wrap" style="display:none;"><div class="spinner"></div></div>
+
+      <!-- ── Ranked Supplier Table (shown after product selected) ── -->
+      <div class="card mb-32" id="pw-ranked-card" style="display:none;">
+        <div class="card-header">
+          <div class="card-title">Suppliers for: <span id="pw-ranked-title" style="color:var(--color-primary);"></span></div>
+          <span id="pw-supplier-count" style="font-size:var(--text-sm);color:var(--color-text-secondary);font-weight:500;"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th><th>Supplier</th><th>Score</th><th>On-Time%</th>
+                <th>Avg Lead</th><th>Avg Delay</th><th>Fill Rate</th>
+                <th>Quality</th><th>Level</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="pw-ranked-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+<script src="../app.js?v=62"></script>
+<script src="../js/supplier-comparison.js?v=6"></script>
+</body>
+</html>

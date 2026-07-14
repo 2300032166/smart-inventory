@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Catalog — SIRA Store</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../customer-style.css?v=999">
+</head>
+<body>
+<nav class="c-nav" id="c-nav"></nav>
+
+<div class="c-page">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px">
+    <div>
+      <h1 style="font-size:24px;font-weight:800;letter-spacing:-0.02em">Product Catalog</h1>
+      <div id="result-count" style="font-size:13px;color:var(--c-text-2);margin-top:2px">Loading products…</div>
+    </div>
+    <a href="customer-dashboard.html" style="font-size:13px;color:var(--c-text-2);display:flex;align-items:center;gap:5px;text-decoration:none">
+      ← Back to Dashboard
+    </a>
+  </div>
+
+  <!-- Filters -->
+  <div class="c-filters">
+    <span class="c-filter-label">Filters:</span>
+    <select class="c-filter-select" id="f-category" onchange="applyFilters()">
+      <option value="">All Categories</option>
+    </select>
+    <select class="c-filter-select" id="f-brand" onchange="applyFilters()">
+      <option value="">All Brands</option>
+    </select>
+    <select class="c-filter-select" id="f-price" onchange="applyFilters()">
+      <option value="">Any Price</option>
+      <option value="0,200">Under ₹200</option>
+      <option value="200,500">₹200 – ₹500</option>
+      <option value="500,1000">₹500 – ₹1000</option>
+      <option value="1000,99999">Above ₹1000</option>
+    </select>
+    <select class="c-filter-select" id="f-sort" onchange="applyFilters()">
+      <option value="name">Name (A–Z)</option>
+      <option value="price_asc">Price: Low to High</option>
+      <option value="price_desc">Price: High to Low</option>
+      <option value="rating">Top Rated</option>
+      <option value="trending">Trending</option>
+      <option value="discount">Biggest Discount</option>
+    </select>
+    <label class="c-filter-pill" id="pill-stock">
+      <input type="checkbox" id="f-instock" onchange="applyFilters()" style="accent-color:var(--c-primary)"> In Stock Only
+    </label>
+    <label class="c-filter-pill" id="pill-disc">
+      <input type="checkbox" id="f-disc" onchange="applyFilters()" style="accent-color:var(--c-primary)"> Discounted
+    </label>
+    <button class="c-btn c-btn-secondary c-btn-sm" onclick="clearFilters()">Clear</button>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="c-grid" id="product-grid"></div>
+
+  <!-- Pagination -->
+  <div class="c-pagination" id="pagination"></div>
+</div>
+
+<script src="../js/customer-app.js?v=9"></script>
+<script>
+  cInjectNav('catalog');
+
+  let currentPage = 1;
+  const PER_PAGE = 20;
+  const params = new URLSearchParams(location.search);
+
+  // Pre-fill from URL params
+  window.addEventListener('DOMContentLoaded', async () => {
+    // Load categories & brands
+    try {
+      const [cats, brands] = await Promise.all([
+        fetch('/api/customer-products/categories').then(r => r.json()),
+        fetch('/api/customer-products/brands').then(r => r.json()),
+      ]);
+      const catSel = document.getElementById('f-category');
+      cats.forEach(c => catSel.innerHTML += `<option value="${c.name}">${c.emoji} ${c.name}</option>`);
+      const brSel = document.getElementById('f-brand');
+      brands.forEach(b => brSel.innerHTML += `<option value="${b}">${b}</option>`);
+
+      // Set from URL
+      if (params.get('category')) catSel.value = params.get('category');
+      if (params.get('brand')) brSel.value = params.get('brand');
+      if (params.get('sort')) document.getElementById('f-sort').value = params.get('sort');
+      if (params.get('discounted')) document.getElementById('f-disc').checked = true;
+    } catch {}
+
+    if (params.get('search') && document.getElementById('c-search-input')) {
+      document.getElementById('c-search-input').value = params.get('search');
+    }
+
+    loadProducts();
+  });
+
+  function buildQuery() {
+    const q = new URLSearchParams();
+    const search = params.get('search') || '';
+    if (search) q.set('search', search);
+    const cat = document.getElementById('f-category').value;
+    if (cat) q.set('category', cat);
+    const brand = document.getElementById('f-brand').value;
+    if (brand) q.set('brand', brand);
+    const price = document.getElementById('f-price').value;
+    if (price) { const [mn, mx] = price.split(','); q.set('min_price', mn); q.set('max_price', mx); }
+    q.set('sort', document.getElementById('f-sort').value);
+    if (document.getElementById('f-instock').checked) q.set('in_stock_only', 'true');
+    if (document.getElementById('f-disc').checked) q.set('discounted_only', 'true');
+    q.set('page', currentPage);
+    q.set('per_page', PER_PAGE);
+    return q.toString();
+  }
+
+  function applyFilters() { currentPage = 1; loadProducts(); }
+
+  function clearFilters() {
+    document.getElementById('f-category').value = '';
+    document.getElementById('f-brand').value = '';
+    document.getElementById('f-price').value = '';
+    document.getElementById('f-sort').value = 'name';
+    document.getElementById('f-instock').checked = false;
+    document.getElementById('f-disc').checked = false;
+    currentPage = 1;
+    loadProducts();
+  }
+
+  async function loadProducts() {
+    const grid = document.getElementById('product-grid');
+    grid.innerHTML = Array(8).fill('<div class="c-skeleton" style="height:360px;border-radius:16px"></div>').join('');
+    document.getElementById('pagination').innerHTML = '';
+
+    try {
+      const data = await fetch(`/api/customer-products/?${buildQuery()}`).then(r => r.json());
+      const { products, total, total_pages } = data;
+
+      document.getElementById('result-count').textContent = `${total} product${total !== 1 ? 's' : ''} found`;
+
+      if (!products || !products.length) {
+        grid.innerHTML = `<div class="c-empty" style="grid-column:1/-1;padding:80px 0">
+          <div class="c-empty-icon">🔍</div>
+          <div class="c-empty-title">No products found</div>
+          <div class="c-empty-desc">Try adjusting your filters or search term.</div>
+          <button class="c-btn c-btn-primary" onclick="clearFilters()">Clear Filters</button>
+        </div>`;
+        return;
+      }
+
+      grid.innerHTML = products.map(p => cProductCard(p)).join('');
+      renderPagination(total_pages);
+    } catch (e) {
+      grid.innerHTML = `<div class="c-empty" style="grid-column:1/-1"><div class="c-empty-icon">⚠️</div><div class="c-empty-title">Failed to load products</div><div class="c-empty-desc">${e.message}</div></div>`;
+    }
+  }
+
+  function renderPagination(totalPages) {
+    if (totalPages <= 1) return;
+    const pag = document.getElementById('pagination');
+    let html = `<button class="c-page-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`;
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === 1 || i === totalPages || Math.abs(i - currentPage) <= 2) {
+        html += `<button class="c-page-btn ${i===currentPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
+      } else if (Math.abs(i - currentPage) === 3) {
+        html += `<span style="padding:0 4px;color:var(--c-text-3)">…</span>`;
+      }
+    }
+    html += `<button class="c-page-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>›</button>`;
+    pag.innerHTML = html;
+  }
+
+  function goPage(p) { currentPage = p; loadProducts(); window.scrollTo(0, 0); }
+</script>
+</body>
+</html>

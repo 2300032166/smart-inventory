@@ -1,0 +1,47 @@
+{
+  "total_batches": 3145,
+  "GR_batches": 145,
+  "BB_batches": 3000,
+  "GR_product_names_sample": [
+    "Unknown",
+    "Unknown",
+    "Unknown",
+    "Unknown",
+    "Unknown",
+    "Unknown",
+    "Unknown",
+    "Unknown",
+    "Unknown",
+    "Unknown"
+  ],
+  "BB_product_names_sample": [
+    "Detergent Washing Powder - Jasmine & Rose, Extra Power, Tide+",
+    "Herbal Floor Cleaner",
+    "Giloy Juice - Supports Immunity, Energy & Digestion",
+    "Nilgiri Green Tea - Taido Ginger",
+    "Sugar Free Mints - Black Currant"
+  ],
+  "GR_sku_sample": [
+    "GR001",
+    "GR002",
+    "GR003",
+    "GR003",
+    "GR004",
+    "GR005",
+    "GR006",
+    "GR007",
+    "GR007",
+    "GR008"
+  ],
+  "columns": [
+    "sku",
+    "batch_no",
+    "quantity",
+    "mfg_date",
+    "expiry_date",
+    "status",
+    "received_date",
+    "product_name",
+    "supplier"
+  ]
+}

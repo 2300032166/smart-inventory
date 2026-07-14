@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discount Manager — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+  <style>
+    /* ── Tabs ── */
+    .disc-tabs { display: flex; gap: 6px; margin-bottom: 28px; }
+    .disc-tab { padding: 10px 24px; border-radius: 12px; border: 1.5px solid var(--color-border); background: var(--color-bg-card); font-size: 13px; font-weight: 600; color: var(--color-text-secondary); cursor: pointer; transition: all .2s cubic-bezier(.175,.885,.32,1.275); position: relative; overflow: hidden; }
+    .disc-tab::before { content:''; position:absolute; top:0; left:0; right:0; height:0; background:linear-gradient(90deg, var(--color-primary), #7C3AED); transition:height .2s; border-radius:12px 12px 0 0; }
+    .disc-tab:hover { border-color: var(--color-primary-mid); color: var(--color-primary); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,99,235,.1); }
+    .disc-tab.active { border-color: var(--color-primary); color: var(--color-primary); box-shadow: 0 4px 16px rgba(37,99,235,.12); }
+    .disc-tab.active::before { height: 3px; }
+
+    /* ── Type badges ── */
+    .type-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; letter-spacing: .01em; }
+    .type-expiry    { background: #fff7ed; color: #c2410c; }
+    .type-dead      { background: #fef2f2; color: #b91c1c; }
+    .type-slow      { background: #fefce8; color: #a16207; }
+    .type-active    { background: #f0fdf4; color: #166534; }
+    .type-revoked   { background: #f1f5f9; color: #475569; }
+    .type-expired-s { background: #f8fafc; color: #94a3b8; }
+
+    /* ── KPI strip (premium stat-card pattern) ── */
+    .disc-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 28px; }
+    .disc-kpi  { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 20px 22px; box-shadow: var(--shadow-sm); transition: all .22s ease; position: relative; overflow: hidden; }
+    .disc-kpi::before { content:''; position:absolute; top:0; left:0; right:0; height: 3px; background: linear-gradient(90deg, var(--color-primary), #7C3AED); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+    .disc-kpi:nth-child(2)::before { background: linear-gradient(90deg, #059669, #34D399); }
+    .disc-kpi:nth-child(3)::before { background: linear-gradient(90deg, #7C3AED, #A78BFA); }
+    .disc-kpi::after { content:''; position:absolute; right:-20px; bottom:-20px; width:80px; height:80px; border-radius:50%; opacity:.06; pointer-events:none; }
+    .disc-kpi:nth-child(1)::after { background: var(--color-primary); }
+    .disc-kpi:nth-child(2)::after { background: #059669; }
+    .disc-kpi:nth-child(3)::after { background: #7C3AED; }
+    .disc-kpi:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .disc-kpi:nth-child(1):hover { box-shadow: 0 8px 24px rgba(37,99,235,.12); border-color: #BFDBFE; }
+    .disc-kpi:nth-child(2):hover { box-shadow: 0 8px 24px rgba(5,150,105,.12); border-color: #A7F3D0; }
+    .disc-kpi:nth-child(3):hover { box-shadow: 0 8px 24px rgba(124,58,237,.12); border-color: #DDD6FE; }
+    .disc-kpi .kpi-label { font-size: var(--text-xs); font-weight: 700; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .disc-kpi .kpi-val   { font-size: var(--text-2xl); font-weight: 800; letter-spacing: -0.02em; }
+    .disc-kpi:nth-child(1) .kpi-val { color: var(--color-primary-hover); }
+    .disc-kpi:nth-child(2) .kpi-val { color: #047857; }
+    .disc-kpi:nth-child(3) .kpi-val { color: #6D28D9; }
+    .disc-kpi .kpi-sub   { font-size: var(--text-xs); color: var(--color-text-secondary); margin-top: 4px; }
+
+    /* ── Table tweaks ── */
+    .disc-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .disc-table th { background: #f8fafc; color: #64748b; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing:.04em; padding: 10px 14px; text-align: left; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
+    .disc-table td { padding: 12px 14px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+    .disc-table tr:hover td { background: #f8fafc; }
+    .disc-table .product-name { font-weight: 600; color: #1e293b; max-width: 200px; }
+    .disc-table .sku-tag { font-size: 10px; color: #94a3b8; font-family: monospace; }
+    .price-orig  { color: #94a3b8; text-decoration: line-through; font-size: 12px; }
+    .price-final { color: #16a34a; font-weight: 700; }
+    .disc-pct    { display: inline-block; background: #fef9c3; color: #854d0e; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 20px; }
+    .shelf-days  { font-weight: 600; }
+    .shelf-days.critical { color: #dc2626; }
+    .shelf-days.warning  { color: #d97706; }
+    .shelf-days.ok       { color: #16a34a; }
+    .btn-row { display: flex; gap: 8px; flex-wrap: nowrap; align-items: center; }
+
+    /* ── Icon action buttons ── */
+    .icon-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; border-radius: 10px; cursor: pointer;
+      border: 1.5px solid transparent; background: #f8fafc; transition: all .15s ease;
+      position: relative; flex-shrink: 0;
+    }
+    .icon-btn svg { width: 17px; height: 17px; stroke-width: 2.3; pointer-events: none; }
+    .icon-btn:active { transform: scale(0.93); }
+
+    .icon-btn.approve { background: #ecfdf5; border-color: #bbf7d0; color: #16a34a; }
+    .icon-btn.approve:hover { background: #16a34a; color: #fff; border-color: #16a34a; box-shadow: 0 4px 10px rgba(22,163,74,.25); }
+
+    .icon-btn.schedule { background: #eef2ff; border-color: #c7d2fe; color: #4f46e5; }
+    .icon-btn.schedule:hover { background: #4f46e5; color: #fff; border-color: #4f46e5; box-shadow: 0 4px 10px rgba(79,70,229,.25); }
+
+    .icon-btn.reject { background: #fef2f2; border-color: #fecaca; color: #dc2626; }
+    .icon-btn.reject:hover { background: #dc2626; color: #fff; border-color: #dc2626; box-shadow: 0 4px 10px rgba(220,38,38,.25); }
+
+    .icon-btn.revoke { background: #f5f3ff; border-color: #ddd6fe; color: #7c3aed; width: auto; padding: 0 12px; gap: 6px; font-size: 12px; font-weight: 700; }
+    .icon-btn.revoke:hover { background: #7c3aed; color: #fff; border-color: #7c3aed; box-shadow: 0 4px 10px rgba(124,58,237,.25); }
+
+    .icon-btn[data-tip]::after {
+      content: attr(data-tip); position: absolute; bottom: calc(100% + 7px); left: 50%; transform: translateX(-50%);
+      background: #1e293b; color: #fff; font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 6px;
+      white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .12s ease, transform .12s ease;
+      z-index: 20;
+    }
+    .icon-btn[data-tip]::before {
+      content: ''; position: absolute; bottom: calc(100% + 3px); left: 50%; transform: translateX(-50%);
+      border: 5px solid transparent; border-top-color: #1e293b; opacity: 0; transition: opacity .12s ease;
+    }
+    .icon-btn[data-tip]:hover::after, .icon-btn[data-tip]:hover::before { opacity: 1; }
+    .icon-btn[data-tip]:hover::after { transform: translateX(-50%) translateY(-2px); }
+
+    /* ── Filter bar ── */
+    .disc-filterbar {
+      display: flex; flex-wrap: nowrap; gap: 10px; align-items: center;
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
+      padding: 12px 14px; margin-bottom: 16px;
+    }
+    .disc-filterbar .search-wrap { position: relative; flex: 1 1 220px; min-width: 180px; }
+    .disc-filterbar .search-wrap svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: #94a3b8; pointer-events: none; }
+    .disc-filterbar .search-wrap input {
+      width: 100%; box-sizing: border-box; padding: 8px 12px 8px 32px; border: 1.5px solid #e2e8f0;
+      border-radius: 8px; font-size: 13px; outline: none; transition: border-color .15s;
+    }
+    .disc-filterbar .search-wrap input:focus { border-color: #6366f1; }
+    .disc-filterbar select {
+      flex: 0 0 auto; min-width: 0; width: auto; max-width: 170px;
+      padding: 8px 28px 8px 12px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 13px;
+      color: #334155; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 10px center;
+      outline: none; cursor: pointer; font-weight: 600; transition: border-color .15s;
+      appearance: none; -webkit-appearance: none; -moz-appearance: none;
+    }
+    .disc-filterbar select:focus { border-color: #6366f1; }
+    .filter-clear {
+      flex: 0 0 auto;
+      font-size: 12px; font-weight: 700; color: #6366f1; background: #eef2ff; border: none;
+      padding: 8px 14px; border-radius: 8px; cursor: pointer; transition: background .15s;
+    }
+    .filter-clear:hover { background: #e0e7ff; }
+    .filter-count { flex: 0 0 auto; font-size: 12px; color: #94a3b8; font-weight: 600; margin-left: auto; white-space: nowrap; }
+    .empty-state { text-align: center; padding: 60px 20px; color: #94a3b8; }
+    .empty-state .empty-icon { font-size: 40px; margin-bottom: 12px; }
+    .empty-state .empty-title { font-size: 15px; font-weight: 600; color: #64748b; margin-bottom: 6px; }
+    .table-wrap { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    #tab-recommendations .disc-table,
+    #tab-history .disc-table { min-width: 760px; }
+    #tab-active .disc-table  { min-width: 1080px; }
+    .disc-table td.actions-cell { white-space: nowrap; }
+
+    /* ── Modal ── */
+    .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 9999; align-items: center; justify-content: center; }
+    .modal-bg.open { display: flex; }
+    .modal-box { background: #fff; border-radius: 16px; padding: 28px 32px; width: 440px; max-width: 95vw; box-shadow: 0 20px 60px rgba(0,0,0,.2); }
+    .modal-title { font-size: 17px; font-weight: 800; color: #1e293b; margin-bottom: 6px; }
+    .modal-sub   { font-size: 13px; color: #64748b; margin-bottom: 20px; line-height: 1.5; }
+    .modal-field { margin-bottom: 16px; }
+    .modal-field label { display: block; font-size: 12px; font-weight: 700; color: #374151; margin-bottom: 6px; }
+    .modal-field input, .modal-field textarea, .modal-field select { width: 100%; padding: 9px 12px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-family: inherit; box-sizing: border-box; outline: none; transition: border-color .15s; }
+    .modal-field input:focus, .modal-field textarea:focus { border-color: #6366f1; }
+    .modal-field textarea { resize: vertical; min-height: 68px; }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+    .modal-cancel { background: transparent; border: 1.5px solid #e2e8f0; color: #64748b; padding: 9px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
+    .modal-confirm { background: #6366f1; color: #fff; border: none; padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition:.15s; }
+    .modal-confirm:hover { background: #4f46e5; }
+    .modal-confirm.danger { background: #dc2626; }
+    .modal-confirm.danger:hover { background: #b91c1c; }
+    .modal-confirm.green  { background: #16a34a; }
+    .modal-confirm.green:hover  { background: #15803d; }
+
+    /* ── Discount Manager refinements ──────────────────────────────────────────── */
+    .page-header { align-items: flex-start; }
+    .page-title { letter-spacing: -0.02em; }
+
+    /* Sticky, scrollable table bodies */
+    .table-wrap { max-height: 62vh; overflow-y: auto; }
+    .disc-table thead th { position: sticky; top: 0; z-index: 2; box-shadow: 0 1px 0 #e2e8f0; }
+    .disc-table tbody tr { transition: background .12s ease; }
+    .disc-table tbody tr:hover td { background: #F0F7FF; }
+    .disc-table td:first-child, .disc-table th:first-child { padding-left: 16px; }
+    .disc-table td:last-child, .disc-table th:last-child { padding-right: 16px; }
+    .disc-table tr.selected td { background: #EFF6FF; }
+
+    /* Bulk button */
+    #bulk-discount-btn { font-weight: 700; }
+
+    /* Filter bar responsive: keep horizontal on tablets, only stack on phones */
+    @media (max-width: 640px) {
+      .disc-filterbar { flex-wrap: wrap; }
+      .disc-filterbar .search-wrap { flex: 1 1 100%; min-width: 0; }
+      .disc-filterbar select { flex: 1 1 calc(50% - 5px); max-width: none; }
+      .filter-clear { flex: 1 1 auto; }
+      .filter-count { margin-left: 0; margin-top: 4px; flex: 1 1 100%; text-align: right; }
+    }
+
+    /* KPIs stack on narrow screens */
+    @media (max-width: 720px) {
+      .disc-kpis { grid-template-columns: 1fr; gap: 12px; }
+      .disc-tabs { flex-wrap: wrap; }
+      .disc-tab { flex: 1 1 auto; text-align: center; padding: 10px 14px; }
+      .table-wrap { max-height: none; }
+    }
+
+    /* Modal responsive */
+    @media (max-width: 520px) {
+      .modal-box { width: 100%; max-width: 100%; border-radius: 16px 16px 0 0; margin-top: auto; }
+      .modal-bg.open { align-items: flex-end; }
+    }
+
+    /* Focus rings for accessibility */
+    .disc-tab:focus-visible, .icon-btn:focus-visible, .filter-clear:focus-visible,
+    .disc-filterbar input:focus-visible, .disc-filterbar select:focus-visible,
+    .modal-field input:focus-visible, .modal-field textarea:focus-visible, .modal-field select:focus-visible {
+      outline: 2px solid #6366f1; outline-offset: 2px;
+    }
+    .modal-confirm:focus-visible, .modal-cancel:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
+
+    /* Empty state polish */
+    .empty-state { padding: 52px 20px; }
+    .empty-state .empty-icon { font-size: 44px; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+
+      <div class="page-header">
+        <div>
+          <div class="page-title">Discount Manager</div>
+          <div class="page-subtitle">AI-powered discount recommendations from expiry, dead stock &amp; slow-moving analysis</div>
+        </div>
+        <div class="flex-gap">
+          <button class="btn btn-secondary" id="bulk-discount-btn" style="display:none;background:#eef2ff;border-color:#c7d2fe;color:#4f46e5;font-weight:700;" onclick="openBulkApply()">Bulk Apply Discounts</button>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="disc-kpis" id="disc-kpis">
+        <div class="disc-kpi"><div class="kpi-label">Pending</div><div class="kpi-val" id="kpi-pending">—</div><div class="kpi-sub">Awaiting action</div></div>
+        <div class="disc-kpi"><div class="kpi-label">Active Discounts</div><div class="kpi-val" id="kpi-active">—</div><div class="kpi-sub">Live on store</div></div>
+        <div class="disc-kpi"><div class="kpi-label">Total History</div><div class="kpi-val" id="kpi-history">—</div><div class="kpi-sub">Approved + rejected</div></div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="disc-tabs">
+        <button class="disc-tab active" onclick="switchTab('recommendations', this)">AI Recommendations</button>
+        <button class="disc-tab" onclick="switchTab('active', this)">Active Discounts</button>
+        <button class="disc-tab" onclick="switchTab('history', this)">History</button>
+      </div>
+
+      <!-- Recommendations Tab -->
+      <div id="tab-recommendations">
+        <div class="disc-filterbar">
+          <div class="search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+            <input type="text" id="f-search" placeholder="Search by product name or SKU…" oninput="renderRecommendations()">
+          </div>
+          <select id="f-expiry" onchange="renderRecommendations()">
+            <option value="">All Expiry Windows</option>
+            <option value="0-2">1–2 days left</option>
+            <option value="3-6">3–6 days left</option>
+            <option value="7-14">7–14 days left</option>
+            <option value="15-30">15–30 days left</option>
+            <option value="31-9999">30+ days left</option>
+            <option value="none">No expiry (Dead/Slow stock)</option>
+          </select>
+          <select id="f-reason" onchange="renderRecommendations()">
+            <option value="">All Reasons</option>
+          </select>
+          <button class="filter-clear" onclick="clearRecFilters()">Clear Filters</button>
+          <span class="filter-count" id="rec-filter-count"></span>
+        </div>
+        <div class="table-wrap">
+          <table class="disc-table" id="rec-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox" id="rec-select-all" title="Select all visible" onchange="toggleRecSelectAll(this)"></th>
+                <th>Product</th>
+                <th>Type</th>
+                <th>Shelf Life</th>
+                <th>Stock</th>
+                <th>Current Price</th>
+                <th>Suggested Disc.</th>
+                <th>Final Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="rec-body">
+              <tr><td colspan="9"><div class="empty-state"><div class="empty-icon">⏳</div><div class="empty-title">Loading recommendations…</div></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Active Discounts Tab -->
+      <div id="tab-active" style="display:none">
+        <div class="table-wrap">
+          <table class="disc-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Type</th>
+                <th>Discount</th>
+                <th>Original Price</th>
+                <th>Discounted Price</th>
+                <th>Stock</th>
+                <th>Approved By</th>
+                <th>Approved At</th>
+                <th>Ends</th>
+                <th>Notes</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="active-body">
+              <tr><td colspan="11"><div class="empty-state"><div class="empty-icon">⏳</div><div class="empty-title">Loading…</div></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- History Tab -->
+      <div id="tab-history" style="display:none">
+        <div class="table-wrap">
+          <table class="disc-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Type</th>
+                <th>Event</th>
+                <th>Discount</th>
+                <th>Original Price</th>
+                <th>Final Price</th>
+                <th>Notes</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="history-body">
+              <tr><td colspan="8"><div class="empty-state"><div class="empty-icon">⏳</div><div class="empty-title">Loading…</div></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Approve / Schedule Modal -->
+<div class="modal-bg" id="modal-approve">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-approve-title">Approve Discount</div>
+    <div class="modal-sub" id="modal-approve-sub"></div>
+    <div class="modal-field">
+      <label>Discount % <span style="color:#94a3b8;font-weight:400">(adjust if needed)</span></label>
+      <input type="number" id="modal-disc-pct" min="1" max="90" placeholder="e.g. 20">
+    </div>
+    <div class="modal-field">
+      <label>End Date <span style="color:#94a3b8;font-weight:400">(optional — leave blank for open-ended)</span></label>
+      <input type="date" id="modal-end-date">
+    </div>
+    <div class="modal-field">
+      <label>Notes <span style="color:#94a3b8;font-weight:400">(optional)</span></label>
+      <textarea id="modal-notes" placeholder="Internal notes…"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal('modal-approve')">Cancel</button>
+      <button class="modal-confirm green" id="modal-approve-btn" onclick="submitApprove()">Approve</button>
+    </div>
+  </div>
+</div>
+
+<!-- Bulk Apply Modal -->
+<div class="modal-bg" id="modal-bulk-apply">
+  <div class="modal-box">
+    <div class="modal-title">Apply Discounts to Selected Recommendations</div>
+    <div class="modal-sub">Apply the same discount settings to <strong id="bulk-apply-count">0</strong> selected recommendation(s).</div>
+    <div class="modal-field">
+      <label>Discount %</label>
+      <input type="number" id="bulk-apply-pct" min="1" max="90" placeholder="Use each recommendation's suggested % when blank">
+    </div>
+    <div class="modal-field">
+      <label>Start Date <span style="color:#94a3b8;font-weight:400">(optional — defaults to today)</span></label>
+      <input type="date" id="bulk-apply-start">
+    </div>
+    <div class="modal-field">
+      <label>End Date <span style="color:#94a3b8;font-weight:400">(optional)</span></label>
+      <input type="date" id="bulk-apply-end">
+    </div>
+    <div class="modal-field">
+      <label>Notes <span style="color:#94a3b8;font-weight:400">(optional)</span></label>
+      <textarea id="bulk-apply-notes" placeholder="Internal notes…"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal('modal-bulk-apply')">Cancel</button>
+      <button class="modal-confirm green" onclick="submitBulkApply()">Apply Discounts</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reject Modal -->
+<div class="modal-bg" id="modal-reject">
+  <div class="modal-box">
+    <div class="modal-title">Reject Recommendation</div>
+    <div class="modal-sub" id="modal-reject-sub"></div>
+    <div class="modal-field">
+      <label>Reason / Notes <span style="color:#94a3b8;font-weight:400">(optional)</span></label>
+      <textarea id="modal-reject-notes" placeholder="Why is this being rejected?"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal('modal-reject')">Cancel</button>
+      <button class="modal-confirm danger" onclick="submitReject()">Reject</button>
+    </div>
+  </div>
+</div>
+
+<!-- Revoke Modal -->
+<div class="modal-bg" id="modal-revoke">
+  <div class="modal-box">
+    <div class="modal-title">Revoke Active Discount</div>
+    <div class="modal-sub" id="modal-revoke-sub">The original price will be immediately restored and the discount removed from the customer store.</div>
+    <div class="modal-field">
+      <label>Reason / Notes <span style="color:#94a3b8;font-weight:400">(optional)</span></label>
+      <textarea id="modal-revoke-notes" placeholder="Why is this discount being revoked?"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal('modal-revoke')">Cancel</button>
+      <button class="modal-confirm danger" onclick="submitRevoke()">Revoke Discount</button>
+    </div>
+  </div>
+</div>
+
+<script src="../app.js?v=63"></script>
+<script>
+let _pendingRecId   = null;
+let _pendingActId   = null;
+let _approveMode    = 'approve'; // 'approve' | 'schedule'
+let _recommendations = [];
+let _activeDiscounts = [];
+let _history         = [];
+
+// ── Helpers ────────────────────────────────────────────────────────────────────
+function fmtPrice(n) { return '₹' + Number(n||0).toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+function fmtDate(iso) { if (!iso) return '—'; try { return new Date(iso).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}); } catch{ return iso; } }
+function fmtDT(iso)   { if (!iso) return '—'; try { return new Date(iso).toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}); } catch{ return iso; } }
+
+function typeBadge(t) {
+  const cls = t === 'Expiry' ? 'type-expiry' : t === 'Dead Stock' ? 'type-dead' : 'type-slow';
+  return `<span class="type-badge ${cls}">${t}</span>`;
+}
+function shelfHtml(days) {
+  if (days == null) return '<span style="color:#94a3b8">—</span>';
+  const cls = days <= 6 ? 'critical' : days <= 14 ? 'warning' : 'ok';
+  return `<span class="shelf-days ${cls}">${days}d</span>`;
+}
+function eventBadge(e) {
+  const map = { rejected:'type-revoked', revoked:'type-revoked', auto_deactivated:'type-expired-s', approved:'type-active' };
+  const label = { rejected:'Rejected', revoked:'Revoked', auto_deactivated:'Auto-expired', approved:'Approved' };
+  return `<span class="type-badge ${map[e]||''}">${label[e]||e}</span>`;
+}
+
+// ── Tab switching ──────────────────────────────────────────────────────────────
+function switchTab(name, btn) {
+  ['recommendations','active','history'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t === name ? '' : 'none';
+  });
+  document.querySelectorAll('.disc-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (name === 'active'   && !_activeDiscounts.length) loadActive();
+  if (name === 'history'  && !_history.length)         loadHistory();
+}
+
+// ── Data loading ───────────────────────────────────────────────────────────────
+async function loadRecommendations() {
+  try {
+    const data = await apiFetch(`/discounts/recommendations?_=${Date.now()}`);
+    _recommendations = data || [];
+    document.getElementById('kpi-pending').textContent = _recommendations.length;
+    renderRecommendations();
+  } catch(e) {
+    document.getElementById('rec-body').innerHTML = `<tr><td colspan="8"><div class="empty-state"><div class="empty-icon">⚠️</div><div class="empty-title">${e.message}</div></div></td></tr>`;
+  }
+}
+
+async function loadActive() {
+  try {
+    const data = await apiFetch(`/discounts/active?_=${Date.now()}`);
+    _activeDiscounts = data || [];
+    document.getElementById('kpi-active').textContent = _activeDiscounts.length;
+    renderActive();
+  } catch(e) {
+    document.getElementById('active-body').innerHTML = `<tr><td colspan="11"><div class="empty-state"><div class="empty-icon">⚠️</div><div class="empty-title">${e.message}</div></div></td></tr>`;
+  }
+}
+
+async function loadHistory() {
+  try {
+    const data = await apiFetch(`/discounts/history?_=${Date.now()}`);
+    _history = data || [];
+    document.getElementById('kpi-history').textContent = _history.length;
+    renderHistory();
+  } catch(e) {
+    document.getElementById('history-body').innerHTML = `<tr><td colspan="8"><div class="empty-state"><div class="empty-icon">⚠️</div><div class="empty-title">${e.message}</div></div></td></tr>`;
+  }
+}
+
+async function refreshAll() {
+  _activeDiscounts = []; _history = [];
+  await loadRecommendations();
+  await loadActive();
+  await loadHistory();
+  showToast('Data refreshed', 'success');
+}
+
+// ── Icon SVGs ──────────────────────────────────────────────────────────────────
+const ICON_CHECK    = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+const ICON_CALENDAR  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M16 2.5v4M8 2.5v4M3 9.5h18"/></svg>';
+const ICON_X         = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+const ICON_UNDO      = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5A5.5 5.5 0 0 1 20 14.5v0A5.5 5.5 0 0 1 14.5 20H11"/></svg>';
+
+// ── Filters ────────────────────────────────────────────────────────────────────
+function populateReasonFilter() {
+  const sel = document.getElementById('f-reason');
+  const current = sel.value;
+  const reasons = [...new Set(_recommendations.map(r => r.reason).filter(Boolean))].sort();
+  sel.innerHTML = '<option value="">All Reasons</option>' + reasons.map(r => `<option value="${r}">${r}</option>`).join('');
+  if (reasons.includes(current)) sel.value = current;
+}
+
+function clearRecFilters() {
+  document.getElementById('f-search').value = '';
+  document.getElementById('f-expiry').value = '';
+  document.getElementById('f-reason').value = '';
+  renderRecommendations();
+}
+
+function getFilteredRecommendations() {
+  const search = (document.getElementById('f-search')?.value || '').trim().toLowerCase();
+  const expiryBand = document.getElementById('f-expiry')?.value || '';
+  const reason = document.getElementById('f-reason')?.value || '';
+
+  return _recommendations.filter(r => {
+    if (search) {
+      const hay = `${r.product_name} ${r.sku}`.toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    if (reason && r.reason !== reason) return false;
+    if (expiryBand) {
+      const days = r.shelf_life_remaining;
+      if (expiryBand === 'none') {
+        if (days != null) return false;
+      } else {
+        if (days == null) return false;
+        const [lo, hi] = expiryBand.split('-').map(Number);
+        if (days < lo || days > hi) return false;
+      }
+    }
+    return true;
+  });
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────────
+function renderRecommendations() {
+  const tbody = document.getElementById('rec-body');
+  populateReasonFilter();
+
+  if (!_recommendations.length) {
+    document.getElementById('rec-filter-count').textContent = '';
+    tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div class="empty-icon">✅</div><div class="empty-title">No pending recommendations</div><div>All products are currently healthy, or all recommendations have been actioned.</div></div></td></tr>`;
+    return;
+  }
+
+  const filtered = getFilteredRecommendations();
+  document.getElementById('rec-filter-count').textContent = `${filtered.length} of ${_recommendations.length} shown`;
+
+  if (!filtered.length) {
+    tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div class="empty-icon">🔍</div><div class="empty-title">No matches</div><div>Try adjusting your search or filters.</div></div></td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(r => `
+    <tr>
+      <td><input type="checkbox" class="rec-bulk-cb" value="${r.id}" data-sku="${r.sku}" data-batch="${r.batch_no || ''}" onchange="updateBulkApplyButton()"></td>
+      <td><div class="product-name">${r.product_name}</div><div class="sku-tag">${r.sku}${r.batch_no ? ' · ' + r.batch_no : ''}</div></td>
+      <td>${typeBadge(r.type)}</td>
+      <td>${shelfHtml(r.shelf_life_remaining)}</td>
+      <td>${Number(r.current_stock||0).toFixed(0)} units</td>
+      <td>${fmtPrice(r.current_price)}</td>
+      <td><span class="disc-pct">${r.suggested_discount}% OFF</span></td>
+      <td class="price-final">${fmtPrice(r.final_price)}</td>
+      <td class="actions-cell">
+        <div class="btn-row">
+          <button class="icon-btn approve" data-tip="Approve" onclick="openApprove('${r.id}', ${r.suggested_discount}, '${r.product_name.replace(/'/g,"\\'")}', 'approve')">${ICON_CHECK}</button>
+          <button class="icon-btn schedule" data-tip="Schedule" onclick="openApprove('${r.id}', ${r.suggested_discount}, '${r.product_name.replace(/'/g,"\\'")}', 'schedule')">${ICON_CALENDAR}</button>
+          <button class="icon-btn reject" data-tip="Reject" onclick="openReject('${r.id}', '${r.product_name.replace(/'/g,"\\'")}')">${ICON_X}</button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+function renderActive() {
+  const tbody = document.getElementById('active-body');
+  if (!_activeDiscounts.length) {
+    tbody.innerHTML = `<tr><td colspan="11"><div class="empty-state"><div class="empty-icon">🏷️</div><div class="empty-title">No active discounts</div><div>Approve a recommendation to activate a discount on the customer store.</div></div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = _activeDiscounts.map(a => `
+    <tr>
+      <td><div class="product-name">${a.product_name}</div><div class="sku-tag">${a.sku}${a.batch_no ? ' · ' + a.batch_no : ''}</div></td>
+      <td>${typeBadge(a.type)}</td>
+      <td><span class="disc-pct">${a.discount_percent}% OFF</span></td>
+      <td class="price-orig">${fmtPrice(a.original_price)}</td>
+      <td class="price-final">${fmtPrice(a.discounted_price)}</td>
+      <td>${Number(a.current_stock||0).toFixed(0)} units</td>
+      <td style="font-size:12px">${a.approved_by||'—'}</td>
+      <td style="font-size:12px">${fmtDT(a.approved_at)}</td>
+      <td style="font-size:12px">${a.scheduled_end ? fmtDate(a.scheduled_end) : '<span style="color:#94a3b8">Open-ended</span>'}</td>
+      <td style="font-size:12px;max-width:140px;color:#64748b">${a.notes||'—'}</td>
+      <td class="actions-cell"><button class="icon-btn revoke" onclick="openRevoke('${a.id}', '${a.product_name.replace(/'/g,"\\'")}')">${ICON_UNDO} Revoke</button></td>
+    </tr>`).join('');
+}
+
+function renderHistory() {
+  const tbody = document.getElementById('history-body');
+  if (!_history.length) {
+    tbody.innerHTML = `<tr><td colspan="8"><div class="empty-state"><div class="empty-icon">📋</div><div class="empty-title">No history yet</div></div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = _history.map(h => {
+    const eventKey = h._event || h.status;
+    const dateStr  = h.revoked_at || h.updated_at || h.approved_at || '';
+    const disc     = h.discount_percent || h.suggested_discount || 0;
+    const orig     = h.original_price   || h.current_price || 0;
+    const final    = h.discounted_price || h.final_price   || 0;
+    return `<tr>
+      <td><div class="product-name">${h.product_name}</div><div class="sku-tag">${h.sku}</div></td>
+      <td>${typeBadge(h.type)}</td>
+      <td>${eventBadge(eventKey)}</td>
+      <td><span class="disc-pct">${disc}% OFF</span></td>
+      <td class="price-orig">${fmtPrice(orig)}</td>
+      <td class="price-final">${fmtPrice(final)}</td>
+      <td style="font-size:12px;color:#64748b;max-width:140px">${h.notes||h.revoke_notes||'—'}</td>
+      <td style="font-size:12px;color:#94a3b8">${fmtDT(dateStr)}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── Approve Modal ──────────────────────────────────────────────────────────────
+function openApprove(id, suggestedPct, name, mode) {
+  _pendingRecId  = id;
+  _approveMode   = mode;
+  const isSchedule = mode === 'schedule';
+  document.getElementById('modal-approve-title').textContent = isSchedule ? 'Schedule Discount' : 'Approve Discount';
+  document.getElementById('modal-approve-sub').textContent   = `${name} — adjust the discount % if needed${isSchedule ? ', and set an end date (required)' : ''}.`;
+  document.getElementById('modal-disc-pct').value  = suggestedPct;
+  document.getElementById('modal-end-date').value  = '';
+  document.getElementById('modal-notes').value     = '';
+  document.getElementById('modal-end-date').required = isSchedule;
+  document.getElementById('modal-approve').classList.add('open');
+}
+
+async function submitApprove() {
+  const pct  = parseInt(document.getElementById('modal-disc-pct').value) || 0;
+  const end  = document.getElementById('modal-end-date').value;
+  const notes= document.getElementById('modal-notes').value;
+  if (!pct || pct < 1 || pct > 90) { alert('Discount must be between 1% and 90%'); return; }
+  if (_approveMode === 'schedule' && !end) { alert('An end date is required for scheduled discounts'); return; }
+  try {
+    const ep = _approveMode === 'schedule' ? 'schedule' : 'approve';
+    await apiFetch(`/discounts/recommendations/${_pendingRecId}/${ep}`, {
+      method: 'POST',
+      body: JSON.stringify({ discount_percent: pct, scheduled_end: end || null, notes }),
+    });
+    closeModal('modal-approve');
+    showToast('Discount activated on the customer store', 'success');
+    refreshAll();
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+// ── Reject Modal ───────────────────────────────────────────────────────────────
+function openReject(id, name) {
+  _pendingRecId = id;
+  document.getElementById('modal-reject-sub').textContent = name;
+  document.getElementById('modal-reject-notes').value = '';
+  document.getElementById('modal-reject').classList.add('open');
+}
+
+async function submitReject() {
+  const notes = document.getElementById('modal-reject-notes').value;
+  try {
+    await apiFetch(`/discounts/recommendations/${_pendingRecId}/reject`, {
+      method: 'POST',
+      body: JSON.stringify({ notes }),
+    });
+    closeModal('modal-reject');
+    showToast('Recommendation rejected', 'info');
+    refreshAll();
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+// ── Revoke Modal ───────────────────────────────────────────────────────────────
+function openRevoke(id, name) {
+  _pendingActId = id;
+  document.getElementById('modal-revoke-sub').textContent = `Revoking discount for "${name}". The original price will be immediately restored.`;
+  document.getElementById('modal-revoke-notes').value = '';
+  document.getElementById('modal-revoke').classList.add('open');
+}
+
+async function submitRevoke() {
+  const notes = document.getElementById('modal-revoke-notes').value;
+  try {
+    await apiFetch(`/discounts/active/${_pendingActId}/revoke`, {
+      method: 'POST',
+      body: JSON.stringify({ notes }),
+    });
+    closeModal('modal-revoke');
+    showToast('Discount revoked — original price restored', 'success');
+    refreshAll();
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+// ── Bulk Apply ───────────────────────────────────────────────────────────────────
+function toggleRecSelectAll(cb) {
+  document.querySelectorAll('.rec-bulk-cb').forEach(el => el.checked = cb.checked);
+  updateBulkApplyButton();
+}
+
+function updateBulkApplyButton() {
+  const selected = document.querySelectorAll('.rec-bulk-cb:checked');
+  const btn = document.getElementById('bulk-discount-btn');
+  btn.style.display = selected.length ? 'inline-block' : 'none';
+  btn.textContent = selected.length ? `Bulk Apply Discounts (${selected.length})` : 'Bulk Apply Discounts';
+}
+
+function openBulkApply() {
+  const selected = Array.from(document.querySelectorAll('.rec-bulk-cb:checked'));
+  document.getElementById('bulk-apply-count').textContent = selected.length;
+  document.getElementById('bulk-apply-pct').value = '';
+  document.getElementById('bulk-apply-start').value = '';
+  document.getElementById('bulk-apply-end').value = '';
+  document.getElementById('bulk-apply-notes').value = '';
+  document.getElementById('modal-bulk-apply').classList.add('open');
+}
+
+async function submitBulkApply() {
+  const selected = Array.from(document.querySelectorAll('.rec-bulk-cb:checked'));
+  if (!selected.length) { showToast('No recommendations selected', 'error'); return; }
+
+  let pct = parseInt(document.getElementById('bulk-apply-pct').value) || null;
+  const start = document.getElementById('bulk-apply-start').value || null;
+  const end = document.getElementById('bulk-apply-end').value || null;
+  const notes = document.getElementById('bulk-apply-notes').value.trim();
+
+  const items = selected.map(cb => {
+    const rec = _recommendations.find(r => r.id === cb.value);
+    if (!rec) return null;
+    const d = pct || rec.suggested_discount || 0;
+    const fp = Math.round(rec.current_price * (1 - d / 100) * 100) / 100;
+    return {
+      sku: rec.sku,
+      batch_no: rec.batch_no || '',
+      discount_percent: d,
+      final_price: fp,
+      scheduled_start: start,
+      scheduled_end: end,
+      reason: notes || 'Bulk apply from Discount Manager'
+    };
+  }).filter(Boolean);
+
+  try {
+    await apiFetch('/admin/bulk-apply-discounts', {
+      method: 'POST',
+      body: { items, mode: 'active', reason: notes || 'Bulk apply from Discount Manager' }
+    });
+    closeModal('modal-bulk-apply');
+    showToast(`Activated ${items.length} discount(s)`, 'success');
+    refreshAll();
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// ── Toast ──────────────────────────────────────────────────────────────────────
+function showToast(msg, type='info') {
+  const t = document.createElement('div');
+  t.style.cssText = `position:fixed;bottom:24px;right:24px;z-index:99999;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;color:#fff;background:${type==='success'?'#16a34a':type==='error'?'#dc2626':'#6366f1'};box-shadow:0 4px 16px rgba(0,0,0,.15);transition:opacity .3s`;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 3500);
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  injectTopbar();
+  injectSidebar('discounts.html');
+  requireRole('manager');
+  loadRecommendations();
+  loadActive();
+  loadHistory();
+});
+</script>
+</body>
+</html>

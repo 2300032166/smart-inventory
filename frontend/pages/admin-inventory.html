@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory — Admin — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="page-header" style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <div class="page-title">Inventory Management</div>
+          <div class="page-subtitle">Organization-wide stock levels, incoming orders &amp; product records</div>
+        </div>
+        <button class="btn btn-primary" id="add-btn">+ Add product</button>
+      </div>
+
+      <div class="stat-cards mb-24">
+        <div class="stat-card"><div class="stat-label">Total Products</div><div class="stat-value" id="stat-total">—</div></div>
+        <div class="stat-card"><div class="stat-label">At Risk</div><div class="stat-value text-danger" id="stat-at-risk">—</div></div>
+        <div class="stat-card"><div class="stat-label">Overstocked</div><div class="stat-value" style="color:var(--color-warning);" id="stat-overstocked">—</div></div>
+        <div class="stat-card"><div class="stat-label">Incoming Stock</div><div class="stat-value text-primary" id="stat-incoming">—</div></div>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="search" placeholder="Search by name or SKU…" style="width:220px;">
+        <select id="status-filter">
+          <option value="">All statuses</option>
+          <option value="at_risk">At risk</option>
+          <option value="ok">OK</option>
+          <option value="overstocked">Overstocked</option>
+        </select>
+        <select id="sort-by">
+          <option value="">Sort by…</option>
+          <option value="days_asc">Days remaining (low → high)</option>
+          <option value="stock_desc">Stock (high → low)</option>
+          <option value="name_asc">Name A–Z</option>
+        </select>
+        <span id="count-label" class="text-muted" style="margin-left:auto;font-size:13px;margin-right:16px;"></span>
+        <div id="pagination-panel-top" style="display:flex;align-items:center;gap:10px;">
+          <button id="btn-prev" class="btn btn-secondary btn-sm" disabled>Previous</button>
+          <span id="page-info" class="page-info" style="font-size:12px;font-weight:600;min-width:80px;text-align:center;">Page 1 of 1</span>
+          <button id="btn-next" class="btn btn-secondary btn-sm" disabled>Next</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>SKU</th><th>Product</th><th>Category</th>
+                <th>Physical Stock</th><th>Incoming</th><th>Effective</th>
+                <th>Reorder Point</th>
+                <th>Days Remaining</th><th>Lead Time</th>
+                <th>Supplier</th><th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inv-tbody"></tbody>
+          </table>
+        </div>
+        <div id="inv-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Record Sale Modal -->
+<div id="modal-record-sale" class="modal-wrap">
+  <div class="modal card" style="max-width:400px;">
+    <div class="modal-header">
+      <div class="card-title" style="margin-bottom:0;">Record Consumption</div>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:13px; color:var(--color-text-hint); margin-bottom:16px;">Record a manual sale/consumption. Stock will be reduced using **FEFO** logic.</p>
+      <div id="sale-product-info" style="margin-bottom:20px; font-weight:600; color:var(--color-primary);"></div>
+      <div class="form-group">
+        <label>Quantity to Deduct</label>
+        <input type="number" id="sale-quantity" step="0.01" min="0.1" placeholder="e.g. 5">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal('modal-record-sale')">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="btn-submit-sale">Record Sale</button>
+    </div>
+  </div>
+</div>
+
+<!-- View Complete Product Details Modal -->
+<div id="modal-product-details" class="modal-wrap">
+  <div class="modal card" style="max-width:820px;">
+    <div class="modal-header">
+      <div class="card-title" style="margin-bottom:0;">Product Details</div>
+    </div>
+    <div class="modal-body">
+      <div id="pd-header" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div id="pd-name" style="font-size:18px;font-weight:700;color:var(--color-text-primary);"></div>
+          <div id="pd-sku" style="font-size:12px;color:var(--color-text-hint);font-family:monospace;"></div>
+        </div>
+        <div id="pd-status"></div>
+      </div>
+      <div class="stat-grid-4" style="margin-bottom:18px;">
+        <div class="stat-item">
+          <div class="label-text">Physical Stock</div>
+          <div id="pd-stock" style="font-size:18px;font-weight:700;"></div>
+        </div>
+        <div class="stat-item">
+          <div class="label-text">Incoming</div>
+          <div id="pd-incoming" style="font-size:18px;font-weight:700;color:var(--color-primary);"></div>
+        </div>
+        <div class="stat-item">
+          <div class="label-text">Effective Stock</div>
+          <div id="pd-effective" style="font-size:18px;font-weight:700;"></div>
+        </div>
+        <div class="stat-item">
+          <div class="label-text">Days Remaining</div>
+          <div id="pd-days" style="font-size:18px;font-weight:700;"></div>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-bottom:18px;">
+        <div>
+          <div class="label-text mb-4">Category</div>
+          <div id="pd-category" class="body-text mb-16"></div>
+          <div class="label-text mb-4">Supplier</div>
+          <div id="pd-supplier" class="body-text mb-16"></div>
+          <div class="label-text mb-4">Unit</div>
+          <div id="pd-unit" class="body-text"></div>
+        </div>
+        <div>
+          <div class="label-text mb-4">Reorder Threshold</div>
+          <div id="pd-threshold" class="body-text mb-16"></div>
+          <div class="label-text mb-4">Lead Time</div>
+          <div id="pd-lead" class="body-text mb-16"></div>
+          <div class="label-text mb-4">Unit Price</div>
+          <div id="pd-price" class="body-text"></div>
+        </div>
+      </div>
+      <div class="label-text mb-4">Notes</div>
+      <div id="pd-notes" class="body-text mb-16" style="color:var(--color-text-secondary);"></div>
+
+      <div class="card-title mb-16" style="font-size:15px;margin-top:8px;">Batch Inventory</div>
+      <div class="table-wrap">
+        <table class="review-table">
+          <thead>
+            <tr>
+              <th>Batch ID</th><th>Qty</th><th>Mfg Date</th><th>Expiry Date</th><th>Supplier</th><th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="pd-batch-body"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" onclick="closeModal('modal-product-details')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal-overlay" id="product-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">Add Product</div>
+    <div id="modal-msg" class="alert-msg"></div>
+    <form id="product-form">
+      <div class="form-row">
+        <div class="form-group"><label>SKU *</label><input type="text" id="f-sku" required></div>
+        <div class="form-group"><label>Unit</label><input type="text" id="f-unit" placeholder="kg, bag, bottle…"></div>
+      </div>
+      <div class="form-group"><label>Product Name *</label><input type="text" id="f-name" required></div>
+      <div class="form-row">
+        <div class="form-group"><label>Category</label><input type="text" id="f-category"></div>
+        <div class="form-group"><label>Supplier</label><select id="f-supplier"></select></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Current Stock</label><input type="number" id="f-stock" min="0" value="0"></div>
+        <div class="form-group"><label>Reorder Threshold</label><input type="number" id="f-threshold" min="0" value="0"></div>
+      </div>
+      <div class="form-group"><label>Lead Time (days)</label><input type="number" id="f-lead" min="1" value="7"></div>
+      <div class="form-group"><label>Notes</label><textarea id="f-notes" rows="2"></textarea></div>
+      <div id="batch-date-section" style="display:none; border-top:1px solid var(--color-border); margin-top:12px; padding-top:14px;">
+        <div style="font-size:12px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;">Initial Batch Details</div>
+        <div class="form-row">
+          <div class="form-group"><label>Manufacturing Date</label><input type="date" id="f-mfg-date"></div>
+          <div class="form-group"><label>Expiry Date</label><input type="date" id="f-expiry-date"></div>
+        </div>
+      </div>
+    </form>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('product-modal')">Cancel</button>
+      <button class="btn btn-primary" id="save-btn">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal-box">
+    <div class="modal-title">Delete Product</div>
+    <p style="font-size:13px;color:var(--color-text-secondary);">Are you sure you want to delete <strong id="delete-name"></strong>? This will permanently remove the product and all its batches. This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('delete-modal')">Cancel</button>
+      <button class="btn btn-danger" id="confirm-delete-btn">Delete</button>
+    </div>
+  </div>
+</div>
+<script src="../app.js?v=62"></script>
+<script src="../js/admin-inventory.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile — SIRA Store</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../customer-style.css?v=999">
+  <style>
+    .profile-grid { display: grid; grid-template-columns: 300px 1fr; gap: 28px; align-items: start; }
+    @media (max-width: 768px) { .profile-grid { grid-template-columns: 1fr; } }
+    .profile-nav { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-lg); overflow: hidden; }
+    .p-nav-item { display: flex; align-items: center; gap: 12px; padding: 14px 20px; font-size: 14px; font-weight: 500; cursor: pointer; border-bottom: 1px solid var(--c-border); transition: all var(--transition); color: var(--c-text-2); }
+    .p-nav-item:last-child { border-bottom: none; }
+    .p-nav-item:hover, .p-nav-item.active { background: var(--c-primary-lt); color: var(--c-primary); }
+    .profile-tab { display: none; }
+    .profile-tab.show { display: block; }
+    .c-card-section { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-lg); padding: 28px; }
+    .c-card-section-title { font-size: 17px; font-weight: 700; margin-bottom: 24px; }
+  </style>
+</head>
+<body>
+<nav class="c-nav" id="c-nav"></nav>
+
+<div class="c-page">
+  <div class="c-profile-header">
+    <div class="c-profile-avatar" id="pf-avatar">?</div>
+    <div>
+      <div class="c-profile-name" id="pf-name">Loading…</div>
+      <div class="c-profile-email" id="pf-email"></div>
+      <div style="margin-top:12px;display:flex;gap:20px;flex-wrap:wrap">
+        <div style="text-align:center"><div style="font-size:22px;font-weight:800" id="pf-orders">0</div><div style="font-size:11px;opacity:.7">Orders</div></div>
+        <div style="text-align:center"><div style="font-size:22px;font-weight:800" id="pf-spent">₹0</div><div style="font-size:11px;opacity:.7">Total Spent</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <!-- Sidebar Nav -->
+    <div>
+      <div class="profile-nav">
+        <div class="p-nav-item active" onclick="showTab('tab-edit',this)">✏️ Edit Profile</div>
+        <div class="p-nav-item" onclick="showTab('tab-password',this)">🔑 Change Password</div>
+        <div class="p-nav-item" onclick="window.location.href='customer-orders.html'">📦 My Orders ↗</div>
+        <div class="p-nav-item" onclick="window.location.href='customer-wishlist.html'">❤️ Wishlist ↗</div>
+        <div class="p-nav-item" onclick="cLogout()" style="color:var(--c-danger)">🚪 Sign Out</div>
+      </div>
+    </div>
+
+    <div>
+      <!-- Edit Profile Tab -->
+      <div class="profile-tab show c-card-section" id="tab-edit">
+        <div class="c-card-section-title">Edit Profile</div>
+        <div class="c-alert c-alert-error" id="edit-msg"></div>
+        <div class="c-alert c-alert-success" id="edit-msg-s"></div>
+        <form id="edit-form">
+          <div class="c-field"><label class="c-label">Full Name</label><input class="c-input" type="text" id="edit-name" placeholder="Your full name" required></div>
+          <div class="c-field"><label class="c-label">Email Address</label><input class="c-input" type="email" id="edit-email" disabled style="background:#f1f5f9;color:#94a3b8"></div>
+          <div class="c-field"><label class="c-label">Mobile Number</label><input class="c-input" type="tel" id="edit-mobile" placeholder="10-digit number" required></div>
+          <div class="c-field"><label class="c-label">Delivery Address</label><textarea class="c-input c-textarea" id="edit-address" placeholder="Your address" style="height:90px"></textarea></div>
+          <button type="submit" class="c-btn c-btn-primary" id="edit-btn">Save Changes</button>
+        </form>
+      </div>
+
+      <!-- Change Password Tab -->
+      <div class="profile-tab c-card-section" id="tab-password">
+        <div class="c-card-section-title">Change Password</div>
+        <div class="c-alert c-alert-error" id="pw-msg"></div>
+        <div class="c-alert c-alert-success" id="pw-msg-s"></div>
+        <form id="pw-form">
+          <div class="c-field"><label class="c-label">Current Password</label><input class="c-input" type="password" id="pw-current" required></div>
+          <div class="c-field"><label class="c-label">New Password</label><input class="c-input" type="password" id="pw-new" placeholder="Min 8 chars" required></div>
+          <div class="c-field"><label class="c-label">Confirm New Password</label><input class="c-input" type="password" id="pw-confirm" required></div>
+          <button type="submit" class="c-btn c-btn-primary" id="pw-btn">Update Password</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/customer-app.js?v=9"></script>
+<script>
+  cCheckAuth();
+  cInjectNav();
+
+  function showTab(id, el) {
+    document.querySelectorAll('.profile-tab').forEach(t => t.classList.remove('show'));
+    document.querySelectorAll('.p-nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById(id)?.classList.add('show');
+    el?.classList.add('active');
+  }
+
+  async function loadProfile() {
+    try {
+      const data = await cFetch('/customers/me');
+      if (!data) return;
+      const initials = data.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+      document.getElementById('pf-avatar').textContent = initials;
+      document.getElementById('pf-name').textContent = data.name;
+      document.getElementById('pf-email').textContent = data.email;
+      document.getElementById('pf-orders').textContent = data.total_orders;
+      document.getElementById('pf-spent').textContent = cFmtPrice(data.total_spent);
+      document.getElementById('edit-name').value = data.name;
+      document.getElementById('edit-email').value = data.email;
+      document.getElementById('edit-mobile').value = data.mobile;
+      document.getElementById('edit-address').value = data.address;
+    } catch (e) { cToast(e.message, 'error'); }
+  }
+
+  document.getElementById('edit-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('edit-btn');
+    const msg = document.getElementById('edit-msg');
+    const msgS = document.getElementById('edit-msg-s');
+    msg.className = 'c-alert c-alert-error';
+    msgS.className = 'c-alert c-alert-success';
+    btn.disabled = true; btn.innerHTML = '<span class="c-spin">⟳</span> Saving…';
+    try {
+      const data = await cFetch('/customers/me', {
+        method: 'PUT',
+        body: {
+          name: document.getElementById('edit-name').value.trim(),
+          mobile: document.getElementById('edit-mobile').value.trim(),
+          address: document.getElementById('edit-address').value.trim(),
+        }
+      });
+      if (!data) return;
+      localStorage.setItem('c_name', document.getElementById('edit-name').value.trim());
+      msgS.textContent = '✅ ' + data.message;
+      msgS.className = 'c-alert c-alert-success show';
+    } catch (e) { msg.textContent = e.message; msg.className = 'c-alert c-alert-error show'; }
+    finally { btn.disabled = false; btn.textContent = 'Save Changes'; }
+  });
+
+  document.getElementById('pw-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('pw-btn');
+    const msg = document.getElementById('pw-msg');
+    const msgS = document.getElementById('pw-msg-s');
+    msg.className = 'c-alert c-alert-error';
+    msgS.className = 'c-alert c-alert-success';
+    const np = document.getElementById('pw-new').value;
+    const cp = document.getElementById('pw-confirm').value;
+    if (np !== cp) { msg.textContent = 'New passwords do not match.'; msg.className = 'c-alert c-alert-error show'; return; }
+    btn.disabled = true; btn.innerHTML = '<span class="c-spin">⟳</span> Updating…';
+    try {
+      const data = await cFetch('/customers/me/password', {
+        method: 'PUT',
+        body: { current_password: document.getElementById('pw-current').value, new_password: np }
+      });
+      if (!data) return;
+      msgS.textContent = '✅ ' + data.message;
+      msgS.className = 'c-alert c-alert-success show';
+      document.getElementById('pw-form').reset();
+    } catch (e) { msg.textContent = e.message; msg.className = 'c-alert c-alert-error show'; }
+    finally { btn.disabled = false; btn.textContent = 'Update Password'; }
+  });
+
+  loadProfile();
+</script>
+</body>
+</html>

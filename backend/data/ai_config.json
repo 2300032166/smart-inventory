@@ -1,0 +1,15 @@
+{
+  "max_brief_items": 100,
+  "max_ai_items": 100,
+  "confidence_threshold": 0.01,
+  "payday_dates": [
+    25,
+    26,
+    27
+  ],
+  "update_frequency_hours": 24,
+  "groq_timeout_seconds": 15,
+  "groq_max_tokens": 40,
+  "groq_temperature": 0.7,
+  "groq_concurrency": 2
+}

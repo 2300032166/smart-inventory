@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Festival Details — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+  <style>
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #6366f1; text-decoration: none; margin-bottom: 16px; }
+    .back-link:hover { text-decoration: underline; }
+
+    .fd-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 22px 26px; margin-bottom: 20px; }
+    .fd-top { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+    .fd-name { font-size: 24px; font-weight: 800; color: #1e293b; margin-bottom: 6px; }
+    .fd-desc { font-size: 14px; color: #64748b; margin-bottom: 16px; }
+    .fd-stats-row { display: flex; flex-wrap: wrap; gap: 28px; }
+    .fd-stat-label { font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 4px; }
+    .fd-stat-val { font-size: 16px; font-weight: 700; color: #1e293b; }
+
+    .disc-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .disc-kpi  { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px 18px; }
+    .disc-kpi .kpi-label { font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing:.04em; text-transform:uppercase; margin-bottom: 6px; }
+    .disc-kpi .kpi-val   { font-size: 26px; font-weight: 800; color: #1e293b; letter-spacing: -0.02em; }
+
+    .section-title { font-size: 15px; font-weight: 800; color: #1e293b; margin: 28px 0 12px; }
+
+    .alerts-box { display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px; }
+    .fest-alert { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; }
+    .fest-alert-icon { font-size: 16px; }
+    .fest-alert-critical { background: #fef2f2; color: #b91c1c; }
+    .fest-alert-warning { background: #fffbeb; color: #b45309; }
+    .fest-alert-info { background: #f0f9ff; color: #0369a1; }
+
+    .fest-filterbar {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
+      padding: 12px 14px; margin-bottom: 16px;
+    }
+    .fest-filterbar .search-wrap { position: relative; flex: 1 1 220px; min-width: 200px; }
+    .fest-filterbar .search-wrap svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: #94a3b8; }
+    .fest-filterbar .search-wrap input {
+      width: 100%; box-sizing: border-box; padding: 8px 12px 8px 32px; border: 1.5px solid #e2e8f0;
+      border-radius: 8px; font-size: 13px; outline: none;
+    }
+    .fest-filterbar select {
+      padding: 8px 12px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 13px;
+      color: #334155; background: #fff; outline: none; cursor: pointer; font-weight: 600;
+    }
+    .filter-count { font-size: 12px; color: #94a3b8; font-weight: 600; margin-left: auto; white-space: nowrap; }
+
+    .table-wrap { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow-x: auto; }
+    .disc-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 760px; }
+    .disc-table th { background: #f8fafc; color: #64748b; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing:.04em; padding: 10px 14px; text-align: left; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
+    .disc-table td { padding: 12px 14px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+    .disc-table tr:hover td { background: #f8fafc; }
+    .disc-table .product-name { font-weight: 600; color: #1e293b; }
+    .disc-table .sku-tag { font-size: 10px; color: #94a3b8; font-family: monospace; }
+
+    .priority-badge { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+    .priority-high   { background: #fef2f2; color: #b91c1c; }
+    .priority-medium { background: #fffbeb; color: #b45309; }
+    .priority-low    { background: #f0fdf4; color: #166534; }
+
+    .empty-state { text-align: center; padding: 40px 20px; color: #94a3b8; }
+    .empty-state .empty-icon { font-size: 32px; margin-bottom: 10px; }
+    .empty-state .empty-title { font-size: 14px; font-weight: 600; color: #64748b; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content" id="detail-main">
+
+      <a href="festivals.html" class="back-link">&larr; Back to Festivals</a>
+
+      <div class="fd-card" id="detail-header">
+        <div class="empty-state"><div class="empty-icon">⏳</div><div class="empty-title">Loading…</div></div>
+      </div>
+
+      <div class="disc-kpis" id="stats-grid"></div>
+
+      <div class="section-title">Festival Alerts</div>
+      <div class="alerts-box" id="alerts-box"></div>
+
+      <div class="section-title">Mapped Products</div>
+      <div class="fest-filterbar">
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+          <input type="text" id="p-search" placeholder="Search by product name or ID…">
+        </div>
+        <select id="p-status">
+          <option value="">All Stock Statuses</option>
+          <option value="In Stock">In Stock</option>
+          <option value="Low Stock">Low Stock</option>
+          <option value="Out of Stock">Out of Stock</option>
+          <option value="Not Available">Not Available</option>
+        </select>
+        <select id="p-priority">
+          <option value="">All Priorities</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+        <span class="filter-count" id="product-count"></span>
+      </div>
+      <div class="table-wrap">
+        <table class="disc-table">
+          <thead>
+            <tr>
+              <th>Product ID</th>
+              <th>Product Name</th>
+              <th>Priority</th>
+              <th>Current Stock</th>
+              <th>Stock Status</th>
+              <th>Supplier</th>
+              <th>Expiry Date</th>
+            </tr>
+          </thead>
+          <tbody id="product-tbody"></tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+</div>
+<script src="../app.js?v=62"></script>
+<script src="../js/festival-detail.js?v=60"></script>
+<script>initShell();</script>
+</body>
+</html>

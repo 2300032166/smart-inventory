@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerts — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="flex-between mb-24">
+        <div>
+          <div class="page-title">Alerts</div>
+          <div class="page-subtitle">Notifications and system messages</div>
+        </div>
+        <button class="btn btn-secondary" id="mark-all-btn">Mark all as read</button>
+      </div>
+
+      <div id="msg" class="alert-msg"></div>
+      <div id="alerts-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+      <div id="alerts-list"></div>
+    </main>
+  </div>
+</div>
+<script src="../app.js?v=62"></script>
+<script src="../js/alerts.js"></script>
+</body>
+</html>

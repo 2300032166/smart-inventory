@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart — SIRA Store</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../customer-style.css?v=999">
+  <style>
+    .cart-layout { display: grid; grid-template-columns: 1fr 340px; gap: 28px; align-items: start; }
+    @media (max-width: 900px) { .cart-layout { grid-template-columns: 1fr; } }
+    .checkout-form { display: none; }
+    .checkout-form.show { display: block; }
+    .payment-options { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+    .payment-option { display: flex; align-items: center; gap: 12px; padding: 14px; border: 1.5px solid var(--c-border); border-radius: var(--radius-md); cursor: pointer; transition: all var(--transition); }
+    .payment-option:hover, .payment-option.selected { border-color: var(--c-primary); background: var(--c-primary-lt); }
+    .payment-option input { accent-color: var(--c-primary); }
+    .payment-icon { font-size: 22px; }
+    .payment-label { font-size: 13px; font-weight: 600; }
+    .payment-sub { font-size: 11px; color: var(--c-text-3); }
+    .order-success { display: none; text-align: center; padding: 60px 24px; }
+    .order-success.show { display: block; }
+  </style>
+</head>
+<body>
+<nav class="c-nav" id="c-nav"></nav>
+
+<div class="c-page">
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap">
+    <h1 style="font-size:24px;font-weight:800;letter-spacing:-0.02em">Shopping Cart</h1>
+    <span style="font-size:14px;color:var(--c-text-2)" id="item-count"></span>
+  </div>
+
+  <div id="loading" class="c-spinner-wrap"><div class="c-spinner"></div></div>
+
+  <!-- Order Success Screen -->
+  <div class="order-success" id="order-success">
+    <div style="font-size:72px;margin-bottom:16px">🎉</div>
+    <h2 style="font-size:24px;font-weight:800;margin-bottom:8px">Order Placed Successfully!</h2>
+    <p style="color:var(--c-text-2);margin-bottom:8px">Your order ID: <strong id="success-order-id"></strong></p>
+    <p style="color:var(--c-text-2);margin-bottom:28px">Total: <strong id="success-total"></strong></p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="customer-orders.html" class="c-btn c-btn-primary">View My Orders</a>
+      <a href="customer-catalog.html" class="c-btn c-btn-secondary">Continue Shopping</a>
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <div id="empty-cart" style="display:none">
+    <div class="c-empty">
+      <div class="c-empty-icon">🛒</div>
+      <div class="c-empty-title">Your cart is empty</div>
+      <div class="c-empty-desc">Browse our catalog and add products you love.</div>
+      <a href="customer-catalog.html" class="c-btn c-btn-primary">Start Shopping</a>
+    </div>
+  </div>
+
+  <!-- Cart Content -->
+  <div id="cart-content" style="display:none">
+    <div class="cart-layout">
+      <div>
+        <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+          <button class="c-btn c-btn-secondary c-btn-sm" onclick="clearCart()" style="color:var(--c-danger);border-color:var(--c-danger)">
+            🗑️ Clear All
+          </button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px" id="cart-items"></div>
+      </div>
+      <div>
+        <!-- Order Summary -->
+        <div class="c-summary-card" id="summary-card">
+          <div class="c-summary-title">Order Summary</div>
+          <div class="c-summary-row"><span>Subtotal</span><span id="sum-sub">₹0</span></div>
+          <div class="c-summary-row"><span>Discount</span><span style="color:var(--c-success)">- ₹0</span></div>
+          <div class="c-summary-row"><span>Delivery</span><span style="color:var(--c-success)">FREE</span></div>
+          <div class="c-summary-row total"><span>Total</span><span class="val" id="sum-total">₹0</span></div>
+          <button class="c-btn c-btn-primary" style="width:100%;margin-top:20px;height:50px;font-size:15px" onclick="showCheckout()">
+            Proceed to Checkout →
+          </button>
+          <a href="customer-catalog.html" class="c-btn c-btn-secondary" style="width:100%;margin-top:10px">
+            ← Continue Shopping
+          </a>
+        </div>
+
+        <!-- Checkout Form -->
+        <div class="c-summary-card checkout-form" id="checkout-form" style="margin-top:20px">
+          <div class="c-summary-title">Delivery Details</div>
+          <div class="c-alert c-alert-error" id="checkout-msg"></div>
+          <div class="c-field">
+            <label class="c-label">Delivery Address *</label>
+            <textarea class="c-input c-textarea" id="del-addr" placeholder="Full address with PIN code" required style="height:80px"></textarea>
+          </div>
+          <div class="c-field">
+            <label class="c-label">Contact Number *</label>
+            <input class="c-input" type="tel" id="del-phone" placeholder="10-digit mobile" required>
+          </div>
+          <div class="c-field">
+            <label class="c-label">Payment Method *</label>
+            <div class="payment-options">
+              <label class="payment-option selected" onclick="selectPayment(this,'cod')">
+                <input type="radio" name="payment" value="cod" checked>
+                <span class="payment-icon">💵</span>
+                <div><div class="payment-label">Cash on Delivery</div><div class="payment-sub">Pay when you receive</div></div>
+              </label>
+              <label class="payment-option" onclick="selectPayment(this,'upi')">
+                <input type="radio" name="payment" value="upi">
+                <span class="payment-icon">📱</span>
+                <div><div class="payment-label">UPI</div><div class="payment-sub">Google Pay, PhonePe, etc. (UI only)</div></div>
+              </label>
+              <label class="payment-option" onclick="selectPayment(this,'card')">
+                <input type="radio" name="payment" value="card">
+                <span class="payment-icon">💳</span>
+                <div><div class="payment-label">Credit / Debit Card</div><div class="payment-sub">Visa, Mastercard, RuPay (UI only)</div></div>
+              </label>
+            </div>
+          </div>
+          <button class="c-btn c-btn-primary" style="width:100%;margin-top:8px;height:50px;font-size:15px" id="place-order-btn" onclick="placeOrder()">
+            🎉 Place Order
+          </button>
+          <button class="c-btn c-btn-secondary" style="width:100%;margin-top:10px" onclick="hideCheckout()">← Back to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/customer-app.js?v=9"></script>
+<script>
+  cCheckAuth();
+  cInjectNav('cart');
+
+  let cartData = null;
+
+  function selectPayment(label, val) {
+    document.querySelectorAll('.payment-option').forEach(l => l.classList.remove('selected'));
+    label.classList.add('selected');
+  }
+
+  async function loadCart() {
+    document.getElementById('loading').style.display = 'flex';
+    try {
+      cartData = await cFetch('/customer-orders/cart');
+      if (!cartData) return;
+      renderCart();
+    } catch (e) { cToast(e.message, 'error'); }
+    finally { document.getElementById('loading').style.display = 'none'; }
+  }
+
+  function renderCart() {
+    if (!cartData || cartData.count === 0) {
+      document.getElementById('empty-cart').style.display = 'flex';
+      document.getElementById('cart-content').style.display = 'none';
+      document.getElementById('item-count').textContent = '';
+      return;
+    }
+    document.getElementById('empty-cart').style.display = 'none';
+    document.getElementById('cart-content').style.display = 'block';
+    document.getElementById('item-count').textContent = `(${cartData.count} item${cartData.count !== 1 ? 's' : ''})`;
+
+    document.getElementById('cart-items').innerHTML = cartData.items.map(item => {
+      const cc = item.category_color || '#6366f1';
+      const initials = (item.name || item.sku || '').replace(/[^a-zA-Z0-9 ]/g,'').trim().split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase() || item.sku.slice(0,2).toUpperCase();
+      return `
+      <div class="c-cart-item" id="item-${item.sku}">
+        <div class="c-cart-img" style="background:${cc}18;color:${cc};font-size:18px;font-weight:800;letter-spacing:-0.02em">
+          ${initials}
+        </div>
+        <div class="c-cart-info">
+          <div class="c-cart-name"><a href="customer-product-detail.html?sku=${encodeURIComponent(item.sku)}" style="color:inherit;text-decoration:none">${item.name}</a></div>
+          <div class="c-cart-brand">${item.category}</div>
+          <div class="c-cart-price">${cFmtPrice(item.price)} per unit</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;flex-wrap:wrap;gap:10px">
+            <div class="c-qty-control">
+              <button class="c-qty-btn" onclick="updateQty('${item.sku}', ${item.quantity - 1})">−</button>
+              <span class="c-qty-val">${item.quantity}</span>
+              <button class="c-qty-btn" onclick="updateQty('${item.sku}', ${item.quantity + 1})">+</button>
+            </div>
+            <div style="font-size:15px;font-weight:700;color:var(--c-primary)">${cFmtPrice(item.subtotal)}</div>
+          </div>
+          <button class="c-remove-btn" onclick="removeItem('${item.sku}')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+            Remove
+          </button>
+        </div>
+      </div>`;
+    }).join('');
+
+    document.getElementById('sum-sub').textContent = cFmtPrice(cartData.total);
+    document.getElementById('sum-total').textContent = cFmtPrice(cartData.total);
+  }
+
+  async function updateQty(sku, qty) {
+    try {
+      await cFetch(`/customer-orders/cart/${encodeURIComponent(sku)}`, { method: 'PUT', body: { quantity: qty } });
+      await loadCart();
+      cUpdateCartBadge();
+    } catch (e) { cToast(e.message, 'error'); }
+  }
+
+  async function removeItem(sku) {
+    try {
+      await cFetch(`/customer-orders/cart/${encodeURIComponent(sku)}`, { method: 'DELETE' });
+      await loadCart();
+      cUpdateCartBadge();
+      cToast('Item removed from cart', 'info');
+    } catch (e) { cToast(e.message, 'error'); }
+  }
+
+  async function clearCart() {
+    if (!confirm('Clear all items from cart?')) return;
+    try {
+      await cFetch('/customer-orders/cart', { method: 'DELETE' });
+      await loadCart();
+      cUpdateCartBadge();
+    } catch (e) { cToast(e.message, 'error'); }
+  }
+
+  function showCheckout() {
+    document.getElementById('checkout-form').classList.add('show');
+    document.getElementById('checkout-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function hideCheckout() { document.getElementById('checkout-form').classList.remove('show'); }
+
+  async function placeOrder() {
+    const addr = document.getElementById('del-addr').value.trim();
+    const phone = document.getElementById('del-phone').value.trim();
+    const paymentEl = document.querySelector('input[name="payment"]:checked');
+    const msg = document.getElementById('checkout-msg');
+    msg.className = 'c-alert c-alert-error';
+
+    if (!addr) { msg.textContent = 'Please enter delivery address.'; msg.className = 'c-alert c-alert-error show'; return; }
+    if (!/^\d{10}$/.test(phone)) { msg.textContent = 'Please enter a valid 10-digit mobile number.'; msg.className = 'c-alert c-alert-error show'; return; }
+
+    const btn = document.getElementById('place-order-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="c-spin">⟳</span> Placing order…';
+
+    try {
+      const data = await cFetch('/customer-orders/checkout', {
+        method: 'POST',
+        body: { delivery_address: addr, contact_number: phone, payment_method: paymentEl?.value || 'cod' }
+      });
+      if (!data) return;
+      document.getElementById('cart-content').style.display = 'none';
+      document.getElementById('success-order-id').textContent = data.order_id;
+      document.getElementById('success-total').textContent = cFmtPrice(data.total_amount);
+      document.getElementById('order-success').classList.add('show');
+      cUpdateCartBadge();
+    } catch (e) { msg.textContent = e.message; msg.className = 'c-alert c-alert-error show'; }
+    finally { btn.disabled = false; btn.textContent = '🎉 Place Order'; }
+  }
+
+  loadCart();
+</script>
+</body>
+</html>

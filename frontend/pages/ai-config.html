@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Config — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-title">AI Configuration</div>
+        <div class="page-subtitle">Configure the AI model and brief generation settings</div>
+      </div>
+
+      <div id="msg" class="alert-msg"></div>
+
+      <div class="grid-2 mb-24">
+        <div class="card">
+          <div class="card-title mb-16">Groq Cloud Settings</div>
+          <div class="form-group">
+            <label>Groq API Key</label>
+            <div class="input-with-icon">
+              <input type="password" id="f-groq-key" placeholder="(paste your key)">
+              <button type="button" class="input-icon-btn" id="toggle-groq-key">👁</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Groq Model</label>
+            <input type="text" id="f-groq-model" placeholder="llama-3.3-70b-versatile">
+          </div>
+
+          <div style="display:flex;gap:10px;align-items:center;margin-top:20px;">
+            <button class="btn btn-secondary" id="test-btn">Test connection</button>
+            <span id="test-result" style="font-size:13px;"></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title mb-16">Brief Settings</div>
+          <div class="form-group">
+            <label>Confidence Threshold: <strong id="threshold-val">60</strong>%</label>
+            <input type="range" id="f-threshold" min="0" max="100" value="60" style="width:100%;margin-top:8px;">
+          </div>
+          <div class="form-group">
+            <label>Max items per brief <span style="font-size:11px;font-weight:400;color:var(--color-text-hint);">(set to 100+ to show all qualifying items)</span></label>
+            <input type="number" id="f-max-items" min="1" max="200" value="100">
+          </div>
+          <div class="form-group">
+            <label>Payday dates (comma-separated day numbers)</label>
+            <input type="text" id="f-payday" placeholder="25,26,27">
+          </div>
+          <div class="form-group">
+            <label>Brief cache duration (hours) <span style="font-size:11px;font-weight:400;color:var(--color-text-hint);">(0 = always regenerate)</span></label>
+            <input type="number" id="f-cache-hours" min="0" max="24" value="6">
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-24">
+        <div class="card-title mb-16">Prompt Template</div>
+        <div class="form-group">
+          <textarea id="f-prompt" rows="12" style="font-family:monospace;font-size:12px;"></textarea>
+        </div>
+        <div style="font-size:12px;color:var(--color-text-hint);margin-bottom:16px;">
+          Available placeholders: {product_name} {sku} {current_stock} {unit} {avg_daily_sales} {days_remaining} {lead_time_days} {recommended_qty} {payday_spike} {declining_trend} {override_history_summary}
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-secondary" id="reset-prompt-btn">Reset to default</button>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;">
+        <button class="btn btn-primary" id="save-btn">Save settings</button>
+        <button class="btn btn-secondary" id="test-brief-btn">Run test brief</button>
+      </div>
+
+      <div id="test-brief-result" class="card mt-16" style="display:none;">
+        <div class="card-title mb-12">Test Brief Output</div>
+        <pre id="test-brief-output" style="font-size:12px;white-space:pre-wrap;color:var(--color-text-secondary);"></pre>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="../app.js?v=62"></script>
+<script src="../js/ai-config.js"></script>
+</body>
+</html>

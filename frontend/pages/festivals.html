@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Festivals — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+  <style>
+    /* ── Hero banner ────────────────────────────────────────────────── */
+    .fest-hero {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+      border-radius: 16px;
+      padding: 32px 28px;
+      margin-bottom: 24px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .fest-hero::after {
+      content: ''; position: absolute; right: -20px; top: -40px;
+      width: 180px; height: 180px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+    .fest-hero::before {
+      content: ''; position: absolute; right: 40px; bottom: -60px;
+      width: 120px; height: 120px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .fest-hero h2 { font-size: 22px; font-weight: 800; margin: 0 0 6px; letter-spacing: -0.02em; }
+    .fest-hero p { font-size: 14px; opacity: 0.85; margin: 0; }
+
+    /* ── Filter bar ────────────────────────────────────────────────── */
+    .fest-filterbar {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
+      padding: 12px 14px; margin-bottom: 24px;
+    }
+    .fest-filterbar .search-wrap { position: relative; flex: 1 1 260px; min-width: 200px; }
+    .fest-filterbar .search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: #94a3b8; }
+    .fest-filterbar .search-wrap input {
+      width: 100%; box-sizing: border-box; padding: 9px 12px 9px 36px; border: 1.5px solid #e2e8f0;
+      border-radius: 10px; font-size: 13px; outline: none; transition: border-color .15s, box-shadow .15s;
+      background: #f8fafc;
+    }
+    .fest-filterbar .search-wrap input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); background: #fff; }
+    .fest-filterbar select {
+      padding: 9px 14px; border: 1.5px solid #e2e8f0; border-radius: 10px; font-size: 13px;
+      color: #334155; background: #fff; outline: none; cursor: pointer; font-weight: 600;
+      transition: border-color .15s;
+    }
+    .fest-filterbar select:focus { border-color: #6366f1; }
+    .filter-count { font-size: 12px; color: #94a3b8; font-weight: 600; margin-left: auto; white-space: nowrap; }
+
+    /* ── Section header ────────────────────────────────────────────────── */
+    .fest-section { margin-bottom: 32px; }
+    .fest-section-title {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 700; color: #64748b; text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 14px; padding-left: 4px;
+    }
+    .fest-section-title .dot {
+      width: 8px; height: 8px; border-radius: 50%; display: inline-block;
+    }
+    .dot-upcoming { background: #3b82f6; }
+    .dot-ongoing   { background: #22c55e; }
+    .dot-completed { background: #94a3b8; }
+
+    /* ── Grid ────────────────────────────────────────────────── */
+    .festival-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px;
+    }
+
+    /* ── Card ──────────────────────────────────────────────────── */
+    .festival-card {
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px;
+      cursor: pointer; transition: all .2s ease; position: relative; overflow: hidden;
+    }
+    .festival-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,.1); border-color: #c7d2fe; }
+    .festival-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+      transition: width .2s ease;
+    }
+    .festival-card:hover::before { width: 5px; }
+    .festival-card.card-upcoming::before { background: #3b82f6; }
+    .festival-card.card-ongoing::before   { background: #22c55e; }
+    .festival-card.card-completed::before { background: #cbd5e1; }
+
+    .fc-top { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .fc-name { font-size: 18px; font-weight: 800; color: #1e293b; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .fc-dates { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #64748b; font-weight: 600; margin-bottom: 3px; }
+    .fc-duration { font-size: 12px; color: #94a3b8; margin-bottom: 14px; }
+    .fc-days { font-size: 12px; font-weight: 700; color: #4f46e5; background: #eef2ff; display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; }
+    .fc-days-live { color: #b45309; background: #fef3c7; }
+    .fc-days-done { color: #64748b; background: #f1f5f9; }
+
+    .fc-meta-row { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+    .fc-products-count { font-size: 11px; color: #94a3b8; font-weight: 600; }
+
+    .empty-state { text-align: center; padding: 60px 20px; color: #94a3b8; }
+    .empty-state .empty-icon { font-size: 40px; margin-bottom: 12px; }
+    .empty-state .empty-title { font-size: 15px; font-weight: 600; color: #64748b; margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+
+      <div class="page-header">
+        <div>
+          <div class="page-title">Festivals</div>
+          <div class="page-subtitle">Plan inventory across upcoming and ongoing festivals</div>
+        </div>
+      </div>
+
+      <div class="fest-hero">
+        <h2>Festival Inventory Planner</h2>
+        <p>Track stock levels, expiry risks, and supplier readiness for every mapped festival.</p>
+      </div>
+
+      <div class="fest-filterbar">
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+          <input type="text" id="f-search" placeholder="Search by festival name…">
+        </div>
+        <select id="f-status">
+          <option value="">All Statuses</option>
+          <option value="Upcoming">Upcoming</option>
+          <option value="Ongoing">Ongoing</option>
+          <option value="Completed">Completed</option>
+        </select>
+        <span class="filter-count" id="filter-count"></span>
+      </div>
+
+      <div id="festivals-container"></div>
+
+    </main>
+  </div>
+</div>
+<script src="../app.js?v=62"></script>
+<script src="../js/festivals.js?v=59"></script>
+<script>initShell();</script>
+</body>
+</html>

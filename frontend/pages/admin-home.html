@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Overview — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-title">Admin Overview</div>
+        <div class="page-subtitle">System health and recent activity</div>
+      </div>
+
+      <div class="stat-cards mb-24">
+        <div class="stat-card"><div class="stat-label">Total Products</div><div class="stat-value" id="stat-products">—</div><div class="stat-sub">in catalog</div></div>
+        <div class="stat-card"><div class="stat-label">Active Users</div><div class="stat-value" id="stat-users">—</div><div class="stat-sub">registered accounts</div></div>
+        <div class="stat-card"><div class="stat-label">AI Model</div><div class="stat-value" id="stat-ai">—</div><div class="stat-sub">inference provider</div></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Recent Activity</span>
+            <a href="audit-log.html" style="font-size:13px;color:var(--color-primary);text-decoration:none;">View all</a>
+          </div>
+          <div id="activity-feed"><div class="text-muted" style="font-size:13px;">Loading…</div></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title mb-16">Quick Actions</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="admin-inventory.html" class="btn btn-primary">Manage Inventory</a>
+            <a href="users.html" class="btn btn-secondary">Add User</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="../app.js?v=62"></script>
+<script src="../js/admin-home.js?v=32"></script>
+</body>
+</html>

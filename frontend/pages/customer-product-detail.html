@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail — SIRA Store</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../customer-style.css?v=999">
+  <style>
+    /* ── Product detail card ── */
+    .pd-card { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 32px; box-shadow: var(--shadow-md); }
+    .pd-card-accent { height: 5px; width: 100%; }
+    .pd-card-inner { display: grid; grid-template-columns: 1fr 360px; }
+    .pd-info-col { padding: 32px 36px; border-right: 1px solid var(--c-border); }
+    .pd-action-col { padding: 28px 28px 32px; background: var(--c-bg); display: flex; flex-direction: column; gap: 0; }
+
+    /* ── Left: product info ── */
+    .pd-badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .pd-title { font-size: 26px; font-weight: 800; color: var(--c-text); letter-spacing: -0.025em; line-height: 1.25; margin-bottom: 6px; }
+    .pd-brand { font-size: 13px; color: var(--c-text-3); margin-bottom: 14px; font-weight: 500; letter-spacing: 0.01em; }
+    .pd-rating-row { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .pd-stars { color: #f59e0b; font-size: 18px; }
+    .pd-price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 20px; }
+    .pd-price { font-size: 34px; font-weight: 800; color: var(--c-text); letter-spacing: -0.02em; }
+    .pd-orig { font-size: 18px; color: var(--c-text-3); text-decoration: line-through; }
+    .pd-disc { font-size: 13px; font-weight: 700; color: var(--c-success); background: var(--c-success-lt); padding: 3px 10px; border-radius: var(--radius-full); }
+    .pd-ai-box { background: linear-gradient(135deg,#eff6ff,#f5f3ff); border: 1px solid #bfdbfe; border-radius: var(--radius-lg); padding: 16px 18px; margin-bottom: 20px; }
+    .pd-ai-box h4 { font-size: 12px; font-weight: 700; color: var(--c-primary); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+    .pd-ai-box p { font-size: 13px; color: var(--c-text-2); line-height: 1.65; }
+    .pd-desc { font-size: 13.5px; line-height: 1.8; color: var(--c-text-2); }
+
+    /* ── Right: action column ── */
+    .pd-stock-label { font-size: 14px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .pd-stock-label::before { content: ''; width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .pd-stock-label.in-stock { color: var(--c-success); }
+    .pd-stock-label.in-stock::before { background: var(--c-success); }
+    .pd-stock-label.out-stock { color: var(--c-danger); }
+    .pd-stock-label.out-stock::before { background: var(--c-danger); }
+    .pd-qty-row { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .pd-action-btns { display: flex; gap: 10px; flex-direction: column; margin-bottom: 14px; }
+    .pd-action-btns .c-btn { width: 100%; justify-content: center; }
+    .pd-meta-box { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--c-border); font-size: 13px; color: var(--c-text-2); display: flex; flex-direction: column; gap: 8px; }
+    .pd-meta-row { display: flex; gap: 6px; }
+    .pd-meta-row strong { color: var(--c-text); min-width: 88px; }
+
+    /* ── Reviews ── */
+    .review-card { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-md); padding: 16px; }
+    .review-author { font-weight: 600; font-size: 13px; }
+    .review-stars { color: #f59e0b; font-size: 13px; }
+    .review-text { font-size: 13px; color: var(--c-text-2); margin-top: 6px; line-height: 1.6; }
+    .star-sel span { font-size: 28px; cursor: pointer; transition: transform .1s; color: #d1d5db; }
+    .star-sel span.active, .star-sel span.hover { color: #f59e0b; }
+    .review-form-box { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 28px; }
+    .review-textarea { width: 100%; box-sizing: border-box; padding: 12px; border: 1px solid var(--c-border); border-radius: var(--radius-md); font-size: 14px; font-family: inherit; resize: vertical; background: var(--c-bg); color: var(--c-text); min-height: 80px; }
+    .review-textarea:focus { outline: none; border-color: var(--c-primary); }
+    .verified-badge { font-size: 10px; background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 100px; margin-left: 6px; font-weight: 600; }
+
+    @media (max-width: 860px) {
+      .pd-card-inner { grid-template-columns: 1fr; }
+      .pd-info-col { border-right: none; border-bottom: 1px solid var(--c-border); padding: 24px; }
+      .pd-action-col { padding: 24px; background: var(--c-surface); }
+      .pd-action-btns { flex-direction: row; }
+      .pd-action-btns .c-btn { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+<nav class="c-nav" id="c-nav"></nav>
+
+<div class="c-page">
+  <div style="margin-bottom:20px;font-size:13px;color:var(--c-text-2)">
+    <a href="customer-dashboard.html" style="color:var(--c-primary);text-decoration:none">Home</a>
+    <span style="margin:0 8px">›</span>
+    <a href="customer-catalog.html" style="color:var(--c-primary);text-decoration:none">Catalog</a>
+    <span style="margin:0 8px">›</span>
+    <span id="breadcrumb-name">Product</span>
+  </div>
+
+  <div id="loading" class="c-spinner-wrap"><div class="c-spinner"></div></div>
+  <div id="product-detail" style="display:none">
+    <div class="pd-card">
+      <div class="pd-card-accent" id="pd-card-accent"></div>
+      <div class="pd-card-inner">
+        <!-- Left: Product info -->
+        <div class="pd-info-col">
+          <div class="pd-badge-row" id="pd-badges"></div>
+          <h1 class="pd-title" id="pd-name"></h1>
+          <div class="pd-brand" id="pd-brand"></div>
+          <div class="pd-rating-row">
+            <span class="pd-stars" id="pd-stars"></span>
+            <span style="font-size:13px;color:var(--c-text-2)" id="pd-rating-text"></span>
+          </div>
+          <div class="pd-price-row">
+            <span class="pd-price" id="pd-price"></span>
+            <span class="pd-orig" id="pd-orig"></span>
+            <span class="pd-disc" id="pd-disc"></span>
+          </div>
+          <div class="pd-ai-box">
+            <h4>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+              Why we recommend this
+            </h4>
+            <p id="pd-ai-exp"></p>
+          </div>
+          <div class="pd-desc" id="pd-desc"></div>
+        </div>
+        <!-- Right: Actions -->
+        <div class="pd-action-col">
+          <div class="pd-stock-label" id="pd-stock"></div>
+          <div class="pd-qty-row">
+            <label style="font-size:13px;font-weight:600;color:var(--c-text)">Quantity</label>
+            <div class="c-qty-control">
+              <button class="c-qty-btn" onclick="changeQty(-1)">−</button>
+              <span class="c-qty-val" id="qty-val">1</span>
+              <button class="c-qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+          <div class="pd-action-btns">
+            <button class="c-btn c-btn-primary c-btn-lg" id="btn-cart" onclick="addToCart()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="vertical-align:-2px"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              Add to Cart
+            </button>
+            <button class="c-btn c-btn-secondary c-btn-lg" id="btn-wish" onclick="toggleWish()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="vertical-align:-2px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              Wishlist
+            </button>
+          </div>
+          <div class="c-alert c-alert-success" id="action-msg"></div>
+          <div class="pd-meta-box">
+            <div class="pd-meta-row"><strong>Category</strong><span id="pd-cat"></span></div>
+            <div class="pd-meta-row"><strong>Brand</strong><span id="pd-brand2"></span></div>
+            <div class="pd-meta-row"><strong>Availability</strong><span id="pd-avail"></span></div>
+            <div class="pd-meta-row" id="pd-expiry-row" style="display:none"><strong>Best Before</strong><span id="pd-expiry" style="color:var(--c-warning);font-weight:600"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer Reviews -->
+    <div class="c-section" style="margin-top:48px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:8px">
+        <div>
+          <div class="c-section-title">Customer Reviews</div>
+          <div id="reviews-summary" style="font-size:13px;color:var(--c-text-2);margin-top:4px"></div>
+        </div>
+      </div>
+
+      <!-- Write a Review (logged-in customers) -->
+      <div id="review-form-wrap" class="review-form-box" style="display:none">
+        <div style="font-size:15px;font-weight:700;margin-bottom:16px">Write a Review</div>
+        <div style="margin-bottom:14px">
+          <div style="font-size:13px;font-weight:600;margin-bottom:8px;color:var(--c-text)">Your Rating</div>
+          <div id="star-selector" class="star-sel" style="display:flex;gap:2px">
+            <span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span>
+          </div>
+        </div>
+        <div style="margin-bottom:14px">
+          <textarea id="review-comment" class="review-textarea" placeholder="Share your experience with this product (min. 10 characters)…"></textarea>
+        </div>
+        <button class="c-btn c-btn-primary" onclick="submitReview()">Submit Review</button>
+        <div id="review-msg" style="margin-top:10px;font-size:13px"></div>
+      </div>
+
+      <!-- Not logged in -->
+      <div id="review-login-prompt" style="display:none;padding:16px;background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius-md);margin-bottom:24px;font-size:14px;color:var(--c-text-2)">
+        <a href="login.html" style="color:var(--c-primary);font-weight:600">Sign in</a> to write a review.
+      </div>
+
+      <!-- Already reviewed -->
+      <div id="review-already" style="display:none;padding:14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:var(--radius-md);margin-bottom:24px;font-size:13px;color:#166534;font-weight:500">
+        You've already reviewed this product. Thank you!
+      </div>
+
+      <!-- Reviews grid -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px" id="reviews-grid"></div>
+      <div id="reviews-empty" style="display:none;padding:32px;text-align:center;color:var(--c-text-3);font-size:14px">No reviews yet. Be the first to review!</div>
+    </div>
+
+    <!-- Frequently Bought Together -->
+    <div class="c-section" id="fbt-section">
+      <div class="c-section-header">
+        <div class="c-section-title">Frequently Bought Together</div>
+        <a href="customer-catalog.html" class="c-view-all">View all →</a>
+      </div>
+      <div class="c-grid" id="fbt-grid"></div>
+    </div>
+
+    <!-- Similar Products -->
+    <div class="c-section" id="similar-section">
+      <div class="c-section-header">
+        <div class="c-section-title">Similar Products</div>
+        <a href="customer-catalog.html" class="c-view-all">View all →</a>
+      </div>
+      <div class="c-grid" id="similar-grid"></div>
+    </div>
+
+    <!-- Healthy Alternatives -->
+    <div class="c-section" id="alt-section" style="display:none">
+      <div class="c-section-header">
+        <div class="c-section-title">Healthy Alternatives</div>
+      </div>
+      <div class="c-grid" id="alt-grid"></div>
+    </div>
+  </div>
+
+  <div id="not-found" style="display:none">
+    <div class="c-empty">
+      <div class="c-empty-icon">😔</div>
+      <div class="c-empty-title">Product Not Found</div>
+      <div class="c-empty-desc">The product you're looking for doesn't exist or has been removed.</div>
+      <a href="customer-catalog.html" class="c-btn c-btn-primary">Browse Products</a>
+    </div>
+  </div>
+</div>
+
+<script src="../js/customer-app.js?v=9"></script>
+<script>
+  cInjectNav();
+  let product = null;
+  let qty = 1;
+  const sku = new URLSearchParams(location.search).get('sku');
+
+  async function load() {
+    if (!sku) { document.getElementById('not-found').style.display = 'flex'; document.getElementById('loading').style.display = 'none'; return; }
+    try {
+      product = await fetch(`/api/customer-products/${encodeURIComponent(sku)}`).then(r => { if(!r.ok) throw new Error(); return r.json(); });
+      renderProduct();
+    } catch {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('not-found').style.display = 'flex';
+    }
+  }
+
+  function renderProduct() {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('product-detail').style.display = 'block';
+    document.title = `${product.name} — SIRA Store`;
+    document.getElementById('breadcrumb-name').textContent = product.name.slice(0, 40) + (product.name.length > 40 ? '…' : '');
+
+    // Accent bar colour
+    document.getElementById('pd-card-accent').style.background = product.category_color || '#6366f1';
+
+    // Badges
+    const catColor = product.category_color || '#6366f1';
+    let badges = `<span class="c-card-cat-chip" style="color:${catColor};background:${catColor}1a">${product.category}</span>`;
+    if (product.badge) badges += `<span class="c-card-badge warning">${product.badge}</span>`;
+    document.getElementById('pd-badges').innerHTML = badges;
+
+    document.getElementById('pd-name').textContent = product.name;
+    document.getElementById('pd-brand').textContent = `by ${product.brand}`;
+    document.getElementById('pd-brand2').textContent = product.brand;
+    document.getElementById('pd-cat').textContent = product.category;
+    document.getElementById('pd-stars').textContent = cStars(product.rating);
+    document.getElementById('pd-rating-text').textContent = `${product.rating}/5 (${product.rating_count} reviews)`;
+    document.getElementById('pd-price').textContent = cFmtPrice(product.price);
+    document.getElementById('pd-ai-exp').textContent = product.ai_explanation;
+    document.getElementById('pd-desc').textContent = product.description;
+
+    if (product.discount_percent > 0) {
+      document.getElementById('pd-orig').textContent = cFmtPrice(product.original_price);
+      document.getElementById('pd-disc').textContent = `${product.discount_percent}% OFF`;
+    }
+
+    const inStock = product.in_stock;
+    const stockEl = document.getElementById('pd-stock');
+    stockEl.textContent = inStock ? 'In Stock' : 'Out of Stock';
+    stockEl.className = `pd-stock-label ${inStock ? 'in-stock' : 'out-stock'}`;
+    document.getElementById('pd-avail').textContent = inStock ? 'Available' : 'Out of stock';
+
+    // Expiry date (FEFO — earliest batch the customer will receive)
+    if (product.expiry_date) {
+      const d = new Date(product.expiry_date);
+      const fmt = d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+      document.getElementById('pd-expiry').textContent = fmt;
+      document.getElementById('pd-expiry-row').style.display = 'flex';
+    }
+
+    document.getElementById('btn-cart').disabled = !inStock;
+
+    // Reviews — loaded async after product renders
+    loadReviews();
+
+    // Sections
+    if (product.frequently_bought_together?.length) {
+      document.getElementById('fbt-grid').innerHTML = product.frequently_bought_together.map(p => cProductCard(p)).join('');
+    } else { document.getElementById('fbt-section').style.display = 'none'; }
+    if (product.similar?.length) {
+      document.getElementById('similar-grid').innerHTML = product.similar.map(p => cProductCard(p)).join('');
+    } else { document.getElementById('similar-section').style.display = 'none'; }
+    if (product.healthy_alternatives?.length) {
+      document.getElementById('alt-section').style.display = 'block';
+      document.getElementById('alt-grid').innerHTML = product.healthy_alternatives.map(p => cProductCard(p)).join('');
+    }
+  }
+
+  function changeQty(d) {
+    const maxQty = product?.current_stock || 99;
+    const newQty = qty + d;
+    if (newQty > maxQty) {
+      cToast(`Only ${maxQty} unit${maxQty !== 1 ? 's' : ''} available`, 'error');
+      return;
+    }
+    qty = Math.max(1, Math.min(newQty, maxQty));
+    document.getElementById('qty-val').textContent = qty;
+  }
+
+  async function addToCart() {
+    if (!cCheckAuth()) return;
+    const maxQty = product?.current_stock || 0;
+    if (maxQty > 0 && qty > maxQty) {
+      cToast(`Only ${maxQty} unit${maxQty !== 1 ? 's' : ''} available`, 'error');
+      return;
+    }
+    const btn = document.getElementById('btn-cart');
+    btn.disabled = true;
+    btn.textContent = '…';
+    try {
+      await cFetch('/customer-orders/cart', { method: 'POST', body: { sku: product.sku, quantity: qty } });
+      const msg = document.getElementById('action-msg');
+      msg.textContent = 'Added to cart successfully!';
+      msg.className = 'c-alert c-alert-success show';
+      cUpdateCartBadge();
+      setTimeout(() => msg.className = 'c-alert c-alert-success', 3000);
+    } catch (e) { cToast(e.message, 'error'); }
+    finally { btn.disabled = false; btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="vertical-align:-2px"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Add to Cart'; }
+  }
+
+  async function toggleWish() {
+    if (!cCheckAuth()) return;
+    const btn = document.getElementById('btn-wish');
+    try {
+      const data = await cFetch(`/customer-orders/wishlist/${product.sku}`, { method: 'POST' });
+      if (!data) return;
+      btn.textContent = data.in_wishlist ? 'In Wishlist' : 'Wishlist';
+      btn.style.color = data.in_wishlist ? '#dc2626' : '';
+      cToast(data.message, data.in_wishlist ? 'success' : 'info');
+    } catch (e) { cToast(e.message, 'error'); }
+  }
+
+  load();
+
+  // ── Star selector ────────────────────────────────────────────────────────
+  let selectedRating = 0;
+  const starSel = document.getElementById('star-selector');
+  starSel.addEventListener('mouseover', e => {
+    const s = e.target.closest('[data-v]'); if (!s) return;
+    const v = +s.dataset.v;
+    starSel.querySelectorAll('[data-v]').forEach(el => el.classList.toggle('hover', +el.dataset.v <= v));
+  });
+  starSel.addEventListener('mouseleave', () => {
+    starSel.querySelectorAll('[data-v]').forEach(el => el.classList.remove('hover'));
+  });
+  starSel.addEventListener('click', e => {
+    const s = e.target.closest('[data-v]'); if (!s) return;
+    selectedRating = +s.dataset.v;
+    starSel.querySelectorAll('[data-v]').forEach(el => el.classList.toggle('active', +el.dataset.v <= selectedRating));
+  });
+
+  // ── Load reviews ─────────────────────────────────────────────────────────
+  async function loadReviews() {
+    if (!sku) return;
+    try {
+      const data = await fetch(`/api/reviews/${encodeURIComponent(sku)}`).then(r => r.json());
+      const { reviews, avg_rating, total } = data;
+
+      // Update rating display with real data
+      if (total > 0) {
+        document.getElementById('pd-stars').textContent = cStars(avg_rating);
+        document.getElementById('pd-rating-text').textContent = `${avg_rating}/5 (${total} review${total !== 1 ? 's' : ''})`;
+        document.getElementById('reviews-summary').textContent = `${avg_rating} ★ · ${total} review${total !== 1 ? 's' : ''}`;
+      }
+
+      const grid  = document.getElementById('reviews-grid');
+      const empty = document.getElementById('reviews-empty');
+      if (!reviews || !reviews.length) {
+        grid.innerHTML = ''; empty.style.display = 'block';
+      } else {
+        empty.style.display = 'none';
+        function esc(s) {
+          return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+        }
+        grid.innerHTML = reviews.map(r => {
+          const stars = +r.rating || 0;
+          return `<div class="review-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <div>
+                <span class="review-author">${esc(r.customer_name)}</span>
+                ${r.verified === 'True' ? '<span class="verified-badge">✓ Verified</span>' : ''}
+              </div>
+              <span class="review-stars">${'★'.repeat(stars)}${'☆'.repeat(5 - stars)}</span>
+            </div>
+            <div class="review-text">${esc(r.comment)}</div>
+            <div style="font-size:11px;color:var(--c-text-3);margin-top:6px">${cFmtDate(r.date)}</div>
+          </div>`;
+        }).join('');
+      }
+    } catch(e) { console.error('loadReviews failed', e); }
+
+    // Show correct review UI state
+    const token = cGetToken();
+    if (!token || cTokenExpired(token)) {
+      document.getElementById('review-login-prompt').style.display = 'block';
+    } else {
+      document.getElementById('review-form-wrap').style.display = 'block';
+    }
+  }
+
+  // ── Submit review ─────────────────────────────────────────────────────────
+  async function submitReview() {
+    if (!selectedRating) { cToast('Please select a star rating', 'error'); return; }
+    const comment = document.getElementById('review-comment').value.trim();
+    if (comment.length < 10) { cToast('Comment must be at least 10 characters', 'error'); return; }
+    const btn = document.querySelector('#review-form-wrap .c-btn-primary');
+    btn.disabled = true; btn.textContent = '…';
+    try {
+      const data = await cFetch(`/reviews/${encodeURIComponent(sku)}`, { method: 'POST', body: { rating: selectedRating, comment } });
+      if (!data) return;
+      document.getElementById('review-form-wrap').style.display = 'none';
+      document.getElementById('review-already').style.display = 'block';
+      cToast('Review submitted! Thank you.', 'success');
+      loadReviews();
+    } catch(e) {
+      if (e.message && e.message.toLowerCase().includes('already')) {
+        document.getElementById('review-form-wrap').style.display = 'none';
+        document.getElementById('review-already').style.display = 'block';
+      } else {
+        document.getElementById('review-msg').textContent = e.message || 'Failed to submit. Please try again.';
+        document.getElementById('review-msg').style.color = 'var(--c-danger)';
+      }
+    } finally { btn.disabled = false; btn.textContent = 'Submit Review'; }
+  }
+</script>
+</body>
+</html>

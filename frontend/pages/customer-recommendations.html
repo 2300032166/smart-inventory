@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trending & Popular — SIRA Store</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../customer-style.css?v=999">
+</head>
+<body>
+<nav class="c-nav" id="c-nav"></nav>
+
+<div class="c-page">
+  <!-- Hero -->
+  <div style="background:linear-gradient(135deg,#0f172a,#1e3a5f,#1d4ed8);border-radius:var(--radius-xl);padding:40px 48px;color:#fff;margin-bottom:40px;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;opacity:.08;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:18px 18px"></div>
+    <div style="position:relative;z-index:2;max-width:560px">
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:.06em;margin-bottom:14px">🔥 TRENDING NOW</div>
+      <h1 style="font-size:36px;font-weight:800;letter-spacing:-0.03em;margin-bottom:10px">What's <span style="color:#93c5fd">Popular</span> Right Now</h1>
+      <p style="font-size:14.5px;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:24px">Products ranked by sales over the last 60 days — what everyone's actually buying.</p>
+      <a href="customer-catalog.html" class="c-btn c-btn-white">Browse All Products</a>
+    </div>
+    <div style="position:absolute;right:60px;top:50%;transform:translateY(-50%);font-size:80px;opacity:.35;z-index:1">🔥</div>
+  </div>
+
+  <!-- Trending (60-day) -->
+  <div class="c-section">
+    <div class="c-section-header">
+      <div>
+        <div class="c-section-title">🔥 Trending This Month</div>
+        <div class="c-section-subtitle">Based on sales from the last 60 days</div>
+      </div>
+      <a href="customer-catalog.html?sort=trending" class="c-view-all">View all →</a>
+    </div>
+    <div class="c-grid" id="trending-picks"></div>
+  </div>
+
+  <!-- Discounted -->
+  <div class="c-section">
+    <div class="c-section-header">
+      <div><div class="c-section-title">🏷️ Deals & Discounts</div><div class="c-section-subtitle">Great products at discounted prices</div></div>
+      <a href="customer-catalog.html?discounted=1" class="c-view-all">View all →</a>
+    </div>
+    <div class="c-grid" id="budget-picks"></div>
+  </div>
+</div>
+
+<script src="../js/customer-app.js?v=9"></script>
+<script>
+  cInjectNav();
+
+  async function loadSection(url, id) {
+    const el = document.getElementById(id);
+    el.innerHTML = Array(6).fill('<div class="c-skeleton" style="height:360px;border-radius:16px"></div>').join('');
+    try {
+      const data = await fetch(url).then(r => r.json());
+      if (!data?.length) { el.innerHTML = '<div style="color:var(--c-text-3);font-size:13px;padding:20px 0">No products found.</div>'; return; }
+      el.innerHTML = data.map(p => cProductCard(p)).join('');
+    } catch { el.innerHTML = ''; }
+  }
+
+  Promise.all([
+    loadSection('/api/customer-products/trending?limit=8', 'trending-picks'),
+    loadSection('/api/customer-products/discounted?limit=6', 'budget-picks'),
+  ]);
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-title">Profile</div>
+        <div class="page-subtitle">Manage your personal information and account security</div>
+      </div>
+
+      <div class="settings-profile-header">
+        <div class="settings-avatar" id="settings-avatar">—</div>
+        <div>
+          <div class="settings-profile-name" id="settings-name">—</div>
+          <div class="settings-profile-email" id="settings-email-sub">—</div>
+        </div>
+        <span class="badge badge-normal" id="settings-role-badge" style="margin-left:auto;">—</span>
+      </div>
+
+      <div class="card settings-card" style="max-width:640px;">
+        <div class="settings-section-head">
+          <div class="settings-section-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="settings-section-titles">
+            <div class="card-title">Profile</div>
+            <div class="settings-section-sub">Your personal information</div>
+          </div>
+        </div>
+        <div id="profile-msg" class="alert-msg"></div>
+        <form id="profile-form">
+          <div class="form-group">
+            <label>Display name</label>
+            <input type="text" id="display-name" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" id="email" readonly>
+          </div>
+          <div class="form-group">
+            <label>Role</label>
+            <input type="text" id="role-field" readonly>
+          </div>
+          <button type="submit" class="btn btn-primary" id="profile-btn">Save profile</button>
+        </form>
+
+        <div class="settings-row" style="margin-top:20px; padding-top:20px; border-top:1px solid var(--border, #e5e7eb);">
+          <div>
+            <div class="settings-row-label">Password</div>
+            <div class="settings-row-sub">Send a password reset link to your email</div>
+          </div>
+          <button type="button" class="btn btn-secondary" id="reset-password-btn">Reset password</button>
+        </div>
+        <div id="security-msg" class="alert-msg"></div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="../app.js?v=62"></script>
+<script src="../js/settings.js"></script>
+</body>
+</html>

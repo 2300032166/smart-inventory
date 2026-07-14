@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suppliers — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+  <style>
+    /* ── Supplier Action Icon Buttons ── */
+    .sup-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .sup-action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--color-border);
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+      font-size: 14px;
+      line-height: 1;
+    }
+    .sup-action-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    }
+    .sup-action-btn.view:hover  { background: #EFF6FF; border-color: #BFDBFE; color: #2563EB; }
+    .sup-action-btn.edit:hover  { background: #FFFBEB; border-color: #FDE68A; color: #D97706; }
+    .sup-action-btn.disable:hover { background: #FEF2F2; border-color: #FECACA; color: #DC2626; }
+    .sup-action-btn svg { display: block; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="flex-between mb-16">
+        <div>
+          <div class="page-title">Suppliers</div>
+          <div class="page-subtitle">Manage supplier contacts and lead times</div>
+        </div>
+        <button class="btn btn-primary" id="add-btn">+ Add supplier</button>
+      </div>
+
+      <!-- Add generic msg handler outside tabs if needed, but it's fine staying here -->
+      <div id="msg" class="alert-msg"></div>
+
+      <!-- Tab Navigation -->
+      <div class="tab-bar" style="margin-bottom:20px; display:flex; gap:8px;">
+        <button class="tab-btn active btn btn-secondary" data-tab="tab-list" style="border-radius:20px; font-weight:600;">Suppliers List</button>
+        <button class="tab-btn btn btn-secondary" data-tab="tab-mapping" style="border-radius:20px; font-weight:600;">Product Mappings</button>
+        <button class="tab-btn btn btn-secondary" data-tab="tab-comparison" style="border-radius:20px; font-weight:600;">Supplier Comparison</button>
+      </div>
+      <style>
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+        .tab-btn.active { background: var(--color-primary) !important; color: #fff !important; border-color: var(--color-primary) !important; }
+      </style>
+
+      <!-- TAB 1: SUPPLIERS LIST -->
+      <div id="tab-list" class="tab-panel active">
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th><th>Contact</th><th>Phone</th><th>Email</th>
+                <th>Default Lead Time</th><th>Delivery Schedule</th><th>Products</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="suppliers-tbody"></tbody>
+          </table>
+        </div>
+        <div id="sup-spinner" class="spinner-wrap" style="display:none;"><div class="spinner"></div></div>
+      </div>
+      </div>
+
+      <!-- TAB 2: PRODUCT MAPPINGS -->
+      <div id="tab-mapping" class="tab-panel">
+        <div class="card mb-20">
+          <div class="card-header"><div class="card-title">Link Product to Supplier</div></div>
+          <div id="map-msg" class="alert-msg"></div>
+          <div style="display:flex; gap:16px; align-items:flex-end;">
+            <div style="flex:1;"><label style="font-size:12px;font-weight:600;display:block;margin-bottom:6px;">Select Supplier</label><select id="map-supplier-sel" class="form-control" style="width:100%;"></select></div>
+            <div style="flex:1;"><label style="font-size:12px;font-weight:600;display:block;margin-bottom:6px;">Product SKU</label><input type="text" id="map-sku-input" class="form-control" placeholder="Enter SKU (e.g. SKU-1234)" style="width:100%;"></div>
+            <button id="btn-add-mapping" class="btn btn-primary" style="margin-bottom:1px;">+ Add Link</button>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:20px; align-items:flex-start;">
+          <!-- Left: View Supplier's Products -->
+          <div class="card" style="flex:1;">
+            <div class="card-header"><div class="card-title">Supplier's Catalog</div></div>
+            <div style="margin-bottom:16px;">
+              <select id="map-view-supplier" class="form-control" style="width:100%; max-width:400px;"></select>
+            </div>
+            <div id="map-spinner" class="spinner-wrap" style="display:none;"><div class="spinner"></div></div>
+            <div id="map-table-wrap" class="table-wrap" style="display:none;">
+              <table>
+                <thead><tr><th>SKU</th><th>Product Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Action</th></tr></thead>
+                <tbody id="map-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Right: Search Product's Suppliers -->
+          <div class="card" style="flex:1;">
+            <div class="card-header"><div class="card-title">Find Suppliers for Product</div></div>
+            <div style="display:flex; gap:10px; margin-bottom:16px;">
+              <input type="text" id="prod-search-input" class="form-control" placeholder="Search by SKU or Name..." style="flex:1;">
+              <button id="btn-prod-search" class="btn btn-primary">Search</button>
+            </div>
+            <div id="prod-search-results">
+              <div style="font-size:12px;color:var(--color-text-hint);padding:8px;">Search to see available suppliers.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: SUPPLIER COMPARISON -->
+      <div id="tab-comparison" class="tab-panel">
+        <div class="card mb-20" style="background:var(--color-bg-card);border:1px solid var(--color-border);padding:24px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <div>
+              <div class="card-title" style="margin:0;">⚙ Analysis Weights</div>
+              <div style="font-size:var(--text-xs);color:var(--color-text-hint);margin-top:4px;">Drag sliders to adjust custom performance scoring</div>
+            </div>
+            <button id="cmp-btn-reset" class="btn btn-secondary btn-sm">Reset</button>
+          </div>
+          <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:12px;font-weight:600;width:90px;">Reliability</span><input type="range" id="cmp-w-reliability" min="0" max="100" step="5" value="40" style="width:120px;"><span id="cmp-lbl-reliability" style="font-size:12px;font-weight:700;color:var(--color-primary);width:32px;">40%</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:12px;font-weight:600;width:90px;">Lead Time</span><input type="range" id="cmp-w-leadtime" min="0" max="100" step="5" value="30" style="width:120px;"><span id="cmp-lbl-leadtime" style="font-size:12px;font-weight:700;color:var(--color-primary);width:32px;">30%</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:12px;font-weight:600;width:90px;">Quality</span><input type="range" id="cmp-w-quality" min="0" max="100" step="5" value="20" style="width:120px;"><span id="cmp-lbl-quality" style="font-size:12px;font-weight:700;color:var(--color-primary);width:32px;">20%</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:12px;font-weight:600;width:90px;">Fill Rate</span><input type="range" id="cmp-w-fillrate" min="0" max="100" step="5" value="10" style="width:120px;"><span id="cmp-lbl-fillrate" style="font-size:12px;font-weight:700;color:var(--color-primary);width:32px;">10%</span></div>
+          </div>
+          <div id="cmp-weight-total" style="font-size:13px;font-weight:700;margin-top:16px;color:var(--color-success);">Total: 100% ✓</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Supplier Leaderboard</div>
+            <span id="cmp-best-label" style="font-size:12px;font-weight:600;color:var(--color-success);background:var(--color-success-light);padding:4px 12px;border-radius:20px;"></span>
+          </div>
+          <div class="cmp-sort-bar" style="margin-bottom:16px; display:flex; gap:8px;">
+            <button data-cmpsort="custom" class="btn btn-secondary btn-sm active" style="font-weight:600;">Custom Multi-Score</button>
+            <button data-cmpsort="reliability" class="btn btn-secondary btn-sm">Sort by Reliability</button>
+            <button data-cmpsort="ontime" class="btn btn-secondary btn-sm">Sort by On-Time</button>
+            <button data-cmpsort="quality" class="btn btn-secondary btn-sm">Sort by Quality</button>
+            <button data-cmpsort="leadtime" class="btn btn-secondary btn-sm">Sort by Lead Time</button>
+          </div>
+          <style>
+             .cmp-sort-bar button.active { background:var(--color-primary); color:#fff; border-color:var(--color-primary); }
+             .cmp-rank-badge { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; font-size:11px; font-weight:700; }
+             .cmp-rank-1 { background:#FEF3C7; color:#92400E; border:2px solid #F59E0B; }
+             .cmp-rank-2 { background:#F1F5F9; color:#334155; border:2px solid #94A3B8; }
+             .cmp-rank-3 { background:#FEF3C7; color:#78350F; border:2px solid #D97706; }
+             .cmp-rank-n { background:#F8FAFC; color:#64748B; border:1px solid var(--color-border); }
+             .cmp-score-bar-wrap { display:flex; align-items:center; gap:8px; }
+             .cmp-score-bar-track { width:80px; height:6px; background:var(--color-border); border-radius:3px; overflow:hidden; }
+             .cmp-score-bar-fill  { height:100%; border-radius:3px; }
+          </style>
+          <div id="cmp-msg" class="alert-msg"></div>
+          <div id="cmp-spinner" class="spinner-wrap" style="display:none;"><div class="spinner"></div></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th><th>Supplier</th><th>Custom Score Analytics</th><th>On-Time</th><th>Lead Time</th>
+                  <th>Delay</th><th>Fill Rate</th><th>Quality</th><th>Level</th><th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="cmp-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal-overlay" id="supplier-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">Add Supplier</div>
+    <div id="modal-msg" class="alert-msg"></div>
+    <form id="supplier-form">
+      <div class="form-row">
+        <div class="form-group"><label>Supplier ID *</label><input type="text" id="f-id" required></div>
+        <div class="form-group"><label>Name *</label><input type="text" id="f-name" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Company Name</label><input type="text" id="f-company"></div>
+        <div class="form-group"><label>Contact Person</label><input type="text" id="f-contact"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Phone</label><input type="text" id="f-phone"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="f-email"></div>
+      </div>
+      <div class="form-group"><label>Address</label><input type="text" id="f-address"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Default Lead Time (days)</label><input type="number" id="f-lead" min="1" value="7"></div>
+        <div class="form-group"><label>Delivery Schedule</label><input type="text" id="f-schedule" placeholder="e.g. Mon and Thu"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Status</label><select id="f-status"><option value="Active">Active</option><option value="Inactive">Inactive</option></select></div>
+        <div class="form-group"><label>Notes</label><textarea id="f-notes" rows="2" style="height:40px;"></textarea></div>
+      </div>
+    </form>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('supplier-modal')">Cancel</button>
+      <button class="btn btn-primary" id="save-btn">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal-box">
+    <div class="modal-title">Delete Supplier</div>
+    <p style="font-size:13px;color:var(--color-text-secondary);">Are you sure you want to delete <strong id="delete-name"></strong>?</p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('delete-modal')">Cancel</button>
+      <button class="btn btn-danger" id="confirm-delete-btn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="../app.js?v=64"></script>
+<script src="../js/suppliers.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Orders — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="flex-between mb-24">
+        <div class="page-header" style="margin-bottom:0;">
+          <div class="page-title">Review Orders</div>
+          <div class="page-subtitle" id="review-date"></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <input type="date" id="date-picker" style="width:auto;height:36px;">
+          <button class="btn btn-secondary" id="refresh-btn">↻ Refresh</button>
+        </div>
+      </div>
+
+      <!-- Summary chips row -->
+      <div id="summary-bar" class="mb-16"></div>
+
+      <div id="msg" class="alert-msg"></div>
+      <div id="review-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+      <div id="review-list" class="mb-24"></div>
+      
+      <div id="skipped-section" style="display:none;">
+        <div class="card-title mb-12">Skipped Recommendations</div>
+        <div id="skipped-list"></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Edit Reason Modal -->
+<div id="modal-edit-reason" class="modal-wrap">
+  <div class="modal card" style="max-width:500px;">
+    <div class="modal-header">
+      <div class="card-title" style="margin-bottom:0;">Edit Decision Reason</div>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Reason Category</label>
+        <select id="edit-reason-cat">
+          <option>Seasonal adjustment</option>
+          <option>Supplier issue</option>
+          <option>Budget constraint</option>
+          <option>Overstock risk</option>
+          <option>Inventory suffice</option>
+          <option>Market trend change</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Explanation</label>
+        <textarea id="edit-reason-text" rows="3" placeholder="Provide more details..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal('modal-edit-reason')">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="btn-save-reason">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- Generic SIRA Confirmation Modal -->
+<div id="modal-confirm" class="modal-wrap">
+  <div class="modal card" style="max-width:400px;">
+    <div class="modal-header" style="display:flex;align-items:center;gap:10px;">
+      <span style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#2563EB,#7C3AED);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+      </span>
+      <div class="card-title" style="margin-bottom:0;">Confirm Action</div>
+    </div>
+    <div class="modal-body" style="padding:20px 24px 8px;">
+      <div id="confirm-message" style="font-size:14px;color:var(--color-text-secondary);line-height:1.65;"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" id="confirm-cancel">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="confirm-ok">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- Batch Details Modal -->
+<div id="modal-batch-details" class="modal-wrap">
+  <div class="modal card" style="max-width:450px;">
+    <div class="modal-header">
+      <div class="card-title" style="margin-bottom:0;">Batch Details</div>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:13px; color:var(--color-text-hint); margin-bottom:16px;">Capture manufacturing and expiry dates for the received batch.</p>
+      <div id="batch-product-info" style="margin-bottom:20px; font-weight:600; color:var(--color-primary);"></div>
+      
+      <div class="form-group">
+        <label>Manufacturing Date</label>
+        <input type="date" id="batch-mfg-date">
+      </div>
+      <div class="form-group">
+        <label>Expiry Date</label>
+        <input type="date" id="batch-expiry-date">
+        <span id="expiry-date-error" style="display:none;font-size:12px;color:var(--color-danger);margin-top:4px;">⚠ Expiry date must be after the manufacturing date.</span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal('modal-batch-details')">Cancel</button>
+      <button class="btn btn-success btn-sm" id="btn-submit-batch">Confirm Receipt</button>
+    </div>
+  </div>
+</div>
+
+<!-- Change Supplier Modal -->
+<div id="modal-change-supplier" class="modal-wrap">
+  <div class="modal card" style="max-width:420px;">
+    <div class="modal-header">
+      <div class="card-title" style="margin-bottom:0;">Change Supplier</div>
+    </div>
+    <div class="modal-body">
+      <div id="change-supplier-msg" class="alert-msg"></div>
+      <p id="change-supplier-info" style="font-size:13px;color:var(--color-text-secondary);margin-bottom:14px;"></p>
+      <div class="form-group">
+        <label>Supplier <span style="color:var(--color-danger)">*</span></label>
+        <select id="f-chg-supplier" class="supplier-select" required></select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal('modal-change-supplier')">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="btn-confirm-change-supplier">Update Supplier</button>
+    </div>
+  </div>
+</div>
+
+<script src="../app.js?v=62"></script>
+<script src="../js/review.js?v=29"></script>
+</body>
+</html>

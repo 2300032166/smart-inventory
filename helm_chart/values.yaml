@@ -1,0 +1,192 @@
+replicaCount: 1
+
+image:
+  repository: REGISTRY_URL
+  tag: BUILD_ID
+  pullPolicy: Always
+  registrySecret: REGISTRY_SECRET_ID
+
+nameOverride: #SERVICE_NAME#
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+  scheme: internet-facing
+  internalport: CONTAINER_PORT
+  #annotations:
+  #extraAnnotations:
+
+updateStrategy:
+  rollingUpdate:
+    maxUnavailable: 0
+  type: RollingUpdate
+
+ingress:
+  enabled: false
+  ingressClass: nginx
+  #annotations:
+  paths:
+    path: /RELEASE_NAME
+  albAnnotations:
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
+    alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=600
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+  #albExtraAnnotations:
+  #agicAnnotations:
+  #agicExtraAnnotations:
+  controllerType: nginx
+  nginxAnnotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  #nginxExtraAnnotations:
+
+
+context: CONTEXT_PATH
+serviceAccountName: default
+mountServiceAccountToken: false
+
+securityContext:
+  runAsUser: 1000
+  runAsNonRoot: false
+  readOnlyRootFilesystem: false
+  allowPrivilegeEscalation: false
+  privileged: false
+  capabilities:
+    drop:
+      - NET_RAW
+      - ALL
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+oc:
+  route:
+    enabled: false
+    host: 'test.com'
+
+autoscaling:
+  enabled: false
+#  minReplicas: 1
+#  maxReplicas: 5
+#  metrics:
+#    - type: Resource
+#      resource:
+#        name: cpu
+#        target:
+#          type: Utilization
+#          averageUtilization: 80
+#    - type: Resource
+#      resource:
+#        name: memory
+#        target:
+#          type: Utilization
+#          averageUtilization: 80
+##    - type: ContainerResource # This works only with k8s version 1.20 and above
+##      containerResource:
+##        name: cpu
+##        container: application
+##        target:
+##          type: Utilization
+##          averageUtilization: 80
+#  behavior:
+#    scaleDown:
+#      stabilizationWindowSeconds: 300
+#      policies:
+#        - type: Pods
+#          value: 1
+#          periodSeconds: 300
+
+extraEnv:
+  - name: GROQ_API_KEY
+    value: "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"
+  - name: GROQ_API_KEY_2
+    value: "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"
+  - name: CHATBOT_GROQ_API_KEY
+    value: "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"
+  - name: CHATBOT_GROQ_MODEL
+    value: "llama-3.1-8b-instant"
+  - name: JWT_SECRET_KEY
+    value: "eb589d8d6411516e812f8e1217e5bd9482b6ccf15df95a5fcc11f7c7f3e827cf"
+  - name: AI_PROVIDER
+    value: "groq"
+  - name: BRIEF_CACHE_HOURS
+    value: "6"
+  - name: CONFIDENCE_THRESHOLD
+    value: "60"
+  - name: MAX_BRIEF_ITEMS
+    value: "100"
+  - name: PAYDAY_DATES
+    value: "25,26,27"
+
+
+#extraEnvFrom:
+#  - configMapRef:
+#      name: special-config
+
+extraPorts: ''
+#  - name: http-2
+#    containerPort: 8089
+#    protocol: TCP
+#  - name: http-1
+#    containerPort: 8080
+#    protocol: UDP
+
+probes:
+  livenessProbe: ''
+#    failureThreshold: 10
+#    httpGet:
+#      path: /iui
+#      port: 8021
+#      scheme: HTTP
+#    initialDelaySeconds: 40
+#    periodSeconds: 5
+#    successThreshold: 1
+#    timeoutSeconds: 10
+#
+  readinessProbe: ''
+#    failureThreshold: 10
+#    httpGet:
+#      path: /iui
+#      port: 8021
+#      scheme: HTTP
+#    initialDelaySeconds: 40
+#    periodSeconds: 5
+#    successThreshold: 1
+#    timeoutSeconds: 10
+#
+  startupProbe: ''
+#    httpGet:
+#      path: /iui/
+#      port: 8021
+#    initialDelaySeconds: 30
+#    timeoutSeconds: 1
+#    failureThreshold: 60
+#    periodSeconds: 5
+
+volumes:
+ enabled: true
+ data:
+ - name: sira-data-pvc
+   persistentVolumeClaim:
+    claimName: sira-data-pvc
+ mounts:
+   enabled: true
+   data:
+     - mountPath: "/code/backend/data"
+       name: sira-data-pvc

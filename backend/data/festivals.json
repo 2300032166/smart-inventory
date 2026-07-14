@@ -1,0 +1,233 @@
+[
+  {
+    "name": "New Year's Day",
+    "date_2025": "2025-01-01",
+    "date_2026": "2026-01-01",
+    "description": "Start of the calendar year. High demand for party snacks, beverages, and celebration supplies.",
+    "historical_window_days": 5,
+    "catalog_products": [
+      "Cola 500ml", "Lemon Drink 500ml", "Mineral Water 1L", "Fruit Juice 1L",
+      "Potato Chips", "Generic Biscuits", "Milk Chocolate Bar",
+      "Chocolate Cake 500g", "Premium Cookies",
+      "Party Supplies Kit", "Disposable Cups 50s", "Disposable Plates 50s"
+    ]
+  },
+  {
+    "name": "Republic Day (India)",
+    "date_2025": "2025-01-26",
+    "date_2026": "2026-01-26",
+    "description": "National holiday in India. Demand spikes for patriotic items and celebration snacks.",
+    "historical_window_days": 3,
+    "catalog_products": [
+      "Indian Flag", "Flag Stickers Pack", "Tricolor Badge",
+      "Mineral Water 1L", "Cola 500ml", "Lemon Drink 500ml",
+      "Generic Biscuits", "Potato Chips", "Milk Chocolate Bar"
+    ]
+  },
+  {
+    "name": "Makar Sankranti",
+    "date_2025": "2025-01-14",
+    "date_2026": "2026-01-14",
+    "description": "Harvest festival. High demand for kites, jaggery, sesame, and traditional sweets.",
+    "historical_window_days": 5,
+    "catalog_products": [
+      "Jaggery 1kg", "Sesame Seeds 250g", "Groundnuts 500g",
+      "Kite with String Set", "Rice (Basmati Rice 5kg)", "Ghee 500ml",
+      "Sugar 1kg", "Milk 1L", "Coconut", "Sunflower Oil 1L"
+    ]
+  },
+  {
+    "name": "Holi",
+    "date_2025": "2025-03-14",
+    "date_2026": "2026-03-03",
+    "description": "Festival of colors. Surge in Holi colors, water balloons, sweets, milk-based drinks.",
+    "historical_window_days": 7,
+    "catalog_products": [
+      "Holi Colors Gulal 200g", "Water Balloons 100s", "Pichkari Water Gun",
+      "Sweets Box 500g", "Milk 1L", "Curd 500g", "Fruit Juice 1L",
+      "Potato Chips", "Generic Biscuits", "Sugar 1kg"
+    ]
+  },
+  {
+    "name": "Ugadi",
+    "date_2025": "2025-03-30",
+    "date_2026": "2026-03-19",
+    "description": "Telugu and Kannada New Year. Demand for raw mangoes, jaggery, coconut, and puja items.",
+    "historical_window_days": 5,
+    "catalog_products": [
+      "Mango 1kg", "Jaggery 1kg", "Coconut", "Bananas 1 dozen",
+      "Puja Kit", "Agarbatti Incense Pack", "Rice (Basmati Rice 5kg)",
+      "Sugar 1kg", "Fresh Flowers Bunch"
+    ]
+  },
+  {
+    "name": "Eid al-Fitr",
+    "date_2025": "2025-03-30",
+    "date_2026": "2026-03-20",
+    "description": "Celebration ending Ramadan. Heavy demand for Basmati rice, ghee, vermicelli, dates, dry fruits.",
+    "historical_window_days": 7,
+    "catalog_products": [
+      "Basmati Rice 5kg", "Dry Fruits Mix 500g", "Milk 1L", "Ghee 500ml",
+      "Sugar 1kg", "Vermicelli 500g", "Dates 500g",
+      "Sunflower Oil 1L", "Cola 500ml", "Lemon Drink 500ml"
+    ]
+  },
+  {
+    "name": "Easter",
+    "date_2025": "2025-04-20",
+    "date_2026": "2026-04-05",
+    "description": "Spring holiday. High demand for bakery items, eggs, dairy, and beverages.",
+    "historical_window_days": 5,
+    "catalog_products": [
+      "Chocolate Cake 500g", "Premium Cookies", "Generic Biscuits",
+      "Milk Chocolate Bar", "Milk 1L", "Butter 100g",
+      "Cola 500ml", "Fruit Juice 1L", "Sweets Box 500g"
+    ]
+  },
+  {
+    "name": "May Day",
+    "date_2025": "2025-05-01",
+    "date_2026": "2026-05-01",
+    "description": "International Workers Day. Steady consumption of grocery basics and beverages.",
+    "historical_window_days": 3,
+    "catalog_products": [
+      "Mineral Water 1L", "Cola 500ml", "Lemon Drink 500ml",
+      "Potato Chips", "Generic Biscuits", "Basmati Rice 5kg", "Toor Dal 1kg"
+    ]
+  },
+  {
+    "name": "Eid al-Adha",
+    "date_2025": "2025-06-06",
+    "date_2026": "2026-05-27",
+    "description": "Festival of sacrifice. Spike in cooking oil, rice, spices, and disposable serving items.",
+    "historical_window_days": 7,
+    "catalog_products": [
+      "Sunflower Oil 1L", "Basmati Rice 5kg", "Onion 1kg", "Tomato 1kg",
+      "Cola 500ml", "Lemon Drink 500ml",
+      "Disposable Plates 50s", "Disposable Cups 50s", "Face Tissues"
+    ]
+  },
+  {
+    "name": "Independence Day (India)",
+    "date_2025": "2025-08-15",
+    "date_2026": "2026-08-15",
+    "description": "National holiday. Demand for patriotic items, beverages, and celebration snacks.",
+    "historical_window_days": 4,
+    "catalog_products": [
+      "Indian Flag", "Flag Stickers Pack", "Tricolor Badge",
+      "Mineral Water 1L", "Cola 500ml", "Lemon Drink 500ml",
+      "Generic Biscuits", "Potato Chips", "Milk Chocolate Bar", "Sweets Box 500g"
+    ]
+  },
+  {
+    "name": "Raksha Bandhan",
+    "date_2025": "2025-08-09",
+    "date_2026": "2026-08-28",
+    "description": "Celebration of sibling bond. High demand for rakhis, sweets, chocolates, dry fruits, gift packs.",
+    "historical_window_days": 5,
+    "catalog_products": [
+      "Rakhi Set", "Sweets Box 500g", "Milk Chocolate Bar", "Mixed Candy Bag",
+      "Gift Hamper Box", "Dry Fruits Mix 500g", "Greeting Cards Pack",
+      "Generic Biscuits", "Premium Cookies"
+    ]
+  },
+  {
+    "name": "Ganesh Chaturthi",
+    "date_2025": "2025-08-27",
+    "date_2026": "2026-09-14",
+    "description": "10-day festival of Lord Ganesha. Demand for idols, puja items, modak, coconut, milk, flowers.",
+    "historical_window_days": 10,
+    "catalog_products": [
+      "Clay Ganesh Idol", "Puja Kit", "Coconut", "Fresh Flowers Bunch",
+      "Agarbatti Incense Pack", "Camphor Tablets Pack",
+      "Milk 1L", "Ghee 500ml", "Modak Mix 500g", "Jaggery 1kg", "Sugar 1kg"
+    ]
+  },
+  {
+    "name": "Onam",
+    "date_2025": "2025-09-05",
+    "date_2026": "2026-08-27",
+    "description": "Kerala harvest festival. Major sadhya feast. High demand for rice, banana chips, coconut oil, vegetables, fruits.",
+    "historical_window_days": 10,
+    "catalog_products": [
+      "Basmati Rice 5kg", "Banana Chips 200g", "Sunflower Oil 1L",
+      "Tomato 1kg", "Onion 1kg", "Carrot 500g", "Cucumber 1kg",
+      "Bananas 1 dozen", "Mango 1kg", "Jaggery 1kg",
+      "Fresh Flowers Bunch", "Milk 1L", "Curd 500g", "Coconut"
+    ]
+  },
+  {
+    "name": "Gandhi Jayanti",
+    "date_2025": "2025-10-02",
+    "date_2026": "2026-10-02",
+    "description": "National holiday. Steady demand for essential grocery items.",
+    "historical_window_days": 2,
+    "catalog_products": [
+      "Basmati Rice 5kg", "Toor Dal 1kg", "Mineral Water 1L",
+      "Generic Biscuits", "Sweets Box 500g"
+    ]
+  },
+  {
+    "name": "Dussehra",
+    "date_2025": "2025-10-02",
+    "date_2026": "2026-10-20",
+    "description": "Festival celebrating victory of good over evil. Demand for sweets, flowers, puja items, agarbatti.",
+    "historical_window_days": 5,
+    "catalog_products": [
+      "Sweets Box 500g", "Fresh Flowers Bunch", "Coconut",
+      "Puja Kit", "Agarbatti Incense Pack", "Camphor Tablets Pack",
+      "Potato Chips", "Cola 500ml", "Lemon Drink 500ml"
+    ]
+  },
+  {
+    "name": "Halloween",
+    "date_2025": "2025-10-31",
+    "date_2026": "2026-10-31",
+    "description": "Autumn festival. Demand for candies, chocolates, bakery items, and party supplies.",
+    "historical_window_days": 4,
+    "catalog_products": [
+      "Milk Chocolate Bar", "Mixed Candy Bag", "Generic Biscuits",
+      "Premium Cookies", "Cola 500ml", "Lemon Drink 500ml",
+      "Party Supplies Kit", "Disposable Cups 50s"
+    ]
+  },
+  {
+    "name": "Diwali",
+    "date_2025": "2025-11-05",
+    "date_2026": "2026-10-31",
+    "description": "Festival of lights — biggest shopping season. Demand for diyas, lights, puja kits, sweets, ghee, dry fruits, gift hampers.",
+    "historical_window_days": 10,
+    "catalog_products": [
+      "Diya Clay Pack 12s", "Decorative LED Lights", "Puja Kit",
+      "Agarbatti Incense Pack", "Camphor Tablets Pack",
+      "Ghee 500ml", "Sugar 1kg", "Dry Fruits Mix 500g", "Sweets Box 500g",
+      "Sunflower Oil 1L", "Milk Chocolate Bar", "Gift Hamper Box",
+      "Fresh Flowers Bunch", "Coconut", "Milk 1L"
+    ]
+  },
+  {
+    "name": "Thanksgiving",
+    "date_2025": "2025-11-27",
+    "date_2026": "2026-11-26",
+    "description": "Family feast holiday. Demand for bakery, grocery staples, beverages.",
+    "historical_window_days": 5,
+    "catalog_products": [
+      "Chocolate Cake 500g", "White Bread", "Brown Bread",
+      "Cola 500ml", "Fruit Juice 1L", "Basmati Rice 5kg",
+      "Butter 100g", "Bananas 1 dozen", "Apple 1kg"
+    ]
+  },
+  {
+    "name": "Christmas",
+    "date_2025": "2025-12-25",
+    "date_2026": "2026-12-25",
+    "description": "Winter holiday. Heavy demand for cakes, chocolates, beverages, candles, and decorations.",
+    "historical_window_days": 7,
+    "catalog_products": [
+      "Christmas Cake 1kg", "Chocolate Cake 500g", "White Bread", "Brown Bread",
+      "Milk Chocolate Bar", "Mixed Candy Bag", "Premium Cookies",
+      "Cola 500ml", "Fruit Juice 1L",
+      "Camphor Tablets Pack", "Decorative LED Lights", "Gift Hamper Box"
+    ]
+  }
+]

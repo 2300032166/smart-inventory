@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Override Analytics — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-title">Override Analytics</div>
+        <div class="page-subtitle">AI approval and override patterns over time</div>
+      </div>
+
+      <div class="filter-bar card mb-24" style="padding:14px 20px;">
+        <input type="date" id="date-from">
+        <span style="font-size:13px;color:var(--color-text-hint);">to</span>
+        <input type="date" id="date-to">
+        <button class="btn btn-primary btn-sm" id="filter-btn">Filter</button>
+      </div>
+
+      <div class="stat-cards mb-24">
+        <div class="stat-card"><div class="stat-label">Total Suggestions</div><div class="stat-value" id="s-total">—</div></div>
+        <div class="stat-card"><div class="stat-label">Approved</div><div class="stat-value text-success" id="s-approved">—</div></div>
+        <div class="stat-card"><div class="stat-label">Overridden</div><div class="stat-value" style="color:var(--color-warning);" id="s-overridden">—</div></div>
+        <div class="stat-card"><div class="stat-label">Skipped</div><div class="stat-value text-danger" id="s-skipped">—</div></div>
+      </div>
+
+      <div class="grid-2 mb-24">
+        <div class="card"><div class="card-title mb-16">AI Approval Rate (30-day rolling)</div><div class="chart-container"><canvas id="line-chart"></canvas></div></div>
+        <div class="card"><div class="card-title mb-16">Override Reasons</div><div class="chart-container"><canvas id="doughnut-chart"></canvas></div></div>
+      </div>
+
+      <div class="card mb-24">
+        <div class="card-title mb-16">Top Overridden Products</div>
+        <div class="chart-container" style="height:240px;"><canvas id="bar-chart"></canvas></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title mb-16">Biggest Average Quantity Delta</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Product</th><th>SKU</th><th>Override Count</th><th>Avg Qty Delta</th></tr></thead>
+            <tbody id="delta-tbody"></tbody>
+          </table>
+        </div>
+        <div id="ana-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="../app.js?v=62"></script>
+<script src="../js/override-analytics.js"></script>
+</body>
+</html>

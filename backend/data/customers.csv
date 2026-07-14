@@ -1,0 +1,4 @@
+id,name,email,mobile,password_hash,address,is_active,created_at,last_login,customer_number
+3281f288-9f9e-4bdf-b85e-7c5f8feec533,Smoke Test,test_customer_smoke@example.com,9876543210,$2b$12$bBj96p8p085sqloHs36S/OMQTSaYHWDR6ybnbtyUCYvDtiPbbcvae,123 Test Lane,True,2026-07-04T16:27:22.253822+00:00,2026-07-14T07:32:46.054752+00:00,20001
+a2d863a0-e367-4b94-8ba2-80b5bd1eb232,kala,saikalamodepalli@gmail.com,7093119102,$2b$12$7V6i2iLsNzqsJOPwmS2EX.KRmkv9rUTefaQAmD0cmTE8SFsfqDj9i,vijayawada,True,2026-07-04T16:28:51.173456+00:00,2026-07-14T12:44:48.652655+00:00,20002
+a87a07af-51dd-49d0-8ca8-5b53777a9c3b,Nikhitha,2300032166cse1@gmail.com,9121265653,$2b$12$wkp8bVcKR8rFcrr4.SF9peMB9iS9d6rHxV31KKUkPzZqBlUd9Hzh2,"One centre, Gollapudi",True,2026-07-14T11:41:37.030056+00:00,2026-07-14T11:41:37.030056+00:00,20003

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-title">Dashboard</div>
+        <div class="page-subtitle" id="today-date"></div>
+      </div>
+
+      <!-- Weather Insights Section -->
+      <div id="weather-section" class="weather-section mb-16">
+        <div class="weather-section-header">
+          <div class="weather-section-title">
+            <span class="icon">🌤️</span>
+            Weather Insights
+          </div>
+          <div class="weather-location-pill">
+            📍 Vijayawada
+          </div>
+        </div>
+        <div id="weather-container" class="weather-scroll">
+          <div class="weather-loading">☁️ Loading weather insights…</div>
+        </div>
+      </div>
+
+      <div class="stat-cards" id="stat-cards">
+        <div class="stat-card"><div class="stat-label">Pending Review</div><div class="stat-value" id="stat-pending">—</div><div class="stat-sub">items today</div></div>
+        <div class="stat-card"><div class="stat-label">Stockout Risk</div><div class="stat-value text-danger" id="stat-risk">—</div><div class="stat-sub">critical stockout items</div></div>
+        <div class="stat-card"><div class="stat-label">Orders This Week</div><div class="stat-value" id="stat-orders">—</div><div class="stat-sub">decisions recorded</div></div>
+        <div class="stat-card"><div class="stat-label">AI Accuracy</div><div class="stat-value text-success" id="stat-accuracy">—</div><div class="stat-sub">approval rate</div></div>
+      </div>
+
+      <div class="card mb-24" id="dead-stock-card" style="display:none;">
+        <div class="card-header">
+          <div class="card-title">📦 Dead Stock Analysis</div>
+          <a href="trends.html?tab=dead-stock" class="btn btn-secondary btn-sm">Full Report</a>
+        </div>
+        <div class="stat-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 8px;">
+          <div class="stat-card">
+            <div class="stat-label">Dead Items</div>
+            <div class="stat-value text-danger" id="ds-items">0</div>
+            <div class="stat-sub">no sales >30 days</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Slow Moving</div>
+            <div class="stat-value" style="color: #f59e0b;" id="ds-slow">0</div>
+            <div class="stat-sub">no sales 16-30 days</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Value Locked</div>
+            <div class="stat-value" id="ds-value">₹0</div>
+            <div class="stat-sub">capital in dead stock</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Oldest Stock</div>
+            <div class="stat-value" id="ds-oldest">0 Days</div>
+            <div class="stat-sub">since last movement</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-between mb-16">
+        <div class="card-title" style="font-size:16px;">Pending Recommendations</div>
+        <a href="brief.html" class="btn btn-secondary btn-sm">View all</a>
+      </div>
+
+      <div id="msg" class="alert-msg"></div>
+      <div id="rec-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+      <div id="rec-list"></div>
+
+      <div class="card mt-16">
+        <div class="card-header">
+          <span class="card-title">Recent Alerts</span>
+          <a href="alerts.html" style="font-size:13px;color:var(--color-primary);text-decoration:none;">View all</a>
+        </div>
+        <div id="alerts-list"><div class="text-muted" style="font-size:13px;">Loading alerts…</div></div>
+      </div>
+    </main>
+  </div>
+
+<!-- Extra scripts or footers can go here -->
+</div>
+<script src="../app.js?v=62"></script>
+<script src="../js/dashboard.js?v=57"></script>
+
+</body>
+</html>

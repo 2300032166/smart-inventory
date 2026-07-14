@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase Orders — SIRA</title>
+  <link rel="stylesheet" href="../style.css?v=999">
+  <style>
+    /* ── Tab Bar ── */
+    .tab-bar { display:flex; gap:4px; margin-bottom:18px; border-bottom:2px solid var(--color-border); padding-bottom:0; }
+    .tab-btn {
+      padding:8px 18px; border:none; border-radius:var(--radius-md) var(--radius-md) 0 0;
+      background:transparent; font-size:var(--text-sm); font-weight:600;
+      color:var(--color-text-secondary); cursor:pointer; position:relative; bottom:-2px;
+      border-bottom:2px solid transparent; transition:all .15s;
+    }
+    .tab-btn.active { color:var(--color-primary); border-bottom:2px solid var(--color-primary); background:var(--color-bg-card); }
+    .tab-btn .tab-count { display:inline-flex; align-items:center; justify-content:center;
+      min-width:18px; height:18px; padding:0 5px; border-radius:9px; font-size:10px;
+      font-weight:700; background:var(--color-border); color:var(--color-text-secondary); margin-left:5px; }
+    .tab-btn.active .tab-count { background:var(--color-primary); color:#fff; }
+
+    /* ── Filter bar ── */
+    .filter-bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+    .filter-bar select, .filter-bar input[type=date], .filter-bar input[type=text] {
+      padding:7px 10px; border:1px solid var(--color-border); border-radius:var(--radius-md);
+      font-size:var(--text-sm); background:var(--color-bg-card);
+    }
+    .filter-bar input[type=date] { height:34px; }
+
+    /* ── Status pills ── */
+    .status-pill { display:inline-block; padding:2px 10px; border-radius:var(--radius-full); font-size:var(--text-xs); font-weight:600; }
+    .s-approved   { background:#EFF6FF; color:#2563EB; }
+    .s-ordered    { background:#FFFBEB; color:#D97706; }
+    .s-received   { background:var(--color-success-light); color:var(--color-success); }
+    .s-cancelled  { background:#FEF2F2; color:var(--color-danger); }
+    .s-skipped    { background:#FDF4FF; color:#7C3AED; }
+    .s-overridden { background:#FFF7ED; color:#C2410C; }
+
+    /* ── Source badge ── */
+    .source-badge { display:inline-block; padding:1px 8px; border-radius:var(--radius-full); font-size:10px; font-weight:700; letter-spacing:.3px; }
+    .source-ai     { background:#EEF2FF; color:#4338CA; }
+    .source-manual { background:#F0FDF4; color:#166534; }
+
+    /* ── Summary chips ── */
+    .summary-chips { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+    .s-chip { padding:4px 12px; border-radius:var(--radius-full); font-size:12px; font-weight:600; }
+    .s-chip.total    { background:var(--color-bg-card); border:1px solid var(--color-border); color:var(--color-text-primary); }
+    .s-chip.approved { background:#D1FAE5; color:#065F46; }
+    .s-chip.ordered  { background:#FEF3C7; color:#92400E; }
+    .s-chip.received { background:#DCFCE7; color:#166534; }
+    .s-chip.skipped  { background:#FDE8FF; color:#6B21A8; }
+    .s-chip.changed  { background:#FFF7ED; color:#C2410C; }
+
+    /* ── Star rating ── */
+    .star-filled { color:#F59E0B; }
+    .star-empty  { color:#CBD5E1; }
+
+    /* ── Pagination ── */
+    .pagination { display:flex; align-items:center; gap:8px; justify-content:flex-end; margin-top:12px; }
+    .pagination button { padding:4px 10px; border:1px solid var(--color-border); border-radius:var(--radius-sm); background:var(--color-bg-card); cursor:pointer; font-size:var(--text-sm); }
+    .pagination button:disabled { opacity:.4; cursor:default; }
+    .pagination span { font-size:var(--text-sm); color:var(--color-text-secondary); }
+
+    /* ── Product searchable dropdown ── */
+    .product-search-wrap { position:relative; }
+    .product-search-wrap input { width:100%; box-sizing:border-box; padding:9px 12px; border:1px solid var(--color-border); border-radius:var(--radius-md); font-size:var(--text-sm); background:var(--color-bg-card); }
+    .product-dropdown { position:absolute; top:calc(100% + 4px); left:0; right:0; max-height:240px; overflow-y:auto; background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-md); box-shadow:0 10px 25px rgba(0,0,0,.12); z-index:50; display:none; }
+    .product-dropdown.show { display:block; }
+    .product-dropdown-item { padding:8px 12px; cursor:pointer; font-size:13px; border-bottom:1px solid #f1f5f9; display:flex; justify-content:space-between; align-items:center; gap:8px; }
+    .product-dropdown-item:hover { background:#F0F7FF; }
+    .product-dropdown-item .p-name { color:#1e293b; font-weight:500; }
+    .product-dropdown-item .p-sku  { color:#94a3b8; font-size:11px; font-family:monospace; flex-shrink:0; }
+    .product-dropdown-empty { padding:12px; color:#94a3b8; font-size:13px; text-align:center; }
+    .product-selected { display:flex; align-items:center; gap:8px; margin-top:6px; font-size:12px; color:#047857; background:#ecfdf5; border:1px solid #bbf7d0; border-radius:8px; padding:6px 10px; }
+    .product-selected button { background:transparent; border:none; color:#dc2626; cursor:pointer; font-size:16px; line-height:1; }
+
+    /* ── Supplier recommendation ── */
+    .supplier-recommendation { font-size:12px; color:#047857; background:#ecfdf5; border:1px solid #bbf7d0; border-radius:8px; padding:8px 10px; margin-top:8px; display:none; }
+    .supplier-recommendation.show { display:block; }
+    .supplier-recommendation .rec-title { font-weight:700; margin-bottom:2px; }
+
+    /* ── Skipped section ── */
+    .skipped-section { margin-top:24px; }
+    .skipped-section .section-header { display:flex; align-items:center; gap:8px; margin-bottom:10px; font-weight:700; color:var(--color-danger); font-size:14px; cursor:pointer; }
+    .skipped-section .section-header svg { flex-shrink:0; }
+    .inline-edit-row { background:#fff5f5; }
+    .inline-edit-row > td { padding:10px 12px; border-left:3px solid var(--color-danger); }
+
+    /* ── Action buttons layout ── */
+    .action-cell { display:flex; gap:4px; flex-wrap:wrap; }
+    .btn-change-supplier { background:#F0F7FF; color:#2563EB; border:1px solid #BFDBFE; }
+    .btn-change-supplier:hover { background:#DBEAFE; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div id="topbar" class="topbar"></div>
+  <div class="body-container">
+    <nav id="sidebar" class="sidebar"></nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+    <main class="main-content">
+
+      <!-- Page header -->
+      <div class="flex-between mb-16">
+        <div>
+          <div class="page-title">Purchase Orders</div>
+          <div class="page-subtitle">All replenishment orders — AI-driven decisions and manual purchase orders</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input type="date" id="date-picker" style="height:36px;" title="Filter AI orders by date">
+          <button class="btn btn-secondary" id="refresh-btn">↻ Refresh</button>
+          <button class="btn btn-primary" id="btn-add-po">+ New PO</button>
+        </div>
+      </div>
+
+      <!-- Summary chips -->
+      <div class="summary-chips" id="summary-bar"></div>
+
+      <!-- Stat cards row -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:18px;">
+        <div class="stat-card"><div class="stat-label">Total</div><div class="stat-value" id="stat-total">—</div></div>
+        <div class="stat-card"><div class="stat-label">Ordered</div><div class="stat-value" id="stat-ordered">—</div></div>
+        <div class="stat-card"><div class="stat-label">Received</div><div class="stat-value text-success" id="stat-received">—</div></div>
+        <div class="stat-card"><div class="stat-label">Cancelled</div><div class="stat-value text-danger" id="stat-cancelled">—</div></div>
+        <div class="stat-card"><div class="stat-label">Avg Fill Rate</div><div class="stat-value" id="stat-fill">—</div></div>
+      </div>
+
+      <!-- Tab bar -->
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="all">All Orders <span class="tab-count" id="tc-all">0</span></button>
+        <button class="tab-btn" data-tab="skipped">Skipped <span class="tab-count" id="tc-skipped">0</span></button>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <select id="fil-supplier"><option value="">All Suppliers</option></select>
+        <select id="fil-status">
+          <option value="">All Statuses</option>
+          <option value="approved">Approved</option>
+          <option value="ordered">Ordered</option>
+          <option value="received">Received</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+        <input type="date" id="fil-from" title="Order from">
+        <input type="date" id="fil-to"   title="Order to">
+        <button class="btn btn-secondary btn-sm" id="btn-filter">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle;margin-right:3px;"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>Filter
+        </button>
+        <button class="btn btn-ghost btn-sm" id="btn-reset">Reset</button>
+      </div>
+
+      <div id="msg" class="alert-msg"></div>
+      <div id="po-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+
+      <!-- Main table -->
+      <div class="card" id="main-table-card">
+        <div class="table-wrap">
+          <table id="main-table">
+            <thead>
+              <tr>
+                <th>ID / PO #</th>
+                <th>Product</th>
+                <th>Supplier</th>
+                <th>Source</th>
+                <th>Order Date</th>
+                <th>Expected</th>
+                <th>Qty</th>
+                <th>Rcvd / Fill%</th>
+                <th>Status</th>
+                <th>Rec. Date</th>
+                <th>Quality</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="main-tbody"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+
+      <!-- Skipped section (only visible on Skipped tab) -->
+      <div class="skipped-section" id="skipped-section" style="display:none;">
+        <div class="section-header" id="skipped-toggle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          Skipped AI Recommendations <span class="tab-count" style="background:#FDE8FF;color:#6B21A8;" id="skipped-count-label">0</span>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden;border-top:2px solid var(--color-danger);">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>AI Suggested Qty</th>
+                  <th>Skip Reason</th>
+                  <th>Time</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="skipped-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ══ NEW / EDIT PO MODAL ══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="po-modal">
+  <div class="modal-box" style="max-width:520px;">
+    <div class="modal-title" id="po-modal-title">New Purchase Order</div>
+    <div id="po-modal-msg" class="alert-msg"></div>
+    <form id="po-form">
+      <div class="form-group">
+        <label>Product *</label>
+        <div class="product-search-wrap">
+          <input type="text" id="f-po-product-search" placeholder="Search by product name or SKU…" autocomplete="off">
+          <div class="product-dropdown" id="f-po-product-dropdown"></div>
+        </div>
+        <input type="hidden" id="f-po-sku" required>
+        <div id="product-selected" class="product-selected" style="display:none;">
+          <span id="product-selected-text"></span>
+          <button type="button" onclick="clearProductSelection()" title="Clear">×</button>
+        </div>
+        <div id="product-hint" style="font-size:11px;color:var(--color-text-hint);margin-top:3px;">Select a product to see its mapped suppliers.</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="flex:2;">
+          <label>Supplier *</label>
+          <select id="f-po-supplier" required disabled><option value="">— Select a product first —</option></select>
+          <div id="supplier-recommendation" class="supplier-recommendation">
+            <div class="rec-title">🤖 AI Recommended: <span id="rec-supplier-name"></span></div>
+            <div class="rec-reasons" id="rec-supplier-reasons"></div>
+          </div>
+        </div>
+        <div class="form-group" style="flex:1;">
+          <label>Ordered Qty *</label>
+          <input type="number" id="f-po-qty" min="1" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Order Date *</label><input type="date" id="f-po-orderdate" required></div>
+        <div class="form-group"><label>Expected Delivery *</label><input type="date" id="f-po-expdate" required></div>
+      </div>
+      <div class="form-group"><label>Notes</label><textarea id="f-po-notes" rows="2"></textarea></div>
+    </form>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('po-modal')">Cancel</button>
+      <button class="btn btn-primary" id="btn-save-po">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RECEIVE MODAL (Manual POs) ════════════════════════════════════════════ -->
+<div class="modal-overlay" id="receive-modal">
+  <div class="modal-box" style="max-width:440px;">
+    <div class="modal-title">Mark as Received</div>
+    <div id="receive-msg" class="alert-msg"></div>
+    <p id="receive-info" style="font-size:13px;color:var(--color-text-secondary);margin-bottom:14px;"></p>
+    <div class="form-row">
+      <div class="form-group"><label>Received Qty *</label><input type="number" id="f-rcv-qty" min="0"></div>
+      <div class="form-group"><label>Actual Delivery Date *</label><input type="date" id="f-rcv-date"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Manufacturing Date</label><input type="date" id="f-rcv-mfg"></div>
+      <div class="form-group"><label>Expiry Date</label><input type="date" id="f-rcv-expiry">
+        <span id="rcv-expiry-error" style="display:none;font-size:11px;color:var(--color-danger);">⚠ Expiry must be after manufacturing date.</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Quality Rating</label>
+      <div id="quality-stars" style="display:flex;gap:6px;font-size:24px;cursor:pointer;margin-top:4px;">
+        <span data-v="1">☆</span><span data-v="2">☆</span><span data-v="3">☆</span><span data-v="4">☆</span><span data-v="5">☆</span>
+      </div>
+      <input type="hidden" id="f-rcv-quality" value="">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('receive-modal')">Cancel</button>
+      <button class="btn btn-success" id="btn-confirm-receive">Confirm Receipt</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BATCH DETAILS MODAL (AI Orders) ══════════════════════════════════════ -->
+<div class="modal-overlay" id="batch-modal">
+  <div class="modal-box" style="max-width:440px;">
+    <div class="modal-title">Batch Details — Mark Received</div>
+    <p style="font-size:13px;color:var(--color-text-hint);margin-bottom:12px;">Capture manufacturing and expiry dates for the received batch.</p>
+    <div id="batch-product-info" style="margin-bottom:16px;font-weight:600;color:var(--color-primary);"></div>
+    <div class="form-group">
+      <label>Received Qty *</label>
+      <input type="number" id="batch-rcv-qty" min="0" required>
+    </div>
+    <div class="form-group"><label>Manufacturing Date</label><input type="date" id="batch-mfg-date"></div>
+    <div class="form-group">
+      <label>Expiry Date</label>
+      <input type="date" id="batch-expiry-date">
+      <span id="expiry-date-error" style="display:none;font-size:12px;color:var(--color-danger);margin-top:4px;">⚠ Expiry date must be after manufacturing date.</span>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('batch-modal')">Cancel</button>
+      <button class="btn btn-success" id="btn-submit-batch">Confirm Receipt</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RATE MODAL ════════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="rate-modal">
+  <div class="modal-box" style="max-width:340px;">
+    <div class="modal-title">Rate Quality</div>
+    <p id="rate-info" style="font-size:13px;color:var(--color-text-secondary);margin-bottom:14px;"></p>
+    <div id="rate-stars" style="display:flex;gap:6px;font-size:28px;cursor:pointer;justify-content:center;margin:12px 0;">
+      <span data-v="1">☆</span><span data-v="2">☆</span><span data-v="3">☆</span><span data-v="4">☆</span><span data-v="5">☆</span>
+    </div>
+    <input type="hidden" id="f-rate-quality" value="">
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('rate-modal')">Cancel</button>
+      <button class="btn btn-primary" id="btn-confirm-rate">Save Rating</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ══ SIRA CONFIRM DIALOG ════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-confirm">
+  <div class="modal-box" style="max-width:400px;">
+    <div class="modal-title" style="display:flex;align-items:center;gap:10px;">
+      <span style="width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#2563EB,#7C3AED);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+      </span>
+      Confirm Action
+    </div>
+    <p id="confirm-message" style="font-size:14px;color:var(--color-text-secondary);margin:12px 0 18px;line-height:1.6;"></p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" id="confirm-cancel">Cancel</button>
+      <button class="btn btn-primary" id="confirm-ok">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script src="../app.js?v=63"></script>
+<script src="../js/purchase-orders.js?v=12"></script>
+</body>
+</html>

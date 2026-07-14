@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — SIRA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      background: #FFFFFF;
+      color: #0F172A;
+      display: flex;
+    }
+
+    .login-container { display: flex; width: 100%; height: 100%; }
+
+    /* ── Left Brand Panel ── */
+    .brand-panel {
+      position: relative;
+      width: 46%;
+      background: linear-gradient(135deg, #243656 0%, #152238 100%);
+      color: #FFFFFF;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 8px 0 24px rgba(15,23,42,0.08);
+      z-index: 5;
+    }
+
+    .dot-grid {
+      position: absolute; inset: 0; opacity: 0.12;
+      background-image: radial-gradient(#FFFFFF 1px, transparent 1px);
+      background-size: 16px 16px; pointer-events: none;
+    }
+
+    .brand-logo {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 700; font-size: 16px; letter-spacing: -0.01em;
+      position: relative; z-index: 2;
+    }
+
+    .brand-logo-icon {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .brand-logo-icon svg { width: 20px; height: 20px; stroke: #60A5FA; }
+
+    .tagline {
+      font-size: 36px; font-weight: 800; line-height: 1.2;
+      letter-spacing: -0.03em; margin-top: auto; margin-bottom: 16px;
+      position: relative; z-index: 2;
+    }
+    .tagline .highlight { color: #60A5FA; }
+
+    .description {
+      font-size: 14.5px; line-height: 1.6;
+      color: rgba(255,255,255,0.85); margin-bottom: auto;
+      max-width: 400px; position: relative; z-index: 2;
+    }
+
+    .feature-pills {
+      display: flex; flex-direction: column; gap: 12px;
+      position: relative; z-index: 2; margin-top: 40px;
+    }
+
+    .pill {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 12px 18px; border-radius: 12px;
+      font-size: 13.5px; font-weight: 500; width: fit-content;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .pill:hover { background: rgba(255,255,255,0.14); transform: translateX(4px); }
+    .pill-icon { font-size: 14px; }
+
+    /* ── Right Form Panel ── */
+    .form-panel {
+      width: 54%;
+      background: #F1F5F9;
+      display: flex; align-items: center; justify-content: center;
+      padding: 48px;
+      border-left: 1px solid #E2E8F0;
+      overflow-y: auto;
+    }
+
+    .form-content {
+      width: 100%; max-width: 420px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 36px 40px 32px;
+      box-shadow: 0 1px 3px rgba(15,23,42,0.03), 0 10px 40px rgba(15,23,42,0.06);
+      position: relative;
+      animation: fadeIn 0.5s ease both;
+    }
+
+    .form-content::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, #2563EB 0%, #7C3AED 50%, #0891B2 100%);
+      border-radius: 16px 16px 0 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Role Tabs ── */
+    .role-tabs {
+      display: flex;
+      gap: 6px;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 5px;
+      margin-bottom: 28px;
+    }
+
+    .role-tab {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      padding: 9px 6px;
+      border: none; border-radius: 8px;
+      font-size: 12.5px; font-weight: 600; font-family: 'Inter', sans-serif;
+      cursor: pointer; color: #64748B;
+      background: transparent;
+      transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+      white-space: nowrap;
+    }
+    .role-tab:hover:not(.active) { background: rgba(0,0,0,0.04); color: #374151; }
+
+    .role-tab.active[data-role="customer"] {
+      background: #EFF6FF; color: #2563EB;
+      box-shadow: 0 1px 4px rgba(37,99,235,0.18);
+    }
+    .role-tab.active[data-role="manager"] {
+      background: #EFF6FF; color: #2563EB;
+      box-shadow: 0 1px 4px rgba(37,99,235,0.18);
+    }
+    .role-tab.active[data-role="admin"] {
+      background: #F5F3FF; color: #7C3AED;
+      box-shadow: 0 1px 4px rgba(124,58,237,0.18);
+    }
+
+    /* ── Customer sub-toggle (Login / Sign Up) ── */
+    .c-auth-toggle {
+      display: flex; gap: 0;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 10px; overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .c-auth-toggle button {
+      flex: 1; padding: 10px 0;
+      border: none; cursor: pointer;
+      font-size: 13px; font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      background: transparent; color: #64748B;
+      transition: background 0.15s, color 0.15s;
+    }
+    .c-auth-toggle button.active {
+      background: #2563EB; color: #fff;
+    }
+
+    /* ── Headings ── */
+    .heading {
+      font-size: 26px; font-weight: 800; color: #0F172A;
+      letter-spacing: -0.03em; margin-bottom: 6px;
+    }
+    .subheading {
+      font-size: 13.5px; color: #64748B; margin-bottom: 24px; line-height: 1.5;
+    }
+
+    /* ── Alert ── */
+    .alert {
+      display: none; font-size: 13px; font-weight: 500;
+      border-radius: 8px; padding: 8px 12px;
+      margin-bottom: 16px; text-align: center;
+    }
+    .alert.show { display: block; }
+    .alert-error  { color: #DC2626; background: #FEF2F2; border: 1px solid #FECACA; }
+    .alert-success{ color: #059669; background: #F0FDF4; border: 1px solid #BBF7D0; }
+
+    /* ── Fields ── */
+    .field { margin-bottom: 16px; }
+    .field label {
+      display: block; font-size: 12.5px; font-weight: 600;
+      color: #374151; margin-bottom: 5px;
+    }
+    .input-wrap { position: relative; }
+    .input-wrap input,
+    .field input,
+    .field textarea {
+      width: 100%; height: 44px;
+      border: 1.5px solid #E5E7EB; border-radius: 9px;
+      padding: 0 40px 0 13px;
+      font-size: 13.5px; font-family: 'Inter', sans-serif;
+      color: #0F172A; background: #F8FAFC; outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+    }
+    .field textarea {
+      height: 76px; padding: 10px 13px; resize: vertical;
+    }
+    .input-wrap input:focus,
+    .field input:focus,
+    .field textarea:focus {
+      border-color: #2563EB; background: #fff;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.11);
+    }
+
+    .eye-btn {
+      position: absolute; right: 11px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer; color: #94A3B8;
+      display: flex; align-items: center; transition: color 0.15s;
+    }
+    .eye-btn:hover { color: #2563EB; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* ── Submit Button ── */
+    .submit {
+      width: 100%; height: 46px; border: none; border-radius: 9px;
+      color: #fff; font-size: 14px; font-weight: 600;
+      font-family: 'Inter', sans-serif; cursor: pointer;
+      margin-top: 6px;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    }
+    .submit-customer  { background: #2563EB; box-shadow: 0 4px 12px rgba(37,99,235,0.22); }
+    .submit-customer:hover:not(:disabled) { background: #1D4ED8; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37,99,235,0.3); }
+    .submit-staff     { background: #2563EB; box-shadow: 0 4px 12px rgba(37,99,235,0.2); }
+    .submit-staff:hover:not(:disabled) { background: #1D4ED8; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37,99,235,0.3); }
+    .submit-admin     { background: #7C3AED; box-shadow: 0 4px 12px rgba(124,58,237,0.2); }
+    .submit-admin:hover:not(:disabled) { background: #6D28D9; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(124,58,237,0.3); }
+    .submit:active { transform: translateY(0); }
+    .submit:disabled { opacity: 0.65; cursor: not-allowed; }
+
+    .footer-links {
+      text-align: center; margin-top: 20px; font-size: 13px; color: #64748B;
+    }
+    .footer-links a { color: #2563EB; font-weight: 600; text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: #1D4ED8; text-decoration: underline; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { animation: spin 0.7s linear infinite; display: inline-block; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .brand-panel { display: none; }
+      .form-panel  { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <!-- Left: Brand Panel -->
+  <div class="brand-panel">
+    <div class="dot-grid"></div>
+    <div class="brand-logo">
+      <div class="brand-logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+      </div>
+      <span>SIRA</span>
+    </div>
+    <div class="tagline">Smarter Stock,<br><span class="highlight">Better Decisions.</span></div>
+    <p class="description">AI-powered replenishment recommendations that keep your shelves full and your team confident — every single day.</p>
+    <div class="feature-pills">
+      <div class="pill"><span class="pill-icon">🤖</span><span>AI-driven daily briefs</span></div>
+      <div class="pill"><span class="pill-icon">📦</span><span>Real-time stock monitoring</span></div>
+      <div class="pill"><span class="pill-icon">🎉</span><span>Festival inventory planner</span></div>
+    </div>
+  </div>
+
+  <!-- Right: Form Panel -->
+  <div class="form-panel">
+    <div class="form-content">
+
+      <!-- Role Tabs -->
+      <div class="role-tabs">
+        <button class="role-tab active" data-role="customer" type="button">🛒 Customer</button>
+        <button class="role-tab" data-role="manager" type="button">📦 Manager</button>
+        <button class="role-tab" data-role="admin" type="button">⚙️ Admin</button>
+      </div>
+
+      <!-- ═══════════════ CUSTOMER SECTION ═══════════════ -->
+      <div id="section-customer">
+        <!-- Login / Sign Up sub-toggle -->
+        <div class="c-auth-toggle">
+          <button type="button" id="c-tab-login" class="active" onclick="switchCustomerTab('login')">Sign In</button>
+          <button type="button" id="c-tab-signup" onclick="switchCustomerTab('signup')">Sign Up</button>
+        </div>
+
+        <!-- Customer Alert -->
+        <div class="alert alert-error" id="c-msg"></div>
+        <div class="alert alert-success" id="c-msg-ok"></div>
+
+        <!-- Customer Login Form -->
+        <div id="c-login-panel">
+          <h1 class="heading">Welcome back! 👋</h1>
+          <p class="subheading">Sign in to browse deals, track orders and manage your wishlist.</p>
+          <form id="c-login-form">
+            <div class="field">
+              <label for="c-email">Email Address</label>
+              <div class="input-wrap">
+                <input type="email" id="c-email" placeholder="you@example.com" required autocomplete="email">
+              </div>
+            </div>
+            <div class="field">
+              <label for="c-password">Password</label>
+              <div class="input-wrap">
+                <input type="password" id="c-password" placeholder="••••••••" required autocomplete="current-password">
+                <button type="button" class="eye-btn" data-target="c-password" data-icon="c-eye-icon">
+                  <svg id="c-eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <button type="submit" class="submit submit-customer" id="c-login-btn">
+              Sign In
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+          <div class="footer-links" style="margin-top:16px">
+            <a href="customer-forgot-password.html">Forgot password?</a>
+          </div>
+        </div>
+
+        <!-- Customer Signup Form -->
+        <div id="c-signup-panel" style="display:none">
+          <h1 class="heading">Get started! 🚀</h1>
+          <p class="subheading">Fill in your details to create a free account.</p>
+          <form id="c-signup-form">
+            <div class="grid-2">
+              <div class="field">
+                <label for="s-name">Full Name *</label>
+                <input type="text" id="s-name" placeholder="Priya Sharma" required>
+              </div>
+              <div class="field">
+                <label for="s-mobile">Mobile *</label>
+                <input type="tel" id="s-mobile" placeholder="9876543210" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="s-email">Email Address *</label>
+              <input type="email" id="s-email" placeholder="you@example.com" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="s-address">Delivery Address *</label>
+              <textarea id="s-address" placeholder="House/Flat, Street, City, PIN" required></textarea>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label for="s-pw">Password *</label>
+                <div class="input-wrap">
+                  <input type="password" id="s-pw" placeholder="••••••••" required>
+                  <button type="button" class="eye-btn" data-target="s-pw" data-icon="s-eye1">
+                    <svg id="s-eye1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="field">
+                <label for="s-cpw">Confirm *</label>
+                <div class="input-wrap">
+                  <input type="password" id="s-cpw" placeholder="••••••••" required>
+                  <button type="button" class="eye-btn" data-target="s-cpw" data-icon="s-eye2">
+                    <svg id="s-eye2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="submit submit-customer" id="c-signup-btn">
+              Create Account
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ═══════════════ STAFF SECTION (Manager / Admin) ═══════════════ -->
+      <div id="section-staff" style="display:none">
+        <h1 class="heading" id="staff-heading">Welcome back 👋</h1>
+        <p class="subheading" id="staff-sub">Enter your credentials to continue to the dashboard.</p>
+        <div class="alert alert-error" id="staff-msg"></div>
+        <form id="staff-login-form">
+          <div class="field">
+            <label for="email">Email address</label>
+            <div class="input-wrap">
+              <input type="email" id="email" placeholder="you@store.com" required autocomplete="email">
+            </div>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
+              <button type="button" class="eye-btn" data-target="password" data-icon="staff-eye">
+                <svg id="staff-eye" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <button type="submit" class="submit submit-staff" id="staff-submit-btn">
+            Sign in
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+        <div class="footer-links"><a href="forgot-password.html">Forgot password?</a></div>
+      </div>
+
+    </div><!-- /form-content -->
+  </div><!-- /form-panel -->
+</div>
+
+<script>
+  /* ── Redirect if already logged in ── */
+  if (localStorage.getItem('token')) {
+    try {
+      const p = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
+      if (p && p.exp * 1000 > Date.now()) {
+        const role = localStorage.getItem('role');
+        window.location.href = role === 'admin' ? 'admin-home.html' : 'dashboard.html';
+      }
+    } catch {}
+  }
+  if (localStorage.getItem('c_token')) {
+    try {
+      const p = JSON.parse(atob(localStorage.getItem('c_token').split('.')[1]));
+      if (p && p.exp * 1000 > Date.now()) window.location.href = 'customer-dashboard.html';
+    } catch {}
+  }
+
+  /* ── Eye toggle helper ── */
+  const EYE_OPEN  = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+  const EYE_CLOSE = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+
+  document.querySelectorAll('.eye-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const input = document.getElementById(btn.dataset.target);
+      const icon  = document.getElementById(btn.dataset.icon);
+      const isText = input.type === 'text';
+      input.type = isText ? 'password' : 'text';
+      icon.innerHTML = isText ? EYE_OPEN : EYE_CLOSE;
+    });
+  });
+
+  /* ── Role Tab switching ── */
+  let currentRole = 'customer';
+  const roleTabs  = document.querySelectorAll('.role-tab');
+  const secCustomer = document.getElementById('section-customer');
+  const secStaff    = document.getElementById('section-staff');
+  const staffSubmit = document.getElementById('staff-submit-btn');
+
+  roleTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const role = tab.dataset.role;
+      currentRole = role;
+      roleTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      if (role === 'customer') {
+        secCustomer.style.display = 'block';
+        secStaff.style.display    = 'none';
+      } else {
+        secCustomer.style.display = 'none';
+        secStaff.style.display    = 'block';
+        if (role === 'admin') {
+          document.getElementById('staff-heading').textContent = 'Welcome back 👋';
+          document.getElementById('staff-sub').textContent     = 'Enter your admin credentials to continue.';
+          staffSubmit.className = 'submit submit-admin';
+        } else {
+          document.getElementById('staff-heading').textContent = 'Welcome back 👋';
+          document.getElementById('staff-sub').textContent     = 'Enter your credentials to continue to the dashboard.';
+          staffSubmit.className = 'submit submit-staff';
+        }
+      }
+    });
+  });
+
+  /* ── Customer sub-tab toggle ── */
+  function switchCustomerTab(tab) {
+    const loginPanel  = document.getElementById('c-login-panel');
+    const signupPanel = document.getElementById('c-signup-panel');
+    const tabLogin    = document.getElementById('c-tab-login');
+    const tabSignup   = document.getElementById('c-tab-signup');
+    document.getElementById('c-msg').className    = 'alert alert-error';
+    document.getElementById('c-msg-ok').className = 'alert alert-success';
+    if (tab === 'login') {
+      loginPanel.style.display  = 'block';
+      signupPanel.style.display = 'none';
+      tabLogin.classList.add('active');
+      tabSignup.classList.remove('active');
+    } else {
+      loginPanel.style.display  = 'none';
+      signupPanel.style.display = 'block';
+      tabLogin.classList.remove('active');
+      tabSignup.classList.add('active');
+    }
+  }
+
+  /* ── Customer Login ── */
+  document.getElementById('c-login-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = document.getElementById('c-login-btn');
+    const msg = document.getElementById('c-msg');
+    msg.className = 'alert alert-error';
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spin">⟳</span>&nbsp;Signing in…';
+    try {
+      const res = await fetch('/api/customers/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: document.getElementById('c-email').value,
+          password: document.getElementById('c-password').value,
+        }),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        msg.textContent = err.detail || 'Invalid credentials.';
+        msg.className = 'alert alert-error show';
+        return;
+      }
+      const data = await res.json();
+      localStorage.setItem('c_token', data.token);
+      localStorage.setItem('c_name', data.name);
+      localStorage.setItem('c_id', data.customer_id);
+      localStorage.setItem('c_email', data.email);
+      window.location.href = 'customer-dashboard.html';
+    } catch {
+      msg.textContent = 'Network error. Is the server running?';
+      msg.className = 'alert alert-error show';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Sign In <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    }
+  });
+
+  /* ── Customer Signup ── */
+  document.getElementById('c-signup-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn  = document.getElementById('c-signup-btn');
+    const msg  = document.getElementById('c-msg');
+    const msgOk= document.getElementById('c-msg-ok');
+    msg.className  = 'alert alert-error';
+    msgOk.className= 'alert alert-success';
+
+    const pw  = document.getElementById('s-pw').value;
+    const cpw = document.getElementById('s-cpw').value;
+    if (pw !== cpw) {
+      msg.textContent = 'Passwords do not match.';
+      msg.className = 'alert alert-error show';
+      return;
+    }
+    const mobile = document.getElementById('s-mobile').value.trim();
+    if (!/^\d{10}$/.test(mobile)) {
+      msg.textContent = 'Please enter a valid 10-digit mobile number.';
+      msg.className = 'alert alert-error show';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spin">⟳</span>&nbsp;Creating account…';
+    try {
+      const res = await fetch('/api/customers/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name:             document.getElementById('s-name').value.trim(),
+          email:            document.getElementById('s-email').value.trim(),
+          mobile,
+          password:         pw,
+          confirm_password: cpw,
+          address:          document.getElementById('s-address').value.trim(),
+        }),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        msg.textContent = err.detail || 'Registration failed.';
+        msg.className = 'alert alert-error show';
+        return;
+      }
+      const data = await res.json();
+      localStorage.setItem('c_token', data.token);
+      localStorage.setItem('c_name', data.name);
+      localStorage.setItem('c_id', data.customer_id);
+      localStorage.setItem('c_email', data.email);
+      msgOk.textContent = '🎉 Account created! Redirecting…';
+      msgOk.className = 'alert alert-success show';
+      setTimeout(() => window.location.href = 'customer-dashboard.html', 1000);
+    } catch {
+      msg.textContent = 'Network error. Please try again.';
+      msg.className = 'alert alert-error show';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Create Account <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    }
+  });
+
+  /* ── Staff Login ── */
+  document.getElementById('staff-login-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = document.getElementById('staff-submit-btn');
+    const msg = document.getElementById('staff-msg');
+    msg.className = 'alert alert-error';
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spin">⟳</span>&nbsp;Signing in…';
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email:    document.getElementById('email').value,
+          password: document.getElementById('password').value,
+        }),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        msg.textContent = err.detail || 'Invalid credentials.';
+        msg.className = 'alert alert-error show';
+        return;
+      }
+      const data = await res.json();
+      
+      if (data.role !== currentRole) {
+        msg.textContent = `Access denied. This account does not have ${currentRole} privileges.`;
+        msg.className = 'alert alert-error show';
+        return;
+      }
+      
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('role',  data.role);
+      localStorage.setItem('name',  data.name);
+      localStorage.setItem('user_id', data.user_id);
+      window.location.href = data.role === 'admin' ? 'admin-home.html' : 'dashboard.html';
+    } catch {
+      msg.textContent = 'Network error. Is the server running?';
+      msg.className = 'alert alert-error show';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Sign in <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    }
+  });
+</script>
+</body>
+</html>

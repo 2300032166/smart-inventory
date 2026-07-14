@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist — SIRA Store</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../customer-style.css?v=999">
+</head>
+<body>
+<nav class="c-nav" id="c-nav"></nav>
+
+<div class="c-page">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px">
+    <div>
+      <h1 style="font-size:24px;font-weight:800;letter-spacing:-0.02em">❤️ My Wishlist</h1>
+      <div style="font-size:13px;color:var(--c-text-2);margin-top:2px" id="wish-count">Loading…</div>
+    </div>
+    <a href="customer-catalog.html" class="c-btn c-btn-secondary c-btn-sm">+ Add More Items</a>
+  </div>
+
+  <div id="loading" class="c-spinner-wrap"><div class="c-spinner"></div></div>
+  <div id="wish-grid" class="c-grid"></div>
+  <div id="empty-wish" style="display:none">
+    <div class="c-empty">
+      <div class="c-empty-icon">❤️</div>
+      <div class="c-empty-title">Your wishlist is empty</div>
+      <div class="c-empty-desc">Save products you love and find them here anytime.</div>
+      <a href="customer-catalog.html" class="c-btn c-btn-primary">Explore Products</a>
+    </div>
+  </div>
+</div>
+
+<script src="../js/customer-app.js?v=9"></script>
+<script>
+  cCheckAuth();
+  cInjectNav();
+
+  async function loadWishlist() {
+    try {
+      const data = await cFetch('/customer-orders/wishlist');
+      if (!data) return;
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('wish-count').textContent = `${data.length} saved item${data.length !== 1 ? 's' : ''}`;
+      if (!data.length) { document.getElementById('empty-wish').style.display = 'flex'; return; }
+      document.getElementById('wish-grid').innerHTML = data.map(p => wishCard(p)).join('');
+    } catch (e) { document.getElementById('loading').style.display = 'none'; cToast(e.message, 'error'); }
+  }
+
+  function wishCard(p) {
+    const catColor = p.category_color || '#6366f1';
+    
+    return `
+    <div class="c-card" id="wish-${p.sku}" style="border-top: 3px solid ${catColor};">
+      <!-- Floating remove button -->
+      <button class="c-card-wish-float" onclick="removeWish('${p.sku}')" title="Remove from wishlist" style="color: #EF4444; border-color: #FECACA; background: #FEE2E2;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- Card body -->
+      <div class="c-card-body">
+        <div class="c-card-header">
+          <div class="c-card-brand-col">
+            <div class="c-card-brand">${p.brand || '\u00a0'}</div>
+          </div>
+        </div>
+        
+        <div class="c-card-name">${p.name}</div>
+        
+        <div class="c-card-price-row">
+          <span class="c-card-price">${cFmtPrice(p.price)}</span>
+        </div>
+        
+        <div class="c-card-stock-row">
+          <span class="c-stock-dot ${p.in_stock ? 'in' : 'out'}"></span>
+          <span>${p.in_stock ? 'In Stock' : 'Out of Stock'}</span>
+        </div>
+        
+        <div style="font-size:10px;color:var(--c-text-3);margin-top:-6px;margin-bottom:8px">Added ${cFmtDate(p.added_at)}</div>
+        
+        <div class="c-card-actions">
+          <button class="c-btn-cart" onclick="moveToCart('${p.sku}')" ${p.in_stock ? '' : 'disabled'}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Move to Cart
+          </button>
+          <a href="customer-product-detail.html?sku=${encodeURIComponent(p.sku)}" class="c-btn-detail" title="View details">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  async function moveToCart(sku) {
+    try {
+      const data = await cFetch(`/customer-orders/wishlist/${encodeURIComponent(sku)}/move-to-cart`, { method: 'POST' });
+      if (!data) return;
+      cToast(data.message, 'success');
+      cUpdateCartBadge();
+      loadWishlist();
+    } catch (e) { cToast(e.message, 'error'); }
+  }
+
+  async function removeWish(sku) {
+    try {
+      await cFetch(`/customer-orders/wishlist/${encodeURIComponent(sku)}`, { method: 'DELETE' });
+      cToast('Removed from wishlist', 'info');
+      document.getElementById(`wish-${sku}`)?.remove();
+      loadWishlist();
+    } catch (e) { cToast(e.message, 'error'); }
+  }
+
+  loadWishlist();
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "products_count": 2510,
+  "products_cols": [
+    "sku",
+    "name",
+    "unit",
+    "current_stock",
+    "reorder_threshold",
+    "supplier_name",
+    "lead_time_days",
+    "category",
+    "notes",
+    "unit_price"
+  ],
+  "sales_count": 699647,
+  "sales_min": "2025-06-25",
+  "sales_max": "2026-06-25",
+  "sales_days": 365,
+  "batches_count": 3000,
+  "batches_cols": [
+    "sku",
+    "batch_no",
+    "quantity",
+    "mfg_date",
+    "expiry_date",
+    "status",
+    "received_date",
+    "product_name",
+    "supplier"
+  ],
+  "categories": {
+    "Beauty & Hygiene": 714,
+    "Gourmet & World Food": 426,
+    "Kitchen, Garden & Pets": 325,
+    "Snacks & Branded Foods": 255,
+    "Foodgrains, Oil & Masala": 243,
+    "Cleaning & Household": 243,
+    "Beverages": 81,
+    "Bakery, Cakes & Dairy": 77,
+    "Baby Care": 60,
+    "Fruits & Vegetables": 51,
+    "Eggs, Meat & Fish": 31,
+    "Household": 2,
+    "Dairy": 1,
+    "Groceries": 1
+  }
+}

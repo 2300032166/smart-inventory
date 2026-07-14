@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analytics — Admin — SIRA</title>
+    <link rel="stylesheet" href="../style.css?v=999">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .analytics-kpis {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 992px) {
+            .analytics-grid { grid-template-columns: 1fr; }
+        }
+        .chart-container { height: 300px; position: relative; }
+        .stat-card-danger { border-left: 4px solid #dc3545; }
+        .stat-card-gray { border-left: 4px solid #6c757d; }
+        .stat-card.clickable { cursor: pointer; transition: transform .15s, box-shadow .15s; }
+        .stat-card.clickable:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        .risk-tag {
+            padding: 2px 8px; border-radius: 4px; font-size: 11px;
+            font-weight: 700; text-transform: uppercase; color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="shell">
+    <div id="topbar" class="topbar"></div>
+    <div class="body-container">
+        <nav id="sidebar" class="sidebar"></nav>
+        <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+        <main class="main-content">
+            <div class="page-header">
+                <div>
+                    <div class="page-title">Stock Analytics</div>
+                    <div class="page-subtitle">Organization-wide expiry &amp; dead stock intelligence</div>
+                </div>
+            </div>
+
+            <div class="tab-bar mb-24">
+                <button class="tab-btn active" data-tab="expiry" onclick="switchTab('expiry')">Expiry Analytics</button>
+                <button class="tab-btn" data-tab="deadstock" onclick="switchTab('deadstock')">Dead Stock Analytics</button>
+            </div>
+
+            <!-- ═══════════ EXPIRY ANALYTICS TAB ═══════════ -->
+            <div id="section-expiry">
+                <div class="analytics-kpis" id="expiry-kpis">
+                    <div class="stat-card clickable" data-drill="all"><div class="stat-label">Total Batches</div><div id="e-stat-total" class="stat-value">—</div></div>
+                    <div class="stat-card"><div class="stat-label">Value at Risk</div><div id="e-stat-at-risk" class="stat-value text-danger">—</div></div>
+                    <div class="stat-card stat-card-danger clickable" data-drill="Expired"><div class="stat-label">Expired Batches</div><div id="e-stat-expired" class="stat-value text-danger">—</div></div>
+                    <div class="stat-card"><div class="stat-label">Inventory Health</div><div id="e-stat-health" class="stat-value text-success">—</div></div>
+                    <div class="stat-card stat-card-gray"><div class="stat-label">Disposed Batches</div><div id="e-stat-disposed" class="stat-value" style="color:#6c757d;">—</div></div>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="card">
+                        <div class="card-header"><span class="card-title">Status Distribution</span></div>
+                        <div class="chart-container"><canvas id="e-status-chart"></canvas></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><span class="card-title">Value at Risk by Category</span></div>
+                        <div class="chart-container"><canvas id="e-category-chart"></canvas></div>
+                    </div>
+                </div>
+
+                <div class="filter-bar card mb-24">
+                    <div class="form-group mb-0">
+                        <label>Search SKU/Product</label>
+                        <input type="text" id="e-filter-search" placeholder="Search…">
+                    </div>
+                    <div class="form-group mb-0">
+                        <label>Status</label>
+                        <select id="e-filter-status">
+                            <option value="all">All Statuses</option>
+                            <option value="Healthy">Healthy</option>
+                            <option value="Monitor">Monitor</option>
+                            <option value="Caution">Caution</option>
+                            <option value="High Risk">High Risk</option>
+                            <option value="Expiring Soon">Expiring Soon</option>
+                            <option value="Expired">Expired</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-0">
+                        <label>Category</label>
+                        <select id="e-filter-category"><option value="all">All Categories</option></select>
+                    </div>
+                </div>
+
+                <div class="card p-0">
+                    <div class="card-header border-b">
+                        <span class="card-title">Batch Inventory Details</span>
+                        <span id="e-batch-count-tag" class="badge badge-gray">0 batches</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="review-table">
+                            <thead>
+                                <tr>
+                                    <th>Product Details</th><th>Batch Details</th><th>Expiry Status</th><th>Qty &amp; Value</th><th>Risk Analysis</th>
+                                </tr>
+                            </thead>
+                            <tbody id="e-batch-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════════ DEAD STOCK ANALYTICS TAB ═══════════ -->
+            <div id="section-deadstock" style="display:none;">
+                <div class="analytics-kpis" id="ds-kpis">
+                    <div class="stat-card clickable" data-ds-drill="dead"><div class="stat-label">Dead Stock Items</div><div id="ds-stat-dead" class="stat-value text-danger">—</div></div>
+                    <div class="stat-card"><div class="stat-label">Value Locked</div><div id="ds-stat-value" class="stat-value text-danger">—</div></div>
+                    <div class="stat-card clickable" data-ds-drill="slow"><div class="stat-label">Slow Moving</div><div id="ds-stat-slow" class="stat-value" style="color:var(--color-warning);">—</div></div>
+                    <div class="stat-card"><div class="stat-label">Inventory Health Score</div><div id="ds-stat-health" class="stat-value text-success">—</div></div>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="card">
+                        <div class="card-header"><span class="card-title">Dead / Slow Items by Category</span></div>
+                        <div class="chart-container"><canvas id="ds-count-chart"></canvas></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><span class="card-title">Value Locked by Category</span></div>
+                        <div class="chart-container"><canvas id="ds-value-chart"></canvas></div>
+                    </div>
+                </div>
+
+                <div class="card mb-24">
+                    <div class="card-title mb-16">Supplier Loss Attribution</div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Supplier</th><th>Expiry-related Loss</th></tr></thead>
+                            <tbody id="ds-supplier-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="filter-bar card mb-24">
+                    <div class="form-group mb-0">
+                        <label>Search SKU/Product</label>
+                        <input type="text" id="ds-filter-search" placeholder="Search…">
+                    </div>
+                    <div class="form-group mb-0">
+                        <label>Status</label>
+                        <select id="ds-filter-status">
+                            <option value="">All statuses</option>
+                            <option value="dead">Dead Stock</option>
+                            <option value="slow">Slow Moving</option>
+                            <option value="healthy">Healthy</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card p-0">
+                    <div class="card-header border-b">
+                        <span class="card-title">Dead Stock Detail</span>
+                        <span id="ds-count-tag" class="badge badge-gray">0 items</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr><th>Product</th><th>Category</th><th>Stock</th><th>Days Since Sale</th><th>Status</th></tr>
+                            </thead>
+                            <tbody id="ds-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="analytics-msg" class="alert-msg"></div>
+            <div id="analytics-spinner" class="spinner-wrap"><div class="spinner"></div></div>
+        </main>
+    </div>
+</div>
+<script src="../app.js?v=62"></script>
+<script src="../js/admin-analytics.js?v=1"></script>
+</body>
+</html>

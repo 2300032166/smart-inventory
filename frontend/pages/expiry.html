@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expiry Module — SIRA</title>
+    <link rel="stylesheet" href="../style.css?v=999">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .expiry-kpis {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .expiry-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 992px) {
+            .expiry-grid { grid-template-columns: 1fr; }
+        }
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            background: #fff;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            align-items: flex-end;
+        }
+        .batch-table th { white-space: nowrap; }
+        .risk-tag {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .recommendation-pill {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-primary);
+            background: rgba(var(--color-primary-rgb), 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        /* Action cell styles */
+        .action-cell { display: flex; flex-direction: column; gap: 5px; align-items: flex-start; }
+        .btn-dispose {
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 11px; font-weight: 500; padding: 3px 9px;
+            border-radius: 5px; cursor: pointer; letter-spacing: 0.01em;
+            border: 1px solid #e0a0a0;
+            background: #fff8f8; color: #b94040;
+            transition: background 0.18s, border-color 0.18s, color 0.18s;
+            white-space: nowrap;
+        }
+        .btn-dispose:hover {
+            background: #fdeaea; border-color: #c97070; color: #8f2020;
+        }
+
+        /* Section tabs */
+        .view-tabs {
+            display: flex; gap: 8px; margin-bottom: 20px;
+        }
+        .view-tab {
+            padding: 8px 20px; border-radius: 8px; border: 1.5px solid #e0e0e0;
+            font-size: 13px; font-weight: 600; cursor: pointer;
+            background: #fff; color: var(--color-text-hint);
+            transition: all 0.2s;
+        }
+        .view-tab.active {
+            background: var(--color-primary); color: #fff; border-color: var(--color-primary);
+        }
+        .disposed-badge {
+            background: #6c757d; color: #fff;
+            font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 10px;
+            margin-left: 6px;
+        }
+
+        /* Dispose Modal */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+            z-index: 1000; display: none; align-items: center; justify-content: center;
+        }
+        .modal-overlay.open { display: flex; animation: fadeIn 0.2s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-box {
+            background: #fff; border-radius: 16px; padding: 32px;
+            max-width: 480px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            position: relative; animation: slideUp 0.25s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(24px); opacity: 0; }
+            to   { transform: translateY(0);   opacity: 1; }
+        }
+        .modal-icon { font-size: 48px; text-align: center; margin-bottom: 12px; }
+        .modal-title { font-size: 20px; font-weight: 700; color: #dc3545; text-align: center; margin-bottom: 8px; }
+        .modal-subtitle { font-size: 13px; color: var(--color-text-hint); text-align: center; margin-bottom: 20px; }
+        .modal-info {
+            background: #fff5f5; border: 1px solid #f8d7da; border-radius: 10px;
+            padding: 14px 16px; margin-bottom: 24px; font-size: 13px;
+        }
+        .modal-info-row { display: flex; justify-content: space-between; padding: 3px 0; }
+        .modal-info-row span:first-child { color: var(--color-text-hint); }
+        .modal-info-row span:last-child { font-weight: 600; }
+        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+        .btn-cancel-modal {
+            padding: 10px 20px; border-radius: 8px; border: 1.5px solid #e0e0e0;
+            background: #fff; font-weight: 600; cursor: pointer; font-size: 13px;
+        }
+        .btn-confirm-dispose {
+            padding: 10px 22px; border-radius: 8px; border: none;
+            background: #dc3545; color: #fff; font-weight: 700; cursor: pointer;
+            font-size: 13px; display: flex; align-items: center; gap: 6px;
+            transition: background 0.2s;
+        }
+        .btn-confirm-dispose:hover { background: #b02a37; }
+        .btn-confirm-dispose:disabled { background: #aaa; cursor: not-allowed; }
+
+        /* Disposed view table */
+        .disposed-tag {
+            padding: 2px 8px; border-radius: 4px;
+            font-size: 11px; font-weight: 700;
+            background: #6c757d; color: #fff;
+        }
+        .stat-card-danger { border-left: 4px solid #dc3545; }
+        .stat-card-gray { border-left: 4px solid #6c757d; }
+    </style>
+</head>
+<body>
+<div class="shell">
+    <div id="topbar" class="topbar"></div>
+    <div class="body-container">
+        <nav id="sidebar" class="sidebar"></nav>
+        <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+        <main class="main-content">
+            <div class="page-header">
+                <div>
+                    <div class="page-title">Expiry Management</div>
+                    <div class="page-subtitle">Batch-level inventory monitoring &amp; disposal actions</div>
+                </div>
+                <div class="flex-gap">
+                    <button class="btn btn-secondary" id="bulk-dispose-btn" style="display:none;background:#fff7ed;border-color:#fed7aa;color:#c2410c;font-weight:700;" onclick="openBulkDispose()">
+                        <span class="icon">🗑️</span> Bulk Dispose
+                    </button>
+                </div>
+            </div>
+
+            <!-- 1. KPI Cards -->
+            <div class="expiry-kpis" id="expiry-kpis">
+                <div class="stat-card">
+                    <div class="stat-label">Total Batches</div>
+                    <div id="stat-total-batches" class="stat-value">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Value at Risk</div>
+                    <div id="stat-at-risk-value" class="stat-value text-danger">—</div>
+                    <div class="stat-sub">Caution to Expiring Soon</div>
+                </div>
+                <div class="stat-card stat-card-danger">
+                    <div class="stat-label">Expired Batches</div>
+                    <div id="stat-expired-qty" class="stat-value text-danger">—</div>
+                    <div class="stat-sub">Immediate disposal needed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Inventory Health</div>
+                    <div id="stat-health-pct" class="stat-value text-success">—</div>
+                    <div class="stat-sub">% Healthy batches</div>
+                </div>
+                <div class="stat-card stat-card-gray">
+                    <div class="stat-label">Disposed Batches</div>
+                    <div id="stat-disposed-count" class="stat-value" style="color:#6c757d;">—</div>
+                    <div class="stat-sub">Removed from inventory</div>
+                </div>
+            </div>
+
+            <!-- 2. Analytics Charts -->
+            <div class="expiry-grid">
+                <div class="card">
+                    <div class="card-header"><span class="card-title">Status Distribution</span></div>
+                    <div class="chart-container">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><span class="card-title">Value at Risk by Category</span></div>
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. View Tabs -->
+            <div class="view-tabs">
+                <button id="tab-active" class="view-tab active" onclick="switchView('active')">Active Batches</button>
+                <button id="tab-disposed" class="view-tab" onclick="switchView('disposed')">
+                    Disposed <span id="disposed-badge" class="disposed-badge">0</span>
+                </button>
+            </div>
+
+            <!-- 4. Filters (active view) -->
+            <div id="filter-bar-active" class="filter-bar">
+                <div class="form-group mb-0">
+                    <label>Search SKU/Product</label>
+                    <input type="text" id="filter-search" placeholder="Search..." oninput="applyFilters()">
+                </div>
+                <div class="form-group mb-0">
+                    <label>Status</label>
+                    <select id="filter-status" onchange="applyFilters()">
+                        <option value="all">All Statuses</option>
+                        <option value="Healthy">Healthy</option>
+                        <option value="Monitor">Monitor</option>
+                        <option value="Caution">Caution</option>
+                        <option value="High Risk">High Risk</option>
+                        <option value="Expiring Soon">Expiring Soon</option>
+                        <option value="Expired">Expired</option>
+                    </select>
+                </div>
+                <div class="form-group mb-0">
+                    <label>Category</label>
+                    <select id="filter-category" onchange="applyFilters()">
+                        <option value="all">All Categories</option>
+                    </select>
+                </div>
+                <div class="form-group mb-0">
+                    <label>Risk Level</label>
+                    <select id="filter-risk" onchange="applyFilters()">
+                        <option value="all">All Risk</option>
+                        <option value="high">High (&gt;0 Risk Qty)</option>
+                        <option value="none">Safe (0 Risk Qty)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 5a. Batch List (active) -->
+            <div id="section-active">
+                <div class="card p-0">
+                    <div class="card-header border-b">
+                        <span class="card-title">Batch Inventory Details</span>
+                        <span id="batch-count-tag" class="badge badge-gray">0 batches</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="review-table batch-table">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="batch-select-all" title="Select all visible" onchange="toggleBatchSelectAll(this)"></th>
+                                    <th>Product Details</th>
+                                    <th>Batch Details</th>
+                                    <th>Expiry Status</th>
+                                    <th>Qty &amp; Value</th>
+                                    <th>Risk Analysis</th>
+                                    <th>Recommendation &amp; Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="batch-list">
+                                <!-- JS populated -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5b. Disposed Batch List -->
+            <div id="section-disposed" style="display:none;">
+                <div class="card p-0">
+                    <div class="card-header border-b">
+                        <span class="card-title">Disposed Batches</span>
+                        <span id="disposed-count-tag" class="badge badge-gray">0 disposed</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="review-table batch-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Batch No</th>
+                                    <th>Expiry Date</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Disposed At</th>
+                                    <th>Disposed By</th>
+                                </tr>
+                            </thead>
+                            <tbody id="disposed-list">
+                                <!-- JS populated -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="msg" class="alert-msg"></div>
+            <div id="spinner" class="spinner-wrap"><div class="spinner"></div></div>
+        </main>
+    </div>
+</div>
+
+<!-- Dispose Confirmation Modal -->
+<div id="dispose-modal" class="modal-overlay">
+    <div class="modal-box">
+        <div class="modal-icon">🗑️</div>
+        <div class="modal-title">Confirm Disposal</div>
+        <div class="modal-subtitle">This action will permanently remove the batch from active inventory and move it to the Disposed register.</div>
+        <div class="modal-info" id="modal-batch-info">
+            <div class="modal-info-row"><span>Product</span><span id="modal-product-name">—</span></div>
+            <div class="modal-info-row"><span>Batch No</span><span id="modal-batch-no">—</span></div>
+            <div class="modal-info-row"><span>Expiry Date</span><span id="modal-expiry-date">—</span></div>
+            <div class="modal-info-row"><span>Quantity</span><span id="modal-qty">—</span></div>
+            <div class="modal-info-row"><span>Status</span><span id="modal-status">—</span></div>
+        </div>
+        <div class="modal-actions">
+            <button class="btn-cancel-modal" onclick="closeDisposeModal()">Cancel</button>
+            <button class="btn-confirm-dispose" id="btn-confirm-dispose" onclick="confirmDispose()">
+                <span>🗑️</span> Confirm Disposal
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Bulk Dispose Modal -->
+<div id="bulk-dispose-modal" class="modal-overlay">
+    <div class="modal-box" style="max-width:560px;width:96vw;">
+        <div class="modal-icon">🗑️</div>
+        <div class="modal-title">Bulk Dispose Batches</div>
+        <div class="modal-subtitle">Mark <strong id="bulk-dispose-count">0</strong> selected batch(es) as disposed. This will remove them from active inventory.</div>
+        <div id="bulk-dispose-list" style="max-height:220px;overflow-y:auto;border:1px solid #f8d7da;border-radius:8px;background:#fff5f5;margin-bottom:18px;font-size:12px;">
+            <!-- populated by JS -->
+        </div>
+        <div class="modal-field" style="margin-bottom:20px;">
+            <label style="display:block;font-size:12px;font-weight:700;color:#374151;margin-bottom:6px;">Disposal Reason</label>
+            <select id="bulk-dispose-reason-select" style="width:100%;padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;box-sizing:border-box;outline:none;margin-bottom:8px;">
+                <option value="">Select a reason…</option>
+                <option value="Expired">Expired</option>
+                <option value="Damaged">Damaged</option>
+                <option value="Recalled">Recalled</option>
+                <option value="Quality Issue">Quality Issue</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="text" id="bulk-dispose-reason" placeholder="Additional notes (optional)" style="width:100%;padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;box-sizing:border-box;outline:none;">
+        </div>
+        <div class="modal-actions">
+            <button class="btn-cancel-modal" onclick="closeBulkDisposeModal()">Cancel</button>
+            <button class="btn-confirm-dispose" id="btn-confirm-bulk-dispose" onclick="confirmBulkDispose()">
+                <span>🗑️</span> Confirm Disposal
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="../app.js?v=62"></script>
+<script src="../js/expiry.js?v=57"></script>
+</body>
+</html>

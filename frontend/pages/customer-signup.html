@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — SIRA Store</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../customer-style.css">
+</head>
+<body>
+<div class="c-auth-wrap">
+  <div class="c-auth-brand">
+    <div class="dot-grid"></div>
+    <div style="position:relative;z-index:2">
+      <div style="display:flex;align-items:center;gap:8px;font-weight:800;font-size:17px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        SIRA Store
+      </div>
+    </div>
+    <div style="position:relative;z-index:2">
+      <div style="font-size:36px;font-weight:800;line-height:1.15;letter-spacing:-0.03em;margin-bottom:14px">
+        Join thousands of<br><span style="color:#93C5FD">happy shoppers.</span>
+      </div>
+      <p style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:28px">
+        Create your free account and unlock AI-powered recommendations, exclusive deals, and seamless order tracking.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.9)">✅ Free account — no credit card required</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.9)">✅ Personalised AI recommendations</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.9)">✅ Track orders & manage wishlist</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.9)">✅ Exclusive member-only discounts</div>
+      </div>
+    </div>
+    <div style="position:relative;z-index:2;font-size:12px;color:rgba(255,255,255,.4)">© 2026 SIRA Store. All rights reserved.</div>
+  </div>
+
+  <div class="c-auth-form-side">
+    <div class="c-auth-box" style="max-width:480px">
+      <div class="c-auth-badge">✨ CREATE FREE ACCOUNT</div>
+      <h1 class="c-auth-title">Get started! 🚀</h1>
+      <p class="c-auth-sub">Fill in your details to create your account.</p>
+
+      <div class="c-alert c-alert-error" id="msg"></div>
+      <div class="c-alert c-alert-success" id="msg-success"></div>
+
+      <form id="signup-form">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="c-field">
+            <label class="c-label" for="name">Full Name *</label>
+            <input class="c-input" type="text" id="name" placeholder="Priya Sharma" required>
+          </div>
+          <div class="c-field">
+            <label class="c-label" for="mobile">Mobile Number *</label>
+            <input class="c-input" type="tel" id="mobile" placeholder="9876543210" required>
+          </div>
+        </div>
+        <div class="c-field">
+          <label class="c-label" for="email">Email Address *</label>
+          <input class="c-input" type="email" id="email" placeholder="you@example.com" required autocomplete="email">
+        </div>
+        <div class="c-field">
+          <label class="c-label" for="address">Delivery Address *</label>
+          <textarea class="c-input c-textarea" id="address" placeholder="House/Flat No, Street, Area, City, PIN" required style="height:80px"></textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="c-field">
+            <label class="c-label" for="password">Password *</label>
+            <div class="c-input-wrap">
+              <input class="c-input" type="password" id="password" placeholder="Min 8 chars" required autocomplete="new-password">
+              <button type="button" class="c-eye-btn" id="toggle-pw">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <div id="pw-strength" class="c-field-hint"></div>
+          </div>
+          <div class="c-field">
+            <label class="c-label" for="confirm-password">Confirm Password *</label>
+            <input class="c-input" type="password" id="confirm-password" placeholder="Repeat password" required autocomplete="new-password">
+          </div>
+        </div>
+
+        <button type="submit" class="c-btn c-btn-primary" style="width:100%;margin-top:4px" id="submit-btn">
+          Create Account
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <div style="text-align:center;margin-top:18px;font-size:13px;color:#64748B">
+        Already have an account?
+        <a href="login.html" style="color:#2563EB;font-weight:600;text-decoration:none;margin-left:4px">Sign in</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('toggle-pw').addEventListener('click', function () {
+    const pw = document.getElementById('password');
+    pw.type = pw.type === 'password' ? 'text' : 'password';
+  });
+
+  document.getElementById('password').addEventListener('input', function () {
+    const pw = this.value;
+    const el = document.getElementById('pw-strength');
+    if (!pw) { el.textContent = ''; return; }
+    let strength = 0;
+    if (pw.length >= 8) strength++;
+    if (/[A-Z]/.test(pw)) strength++;
+    if (/[0-9]/.test(pw)) strength++;
+    if (/[^A-Za-z0-9]/.test(pw)) strength++;
+    const labels = ['', '⚠️ Weak', '🔶 Fair', '✅ Good', '💪 Strong'];
+    const colors = ['', '#dc2626', '#d97706', '#059669', '#2563eb'];
+    el.textContent = labels[strength] || '';
+    el.style.color = colors[strength] || '';
+  });
+
+  document.getElementById('signup-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('msg');
+    const msgS = document.getElementById('msg-success');
+    msg.className = 'c-alert c-alert-error';
+    msgS.className = 'c-alert c-alert-success';
+
+    const pw = document.getElementById('password').value;
+    const cpw = document.getElementById('confirm-password').value;
+    if (pw !== cpw) {
+      msg.textContent = 'Passwords do not match.';
+      msg.className = 'c-alert c-alert-error show';
+      return;
+    }
+
+    const mobile = document.getElementById('mobile').value.trim();
+    if (!/^\d{10}$/.test(mobile)) {
+      msg.textContent = 'Please enter a valid 10-digit mobile number.';
+      msg.className = 'c-alert c-alert-error show';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="c-spin">⟳</span>&nbsp;Creating account…';
+
+    try {
+      const res = await fetch('/api/customers/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: document.getElementById('name').value.trim(),
+          email: document.getElementById('email').value.trim(),
+          mobile,
+          password: pw,
+          confirm_password: cpw,
+          address: document.getElementById('address').value.trim(),
+        }),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        msg.textContent = err.detail || 'Registration failed.';
+        msg.className = 'c-alert c-alert-error show';
+        return;
+      }
+      const data = await res.json();
+      localStorage.setItem('c_token', data.token);
+      localStorage.setItem('c_name', data.name);
+      localStorage.setItem('c_id', data.customer_id);
+      localStorage.setItem('c_email', data.email);
+      msgS.textContent = '🎉 Account created! Redirecting…';
+      msgS.className = 'c-alert c-alert-success show';
+      setTimeout(() => window.location.href = 'customer-dashboard.html', 1000);
+    } catch {
+      msg.textContent = 'Network error. Please try again.';
+      msg.className = 'c-alert c-alert-error show';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Create Account <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    }
+  });
+</script>
+</body>
+</html>

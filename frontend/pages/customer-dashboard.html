@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — SIRA Store</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../customer-style.css?v=999">
+</head>
+<body>
+<nav class="c-nav" id="c-nav"></nav>
+
+<div class="c-page">
+
+  <!-- Hero -->
+  <div class="c-hero">
+    <div class="c-hero-content">
+      <div class="c-hero-badge">Welcome back!</div>
+      <h1>Good <span id="greeting-time">morning</span>, <span class="highlight" id="hero-name">Shopper</span>!</h1>
+    </div>
+    <div class="c-hero-actions">
+      <a href="customer-catalog.html" class="c-btn c-btn-white c-btn-sm">Browse Products</a>
+      <a href="customer-catalog.html?sort=trending" class="c-btn c-btn-sm" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25)">Trending Now</a>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <div class="c-section">
+    <div class="c-section-header">
+      <div><div class="c-section-title">Shop by Category</div></div>
+      <a href="customer-catalog.html" class="c-view-all">All Categories →</a>
+    </div>
+    <div class="c-cat-scroll" id="cat-scroll">
+      <div class="c-skeleton" style="width:72px;height:90px;border-radius:16px"></div>
+      <div class="c-skeleton" style="width:72px;height:90px;border-radius:16px"></div>
+      <div class="c-skeleton" style="width:72px;height:90px;border-radius:16px"></div>
+      <div class="c-skeleton" style="width:72px;height:90px;border-radius:16px"></div>
+    </div>
+  </div>
+
+  <!-- Trending -->
+  <div class="c-section">
+    <div class="c-section-header">
+      <div><div class="c-section-title">🔥 Trending Now</div></div>
+      <a href="customer-catalog.html?sort=trending" class="c-view-all">View all →</a>
+    </div>
+    <div class="c-grid" id="trending-products"></div>
+  </div>
+
+  <!-- Discounted -->
+  <div class="c-section">
+    <div class="c-section-header">
+      <div><div class="c-section-title">🏷️ Deals & Discounts</div></div>
+      <a href="customer-catalog.html?discounted=1" class="c-view-all">View all →</a>
+    </div>
+    <div class="c-grid" id="disc-products"></div>
+  </div>
+
+</div>
+
+<script src="../js/customer-app.js?v=9"></script>
+<script>
+  cCheckAuth();
+  cInjectNav('dashboard');
+
+  // Greeting
+  const h = new Date().getHours();
+  document.getElementById('greeting-time').textContent = h < 12 ? 'morning' : h < 17 ? 'afternoon' : 'evening';
+  document.getElementById('hero-name').textContent = (cGetName() || 'Shopper').split(' ')[0];
+
+  async function loadAll() {
+    // Categories
+    try {
+      const cats = await fetch('/api/customer-products/categories').then(r => r.json());
+      const scroll = document.getElementById('cat-scroll');
+      if (cats && cats.length) {
+        scroll.innerHTML = cats.map(c => `
+          <a href="customer-catalog.html?category=${encodeURIComponent(c.name)}" class="c-cat-pill">
+            <div class="c-cat-icon" style="background:${c.color}18;color:${c.color}">${c.emoji}</div>
+            <div class="c-cat-label">${c.name}</div>
+          </a>`).join('');
+      }
+    } catch {}
+
+    // Trending (last 60 days)
+    await loadProductSection('/api/customer-products/trending?limit=6', 'trending-products');
+    // Discounted
+    await loadProductSection('/api/customer-products/discounted?limit=6', 'disc-products');
+  }
+
+  async function loadProductSection(url, containerId) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = Array(6).fill('<div class="c-skeleton" style="height:220px;border-radius:16px"></div>').join('');
+    try {
+      const data = await fetch(url).then(r => r.json());
+      if (!data || !data.length) { el.innerHTML = '<div class="c-empty" style="padding:40px 0"><div class="c-empty-icon">📭</div><div class="c-empty-title">No products found</div></div>'; return; }
+      el.innerHTML = data.map(p => cProductCard(p)).join('');
+    } catch { el.innerHTML = ''; }
+  }
+
+  loadAll();
+</script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+import groovy.json.JsonSlurper
+import java.security.*
+
+def parseJson(jsonString) {
+    def lazyMap = new JsonSlurper().parseText(jsonString)
+    def m = [:]
+    m.putAll(lazyMap)
+    return m
+}
+def parseJsonArray(jsonString){
+    def datas = readJSON text: jsonString
+    return datas
+}
+
+def parseJsonString(jsonString, key){
+    def datas = readJSON text: jsonString
+    String Values = writeJSON returnText: true, json: datas[key]
+    return Values
+}
+
+def parseYaml(jsonString) {
+    def datas = readYaml text: jsonString
+    String yml = writeYaml returnText: true, data: datas['kubernetes']
+    return yml
+
+}
+
+def createYamlFile(data,filename) {
+    writeFile file: filename, text: data
+}
+
+
+// String str = ''
+// loop to create a string as -e $STR -e $PTDF
+
+def pushToCollector(agentApiKey){
+  print("Inside pushToCollector...........")
+    def job_name = "$env.JOB_NAME"
+    def job_base_name = "$env.JOB_BASE_NAME"
+    String metaDataProperties = parseJsonString(env.JENKINS_METADATA,'general')
+    metadataVars = parseJsonArray(metaDataProperties)
+    if(metadataVars.tenant != '' &&
+    metadataVars.lazsaDomainUri != ''){
+      echo "Job folder - $job_name"
+      echo "Pipeline Name - $job_base_name"
+      echo "Build Number - $currentBuild.number"
+      sh """curl -k -X POST '${metadataVars.lazsaDomainUri}/collector/orchestrator/devops/details' -H 'X-TenantID: ${metadataVars.tenant}' -H 'Content-Type: application/json' -d '{\"jobName\" : \"${job_base_name}\", \"projectPath\" : \"${job_name}\", \"agentId\" : \"${metadataVars.agentId}\", \"devopsConfigId\" : \"${metadataVars.devopsSettingId}\", \"agentApiKey\" : \"${agentApiKey}\", \"buildNumber\" : \"${currentBuild.number}\", \"pipelineId\" : \"${metadataVars.pipelineId}\" }' """
+    }
+}
+
+def waitforsometime() {
+  sh 'sleep 5'
+}
+
+def agentLabel = "${env.JENKINS_AGENT == null ? "":env.JENKINS_AGENT}"
+
+pipeline {
+    agent { label agentLabel }
+    environment {
+
+        DEFAULT_STAGE_SEQ = "'Initialization','Build','UnitTests','SonarQubeScan','BuildContainerImage','containerImageScan','artifactPublish','PublishContainerImage'"
+        BRANCHES = "${env.GIT_BRANCH}"
+        COMMIT = "${env.GIT_COMMIT}"
+        SERVICE_PORT = "${APP_PORT}"
+        ACTION = "${ACTION}"
+        DEPLOYMENT_TYPE = "${DEPLOYMENT_TYPE == ""? "EC2":DEPLOYMENT_TYPE}"
+
+        CHROME_BIN = "/usr/bin/google-chrome"
+
+        JENKINS_METADATA = "${JENKINS_METADATA}"
+
+        PYTHON_IMAGE_VERSION = "python:3.12.2-slim" //https://hub.docker.com/_/python/tags
+        KUBECTL_IMAGE_VERSION = "public.ecr.aws/lazsa/kubectl:latest" //https://hub.docker.com/r/bitnami/kubectl/tags
+        HELM_IMAGE_VERSION = "alpine/helm:3.8.1" //https://hub.docker.com/r/alpine/helm/tags
+        OC_IMAGE_VERSION = "quay.io/openshift/origin-cli:4.9.0" //https://quay.io/repository/openshift/origin-cli?tab=tags
+        JFROGCLI_IMAGE_VERSION = "public.ecr.aws/lazsa/gradle-jf:jdk21"
+
+    }
+    stages {
+        stage('Initialization') {
+            agent { label agentLabel }
+            steps {
+                script {
+                    // For Context Path read
+                    String metaDataProperties = parseJsonString(env.JENKINS_METADATA,'general')
+                    metadataVars = parseJsonArray(metaDataProperties)
+
+                    //Getting Container Registry URL
+                    env.REGISTRY_URL = metadataVars.containerImagePath
+                    env.BUILD_TAG = metadataVars.containerImageTag
+
+                    env.ARTIFACTORY_CREDENTIALS = metadataVars.artifactorySecret
+                    env.SONAR_CREDENTIAL_ID = metadataVars.sonarSecret
+                    env.ARTIFACTORY = metadataVars.artifactory
+                    env.STAGE_FLAG = metadataVars.stageFlag
+                    env.CONTAINERSCANTYPE = metadataVars.containerScanType
+                    env.AGENTAPIKEY = metadataVars.agentApiKeySecret
+                    env.DOCKERHOST = metadataVars.dockerHostIP
+                    env.RELEASE_NAME = metadataVars.name
+                    env.PROJECT_TEMPLATE_ACTIVE = metadataVars.dynamicJenkinsStage
+                    env.CUSTOM_STAGE_SEQ = metadataVars.dynamicJenkinsStageSequence
+                    env.LIST = "${env.PROJECT_TEMPLATE_ACTIVE == 'true' ? env.CUSTOM_STAGE_SEQ : env.DEFAULT_STAGE_SEQ}"
+                    def listValue = "$env.LIST"
+                    def list = listValue.split(',')
+                    print(list)
+
+                    env.CONTEXT = metadataVars.contextPath
+                    env.BUILD_TAG = "${BUILD_NUMBER}"
+					
+					if(metadataVars.containerScanMetadata){
+                        containerScanPathMetadata = parseJsonString(metaDataProperties,'containerScanMetadata')
+                        containerScanPathVars = parseJsonArray(containerScanPathMetadata)
+                        env.SNYK_PROJECTNAME = containerScanPathVars.projectName
+                        env.SNYK_SEVERITY = containerScanPathVars.severity
+                        env.SNYK_ORGANIZATION = containerScanPathVars.snykOrg
+                        env.SNYK_SECRET = containerScanPathVars.snykSecret
+                    }
+                    if(env.SNYK_SEVERITY == null || env.SNYK_SEVERITY == ''){
+                        env.SNYK_CONTINUE_ON_ERROR=true
+                    }
+                    else{
+                        env.SNYK_CONTINUE_ON_ERROR=false
+                    }
+
+
+
+                   if (env.STAGE_FLAG != 'null' && env.STAGE_FLAG != null) {
+                       stage_flag = parseJson("$env.STAGE_FLAG")
+                   } else {
+                       stage_flag = parseJson('{"qualysScan": false, "sonarScan": true, "zapScan": false, "rapid7Scan": false, "sysdig": false, "FunctionalTesting": false}')
+                   }
+                   if (!stage_flag) {
+                       stage_flag = parseJson('{"qualysScan": false, "sonarScan": true, "zapScan": false, "rapid7Scan": false, "sysdig": false, "FunctionalTesting": false}')
+                   }
+
+                   if (env.ARTIFACTORY == "ECR") {
+                       def url_string = "$REGISTRY_URL"
+                       url = url_string.split('\\.')
+                       env.AWS_ACCOUNT_NUMBER = url[0]
+                       env.ECR_REGION = url[3]
+                       echo "ecr region: $ECR_REGION"
+                       echo "ecr acc no: $AWS_ACCOUNT_NUMBER"
+
+                   } else if (env.ARTIFACTORY == "ACR") {
+                       def url_string = "$REGISTRY_URL"
+                       url = url_string.split('/')
+                       env.ACR_LOGIN_URL = url[0]
+                       echo "Reg Login url: $ACR_LOGIN_URL"
+                   }  else if (env.ARTIFACTORY == "JFROG") {
+                       def url_string = "$REGISTRY_URL"
+                       url = url_string.split('/')
+                       env.JFROG_LOGIN_URL = url[0]
+                       echo "Reg Login url: $JFROG_LOGIN_URL"
+                   }
+
+                    echo "projectTemplateActive - $env.PROJECT_TEMPLATE_ACTIVE"
+                    if (env.CUSTOM_STAGE_SEQ != null) {
+                        echo "customStagesSequence - $env.CUSTOM_STAGE_SEQ"
+                    }
+                    echo "defaultStagesSequence - $env.DEFAULT_STAGE_SEQ"
+                    for (int i = 0; i < list.size(); i++) {
+                        print(list[i])
+                        if ("${list[i]}" == "'UnitTests'") {
+                            stage('Unit Tests') {
+                                sh 'docker run --rm -v "$WORKSPACE":/app -w /app $PYTHON_IMAGE_VERSION /bin/sh unitTest.sh'
+                            }
+                        }
+                        else if ("${list[i]}" == "'SonarQubeScan'" && stage_flag['sonarScan']) {
+                            stage('SonarQube Scan ') {
+                                // stage details here
+                                 env.sonar_org = "${metadataVars.sonarOrg}"
+                                 env.sonar_project_key = "${metadataVars.sonarProjectKey}"
+                                 env.sonar_host = "${metadataVars.sonarHost}"
+
+                                 if (env.SONAR_CREDENTIAL_ID != null && env.SONAR_CREDENTIAL_ID != '') {
+                                     withCredentials([usernamePassword(credentialsId: "$SONAR_CREDENTIAL_ID", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                                       sh ''' docker run -v "$WORKSPACE":/app -w /app sonarsource/sonar-scanner-cli:11.0 -Dsonar.python.coverage.reportPaths=coverage.xml -Dsonar.python.xunit.reportPath=testreport.xml -Dsonar.projectKey="$sonar_project_key"  -Dsonar.sources=. -Dsonar.projectName="$sonar_project_key" -Dsonar.host.url="$sonar_host" -Dsonar.organization="$sonar_org" -Dsonar.login=$PASSWORD -Dsonar.token=$PASSWORD '''
+                                     }
+                                 }
+                                 else{
+                                     withSonarQubeEnv('pg-sonar') {
+                                         sh ''' docker run -v "$WORKSPACE":/app -w /app sonarsource/sonar-scanner-cli:11.0 -Dsonar.python.coverage.reportPaths=coverage.xml -Dsonar.python.xunit.reportPath=testreport.xml -Dsonar.projectKey="$sonar_project_key"  -Dsonar.sources=. -Dsonar.projectName="$sonar_project_key" -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.organization="$sonar_org" -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.token=$SONAR_AUTH_TOKEN '''
+                                     }
+                                 }
+                            }
+                        } else if ("${list[i]}" == "'Build'") {
+                            stage('Build') {
+                                script {
+                                    echo "Techstack doesnt require to build"
+                                }
+                            }
+                        } else if ("${list[i]}" == "'BuildContainerImage'") {
+                               stage('Build Container Image') {   // no changes
+                                   // stage details here
+                                   echo "echoed BUILD_TAG--- $BUILD_TAG"
+                                   //Uncomment this block and modify as per your need if you want to use custom base image in Dockerfile from private repository
+                                   /*
+                                   withCredentials([usernamePassword(credentialsId: "$ARTIFACTORY_CREDENTIALS", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                                      if (env.ARTIFACTORY == 'ECR') {
+                                          sh 'set +x; AWS_ACCESS_KEY_ID=$USERNAME AWS_SECRET_ACCESS_KEY=$PASSWORD aws ecr get-login-password --region "$ECR_REGION" | docker login --username AWS --password-stdin $REGISTRY_URL ;set -x'
+                                      }
+                                      if (env.ARTIFACTORY == 'JFROG') {
+                                          sh 'docker login -u "\"$USERNAME\"" -p "\"$PASSWORD\"" "$JFROG_LOGIN_URL"'
+                                      }
+                                      if (env.ARTIFACTORY == 'ACR') {
+                                          sh 'docker login -u "\"$USERNAME\"" -p "\"$PASSWORD\"" "$ACR_LOGIN_URL"'
+                                      }
+                                   } */
+                                   sh 'docker build -t "$REGISTRY_URL:$BUILD_TAG" -t "$REGISTRY_URL:latest" .'
+                               }
+                        } else if ("${list[i]}" == "'ContainerImageScan'" && stage_flag['containerScan']) {
+                              stage("Container Image Scan") {
+                                  if (env.CONTAINERSCANTYPE == 'XRAY') {
+                                      jf 'docker scan $REGISTRY_URL:$BUILD_TAG'
+                                  }
+                                  if(env.CONTAINERSCANTYPE == 'QUALYS'){
+                                       getImageVulnsFromQualys credentialsId: "${metadataVars.qualysCredentialId}", imageIds: env.REGISTRY_URL+":"+env.BUILD_TAG, pollingInterval: '30', useLocalConfig: true, apiServer: "${metadataVars.qualysServerURL}", platform: 'PCP', vulnsTimeout: '600'
+                                  }
+                                  if(env.CONTAINERSCANTYPE == 'RAPID7'){
+                                      assessContainerImage failOnPluginError: true,
+                                                  imageId: env.REGISTRY_URL+":"+env.BUILD_TAG,
+                                                  thresholdRules: [
+                                                          exploitableVulnerabilities(action: 'Mark Unstable', threshold: '1'),
+                                                          criticalVulnerabilities(action: 'Fail', threshold: '1')
+                                                  ],
+                                                  nameRules: [
+                                                          vulnerablePackageName(action: 'Fail', contains: 'nginx')
+                                                  ]
+                                  }
+								  if(env.CONTAINERSCANTYPE == 'SNYK'){
+                                    withCredentials([string(credentialsId: "$SNYK_SECRET", variable: 'SNYK_TOKEN')]) {
+                                        if(env.SNYK_CONTINUE_ON_ERROR == "true"){
+                                            sh """
+                                            set +e
+                                            snyk container monitor "$REGISTRY_URL:$BUILD_TAG" --project-name="$SNYK_PROJECTNAME" --org="$SNYK_ORGANIZATION"
+                                            snyk container test "$REGISTRY_URL:$BUILD_TAG" "$SNYK_SEVERITY" --exclude-app-vulns --project-name="$SNYK_PROJECTNAME" --org="$SNYK_ORGANIZATION" || true
+                                            """
+                                        }
+                                        else{
+                                            sh 'snyk container monitor "$REGISTRY_URL:$BUILD_TAG" --project-name="$SNYK_PROJECTNAME" --org="$SNYK_ORGANIZATION" '
+                                            sh 'snyk container test "$REGISTRY_URL:$BUILD_TAG" "$SNYK_SEVERITY" --exclude-app-vulns --project-name="$SNYK_PROJECTNAME" --org="$SNYK_ORGANIZATION" '
+                                        }
+
+                                    }
+                                }
+
+                                  if(env.CONTAINERSCANTYPE == 'SYSDIG'){
+                                     sh 'echo  $REGISTRY_URL:$BUILD_TAG > sysdig_secure_images'
+                                          sysdig inlineScanning: true, bailOnFail: true, bailOnPluginFail: true, name: 'sysdig_secure_images'
+                                  }
+                              }
+                          } else if ("${list[i]}" == "'PublishContainerImage'") {
+                                stage('Publish Container Image') {   // no changes
+                                    // stage details here
+                                    echo "Publish Container Image"
+                                    withCredentials([usernamePassword(credentialsId: "$ARTIFACTORY_CREDENTIALS", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                                        if (env.ARTIFACTORY == 'ECR') {
+                                            sh 'set +x; AWS_ACCESS_KEY_ID=$USERNAME AWS_SECRET_ACCESS_KEY=$PASSWORD aws ecr get-login-password --region "$ECR_REGION" | docker login --username AWS --password-stdin $REGISTRY_URL ;set -x'
+                                        }
+                                        if (env.ARTIFACTORY == 'JFROG') {
+                                            sh 'docker login -u "\"$USERNAME\"" -p "\"$PASSWORD\"" "$JFROG_LOGIN_URL"'
+                                        }
+                                        if (env.ARTIFACTORY == 'ACR') {
+                                            sh 'docker login -u "\"$USERNAME\"" -p "\"$PASSWORD\"" "$ACR_LOGIN_URL"'
+                                        }
+                                    }
+
+                                    sh 'docker push "$REGISTRY_URL:$BUILD_TAG"'
+                                    sh 'docker push "$REGISTRY_URL:latest"'
+
+                                }
+                        }
+                    }
+                }
+            }
+            post {
+                always {
+                    script {
+                        withCredentials([string(credentialsId: "$AGENTAPIKEY", variable: 'agentApiKey')]) {
+                            pushToCollector(agentApiKey)
+                        }
+                    }
+                    sh """ sudo chown -R `id -u`:`id -g` "$WORKSPACE"* """
+                }
+                cleanup {
+                    sh 'docker  rmi  $REGISTRY_URL:$BUILD_TAG $REGISTRY_URL:latest || true'
+                }
+            }
+        }
+    }
+}
+

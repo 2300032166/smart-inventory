@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications — SIRA Store</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../customer-style.css?v=999">
+</head>
+<body>
+<nav class="c-nav" id="c-nav"></nav>
+
+<div class="c-page">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px">
+    <div>
+      <h1 style="font-size:24px;font-weight:800;letter-spacing:-0.02em">🔔 Notifications</h1>
+      <div style="font-size:13px;color:var(--c-text-2);margin-top:2px" id="notif-count">Loading…</div>
+    </div>
+    <button class="c-btn c-btn-secondary c-btn-sm" id="mark-all-btn" onclick="markAllRead()" style="display:none">✓ Mark all as read</button>
+  </div>
+
+  <div id="loading" class="c-spinner-wrap"><div class="c-spinner"></div></div>
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:700px" id="notif-list"></div>
+  <div id="empty-notif" style="display:none">
+    <div class="c-empty">
+      <div class="c-empty-icon">🔔</div>
+      <div class="c-empty-title">No notifications</div>
+      <div class="c-empty-desc">You're all caught up! Notifications about orders, deals, and more will appear here.</div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/customer-app.js?v=9"></script>
+<script>
+  cCheckAuth();
+  cInjectNav();
+
+  const NOTIF_ICONS = {
+    order:   '🛍️',
+    price:   '🏷️',
+    product: '🆕',
+    promo:   '🎉',
+    default: '🔔',
+  };
+
+  async function loadNotifications() {
+    try {
+      const data = await cFetch('/customer-orders/notifications');
+      if (!data) return;
+      document.getElementById('loading').style.display = 'none';
+      const unread = data.filter(n => n.is_read === 'False' || n.is_read === false).length;
+      document.getElementById('notif-count').textContent = `${data.length} notification${data.length !== 1 ? 's' : ''}${unread > 0 ? ` (${unread} unread)` : ''}`;
+      if (unread > 0) document.getElementById('mark-all-btn').style.display = 'inline-flex';
+      if (!data.length) { document.getElementById('empty-notif').style.display = 'flex'; return; }
+      document.getElementById('notif-list').innerHTML = data.map(n => renderNotif(n)).join('');
+    } catch (e) { document.getElementById('loading').style.display = 'none'; cToast(e.message, 'error'); }
+  }
+
+  function renderNotif(n) {
+    const isUnread = n.is_read === 'False' || n.is_read === false;
+    const icon = NOTIF_ICONS[n.type] || NOTIF_ICONS.default;
+    const bgColors = { order: '#eff6ff', price: '#fffbeb', product: '#ecfdf5', promo: '#f5f3ff', default: '#f8fafc' };
+    return `
+    <div class="c-notif-item ${isUnread ? 'unread' : ''}" id="notif-${n.id}" onclick="markRead('${n.id}')">
+      <div class="c-notif-icon" style="background:${bgColors[n.type] || bgColors.default}">${icon}</div>
+      <div class="c-notif-body">
+        <div class="c-notif-title">${n.title}</div>
+        <div class="c-notif-msg">${n.message}</div>
+        <div class="c-notif-time">${cTimeAgo(n.created_at)}</div>
+      </div>
+      ${isUnread ? '<div style="width:8px;height:8px;border-radius:50%;background:var(--c-primary);flex-shrink:0;margin-top:4px"></div>' : ''}
+    </div>`;
+  }
+
+  async function markRead(id) {
+    try {
+      await cFetch(`/customer-orders/notifications/${id}/read`, { method: 'PUT' });
+      const el = document.getElementById(`notif-${id}`);
+      if (el) { el.classList.remove('unread'); el.querySelector('[style*="border-radius:50%"]')?.remove(); }
+      cUpdateNotifBadge();
+    } catch {}
+  }
+
+  async function markAllRead() {
+    try {
+      await cFetch('/customer-orders/notifications/read-all', { method: 'PUT' });
+      document.querySelectorAll('.c-notif-item').forEach(el => {
+        el.classList.remove('unread');
+        el.querySelector('[style*="border-radius:50%"]')?.remove();
+      });
+      document.getElementById('mark-all-btn').style.display = 'none';
+      cUpdateNotifBadge();
+      cToast('All notifications marked as read', 'success');
+    } catch (e) { cToast(e.message, 'error'); }
+  }
+
+  loadNotifications();
+</script>
+</body>
+</html>
