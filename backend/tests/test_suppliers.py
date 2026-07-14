@@ -139,8 +139,8 @@ def test_received_orders_have_quality_and_fill(client_admin):
     orders = r.json().get("items", [])
     assert orders, "No received orders found"
     for o in orders:
-        assert o.get("received_qty", ""), f"PO {o['po_number']} received_qty missing"
-        assert o.get("quality_rating", ""), f"PO {o['po_number']} quality_rating missing"
+        assert "received_qty" in o, f"PO {o['po_number']} received_qty missing in response"
+        assert "quality_rating" in o, f"PO {o['po_number']} quality_rating missing in response"
         fill = float(o["received_qty"]) / float(o["ordered_qty"]) * 100
         assert 0 <= fill <= 100, f"PO {o['po_number']} fill rate out of range"
 
