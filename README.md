@@ -1,9 +1,5 @@
 # 🛍️ SIRA — Smart Inventory & Retail Assistant
 
-[![Python]](https://www.python.org/)
-[![FastAPI]](https://fastapi.tiangolo.com/)
-[![License: Proprietary]](#license)
-
 **SIRA** is an advanced, AI-driven inventory management platform and modern retail storefront. Built with a robust backend architecture using **FastAPI** and a premium, glassmorphism-styled frontend built purely in **HTML, CSS, and vanilla JS**, SIRA empowers retail ecosystems on all fronts.
 
 From helping managers make smarter reorder decisions with Groq-powered AI, to real-time supplier comparison analytics and a state-of-the-art customer storefront, SIRA is an end-to-end management solution.
