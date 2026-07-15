@@ -41,7 +41,7 @@ async def call_groq_new(
         or cfg.get("ai_model")
         or "llama-3.1-8b-instant"
     )
-    timeout_seconds = timeout_seconds or float(cfg.get("groq_timeout_seconds", os.getenv("GROQ_TIMEOUT_SECONDS", "4")))
+    timeout_seconds = timeout_seconds or float(cfg.get("groq_timeout_seconds", os.getenv("GROQ_TIMEOUT_SECONDS", "15")))
     max_tokens = max_tokens or int(cfg.get("groq_max_tokens", os.getenv("GROQ_MAX_TOKENS", "40")))
     temperature = float(cfg.get("groq_temperature", os.getenv("GROQ_TEMPERATURE", "0.7")))
 

@@ -78,11 +78,11 @@ async function loadBrief(force = false, isPolling = false) {
             explanation = (item.drivers?.natural_explanation) ||
               `Reorder suggested: ${item.recommended_qty} ${item.unit} for ${item.product_name}.`;
           }
+          let newHtml = `<span>${explanation}</span>`;
           if (item.ai_status === 'loading') {
-            aiSpan.innerHTML = `<span>${explanation}</span> <span style="font-size:0.85em;color:var(--color-primary);padding-left:4px;">(AI generating...)</span>`;
-          } else {
-            aiSpan.innerHTML = `<span>${explanation}</span>`;
+            newHtml += ` <span style="font-size:0.85em;color:var(--color-primary);padding-left:4px;">(AI generating...)</span>`;
           }
+          aiSpan.innerHTML = newHtml;
         }
       });
       updateProgress();
@@ -208,9 +208,10 @@ function renderBrief() {
     if (!explanation || explanation.toLowerCase().includes('failed')) {
       explanation = drivers.natural_explanation || `Reorder suggested: ${item.recommended_qty} ${item.unit} for ${item.product_name}.`;
     }
-    const explanationHtml = item.ai_status === 'loading'
-      ? `<span>${explanation}</span> <span style="font-size: 0.85em; color: var(--color-primary); padding-left: 4px;">(AI generating...)</span>`
-      : `<span>${explanation}</span>`;
+    let explanationHtml = `<span>${explanation}</span>`;
+    if (item.ai_status === 'loading') {
+      explanationHtml += ` <span style="font-size: 0.85em; color: var(--color-primary); padding-left: 4px;">(AI generating...)</span>`;
+    }
 
     const deliveryHtml = item.delivery_date
       ? `<div class="rec-meta-item" style="color:#0891b2;font-weight:600;">Expected Arrival: <strong>${formatDate(item.delivery_date)}</strong></div>`

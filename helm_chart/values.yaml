@@ -133,6 +133,10 @@ extraEnv:
     value: "100"
   - name: PAYDAY_DATES
     value: "25,26,27"
+  - name: GROQ_TIMEOUT_SECONDS
+    value: "15"
+  - name: GROQ_CONCURRENCY
+    value: "2"
 
 
 #extraEnvFrom:

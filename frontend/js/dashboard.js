@@ -228,9 +228,10 @@ function renderCards() {
     if (!explanation || explanation.toLowerCase().includes('failed')) {
         explanation = item.drivers?.natural_explanation || `Inventory check: Stock is low for ${item.product_name}. Recommend reordering to maintain shelf availability.`;
     }
-    const explanationHtml = item.ai_status === 'loading'
-        ? `<span>${explanation}</span> <span style="font-size: 0.85em; color: var(--color-primary); padding-left: 4px;">(AI generating...)</span>`
-        : `<span>${explanation}</span>`;
+    let explanationHtml = `<span>${explanation}</span>`;
+    if (item.ai_status === 'loading') {
+        explanationHtml += ` <span style="font-size: 0.85em; color: var(--color-primary); padding-left: 4px;">(AI generating...)</span>`;
+    }
     const escapedName = item.product_name.replace(/'/g, "\\'");
 
     let supplierHtml = '';

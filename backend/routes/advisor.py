@@ -371,7 +371,7 @@ async def get_today_brief(
         # (each attempt bounded by groq_timeout_seconds, default 4s). Give the
         # outer watchdog enough room for a couple of those rounds instead of
         # cutting off a retry that a backup key would have won.
-        per_item_timeout = max(6.0, float(cfg.get("groq_timeout_seconds", 4)) * 2 * max(1, key_manager.key_count) + 2)
+        per_item_timeout = max(15.0, float(cfg.get("groq_timeout_seconds", 15)) * 2 * max(1, key_manager.key_count) + 2)
 
         async def _get_and_persist_reasoning(p, pattern, reorder, impact, sku_fallback):
             """Fetch AI reasoning for one SKU and immediately persist it to the log."""
@@ -384,8 +384,10 @@ async def get_today_brief(
                     logger.warning("[Brief] generate_reasoning failed/timed-out for SKU=%s: %s", sku, exc)
                     reasoning = AI_FAIL_MSG
 
+            ai_status_val = "complete"
             if not reasoning or "failed" in reasoning.lower() or reasoning == AI_FAIL_MSG:
                 reasoning = sku_fallback
+                ai_status_val = "failed"
 
             # ── Write this single SKU's result immediately ─────────────────
             async with _file_lock:
@@ -396,7 +398,7 @@ async def get_today_brief(
                         for item in current_log[today]["items"]:
                             if item["sku"] == sku:
                                 item["ai_reasoning"] = reasoning
-                                item["ai_status"] = "complete"
+                                item["ai_status"] = ai_status_val
                                 break
                         save_brief_log(current_log)
                         logger.debug("[Brief] Persisted AI result for SKU=%s", sku)
@@ -428,7 +430,7 @@ async def get_today_brief(
                             for item in current_log[today]["items"]:
                                 if item["sku"] == sku and item.get("ai_status") == "loading":
                                     item["ai_reasoning"] = fallback_map.get(sku, item["ai_reasoning"])
-                                    item["ai_status"] = "complete"
+                                    item["ai_status"] = "failed"
                                     break
                             save_brief_log(current_log)
                     except Exception:
