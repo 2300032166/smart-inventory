@@ -1,54 +1,54 @@
 {
-  "timestamp": "2026-07-14T16:50:28.899790",
+  "timestamp": "2026-07-15T10:39:33.663742",
   "forecast": [
     {
-      "date": "2026-07-14",
-      "max_temp": 35.6,
-      "min_temp": 30.4,
-      "precip": 0.0,
-      "code": 3
-    },
-    {
       "date": "2026-07-15",
-      "max_temp": 34.4,
-      "min_temp": 28.7,
+      "max_temp": 37.0,
+      "min_temp": 29.5,
       "precip": 0.0,
       "code": 3
     },
     {
       "date": "2026-07-16",
-      "max_temp": 35.6,
-      "min_temp": 27.5,
-      "precip": 1.6,
+      "max_temp": 36.0,
+      "min_temp": 29.5,
+      "precip": 1.1,
       "code": 53
     },
     {
       "date": "2026-07-17",
-      "max_temp": 35.0,
-      "min_temp": 26.4,
-      "precip": 1.6,
-      "code": 53
+      "max_temp": 33.8,
+      "min_temp": 25.3,
+      "precip": 10.8,
+      "code": 95
     },
     {
       "date": "2026-07-18",
-      "max_temp": 32.1,
-      "min_temp": 25.5,
-      "precip": 6.9,
-      "code": 53
+      "max_temp": 33.2,
+      "min_temp": 25.4,
+      "precip": 8.6,
+      "code": 80
     },
     {
       "date": "2026-07-19",
-      "max_temp": 34.4,
-      "min_temp": 25.3,
-      "precip": 12.9,
-      "code": 81
+      "max_temp": 29.8,
+      "min_temp": 25.4,
+      "precip": 9.6,
+      "code": 55
     },
     {
       "date": "2026-07-20",
-      "max_temp": 34.2,
-      "min_temp": 26.0,
-      "precip": 5.1,
-      "code": 53
+      "max_temp": 32.6,
+      "min_temp": 25.3,
+      "precip": 4.8,
+      "code": 55
+    },
+    {
+      "date": "2026-07-21",
+      "max_temp": 33.7,
+      "min_temp": 25.4,
+      "precip": 1.2,
+      "code": 51
     }
   ]
 }

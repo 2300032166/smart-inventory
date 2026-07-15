@@ -145,170 +145,195 @@ async def get_today_brief(
             return log[today]["items"]
         raise HTTPException(status_code=500, detail=f"Failed to load inventory data: {e}")
     
-    # OPTIMIZATION: Pre-calculate sales stats for all SKUs to avoid O(N^2) filtering
-    print(f"Optimizing brief for {len(products)} products...")
-    # Robust SKU keys: string, stripped, upper
-    sales_df["StockCode"] = sales_df["StockCode"].astype(str).str.strip().str.upper()
-    recent_sales = sales_df.groupby("StockCode")["Quantity"].sum().to_dict()
-    # Estimate avg daily sales over 365 days
-    avg_sales_map = {str(sku): qty/365 for sku, qty in recent_sales.items()}
-    # Fetch patterns for all products to avoid O(N^2) loops
-    from logic.pattern_detector import analyse_all_skus
-    all_patterns = analyse_all_skus()
-
-    # NEW: Fetch weather forecast for Vijayawada
-    forecast = await fetch_weather_forecast()
-
-    # Supplier data is loaded once per brief generation and reused for recommendations.
-    supplier_data = supplier_data_snapshot()
-
-    # OPTIMIZATION: Build incoming stock map once to avoid 2510x file reads inside the loop.
-    # Mirrors the exact logic from get_incoming_stock() but vectorised.
-    from .orders import load_overrides as _load_overrides
-    incoming_stock_map: dict = {}
     try:
-        for o in _load_overrides():
-            if o.get("status") in ("approved", "ordered") and not o.get("po_id"):
-                _sku = str(o.get("sku", "")).strip().upper()
-                if _sku:
-                    incoming_stock_map[_sku] = incoming_stock_map.get(_sku, 0.0) + float(o.get("actual_qty", 0))
-        _po_csv = os.path.join(DATA_DIR, "purchase_orders.csv")
-        if os.path.exists(_po_csv):
-            import pandas as _pd
-            _po_df = _pd.read_csv(_po_csv).fillna("")
-            _po_pending = _po_df[_po_df["status"].astype(str).str.strip().str.lower().isin(["ordered", "approved"])]
-            for _, _row in _po_pending.iterrows():
-                _sku = str(_row.get("sku", "")).strip().upper()
-                if _sku:
-                    incoming_stock_map[_sku] = incoming_stock_map.get(_sku, 0.0) + float(_row.get("ordered_qty", 0) or 0)
-    except Exception as _e:
-        logger.warning("[Brief] Could not pre-build incoming_stock_map: %s", _e)
+        # OPTIMIZATION: Pre-calculate sales stats for all SKUs to avoid O(N^2) filtering
+        print(f"Optimizing brief for {len(products)} products...")
+        # Robust SKU keys: string, stripped, upper
+        sales_df["StockCode"] = sales_df["StockCode"].astype(str).str.strip().str.upper()
+        recent_sales = sales_df.groupby("StockCode")["Quantity"].sum().to_dict()
+        # Estimate avg daily sales over 365 days
+        avg_sales_map = {str(sku): qty/365 for sku, qty in recent_sales.items()}
+        # Fetch patterns for all products to avoid O(N^2) loops
+        from logic.pattern_detector import analyse_all_skus
+        all_patterns = analyse_all_skus()
 
-    # OPTIMIZATION: Cache weather impacts by (category, lead_time) — most products share
-    # the same category/lead-time pair, so we compute only the unique combos.
-    _weather_cache: dict = {}
+        # NEW: Fetch weather forecast for Vijayawada
+        forecast = await fetch_weather_forecast()
 
-    def _get_weather_impact(category: str, lead_time: int) -> dict:
-        key = (category, lead_time)
-        if key not in _weather_cache:
-            _weather_cache[key] = analyze_weather_for_windows(forecast, category, lead_time)
-        return _weather_cache[key]
+        # Supplier data is loaded once per brief generation and reused for recommendations.
+        supplier_data = supplier_data_snapshot()
 
-    candidates = []
-    for p in products:
-        sku_clean = str(p.get("sku", "")).strip().upper()
-        # Use pre-built map — no disk I/O per SKU
-        incoming = incoming_stock_map.get(sku_clean, 0.0)
+        # OPTIMIZATION: Build incoming stock map once to avoid 2510x file reads inside the loop.
+        # Mirrors the exact logic from get_incoming_stock() but vectorised.
+        from .orders import load_overrides as _load_overrides
+        incoming_stock_map: dict = {}
+        try:
+            for o in _load_overrides():
+                if o.get("status") in ("approved", "ordered") and not o.get("po_id"):
+                    _sku = str(o.get("sku", "")).strip().upper()
+                    if _sku:
+                        incoming_stock_map[_sku] = incoming_stock_map.get(_sku, 0.0) + float(o.get("actual_qty", 0))
+            _po_csv = os.path.join(DATA_DIR, "purchase_orders.csv")
+            if os.path.exists(_po_csv):
+                import pandas as _pd
+                _po_df = _pd.read_csv(_po_csv).fillna("")
+                _po_pending = _po_df[_po_df["status"].astype(str).str.strip().str.lower().isin(["ordered", "approved"])]
+                for _, _row in _po_pending.iterrows():
+                    _sku = str(_row.get("sku", "")).strip().upper()
+                    if _sku:
+                        incoming_stock_map[_sku] = incoming_stock_map.get(_sku, 0.0) + float(_row.get("ordered_qty", 0) or 0)
+        except Exception as _e:
+            logger.warning("[Brief] Could not pre-build incoming_stock_map: %s", _e)
 
-        # Create a modified product dict for recommendation logic
-        p_effective = p.copy()
-        physical_stock = float(p.get("current_stock", 0))
-        p_effective["current_stock"] = physical_stock + incoming
+        # OPTIMIZATION: Cache weather impacts by (category, lead_time) — most products share
+        # the same category/lead-time pair, so we compute only the unique combos.
+        _weather_cache: dict = {}
 
-        # Use real pattern data
-        pattern = all_patterns.get(sku_clean, {
-            "avg_daily_sales": avg_sales_map.get(sku_clean, 0),
-            "payday_spike": False,
-            "weekend_spike": False,
-            "confidence": 0.5
-        })
+        def _get_weather_impact(category: str, lead_time: int) -> dict:
+            key = (category, lead_time)
+            if key not in _weather_cache:
+                _weather_cache[key] = analyze_weather_for_windows(forecast, category, lead_time)
+            return _weather_cache[key]
 
-        # Cached weather impact — no repeated computation for same category+lead_time
-        lead_time = int(p.get("lead_time_days", 7))
-        impact = _get_weather_impact(p.get("category", ""), lead_time)
+        candidates = []
+        for p in products:
+            try:
+                sku_clean = str(p.get("sku", "")).strip().upper()
+                # Use pre-built map — no disk I/O per SKU
+                incoming = incoming_stock_map.get(sku_clean, 0.0)
 
-        # MODIFIED: Pass windowed weather impact to reorder calculation
-        reorder = calculate_reorder(p_effective, pattern, impact)
+                # Create a modified product dict for recommendation logic
+                p_effective = p.copy()
+                physical_stock = float(p.get("current_stock", 0))
+                p_effective["current_stock"] = physical_stock + incoming
 
-        if should_include_in_brief(reorder, cfg):
-            candidates.append((p, pattern, reorder, impact, physical_stock, incoming))
+                # Use real pattern data
+                pattern = all_patterns.get(sku_clean, {
+                    "avg_daily_sales": avg_sales_map.get(sku_clean, 0),
+                    "payday_spike": False,
+                    "weekend_spike": False,
+                    "declining_trend": False,
+                    "confidence": 0.5
+                })
 
+                # Cached weather impact — no repeated computation for same category+lead_time
+                lead_time = int(p.get("lead_time_days", 7))
+                impact = _get_weather_impact(p.get("category", ""), lead_time)
 
-    # 1. Urgent items first, then Normal
-    # 2. Within those, smallest days_remaining (closest to zero) first
-    candidates.sort(key=lambda x: (
-        0 if x[2]["urgency"] == "urgent" else (1 if x[2]["urgency"] == "normal" else 2),
-        x[2]["days_remaining"]
-    ))
+                # MODIFIED: Pass windowed weather impact to reorder calculation
+                reorder = calculate_reorder(p_effective, pattern, impact)
 
-    # Use ai_config's max_brief_items (default 100). No hard cap — all stockout items shown.
-    max_brief_limit = int(cfg.get("max_brief_items", 100))
-    candidates = candidates[:max_brief_limit]
-    ai_candidates = _select_ai_candidates(candidates, cfg)
+                if should_include_in_brief(reorder, cfg):
+                    candidates.append((p, pattern, reorder, impact, physical_stock, incoming))
+            except Exception as _sku_err:
+                logger.warning("[Brief] Skipping SKU %s due to error: %s", p.get("sku", "?"), _sku_err)
+                continue
 
-    results = []
-    for (p, pattern, reorder, impact, physical_stock, incoming) in candidates:
-        drivers = reorder.get("drivers", {})
-        fallback_reasoning = (
-            drivers.get("natural_explanation", "")
-            or f"{p['name']} stock requires attention. Order {reorder['recommended_qty']} {p.get('unit', 'units')} to maintain availability."
-        )
+        # 1. Urgent items first, then Normal
+        # 2. Within those, smallest days_remaining (closest to zero) first
+        candidates.sort(key=lambda x: (
+            0 if x[2]["urgency"] == "urgent" else (1 if x[2]["urgency"] == "normal" else 2),
+            x[2]["days_remaining"]
+        ))
 
-        sku_clean = str(p.get("sku", "")).strip().upper()
-        supplier_rec = recommend_for_sku(sku_clean, data=supplier_data)
-        rec_supplier = supplier_rec.get("recommended")
-        mapped_suppliers = [
-            {
-                "supplier_id": s.get("supplier_id"),
-                "name": s.get("name", ""),
-                "reliability_score": s.get("reliability_score", 0),
-                "default_lead_time_days": s.get("default_lead_time_days", 7),
-                "rank": s.get("rank", 1),
-                "reasons": s.get("reasons", []),
-            }
-            for s in supplier_rec.get("all_suppliers", [])
-        ]
+        # Use ai_config's max_brief_items (default 100). No hard cap — all stockout items shown.
+        max_brief_limit = int(cfg.get("max_brief_items", 100))
+        candidates = candidates[:max_brief_limit]
+        ai_candidates = _select_ai_candidates(candidates, cfg)
 
-
-        results.append({
-            "sku": p["sku"],
-            "product_name": p["name"],
-            "category": p.get("category", ""),
-            "current_stock": p["current_stock"],
-            "physical_stock": physical_stock,
-            "incoming_stock": incoming,
-            "effective_stock": physical_stock + incoming,
-            "unit": p.get("unit", "units"),
-            "avg_daily_sales": round(float(pattern["avg_daily_sales"]), 2),
-            "days_remaining": reorder["days_remaining"],
-            "lead_time_days": int(p.get("lead_time_days", 7)),
-            "recommended_qty": reorder["recommended_qty"],
-            "urgency": reorder["urgency"],
-            "risk_level": reorder.get("risk_level", "NORMAL"),
-            "ai_reasoning": fallback_reasoning,
-            "ai_status": "loading",
-            "confidence_score": reorder["confidence_score"],
-            "weather_confidence": reorder.get("weather_confidence", "HIGH"),
-            "delivery_date": reorder.get("delivery_date"),
-            "pre_arrival_multiplier": reorder.get("pre_arrival_multiplier"),
-            "post_arrival_multiplier": reorder.get("post_arrival_multiplier"),
-            "payday_spike": pattern["payday_spike"],
-            "declining_trend": pattern["declining_trend"],
-            "weather_reason": impact.get("reason"),
-            "weather_code": impact.get("peak_code"),
-            "weather_temp": impact.get("peak_temp"),
-            "order_by_date": reorder.get("order_by_date"),
-            "drivers": drivers,
-            "recommended_supplier_id": rec_supplier.get("supplier_id") if rec_supplier else "",
-            "recommended_supplier_name": rec_supplier.get("name", "") if rec_supplier else "",
-            "mapped_suppliers": mapped_suppliers,
-        })
-
-        if reorder.get("risk_level") == "CRITICAL_STOCKOUT":
-            create_alert(
-                user_id="all",
-                alert_type="stockout",
-                title=f"Critical Stockout: {p['name']}",
-                message=f"Stock for {p['name']} will run out in {reorder['days_remaining']} days. Order suggested: {reorder['recommended_qty']} {p.get('unit', 'units')}."
+        results = []
+        for (p, pattern, reorder, impact, physical_stock, incoming) in candidates:
+            drivers = reorder.get("drivers", {})
+            fallback_reasoning = (
+                drivers.get("natural_explanation", "")
+                or f"{p['name']} stock requires attention. Order {reorder['recommended_qty']} {p.get('unit', 'units')} to maintain availability."
             )
 
-    ref_mtime = datetime.now(timezone.utc).timestamp()
-    log[today] = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "mtime": ref_mtime,
-        "items": results,
-    }
-    save_brief_log(log)
+            sku_clean = str(p.get("sku", "")).strip().upper()
+            try:
+                supplier_rec = recommend_for_sku(sku_clean, data=supplier_data)
+            except Exception as _sup_err:
+                logger.warning("[Brief] Supplier lookup failed for SKU=%s: %s", sku_clean, _sup_err)
+                supplier_rec = {"recommended": None, "all_suppliers": []}
+            rec_supplier = supplier_rec.get("recommended")
+            mapped_suppliers = [
+                {
+                    "supplier_id": s.get("supplier_id"),
+                    "name": s.get("name", ""),
+                    "reliability_score": s.get("reliability_score", 0),
+                    "default_lead_time_days": s.get("default_lead_time_days", 7),
+                    "rank": s.get("rank", 1),
+                    "reasons": s.get("reasons", []),
+                }
+                for s in supplier_rec.get("all_suppliers", [])
+            ]
+
+            results.append({
+                "sku": p["sku"],
+                "product_name": p["name"],
+                "category": p.get("category", ""),
+                "current_stock": p["current_stock"],
+                "physical_stock": physical_stock,
+                "incoming_stock": incoming,
+                "effective_stock": physical_stock + incoming,
+                "unit": p.get("unit", "units"),
+                "avg_daily_sales": round(float(pattern["avg_daily_sales"]), 2),
+                "days_remaining": reorder["days_remaining"],
+                "lead_time_days": int(p.get("lead_time_days", 7)),
+                "recommended_qty": reorder["recommended_qty"],
+                "urgency": reorder["urgency"],
+                "risk_level": reorder.get("risk_level", "NORMAL"),
+                "ai_reasoning": fallback_reasoning,
+                "ai_status": "loading",
+                "confidence_score": reorder["confidence_score"],
+                "weather_confidence": reorder.get("weather_confidence", "HIGH"),
+                "delivery_date": reorder.get("delivery_date"),
+                "pre_arrival_multiplier": reorder.get("pre_arrival_multiplier"),
+                "post_arrival_multiplier": reorder.get("post_arrival_multiplier"),
+                "payday_spike": pattern.get("payday_spike", False),
+                "declining_trend": pattern.get("declining_trend", False),
+                "weather_reason": impact.get("reason"),
+                "weather_code": impact.get("peak_code"),
+                "weather_temp": impact.get("peak_temp"),
+                "order_by_date": reorder.get("order_by_date"),
+                "drivers": drivers,
+                "recommended_supplier_id": rec_supplier.get("supplier_id") if rec_supplier else "",
+                "recommended_supplier_name": rec_supplier.get("name", "") if rec_supplier else "",
+                "mapped_suppliers": mapped_suppliers,
+            })
+
+            if reorder.get("risk_level") == "CRITICAL_STOCKOUT":
+                try:
+                    create_alert(
+                        user_id="all",
+                        alert_type="stockout",
+                        title=f"Critical Stockout: {p['name']}",
+                        message=f"Stock for {p['name']} will run out in {reorder['days_remaining']} days. Order suggested: {reorder['recommended_qty']} {p.get('unit', 'units')}."
+                    )
+                except Exception as _alert_err:
+                    logger.warning("[Brief] Could not create stockout alert for SKU=%s: %s", p.get("sku"), _alert_err)
+
+        ref_mtime = datetime.now(timezone.utc).timestamp()
+        log[today] = {
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "mtime": ref_mtime,
+            "items": results,
+        }
+        try:
+            save_brief_log(log)
+        except Exception as _save_err:
+            logger.error("[Brief] Failed to save brief log: %s", _save_err)
+
+    except Exception as e:
+        logger.error("[Brief] Unexpected error during brief generation: %s", e, exc_info=True)
+        # Fall back to any cached brief for today rather than returning a raw 500
+        if today in log and log[today].get("items"):
+            logger.warning("[Brief] Returning cached brief due to generation error.")
+            return log[today]["items"]
+        raise HTTPException(
+            status_code=500,
+            detail=f"Brief generation failed: {type(e).__name__}: {e}. Check server logs for details."
+        )
     
     # ── Background AI reasoning with semaphore ───────────────────────────────
     # We schedule a background task to process AI completions and update the JSON log file.

@@ -39697,5 +39697,1805 @@
     "message": "Stock for Glamor Plus will run out in 1.8 days. Order suggested: 870 unit.",
     "is_read": false,
     "created_at": "2026-07-14T07:52:59.794387+00:00"
+  },
+  {
+    "id": "d467d912-5ec9-4278-ad92-a221277042d4",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Coconut Water With Lychee",
+    "message": "Stock for Coconut Water With Lychee will run out in 0.0 days. Order suggested: 131 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:36.518583+00:00"
+  },
+  {
+    "id": "3d99c1cb-06de-4ef5-b062-2b8f7162d2d1",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Chutney Mix",
+    "message": "Stock for Chutney Mix will run out in 0.0 days. Order suggested: 304 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:36.802061+00:00"
+  },
+  {
+    "id": "499f242f-395f-4666-86ff-e53f3e53e47f",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Banganapalli Mango",
+    "message": "Stock for Banganapalli Mango will run out in 0.0 days. Order suggested: 398 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:37.009793+00:00"
+  },
+  {
+    "id": "88733668-4418-48fc-853a-0c8919846d96",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Ridge Gourd - Diced",
+    "message": "Stock for Ridge Gourd - Diced will run out in 0.0 days. Order suggested: 659 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:37.255979+00:00"
+  },
+  {
+    "id": "553fb484-92c8-4f05-b22b-e0c36159b751",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Kesar Mango",
+    "message": "Stock for Kesar Mango will run out in 0.0 days. Order suggested: 680 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:37.473788+00:00"
+  },
+  {
+    "id": "afae007b-352c-474f-b8ed-788526452f96",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Seer Fish",
+    "message": "Stock for Seer Fish will run out in 0.0 days. Order suggested: 1111 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:37.693130+00:00"
+  },
+  {
+    "id": "06dfd7f4-bb7b-4f03-8e48-52287cea7f58",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Apricots",
+    "message": "Stock for Apricots will run out in 0.0 days. Order suggested: 491 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:37.895760+00:00"
+  },
+  {
+    "id": "b89f1626-97b5-4b12-a625-ec98473016e2",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Bar Cake - Pineapple",
+    "message": "Stock for Bar Cake - Pineapple will run out in 0.0 days. Order suggested: 739 bar.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:38.134064+00:00"
+  },
+  {
+    "id": "aaaa1d9d-2613-478d-a9da-e466364e5e14",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Colocasia - Organically Grown",
+    "message": "Stock for Colocasia - Organically Grown will run out in 0.0 days. Order suggested: 128 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:38.365639+00:00"
+  },
+  {
+    "id": "e5d24e6b-1051-49a7-9cfe-f04c965046c3",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Coccinia - Julienne",
+    "message": "Stock for Coccinia - Julienne will run out in 0.0 days. Order suggested: 835 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:38.575616+00:00"
+  },
+  {
+    "id": "a0c26f0b-9ca3-4606-ba51-4fceb4312d65",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Kale",
+    "message": "Stock for Kale will run out in 0.0 days. Order suggested: 592 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:38.816990+00:00"
+  },
+  {
+    "id": "7b3228ed-f580-4908-ba5b-3c9d60513c0e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Knol Khol - Organically Grown",
+    "message": "Stock for Knol Khol - Organically Grown will run out in 0.0 days. Order suggested: 205 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:39.046632+00:00"
+  },
+  {
+    "id": "f5fc9884-1c8f-4a29-864e-2209223fe5e5",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Apple - Sliced, Royal Gala",
+    "message": "Stock for Apple - Sliced, Royal Gala will run out in 0.0 days. Order suggested: 1169 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:39.294316+00:00"
+  },
+  {
+    "id": "8c69dea1-4daa-4c6c-b717-b5a849c328a4",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Apple - Shimla",
+    "message": "Stock for Apple - Shimla will run out in 0.0 days. Order suggested: 337 bottle.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:39.513355+00:00"
+  },
+  {
+    "id": "286c189c-b388-466e-b99b-ff0d7f080da4",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Fresh Catch Prawn Torpedoes",
+    "message": "Stock for Fresh Catch Prawn Torpedoes will run out in 0.0 days. Order suggested: 739 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:39.768701+00:00"
+  },
+  {
+    "id": "d79236e4-4d33-468a-870d-56b8517a4166",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Sausages - Smoked Chicken",
+    "message": "Stock for Sausages - Smoked Chicken will run out in 0.0 days. Order suggested: 495 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:40.002701+00:00"
+  },
+  {
+    "id": "e379f664-f32b-4a5e-bf4f-0dee27a49a3f",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Carrot Strips and Beans Strip",
+    "message": "Stock for Carrot Strips and Beans Strip will run out in 0.0 days. Order suggested: 1290 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:40.238120+00:00"
+  },
+  {
+    "id": "5e8d656b-c8fe-4f86-9e8b-3ee2d3109a80",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Pizza Cheese - Mozzarella, Diced",
+    "message": "Stock for Pizza Cheese - Mozzarella, Diced will run out in 0.0 days. Order suggested: 547 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:40.531680+00:00"
+  },
+  {
+    "id": "58caa35b-8d04-426f-9843-81e3c7a6ae34",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Country Cage Free Eggs - Medium, Antibiotic Residue-Free",
+    "message": "Stock for Country Cage Free Eggs - Medium, Antibiotic Residue-Free will run out in 0.0 days. Order suggested: 715 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:40.758092+00:00"
+  },
+  {
+    "id": "71ca1c5a-ba64-43f8-8259-f26cf3e83df8",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Soy Milk - Unsweetened",
+    "message": "Stock for Soy Milk - Unsweetened will run out in 0.0 days. Order suggested: 566 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:40.975890+00:00"
+  },
+  {
+    "id": "c39ee613-bc3c-4c5a-9d5b-d35550b098e7",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Layer Cake - Chocolate",
+    "message": "Stock for Layer Cake - Chocolate will run out in 0.0 days. Order suggested: 919 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:41.221682+00:00"
+  },
+  {
+    "id": "7fa2b94f-e4da-474e-adfb-b6e084f19ba3",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Paneer - Regular",
+    "message": "Stock for Paneer - Regular will run out in 0.0 days. Order suggested: 434 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:41.462144+00:00"
+  },
+  {
+    "id": "ad67818f-0760-45b3-b6f0-5fa11522940e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Cosmo Girl - Eau De Parfum",
+    "message": "Stock for Cosmo Girl - Eau De Parfum will run out in 0.0 days. Order suggested: 327 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:41.671137+00:00"
+  },
+  {
+    "id": "ca158c1b-33ca-4005-90c1-75dc8e3a5118",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Tricone - Butterscotch Ice Cream",
+    "message": "Stock for Tricone - Butterscotch Ice Cream will run out in 0.0 days. Order suggested: 689 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:41.892868+00:00"
+  },
+  {
+    "id": "0c7538b1-40ea-405c-a5d1-d5ca7f59f774",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Bar Cake - Chocolate",
+    "message": "Stock for Bar Cake - Chocolate will run out in 0.0 days. Order suggested: 961 bar.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:42.123384+00:00"
+  },
+  {
+    "id": "2055dc16-171e-407c-89f6-c417700ef0c5",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Cake - Banana Walnut",
+    "message": "Stock for Cake - Banana Walnut will run out in 0.2 days. Order suggested: 189 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:42.336582+00:00"
+  },
+  {
+    "id": "ca6b38b3-3604-4364-890d-ca0c8ecabcba",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Karela Juice",
+    "message": "Stock for Karela Juice will run out in 0.2 days. Order suggested: 231 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:42.555813+00:00"
+  },
+  {
+    "id": "6c79c6b3-bf7c-43ad-9b18-047a77bcae1c",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Banana Deeply Nourishing Shampoo",
+    "message": "Stock for Banana Deeply Nourishing Shampoo will run out in 0.3 days. Order suggested: 368 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:42.771792+00:00"
+  },
+  {
+    "id": "e5519a8b-702a-4167-b172-3d6d3f6e0efc",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Large Bowl - Violet",
+    "message": "Stock for Large Bowl - Violet will run out in 0.3 days. Order suggested: 229 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:42.986037+00:00"
+  },
+  {
+    "id": "2bbc514c-adc9-42b8-b45b-a4057faec90e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Custard Powder Butterscotch",
+    "message": "Stock for Custard Powder Butterscotch will run out in 0.3 days. Order suggested: 328 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:43.205610+00:00"
+  },
+  {
+    "id": "29be9a7b-7b87-4de3-b027-0793ba4935cd",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Smoothie - Mango",
+    "message": "Stock for Smoothie - Mango will run out in 0.4 days. Order suggested: 505 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:43.423301+00:00"
+  },
+  {
+    "id": "17e03a2d-904e-4d86-8a23-09a1383e6c8c",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Juice - Apple with No Added Sugar, 1 l + Orange, 1 l",
+    "message": "Stock for Juice - Apple with No Added Sugar, 1 l + Orange, 1 l will run out in 0.4 days. Order suggested: 708 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:43.653510+00:00"
+  },
+  {
+    "id": "3c79df01-235d-4d9a-9ab0-dbac93f53e06",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Utensils-Dish Drainer/Basket/Drying Rack - Round, Large, Stainless Steel, VR10246",
+    "message": "Stock for Utensils-Dish Drainer/Basket/Drying Rack - Round, Large, Stainless Steel, VR10246 will run out in 0.4 days. Order suggested: 326 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:43.855567+00:00"
+  },
+  {
+    "id": "ce0c19d9-269a-4bd4-8e20-2fdef2ada32f",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Peanut Butter - Creamy, All Natural",
+    "message": "Stock for Peanut Butter - Creamy, All Natural will run out in 0.4 days. Order suggested: 230 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:44.065495+00:00"
+  },
+  {
+    "id": "800052b6-69e8-4698-bbac-c8b70edecb27",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Stainless Steel Water Bottle - Blue BB 505 1",
+    "message": "Stock for Stainless Steel Water Bottle - Blue BB 505 1 will run out in 0.4 days. Order suggested: 137 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:44.287034+00:00"
+  },
+  {
+    "id": "86807b44-5b85-41c3-bb68-cd67c3181813",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Classic Instant Coffee",
+    "message": "Stock for Classic Instant Coffee will run out in 0.5 days. Order suggested: 204 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:44.518342+00:00"
+  },
+  {
+    "id": "70a24cde-d8ef-4b95-81b8-5b7ee122a5f3",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Chef Kadhai Gravy",
+    "message": "Stock for Chef Kadhai Gravy will run out in 0.5 days. Order suggested: 292 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:44.723326+00:00"
+  },
+  {
+    "id": "d6ee125e-ad0b-4685-baab-f7060578e5ea",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Deltoid Lite Face Masks In Rose, Pink & Aqua Knit Fabrics With Bindings - Assorted, 3C2001, Medium",
+    "message": "Stock for Deltoid Lite Face Masks In Rose, Pink & Aqua Knit Fabrics With Bindings - Assorted, 3C2001, Medium will run out in 0.5 days. Order suggested: 241 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:44.931812+00:00"
+  },
+  {
+    "id": "8ddc1957-6e9b-4d21-828f-91c51e1f0b18",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Snack Time - Frankie Roll Masala, Chatpata Flavour",
+    "message": "Stock for Snack Time - Frankie Roll Masala, Chatpata Flavour will run out in 0.5 days. Order suggested: 266 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:45.170279+00:00"
+  },
+  {
+    "id": "57f9d445-da3e-4975-ad5e-7dc93546959e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Powder - Sambar",
+    "message": "Stock for Powder - Sambar will run out in 0.6 days. Order suggested: 143 bar.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:45.396923+00:00"
+  },
+  {
+    "id": "b769d785-9db9-47d3-9f38-91f9e338c4ff",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Chocolate Drink",
+    "message": "Stock for Chocolate Drink will run out in 0.6 days. Order suggested: 420 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:45.637972+00:00"
+  },
+  {
+    "id": "aa4a9f38-705e-4d67-9226-2451f65f5c67",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Cocktail Onions",
+    "message": "Stock for Cocktail Onions will run out in 0.6 days. Order suggested: 187 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:45.848867+00:00"
+  },
+  {
+    "id": "7142de8c-54ba-48f8-9ec2-c50d16a223c3",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Powder - Baking",
+    "message": "Stock for Powder - Baking will run out in 0.6 days. Order suggested: 234 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:46.060797+00:00"
+  },
+  {
+    "id": "9949b397-f0f1-41d5-8514-40cb429678c5",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Grinder - Salt & Pepper",
+    "message": "Stock for Grinder - Salt & Pepper will run out in 0.6 days. Order suggested: 313 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:46.282237+00:00"
+  },
+  {
+    "id": "445ed40e-e05c-48ac-a19e-347dd34c02f2",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: SS Delite Container No.3",
+    "message": "Stock for SS Delite Container No.3 will run out in 0.6 days. Order suggested: 300 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:46.520116+00:00"
+  },
+  {
+    "id": "e48009d1-7c3c-4e65-856b-25668093e0b2",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Jasmine Blossom Loose Green Tea",
+    "message": "Stock for Jasmine Blossom Loose Green Tea will run out in 0.6 days. Order suggested: 216 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:46.748190+00:00"
+  },
+  {
+    "id": "93a02a34-5384-477f-8761-d282f5391e9e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Red Chilli Flakes",
+    "message": "Stock for Red Chilli Flakes will run out in 0.6 days. Order suggested: 233 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:46.977463+00:00"
+  },
+  {
+    "id": "8e9a914d-a058-4555-b9fc-7c41cd6ed8bd",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Chocolate O's - Gluten Free",
+    "message": "Stock for Chocolate O's - Gluten Free will run out in 0.6 days. Order suggested: 296 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:47.175093+00:00"
+  },
+  {
+    "id": "372a0195-9bbc-407f-810e-f8d8907552a9",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Fruit & Vegetable Juice - Blends, Lean",
+    "message": "Stock for Fruit & Vegetable Juice - Blends, Lean will run out in 0.7 days. Order suggested: 122 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:47.372592+00:00"
+  },
+  {
+    "id": "01b73d8e-c782-414f-94eb-a87cbdc9c009",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Japanese Matcha  Bitters",
+    "message": "Stock for Japanese Matcha  Bitters will run out in 0.7 days. Order suggested: 150 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:47.582633+00:00"
+  },
+  {
+    "id": "3d2ebd89-45a0-4233-a8f0-2c9610b100b5",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Hot Chocolate - Mexican Spiced",
+    "message": "Stock for Hot Chocolate - Mexican Spiced will run out in 0.7 days. Order suggested: 544 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:47.803781+00:00"
+  },
+  {
+    "id": "04a28678-d415-4a00-9a3c-7c64f4f540b3",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Vanilla Lip Balm",
+    "message": "Stock for Vanilla Lip Balm will run out in 0.7 days. Order suggested: 193 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:48.011216+00:00"
+  },
+  {
+    "id": "3f175cac-8dd3-4010-8ceb-ffe5df2305e6",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Black Pepper Powder",
+    "message": "Stock for Black Pepper Powder will run out in 0.7 days. Order suggested: 657 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:48.245192+00:00"
+  },
+  {
+    "id": "6972b30f-e4e7-4559-9581-6b84d76a5a7f",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Nilgiri White Tea - Sei",
+    "message": "Stock for Nilgiri White Tea - Sei will run out in 0.8 days. Order suggested: 208 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:48.455710+00:00"
+  },
+  {
+    "id": "c11ae306-2ad2-440f-a2ea-c43eeaa8ec8c",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Master Coffee Mugs Set - MW J051",
+    "message": "Stock for Master Coffee Mugs Set - MW J051 will run out in 0.8 days. Order suggested: 583 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:48.668422+00:00"
+  },
+  {
+    "id": "17777537-731e-4f00-8ba1-5d84605be39b",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Cow Ghee/Tuppa - A2 Badri",
+    "message": "Stock for Cow Ghee/Tuppa - A2 Badri will run out in 0.8 days. Order suggested: 235 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:48.899427+00:00"
+  },
+  {
+    "id": "b0bdfd8f-3434-4a0c-be8e-60ebccf5c753",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Plant Based Laundry Detergent 1 L + 200 ml",
+    "message": "Stock for Plant Based Laundry Detergent 1 L + 200 ml will run out in 0.8 days. Order suggested: 654 bottle.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:49.102943+00:00"
+  },
+  {
+    "id": "dc0f5ae0-03b2-46f9-853d-f6da4856b86f",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Premium Cotton Buds",
+    "message": "Stock for Premium Cotton Buds will run out in 0.8 days. Order suggested: 236 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:49.304504+00:00"
+  },
+  {
+    "id": "c4f80281-c731-4304-b522-a320b01dff4b",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Certified Organic Elixir Apple Cider Vinegar",
+    "message": "Stock for Certified Organic Elixir Apple Cider Vinegar will run out in 0.8 days. Order suggested: 467 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:49.505294+00:00"
+  },
+  {
+    "id": "0969d08a-f56e-410e-9749-ff60067bc075",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Body Wash - Bitter Orange & Mandarin",
+    "message": "Stock for Body Wash - Bitter Orange & Mandarin will run out in 0.8 days. Order suggested: 230 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:49.712994+00:00"
+  },
+  {
+    "id": "03b579ed-f376-4ab4-b0ee-cda609b9e27a",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Powder - Black Pepper",
+    "message": "Stock for Powder - Black Pepper will run out in 0.8 days. Order suggested: 236 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:49.935940+00:00"
+  },
+  {
+    "id": "6b9afb81-2e39-40ea-9984-312108e25e6b",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Chilli Sauce",
+    "message": "Stock for Chilli Sauce will run out in 0.8 days. Order suggested: 402 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:50.181236+00:00"
+  },
+  {
+    "id": "b1704b01-0a02-424d-866b-56fc72388c28",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Fish - Katla, Head",
+    "message": "Stock for Fish - Katla, Head will run out in 0.9 days. Order suggested: 592 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:50.384529+00:00"
+  },
+  {
+    "id": "9b2a4581-86ff-4328-a7a9-2aa27ca53dc7",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: From The Roots - Moringa Honey",
+    "message": "Stock for From The Roots - Moringa Honey will run out in 0.9 days. Order suggested: 284 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:50.607425+00:00"
+  },
+  {
+    "id": "9bb91087-2c78-4504-9e78-cec28ae06900",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Herbal Hair Oil",
+    "message": "Stock for Herbal Hair Oil will run out in 0.9 days. Order suggested: 328 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:50.823397+00:00"
+  },
+  {
+    "id": "6d0f0445-0c43-4a38-b0cf-40a06da8b211",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Pitted  Black Olives",
+    "message": "Stock for Pitted  Black Olives will run out in 1.0 days. Order suggested: 157 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:51.042778+00:00"
+  },
+  {
+    "id": "33d6a210-8934-4032-9adc-8935cfacf800",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Notebook - Soft Bound, Un Ruled, Long Size",
+    "message": "Stock for Notebook - Soft Bound, Un Ruled, Long Size will run out in 1.0 days. Order suggested: 389 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:51.260173+00:00"
+  },
+  {
+    "id": "a8080911-e398-4e49-88e4-5911033a76aa",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Select - Chai Masala, Cinnamon",
+    "message": "Stock for Select - Chai Masala, Cinnamon will run out in 1.0 days. Order suggested: 168 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:51.508607+00:00"
+  },
+  {
+    "id": "4e73a309-0523-4461-b04a-b0cb1aa4773f",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Roasted Pumpkin, Sunflower & Flax",
+    "message": "Stock for Roasted Pumpkin, Sunflower & Flax will run out in 1.0 days. Order suggested: 380 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:51.718325+00:00"
+  },
+  {
+    "id": "892ca87c-8d49-401f-abc4-7e2441044beb",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Baby Corn - Sweet & Sour",
+    "message": "Stock for Baby Corn - Sweet & Sour will run out in 1.0 days. Order suggested: 136 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:51.933437+00:00"
+  },
+  {
+    "id": "2cc75fc2-b0e6-4415-b966-023e0a98ecae",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Kohinoor Basmati Rice -Extra Long, Gold 1 Kg & Garam Masala-E-Khaas, 40 g",
+    "message": "Stock for Kohinoor Basmati Rice -Extra Long, Gold 1 Kg & Garam Masala-E-Khaas, 40 g will run out in 1.0 days. Order suggested: 568 pack.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:52.164957+00:00"
+  },
+  {
+    "id": "3ed85953-afb7-4315-8e7e-559309179df3",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Wafers - Waffy (Vanilla Flavor)",
+    "message": "Stock for Wafers - Waffy (Vanilla Flavor) will run out in 1.0 days. Order suggested: 134 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:52.376822+00:00"
+  },
+  {
+    "id": "141f404f-9401-4dc9-a644-135b83abfd53",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Carrot Crackers",
+    "message": "Stock for Carrot Crackers will run out in 1.1 days. Order suggested: 168 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:52.586175+00:00"
+  },
+  {
+    "id": "559e70c8-06df-4e1d-a5b0-453c25006667",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Clean Planet Fridge Bags For Fruits & Veggies 4pcs+Fresho Dates-Kimia 500 g",
+    "message": "Stock for Clean Planet Fridge Bags For Fruits & Veggies 4pcs+Fresho Dates-Kimia 500 g will run out in 1.1 days. Order suggested: 651 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:52.806236+00:00"
+  },
+  {
+    "id": "4e467d1b-500c-499d-b8d6-b36c25544514",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Oud Woman EDT",
+    "message": "Stock for Oud Woman EDT will run out in 1.1 days. Order suggested: 649 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:53.012576+00:00"
+  },
+  {
+    "id": "96044f45-3829-4a26-8019-b87dc11f6463",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Broad Beans - Diced",
+    "message": "Stock for Broad Beans - Diced will run out in 1.2 days. Order suggested: 526 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:53.246996+00:00"
+  },
+  {
+    "id": "84b3897b-fa49-4a03-a77d-4e266f6e3713",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Mild Baby Shampoo",
+    "message": "Stock for Mild Baby Shampoo will run out in 1.2 days. Order suggested: 147 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:53.452513+00:00"
+  },
+  {
+    "id": "68352980-c27c-4ead-b2c5-ea76ee15f3dc",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Amla Hair Repair Serum",
+    "message": "Stock for Amla Hair Repair Serum will run out in 1.3 days. Order suggested: 136 bottle.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:53.679820+00:00"
+  },
+  {
+    "id": "d3dbf131-3dc9-452a-ab8b-37b387cec6ce",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Pure Herbs - Skin Kasturi Turmeric",
+    "message": "Stock for Pure Herbs - Skin Kasturi Turmeric will run out in 1.3 days. Order suggested: 770 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:53.905008+00:00"
+  },
+  {
+    "id": "366f0f66-a9c9-474d-a800-89b0f1ce9df5",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Milkmaid Sweetened Condensed Milk",
+    "message": "Stock for Milkmaid Sweetened Condensed Milk will run out in 1.3 days. Order suggested: 708 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:54.152693+00:00"
+  },
+  {
+    "id": "c673d2b0-3eb6-43fc-9d72-130db4769604",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Dry Comfort Sanitary Napkin Extra Long 275mm",
+    "message": "Stock for Dry Comfort Sanitary Napkin Extra Long 275mm will run out in 1.4 days. Order suggested: 142 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:54.356700+00:00"
+  },
+  {
+    "id": "57144025-f54d-4dd6-9a56-c85b6b413431",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Frozen Basa Chunks",
+    "message": "Stock for Frozen Basa Chunks will run out in 1.4 days. Order suggested: 524 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:54.567290+00:00"
+  },
+  {
+    "id": "d7ad127e-df90-4e65-ad2f-4d85fc30392f",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Marigold Mango Lip Contour Balm",
+    "message": "Stock for Marigold Mango Lip Contour Balm will run out in 1.4 days. Order suggested: 511 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:54.785772+00:00"
+  },
+  {
+    "id": "832c3b9c-b251-46da-ac21-e8d7561bf02c",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Baby Care Collection - with Organic Cotton Bib & Baby Comb",
+    "message": "Stock for Baby Care Collection - with Organic Cotton Bib & Baby Comb will run out in 1.5 days. Order suggested: 208 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:55.000913+00:00"
+  },
+  {
+    "id": "ec2f2e11-983b-4eee-a5e1-39804cc97788",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Dishwash Anti Bac Liquid Neem",
+    "message": "Stock for Dishwash Anti Bac Liquid Neem will run out in 1.5 days. Order suggested: 733 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:55.252477+00:00"
+  },
+  {
+    "id": "63a2b49d-dd9e-4bc6-aeac-6541e9294740",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Pre-Wash Stain Remover",
+    "message": "Stock for Pre-Wash Stain Remover will run out in 1.5 days. Order suggested: 128 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:55.460023+00:00"
+  },
+  {
+    "id": "3835eaa4-f985-40b2-977a-49e794ba28f6",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Premium Kasundi",
+    "message": "Stock for Premium Kasundi will run out in 1.5 days. Order suggested: 440 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:55.662172+00:00"
+  },
+  {
+    "id": "ebf8c729-1fdc-415f-bde0-8471a405cc8b",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Premium Plastic Jar With Lid - Green",
+    "message": "Stock for Premium Plastic Jar With Lid - Green will run out in 1.5 days. Order suggested: 796 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:55.878846+00:00"
+  },
+  {
+    "id": "c0e01a89-2c9b-4d5e-b567-9eaa6cb6236e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Chocolate Hazelnut Spread",
+    "message": "Stock for Chocolate Hazelnut Spread will run out in 1.6 days. Order suggested: 162 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:56.085052+00:00"
+  },
+  {
+    "id": "6b8eb947-e1e8-44a0-947c-b1dbec5dab3d",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Tong - Ice Cubes",
+    "message": "Stock for Tong - Ice Cubes will run out in 1.6 days. Order suggested: 642 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:56.304667+00:00"
+  },
+  {
+    "id": "4c59abb3-648a-4bd9-94a6-4ff343aa7ed5",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Sugarcane",
+    "message": "Stock for Sugarcane will run out in 1.6 days. Order suggested: 562 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:56.505400+00:00"
+  },
+  {
+    "id": "fc670d5f-4cca-47c7-a402-512530b85c76",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Sebium Gel Moussant",
+    "message": "Stock for Sebium Gel Moussant will run out in 1.7 days. Order suggested: 631 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:56.722909+00:00"
+  },
+  {
+    "id": "7ad79142-5449-4bac-9b1e-a6b8b4ed183d",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Organic - Barley Flour/Jave Godhi",
+    "message": "Stock for Organic - Barley Flour/Jave Godhi will run out in 1.7 days. Order suggested: 596 bar.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:56.932131+00:00"
+  },
+  {
+    "id": "6c37fd48-15f7-41b5-ac71-427321e9587b",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Bitter Gourd - Diced",
+    "message": "Stock for Bitter Gourd - Diced will run out in 1.7 days. Order suggested: 414 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:57.174267+00:00"
+  },
+  {
+    "id": "a4137932-d028-4896-b527-0514cc2dc0c5",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Ragi Loaf",
+    "message": "Stock for Ragi Loaf will run out in 1.8 days. Order suggested: 496 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:57.442657+00:00"
+  },
+  {
+    "id": "17cda570-f980-4014-b753-7468d5119ee1",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Marmalade - Fruity Orange",
+    "message": "Stock for Marmalade - Fruity Orange will run out in 1.8 days. Order suggested: 904 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:57.645102+00:00"
+  },
+  {
+    "id": "09b878a2-9072-4866-925d-066e9626dca9",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Sausage - Pork, Super Bacon",
+    "message": "Stock for Sausage - Pork, Super Bacon will run out in 1.8 days. Order suggested: 470 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:57.881136+00:00"
+  },
+  {
+    "id": "4e45dd98-13a2-4351-9305-2dec5204f8ac",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Glamor Plus",
+    "message": "Stock for Glamor Plus will run out in 1.8 days. Order suggested: 870 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:58.222791+00:00"
+  },
+  {
+    "id": "e77d50d5-9171-41a9-9bfa-024e16fe61e8",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Hamsapadadi Kwath",
+    "message": "Stock for Hamsapadadi Kwath will run out in 1.9 days. Order suggested: 120 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:58.423684+00:00"
+  },
+  {
+    "id": "e7e055b2-b09e-41b4-9fb4-b8e183331a29",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Muradabadi Amla Muraba",
+    "message": "Stock for Muradabadi Amla Muraba will run out in 1.9 days. Order suggested: 822 bottle.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:09:58.637029+00:00"
+  },
+  {
+    "id": "4a317f2d-bf20-4a2c-8bd3-400e1ad8efe3",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Coconut Water With Lychee",
+    "message": "Stock for Coconut Water With Lychee will run out in 0.0 days. Order suggested: 131 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:22.605675+00:00"
+  },
+  {
+    "id": "b421b63c-fe02-4ab7-8a3c-b4bd8b1a6842",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Chutney Mix",
+    "message": "Stock for Chutney Mix will run out in 0.0 days. Order suggested: 304 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:22.835928+00:00"
+  },
+  {
+    "id": "a38b1f1f-15a8-4864-9d5e-428d682c622e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Banganapalli Mango",
+    "message": "Stock for Banganapalli Mango will run out in 0.0 days. Order suggested: 398 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:23.041539+00:00"
+  },
+  {
+    "id": "1f0a8382-afa7-4572-af3c-5ad24c879efb",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Ridge Gourd - Diced",
+    "message": "Stock for Ridge Gourd - Diced will run out in 0.0 days. Order suggested: 659 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:23.277492+00:00"
+  },
+  {
+    "id": "78caa5ed-1c1f-4d6b-824f-22519b9862eb",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Kesar Mango",
+    "message": "Stock for Kesar Mango will run out in 0.0 days. Order suggested: 680 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:23.516635+00:00"
+  },
+  {
+    "id": "3c9afd05-7a08-425f-83cf-f62d0c174b70",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Seer Fish",
+    "message": "Stock for Seer Fish will run out in 0.0 days. Order suggested: 1111 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:23.744986+00:00"
+  },
+  {
+    "id": "573fbf5b-0da0-42b7-90a7-7130917f71ea",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Apricots",
+    "message": "Stock for Apricots will run out in 0.0 days. Order suggested: 491 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:23.979354+00:00"
+  },
+  {
+    "id": "edacd71e-be23-475e-896f-e365e4752b9a",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Bar Cake - Pineapple",
+    "message": "Stock for Bar Cake - Pineapple will run out in 0.0 days. Order suggested: 739 bar.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:24.200903+00:00"
+  },
+  {
+    "id": "8f15dc51-78cb-4ee9-95ee-8a29e0c965d9",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Colocasia - Organically Grown",
+    "message": "Stock for Colocasia - Organically Grown will run out in 0.0 days. Order suggested: 128 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:24.431317+00:00"
+  },
+  {
+    "id": "5fca3baa-9e68-4754-a838-73c5f672d31e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Coccinia - Julienne",
+    "message": "Stock for Coccinia - Julienne will run out in 0.0 days. Order suggested: 835 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:24.658669+00:00"
+  },
+  {
+    "id": "435ebffe-c5d7-484d-b645-66d266034d5f",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Kale",
+    "message": "Stock for Kale will run out in 0.0 days. Order suggested: 592 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:24.937069+00:00"
+  },
+  {
+    "id": "8d4a2c54-7998-4238-b687-dc3dba5f1980",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Knol Khol - Organically Grown",
+    "message": "Stock for Knol Khol - Organically Grown will run out in 0.0 days. Order suggested: 205 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:25.151421+00:00"
+  },
+  {
+    "id": "38277714-bac2-407c-92b5-c5c09b36134d",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Apple - Sliced, Royal Gala",
+    "message": "Stock for Apple - Sliced, Royal Gala will run out in 0.0 days. Order suggested: 1169 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:25.406836+00:00"
+  },
+  {
+    "id": "f7dbad79-1b31-428f-bce4-792098949e8a",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Apple - Shimla",
+    "message": "Stock for Apple - Shimla will run out in 0.0 days. Order suggested: 337 bottle.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:25.627692+00:00"
+  },
+  {
+    "id": "c57a7710-63cd-4fd7-9ab7-acbf1a4e9541",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Fresh Catch Prawn Torpedoes",
+    "message": "Stock for Fresh Catch Prawn Torpedoes will run out in 0.0 days. Order suggested: 739 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:25.854576+00:00"
+  },
+  {
+    "id": "32aa218c-977b-4717-82dc-309f6327538d",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Sausages - Smoked Chicken",
+    "message": "Stock for Sausages - Smoked Chicken will run out in 0.0 days. Order suggested: 495 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:26.106955+00:00"
+  },
+  {
+    "id": "71375a92-2f5f-4a6b-80e6-9a56286071eb",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Carrot Strips and Beans Strip",
+    "message": "Stock for Carrot Strips and Beans Strip will run out in 0.0 days. Order suggested: 1290 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:26.341562+00:00"
+  },
+  {
+    "id": "e4a43f9a-eda2-49ea-a5bd-363c01ca7c06",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Pizza Cheese - Mozzarella, Diced",
+    "message": "Stock for Pizza Cheese - Mozzarella, Diced will run out in 0.0 days. Order suggested: 547 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:26.549234+00:00"
+  },
+  {
+    "id": "3e499e8d-f7ca-44ce-b274-193b60f2265c",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Country Cage Free Eggs - Medium, Antibiotic Residue-Free",
+    "message": "Stock for Country Cage Free Eggs - Medium, Antibiotic Residue-Free will run out in 0.0 days. Order suggested: 715 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:26.758127+00:00"
+  },
+  {
+    "id": "671e0712-aff8-4d77-a8e7-14f89e1a6d1f",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Soy Milk - Unsweetened",
+    "message": "Stock for Soy Milk - Unsweetened will run out in 0.0 days. Order suggested: 566 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:26.984729+00:00"
+  },
+  {
+    "id": "07170fed-4176-4b08-ad01-e27152982a4f",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Layer Cake - Chocolate",
+    "message": "Stock for Layer Cake - Chocolate will run out in 0.0 days. Order suggested: 919 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:27.201109+00:00"
+  },
+  {
+    "id": "1cc7e952-459e-4680-8ab6-1b3487e507b0",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Paneer - Regular",
+    "message": "Stock for Paneer - Regular will run out in 0.0 days. Order suggested: 434 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:27.436863+00:00"
+  },
+  {
+    "id": "7b96acfe-c3ed-4654-87b8-445ac5e4f2ad",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Cosmo Girl - Eau De Parfum",
+    "message": "Stock for Cosmo Girl - Eau De Parfum will run out in 0.0 days. Order suggested: 327 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:27.667043+00:00"
+  },
+  {
+    "id": "e1944e39-1674-44e6-8000-d6bae97bbf49",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Tricone - Butterscotch Ice Cream",
+    "message": "Stock for Tricone - Butterscotch Ice Cream will run out in 0.0 days. Order suggested: 689 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:27.892894+00:00"
+  },
+  {
+    "id": "6822ead4-f492-4b45-878d-1c7faf6c20ff",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Bar Cake - Chocolate",
+    "message": "Stock for Bar Cake - Chocolate will run out in 0.0 days. Order suggested: 961 bar.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:28.124162+00:00"
+  },
+  {
+    "id": "dfbf179c-2c25-4945-bfaa-d9e59b17f36d",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Cake - Banana Walnut",
+    "message": "Stock for Cake - Banana Walnut will run out in 0.2 days. Order suggested: 189 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:28.351198+00:00"
+  },
+  {
+    "id": "c8162623-7b6d-499f-bdf0-d8746907ce96",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Karela Juice",
+    "message": "Stock for Karela Juice will run out in 0.2 days. Order suggested: 231 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:28.591426+00:00"
+  },
+  {
+    "id": "44513c07-d2e4-4cfa-a53d-54976cd04816",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Banana Deeply Nourishing Shampoo",
+    "message": "Stock for Banana Deeply Nourishing Shampoo will run out in 0.3 days. Order suggested: 368 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:28.816522+00:00"
+  },
+  {
+    "id": "69f699d8-ec91-4b56-b024-68f8bbd4a537",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Large Bowl - Violet",
+    "message": "Stock for Large Bowl - Violet will run out in 0.3 days. Order suggested: 229 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:29.049056+00:00"
+  },
+  {
+    "id": "f1478702-4715-4a21-9179-ca06ead70055",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Custard Powder Butterscotch",
+    "message": "Stock for Custard Powder Butterscotch will run out in 0.3 days. Order suggested: 328 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:29.282813+00:00"
+  },
+  {
+    "id": "3deb5caa-dd57-449e-b45b-5e8eb18c00c1",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Smoothie - Mango",
+    "message": "Stock for Smoothie - Mango will run out in 0.4 days. Order suggested: 505 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:29.506000+00:00"
+  },
+  {
+    "id": "61d92a2f-c58a-48cd-b0a9-d2c8ea6b9d88",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Juice - Apple with No Added Sugar, 1 l + Orange, 1 l",
+    "message": "Stock for Juice - Apple with No Added Sugar, 1 l + Orange, 1 l will run out in 0.4 days. Order suggested: 708 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:29.742049+00:00"
+  },
+  {
+    "id": "ab7e5de7-1e70-480c-9238-150fa4d9adf2",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Utensils-Dish Drainer/Basket/Drying Rack - Round, Large, Stainless Steel, VR10246",
+    "message": "Stock for Utensils-Dish Drainer/Basket/Drying Rack - Round, Large, Stainless Steel, VR10246 will run out in 0.4 days. Order suggested: 326 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:29.970685+00:00"
+  },
+  {
+    "id": "7a27ff3c-89b5-4dd3-8089-19bf1eb11044",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Peanut Butter - Creamy, All Natural",
+    "message": "Stock for Peanut Butter - Creamy, All Natural will run out in 0.4 days. Order suggested: 230 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:30.193864+00:00"
+  },
+  {
+    "id": "2fb9c239-2a67-4376-9698-c444b2b04a5a",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Stainless Steel Water Bottle - Blue BB 505 1",
+    "message": "Stock for Stainless Steel Water Bottle - Blue BB 505 1 will run out in 0.4 days. Order suggested: 137 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:30.407182+00:00"
+  },
+  {
+    "id": "12c89784-1707-41cb-8b9f-661ef848ea9b",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Classic Instant Coffee",
+    "message": "Stock for Classic Instant Coffee will run out in 0.5 days. Order suggested: 204 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:30.620074+00:00"
+  },
+  {
+    "id": "2ae1e812-c490-4cea-bee8-d5d2472727a7",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Chef Kadhai Gravy",
+    "message": "Stock for Chef Kadhai Gravy will run out in 0.5 days. Order suggested: 292 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:30.860708+00:00"
+  },
+  {
+    "id": "727e9b96-5c39-4284-a60b-a64c2497b359",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Deltoid Lite Face Masks In Rose, Pink & Aqua Knit Fabrics With Bindings - Assorted, 3C2001, Medium",
+    "message": "Stock for Deltoid Lite Face Masks In Rose, Pink & Aqua Knit Fabrics With Bindings - Assorted, 3C2001, Medium will run out in 0.5 days. Order suggested: 241 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:31.082730+00:00"
+  },
+  {
+    "id": "6b6f7d58-e37c-4719-b637-6c015e6b0230",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Snack Time - Frankie Roll Masala, Chatpata Flavour",
+    "message": "Stock for Snack Time - Frankie Roll Masala, Chatpata Flavour will run out in 0.5 days. Order suggested: 266 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:31.300379+00:00"
+  },
+  {
+    "id": "b9b694ed-72df-4a7a-82f2-0cf498ee238a",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Powder - Sambar",
+    "message": "Stock for Powder - Sambar will run out in 0.6 days. Order suggested: 143 bar.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:31.522628+00:00"
+  },
+  {
+    "id": "4a2dcbf1-c93f-486e-9b28-bda7b7da82ac",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Chocolate Drink",
+    "message": "Stock for Chocolate Drink will run out in 0.6 days. Order suggested: 420 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:31.744991+00:00"
+  },
+  {
+    "id": "3b349680-0974-4001-bfd4-4ae287ab7330",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Cocktail Onions",
+    "message": "Stock for Cocktail Onions will run out in 0.6 days. Order suggested: 187 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:31.954066+00:00"
+  },
+  {
+    "id": "92b21f94-45a2-473f-ba61-a9d80c9f93ce",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Powder - Baking",
+    "message": "Stock for Powder - Baking will run out in 0.6 days. Order suggested: 234 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:32.167959+00:00"
+  },
+  {
+    "id": "b8eba4f9-d1ac-4c9d-bd51-40edde3b8e06",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Grinder - Salt & Pepper",
+    "message": "Stock for Grinder - Salt & Pepper will run out in 0.6 days. Order suggested: 313 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:32.396089+00:00"
+  },
+  {
+    "id": "a6f7ea25-e1e5-490d-9e3e-2e47cdfa9ef9",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: SS Delite Container No.3",
+    "message": "Stock for SS Delite Container No.3 will run out in 0.6 days. Order suggested: 300 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:32.606939+00:00"
+  },
+  {
+    "id": "0237c8e9-ab73-4b57-9903-47d7f35fa104",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Jasmine Blossom Loose Green Tea",
+    "message": "Stock for Jasmine Blossom Loose Green Tea will run out in 0.6 days. Order suggested: 216 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:32.841714+00:00"
+  },
+  {
+    "id": "10b44aa0-496d-4808-b12a-61934744d154",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Red Chilli Flakes",
+    "message": "Stock for Red Chilli Flakes will run out in 0.6 days. Order suggested: 233 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:33.049351+00:00"
+  },
+  {
+    "id": "85087bdc-316f-4be2-aadb-07aace38451f",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Chocolate O's - Gluten Free",
+    "message": "Stock for Chocolate O's - Gluten Free will run out in 0.6 days. Order suggested: 296 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:33.278191+00:00"
+  },
+  {
+    "id": "91c2750a-9fce-47c4-8484-82680ee92d2d",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Fruit & Vegetable Juice - Blends, Lean",
+    "message": "Stock for Fruit & Vegetable Juice - Blends, Lean will run out in 0.7 days. Order suggested: 122 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:33.530327+00:00"
+  },
+  {
+    "id": "60de2625-e6db-4b75-afe5-bcd47da20a32",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Japanese Matcha  Bitters",
+    "message": "Stock for Japanese Matcha  Bitters will run out in 0.7 days. Order suggested: 150 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:33.784266+00:00"
+  },
+  {
+    "id": "69485831-1397-4928-a2e4-5e4bec330494",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Hot Chocolate - Mexican Spiced",
+    "message": "Stock for Hot Chocolate - Mexican Spiced will run out in 0.7 days. Order suggested: 544 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:33.998522+00:00"
+  },
+  {
+    "id": "7e838656-f117-4c08-a7f4-eb0bd4f52857",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Vanilla Lip Balm",
+    "message": "Stock for Vanilla Lip Balm will run out in 0.7 days. Order suggested: 193 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:34.287464+00:00"
+  },
+  {
+    "id": "d420a142-4963-47a6-a856-eff2809b1c72",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Black Pepper Powder",
+    "message": "Stock for Black Pepper Powder will run out in 0.7 days. Order suggested: 657 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:34.577880+00:00"
+  },
+  {
+    "id": "e8943765-c8e3-4ff3-9c5a-11e4cce11deb",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Nilgiri White Tea - Sei",
+    "message": "Stock for Nilgiri White Tea - Sei will run out in 0.8 days. Order suggested: 208 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:34.851595+00:00"
+  },
+  {
+    "id": "66a9c18f-2d3b-4644-8315-dd3a95399c9e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Master Coffee Mugs Set - MW J051",
+    "message": "Stock for Master Coffee Mugs Set - MW J051 will run out in 0.8 days. Order suggested: 583 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:35.072240+00:00"
+  },
+  {
+    "id": "fee5e9b7-e893-45e5-9851-91b90185cbee",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Cow Ghee/Tuppa - A2 Badri",
+    "message": "Stock for Cow Ghee/Tuppa - A2 Badri will run out in 0.8 days. Order suggested: 235 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:35.323677+00:00"
+  },
+  {
+    "id": "83a502b8-b697-42c4-8291-b9dbff2ca777",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Plant Based Laundry Detergent 1 L + 200 ml",
+    "message": "Stock for Plant Based Laundry Detergent 1 L + 200 ml will run out in 0.8 days. Order suggested: 654 bottle.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:35.552285+00:00"
+  },
+  {
+    "id": "691c808e-fa31-4e6c-a1ee-dcc7687579e8",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Premium Cotton Buds",
+    "message": "Stock for Premium Cotton Buds will run out in 0.8 days. Order suggested: 236 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:35.863573+00:00"
+  },
+  {
+    "id": "fad2168c-bb45-4e4f-b54e-42ff9cf2974b",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Certified Organic Elixir Apple Cider Vinegar",
+    "message": "Stock for Certified Organic Elixir Apple Cider Vinegar will run out in 0.8 days. Order suggested: 467 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:36.094700+00:00"
+  },
+  {
+    "id": "958ca4b1-bc65-4465-8dc5-50a74bde1d75",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Body Wash - Bitter Orange & Mandarin",
+    "message": "Stock for Body Wash - Bitter Orange & Mandarin will run out in 0.8 days. Order suggested: 230 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:36.304646+00:00"
+  },
+  {
+    "id": "f220a504-aea3-4937-b549-721f8539cf69",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Powder - Black Pepper",
+    "message": "Stock for Powder - Black Pepper will run out in 0.8 days. Order suggested: 236 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:36.542291+00:00"
+  },
+  {
+    "id": "2b84abcc-b754-4a1e-8a30-e68c735a736e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Chilli Sauce",
+    "message": "Stock for Chilli Sauce will run out in 0.8 days. Order suggested: 402 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:36.805368+00:00"
+  },
+  {
+    "id": "58076441-b785-405d-a0be-0c72258e13ab",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Fish - Katla, Head",
+    "message": "Stock for Fish - Katla, Head will run out in 0.9 days. Order suggested: 592 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:37.023257+00:00"
+  },
+  {
+    "id": "79184e8c-3477-450e-b66b-4298714ed201",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: From The Roots - Moringa Honey",
+    "message": "Stock for From The Roots - Moringa Honey will run out in 0.9 days. Order suggested: 284 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:37.226859+00:00"
+  },
+  {
+    "id": "4c9d4d94-70c9-46b3-8646-58591776008f",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Herbal Hair Oil",
+    "message": "Stock for Herbal Hair Oil will run out in 0.9 days. Order suggested: 328 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:37.443107+00:00"
+  },
+  {
+    "id": "acc188ac-c41c-4f0c-b0c0-6421f091af8a",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Pitted  Black Olives",
+    "message": "Stock for Pitted  Black Olives will run out in 1.0 days. Order suggested: 157 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:37.667180+00:00"
+  },
+  {
+    "id": "e5c60283-42dc-48c2-a6bd-3125fd81cc14",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Notebook - Soft Bound, Un Ruled, Long Size",
+    "message": "Stock for Notebook - Soft Bound, Un Ruled, Long Size will run out in 1.0 days. Order suggested: 389 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:37.898105+00:00"
+  },
+  {
+    "id": "7433ba55-8d73-4f86-829a-ac6ca3a6e8a5",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Select - Chai Masala, Cinnamon",
+    "message": "Stock for Select - Chai Masala, Cinnamon will run out in 1.0 days. Order suggested: 168 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:38.123963+00:00"
+  },
+  {
+    "id": "7fc898d4-e457-4fd6-aad0-88b0efbb6e62",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Roasted Pumpkin, Sunflower & Flax",
+    "message": "Stock for Roasted Pumpkin, Sunflower & Flax will run out in 1.0 days. Order suggested: 380 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:38.365876+00:00"
+  },
+  {
+    "id": "6361325e-744c-432c-b939-54983de821ff",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Baby Corn - Sweet & Sour",
+    "message": "Stock for Baby Corn - Sweet & Sour will run out in 1.0 days. Order suggested: 136 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:38.593589+00:00"
+  },
+  {
+    "id": "143d9968-bba3-4edf-a697-0b6bc102721d",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Kohinoor Basmati Rice -Extra Long, Gold 1 Kg & Garam Masala-E-Khaas, 40 g",
+    "message": "Stock for Kohinoor Basmati Rice -Extra Long, Gold 1 Kg & Garam Masala-E-Khaas, 40 g will run out in 1.0 days. Order suggested: 568 pack.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:38.821620+00:00"
+  },
+  {
+    "id": "c9569966-a0e7-4644-90d0-d10c2d9f71a7",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Wafers - Waffy (Vanilla Flavor)",
+    "message": "Stock for Wafers - Waffy (Vanilla Flavor) will run out in 1.0 days. Order suggested: 134 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:39.047361+00:00"
+  },
+  {
+    "id": "4e46e89a-b1f7-4a95-85ab-e1a7af96de09",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Carrot Crackers",
+    "message": "Stock for Carrot Crackers will run out in 1.1 days. Order suggested: 168 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:39.272486+00:00"
+  },
+  {
+    "id": "365b5220-60f8-4980-98b6-e05011c463e8",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Clean Planet Fridge Bags For Fruits & Veggies 4pcs+Fresho Dates-Kimia 500 g",
+    "message": "Stock for Clean Planet Fridge Bags For Fruits & Veggies 4pcs+Fresho Dates-Kimia 500 g will run out in 1.1 days. Order suggested: 651 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:39.485308+00:00"
+  },
+  {
+    "id": "10f9251f-e94b-4ec2-8087-9ea46a0f625a",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Oud Woman EDT",
+    "message": "Stock for Oud Woman EDT will run out in 1.1 days. Order suggested: 649 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:39.728061+00:00"
+  },
+  {
+    "id": "1cac2a46-dc0e-4edb-8def-5eebc76ae76c",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Broad Beans - Diced",
+    "message": "Stock for Broad Beans - Diced will run out in 1.2 days. Order suggested: 526 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:40.003070+00:00"
+  },
+  {
+    "id": "c4b8597c-2625-4e00-88c7-f3ec245b789e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Mild Baby Shampoo",
+    "message": "Stock for Mild Baby Shampoo will run out in 1.2 days. Order suggested: 147 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:40.308226+00:00"
+  },
+  {
+    "id": "44d9f18d-f6e1-4370-8d44-975bb4526d4a",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Amla Hair Repair Serum",
+    "message": "Stock for Amla Hair Repair Serum will run out in 1.3 days. Order suggested: 136 bottle.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:40.548496+00:00"
+  },
+  {
+    "id": "6d301eb4-3c81-462a-bf14-8c3c43b944d4",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Pure Herbs - Skin Kasturi Turmeric",
+    "message": "Stock for Pure Herbs - Skin Kasturi Turmeric will run out in 1.3 days. Order suggested: 770 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:40.812459+00:00"
+  },
+  {
+    "id": "1134dd00-e2f8-4bfb-a2d7-aac307c3718c",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Milkmaid Sweetened Condensed Milk",
+    "message": "Stock for Milkmaid Sweetened Condensed Milk will run out in 1.3 days. Order suggested: 708 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:41.027736+00:00"
+  },
+  {
+    "id": "507f411f-3e9e-4b73-9450-1d70fc0e0972",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Dry Comfort Sanitary Napkin Extra Long 275mm",
+    "message": "Stock for Dry Comfort Sanitary Napkin Extra Long 275mm will run out in 1.4 days. Order suggested: 142 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:41.279969+00:00"
+  },
+  {
+    "id": "a59c44d9-3683-4e20-a0a9-ab773ec6b9ed",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Frozen Basa Chunks",
+    "message": "Stock for Frozen Basa Chunks will run out in 1.4 days. Order suggested: 524 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:41.510677+00:00"
+  },
+  {
+    "id": "549f9b09-976f-4ff3-8b4a-e58b0e128e0d",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Marigold Mango Lip Contour Balm",
+    "message": "Stock for Marigold Mango Lip Contour Balm will run out in 1.4 days. Order suggested: 511 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:41.742620+00:00"
+  },
+  {
+    "id": "5289d9b5-04db-4019-b275-86820144e0f1",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Baby Care Collection - with Organic Cotton Bib & Baby Comb",
+    "message": "Stock for Baby Care Collection - with Organic Cotton Bib & Baby Comb will run out in 1.5 days. Order suggested: 208 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:41.968733+00:00"
+  },
+  {
+    "id": "f03d7c8d-8410-4f22-8605-05769f72fffe",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Dishwash Anti Bac Liquid Neem",
+    "message": "Stock for Dishwash Anti Bac Liquid Neem will run out in 1.5 days. Order suggested: 733 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:42.206194+00:00"
+  },
+  {
+    "id": "4d151a9c-6827-4b21-9be8-75da74aa96a9",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Pre-Wash Stain Remover",
+    "message": "Stock for Pre-Wash Stain Remover will run out in 1.5 days. Order suggested: 128 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:42.431175+00:00"
+  },
+  {
+    "id": "810feac3-c071-4a00-9fca-c7c1c0b48e6e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Premium Kasundi",
+    "message": "Stock for Premium Kasundi will run out in 1.5 days. Order suggested: 440 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:42.676674+00:00"
+  },
+  {
+    "id": "6d3e19b7-b0fd-4514-b243-affcd5a7620b",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Premium Plastic Jar With Lid - Green",
+    "message": "Stock for Premium Plastic Jar With Lid - Green will run out in 1.5 days. Order suggested: 796 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:42.892864+00:00"
+  },
+  {
+    "id": "dd06a8eb-22b9-427a-b6d4-3eb9e9db4a76",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Chocolate Hazelnut Spread",
+    "message": "Stock for Chocolate Hazelnut Spread will run out in 1.6 days. Order suggested: 162 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:43.134939+00:00"
+  },
+  {
+    "id": "6d1a9a91-85e8-48a7-9710-4e1019ba8821",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Tong - Ice Cubes",
+    "message": "Stock for Tong - Ice Cubes will run out in 1.6 days. Order suggested: 642 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:43.358176+00:00"
+  },
+  {
+    "id": "ce79ab6a-14c6-49dd-abd0-7ffdd11a8ebf",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Sugarcane",
+    "message": "Stock for Sugarcane will run out in 1.6 days. Order suggested: 562 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:43.587161+00:00"
+  },
+  {
+    "id": "3a5c4f97-e28b-428f-841d-9a3dd7b8fca3",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Sebium Gel Moussant",
+    "message": "Stock for Sebium Gel Moussant will run out in 1.7 days. Order suggested: 631 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:43.850845+00:00"
+  },
+  {
+    "id": "974f54ac-c757-4216-b457-ccc4318ca88b",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Organic - Barley Flour/Jave Godhi",
+    "message": "Stock for Organic - Barley Flour/Jave Godhi will run out in 1.7 days. Order suggested: 596 bar.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:44.081965+00:00"
+  },
+  {
+    "id": "b4658b6e-eea2-427b-b851-e17535e87c8d",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Bitter Gourd - Diced",
+    "message": "Stock for Bitter Gourd - Diced will run out in 1.7 days. Order suggested: 414 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:44.303160+00:00"
+  },
+  {
+    "id": "a988c9c3-98ea-4a52-ac59-c6cd714fab30",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Ragi Loaf",
+    "message": "Stock for Ragi Loaf will run out in 1.8 days. Order suggested: 496 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:44.546925+00:00"
+  },
+  {
+    "id": "c5574cd0-aa3b-4dd2-919d-bb6d27a6647e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Marmalade - Fruity Orange",
+    "message": "Stock for Marmalade - Fruity Orange will run out in 1.8 days. Order suggested: 904 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:44.792637+00:00"
+  },
+  {
+    "id": "881f1b56-e20d-41b1-803f-b507327204ca",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Sausage - Pork, Super Bacon",
+    "message": "Stock for Sausage - Pork, Super Bacon will run out in 1.8 days. Order suggested: 470 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:45.020468+00:00"
+  },
+  {
+    "id": "2102c035-55b4-4ad7-991e-3bb06a05551e",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Glamor Plus",
+    "message": "Stock for Glamor Plus will run out in 1.8 days. Order suggested: 870 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:45.264660+00:00"
+  },
+  {
+    "id": "ec3d7097-fa68-423d-a18e-15f8e15db822",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Hamsapadadi Kwath",
+    "message": "Stock for Hamsapadadi Kwath will run out in 1.9 days. Order suggested: 120 unit.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:45.490293+00:00"
+  },
+  {
+    "id": "814e2ed3-5a8f-47ad-942c-c097fd54f36b",
+    "user_id": "all",
+    "type": "stockout",
+    "title": "Critical Stockout: Muradabadi Amla Muraba",
+    "message": "Stock for Muradabadi Amla Muraba will run out in 1.9 days. Order suggested: 822 bottle.",
+    "is_read": false,
+    "created_at": "2026-07-15T05:10:45.713529+00:00"
   }
 ]
