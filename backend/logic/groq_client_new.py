@@ -42,7 +42,7 @@ async def call_groq_new(
         or "llama-3.1-8b-instant"
     )
     timeout_seconds = timeout_seconds or float(cfg.get("groq_timeout_seconds", os.getenv("GROQ_TIMEOUT_SECONDS", "15")))
-    max_tokens = max_tokens or int(cfg.get("groq_max_tokens", os.getenv("GROQ_MAX_TOKENS", "100")))
+    max_tokens = max_tokens or int(cfg.get("groq_max_tokens", os.getenv("GROQ_MAX_TOKENS", "150")))
     temperature = float(cfg.get("groq_temperature", os.getenv("GROQ_TEMPERATURE", "0.7")))
 
     if not AsyncGroq:
@@ -69,7 +69,7 @@ async def call_groq_new(
             response = await asyncio.wait_for(
                 client.chat.completions.create(
                     messages=[
-                        {"role": "system", "content": "You are a professional supply chain advisor. Use simple English. Strictly limit your response to 1 or 2 short sentences. Keep replies brief and direct. Vary your wording and sentence structure for each item. Never use labels like 'Stock Risk'. Never use the word 'units'. Do not reuse the same template or opening phrase."},
+                        {"role": "system", "content": "You are a professional supply chain advisor. Use simple English. Strictly limit your response to 1 or 2 short sentences. Always write complete sentences — never stop mid-sentence. Keep replies brief and direct. Vary your wording and sentence structure for each item. Never use labels like 'Stock Risk'. Never use the word 'units'. Do not reuse the same template or opening phrase."},
                         {"role": "user", "content": prompt},
                     ],
                     model=model_name,

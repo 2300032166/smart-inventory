@@ -32,7 +32,7 @@ async def generate_reasoning(prompt: str) -> str:
         or "llama-3.1-8b-instant"
     )
     timeout_seconds = float(cfg.get("groq_timeout_seconds", os.getenv("GROQ_TIMEOUT_SECONDS", "15")))
-    max_tokens = int(cfg.get("groq_max_tokens", os.getenv("GROQ_MAX_TOKENS", "100")))
+    max_tokens = int(cfg.get("groq_max_tokens", os.getenv("GROQ_MAX_TOKENS", "150")))
 
     logger.info("[AI] Using provider: Groq | model=%s | timeout=%.1fs", model_name, timeout_seconds)
 
