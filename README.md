@@ -1,4 +1,4 @@
-# 🛍️ SIRA — Smart Inventory & Retail Assistant
+# 🛍️ SIRA — Smart Inventory Replenishment Advisor
 
 **SIRA** is an advanced, AI-driven inventory management platform and modern retail storefront. Built with a robust backend architecture using **FastAPI** and a premium, glassmorphism-styled frontend built purely in **HTML, CSS, and vanilla JS**, SIRA empowers retail ecosystems on all fronts.
 
