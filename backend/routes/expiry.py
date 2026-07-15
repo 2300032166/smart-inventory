@@ -6,9 +6,17 @@ from typing import List, Optional
 
 from middleware.auth_middleware import verify_token
 from logic.pattern_detector import get_avg_sales_map
+from logic.chatbot_data import data_manager
 
 router = APIRouter()
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
+
+def _refresh_chatbot_expiry():
+    """Instantly re-sync the chatbot's expiry + product caches after a batch write."""
+    try:
+        data_manager._refresh_expiry_cache()
+    except Exception:
+        pass
 
 def get_expiry_status(days_to_expiry: int) -> str:
     if days_to_expiry <= 0:
@@ -214,6 +222,8 @@ def dispose_batch(batch_no: str, payload: dict = Depends(verify_token)):
         df.loc[mask, "quantity"] = 0.0
 
         df.to_csv(batches_csv, index=False)
+
+        _refresh_chatbot_expiry()
 
         batch_row = df[mask].iloc[0]
         return {

@@ -10,6 +10,17 @@ from datetime import datetime, timezone
 
 from middleware.auth_middleware import require_role
 from routes.inventory import deduct_stock_for_sales
+from logic.chatbot_data import data_manager
+
+def _refresh_chatbot_sales():
+    """Trigger chatbot data reload so live context includes new sales instantly."""
+    import threading
+    def _run():
+        try:
+            data_manager.reload_all()
+        except Exception:
+            pass
+    threading.Thread(target=_run, daemon=True).start()
 
 _invoice_lock = threading.Lock()
 
@@ -262,12 +273,14 @@ async def upload_to_sales(payload: dict = Depends(require_role("admin"))):
     save_orders(df)
 
     if not new_sales_rows:
+        _refresh_chatbot_sales()
         return {
             "message":  f"Marked {len(already_uploaded_order_ids)} order(s) as uploaded (data was already in sales).",
             "appended": 0,
             "orders":   already_uploaded_order_ids,
         }
 
+    _refresh_chatbot_sales()
     return {
         "message":  f"Successfully appended {len(new_sales_rows)} sales record(s) from {len(appended_order_ids)} order(s).",
         "appended": len(new_sales_rows),

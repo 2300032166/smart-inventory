@@ -8,11 +8,20 @@ from datetime import datetime
 from typing import Optional
 
 from middleware.auth_middleware import verify_token
+from logic.chatbot_data import data_manager
 
 router = APIRouter()
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 DISCOUNTS_JSON = os.path.join(DATA_DIR, "discounts.json")
 AUDIT_JSON     = os.path.join(DATA_DIR, "audit_log.json")
+
+def _refresh_chatbot_discounts():
+    """Instantly re-sync the chatbot's discount cache after any write."""
+    try:
+        data_manager.discounts = data_manager._load_json("discounts.json", {"recommendations": [], "active_discounts": [], "history": []})
+        data_manager._refresh_supplier_order_caches()
+    except Exception:
+        pass
 
 # ── Pydantic bodies ────────────────────────────────────────────────────────────
 
@@ -384,6 +393,7 @@ def approve_recommendation(rec_id: str, body: ApproveBody, payload: dict = Depen
     append_audit("DISCOUNT_APPROVED",
                  f"{rec['product_name']} (SKU: {rec['sku']}) — {disc_pct}% off. Reason: {rec['reason']}",
                  user)
+    _refresh_chatbot_discounts()
     return {"success": True, "active_discount": active}
 
 
@@ -408,6 +418,7 @@ def reject_recommendation(rec_id: str, body: RejectBody, payload: dict = Depends
     append_audit("DISCOUNT_REJECTED",
                  f"{rec['product_name']} (SKU: {rec['sku']}) discount rejected. Notes: {body.notes}",
                  user)
+    _refresh_chatbot_discounts()
     return {"success": True}
 
 
@@ -459,6 +470,7 @@ def revoke_discount(discount_id: str, body: RevokeBody, payload: dict = Depends(
     append_audit("DISCOUNT_REVOKED",
                  f"{ad['product_name']} (SKU: {ad['sku']}) discount revoked. Notes: {body.notes}",
                  user)
+    _refresh_chatbot_discounts()
     return {"success": True, "message": f"Discount for {ad['product_name']} has been revoked. Original price restored."}
 
 

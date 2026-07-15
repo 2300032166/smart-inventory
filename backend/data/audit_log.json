@@ -3919,5 +3919,22 @@
     "action_type": "LOGIN",
     "description": "User logged in: admin@store.com",
     "ip_address": "127.0.0.1"
+  },
+  {
+    "id": "b91e30f7-0af9-419b-8ee3-ebf75b6c6fd2",
+    "timestamp": "2026-07-15T05:38:15.717759+00:00",
+    "user_id": "USR002",
+    "user_name": "Store Manager",
+    "role": "manager",
+    "action_type": "LOGIN",
+    "description": "User logged in: manager@store.com",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "timestamp": "2026-07-15T11:18:41",
+    "action": "DISCOUNT_APPROVED",
+    "detail": "Sweet Bread (SKU: BB-10592) \u2014 40% off. Reason: Approaching Expiry",
+    "user": "USR002",
+    "module": "Discounts"
   }
 ]

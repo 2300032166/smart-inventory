@@ -778,8 +778,7 @@ function showToast(msg, type='info') {
 
 // ── Init ───────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  injectTopbar();
-  injectSidebar('discounts.html');
+  initShell();
   requireRole('manager');
   loadRecommendations();
   loadActive();

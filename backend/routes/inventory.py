@@ -11,6 +11,17 @@ logger = logging.getLogger(__name__)
 from middleware.auth_middleware import verify_token, require_role, require_any_role
 from logic.pattern_detector import analyse_sku, load_sales, load_products_dynamic
 from logic.reorder_calculator import calculate_reorder
+from logic.chatbot_data import data_manager
+
+def _refresh_chatbot_inventory():
+    """Trigger chatbot data reload so live context includes new inventory data instantly."""
+    import threading
+    def _run():
+        try:
+            data_manager.reload_all()
+        except Exception:
+            pass
+    threading.Thread(target=_run, daemon=True).start()
 
 router = APIRouter()
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
@@ -462,6 +473,7 @@ def create_product(body: ProductCreate, payload: dict = Depends(require_any_role
         except Exception as e:
             logger.error(f"Failed to create initial batch for {body.sku}: {e}")
     
+    _refresh_chatbot_inventory()
     return product_dict
 
 
@@ -490,6 +502,7 @@ def update_product_stock(sku: str, body: StockUpdate, payload: dict = Depends(re
     products[idx]["current_stock"] = new_stock
     save_products(products)
     
+    _refresh_chatbot_inventory()
     return {"sku": sku, "current_stock": new_stock}
 
 
@@ -509,6 +522,7 @@ def delete_product(sku: str, payload: dict = Depends(require_any_role())):
         except Exception as e:
             logger.error(f"Failed to delete batches for {sku}: {e}")
     
+    _refresh_chatbot_inventory()
     return {"message": "Product and all its batches deleted"}
 
 
@@ -588,6 +602,7 @@ def delete_batch(batch_no: str, payload: dict = Depends(require_role("admin"))):
         # For simplicity, we just delete the batch record.
         df = df.drop(idx)
         df.to_csv(BATCHES_CSV, index=False)
+        _refresh_chatbot_inventory()
         return {"message": "Batch deleted"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

@@ -13,6 +13,17 @@ from logic.ai_client import generate_reasoning, AI_FAIL_MSG
 from logic.weather_client import fetch_weather_forecast
 from logic.weather_analyzer import analyze_weather_for_windows
 from .alerts import create_alert
+from logic.chatbot_data import data_manager
+
+def _refresh_chatbot_brief():
+    import threading
+    def _run():
+        try:
+            data_manager.brief_log = data_manager._load_json("brief_log.json", {})
+            data_manager._refresh_caches()
+        except Exception:
+            pass
+    threading.Thread(target=_run, daemon=True).start()
 
 logger = logging.getLogger(__name__)
 
@@ -321,6 +332,7 @@ async def get_today_brief(
         }
         try:
             save_brief_log(log)
+            _refresh_chatbot_brief()
         except Exception as _save_err:
             logger.error("[Brief] Failed to save brief log: %s", _save_err)
 
@@ -424,6 +436,7 @@ async def get_today_brief(
             else:
                 completed += 1
 
+        _refresh_chatbot_brief()
         logger.info("[Brief] Background AI reasoning complete. %d/%d items succeeded.", completed, len(tasks))
 
     background_tasks.add_task(_background_run_ai)

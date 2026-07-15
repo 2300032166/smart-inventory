@@ -6,6 +6,7 @@ from datetime import datetime, timezone, timedelta
 
 from middleware.auth_middleware import require_manager_or_admin
 from .suppliers import load_suppliers, load_pos, save_pos
+from logic.chatbot_data import data_manager
 
 logger = logging.getLogger(__name__)
 
@@ -14,6 +15,16 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 OVERRIDE_FILE = os.path.join(DATA_DIR, "override_history.json")
 AUDIT_FILE = os.path.join(DATA_DIR, "audit_log.json")
 PRODUCTS_CSV = os.path.join(DATA_DIR, "products.csv")
+
+def _refresh_chatbot_orders():
+    """Trigger chatbot data reload so live context includes new orders/decisions immediately."""
+    import threading
+    def _run():
+        try:
+            data_manager.reload_all()
+        except Exception:
+            pass
+    threading.Thread(target=_run, daemon=True).start()
 
 
 def load_overrides() -> list:
@@ -206,6 +217,7 @@ def record_decision(
         "[Orders] Decision recorded | sku=%s | decision=%s | manager=%s | supplier=%s",
         body.sku, body.decision, payload.get("name"), body.supplier_name or body.supplier_id,
     )
+    _refresh_chatbot_orders()
     return {"message": "Decision recorded", "id": record["id"], "po": created_po}
 
 
@@ -355,6 +367,7 @@ def update_order_status(
     save_audit(audit)
 
     logger.info("[Orders] Order %s status updated to %s", order_id, status)
+    _refresh_chatbot_orders()
     return {"message": "Status updated", "order": overrides[idx]}
 
 
@@ -376,6 +389,7 @@ def update_order_reason(
 
     save_overrides(overrides)
     logger.info("[Orders] Order %s reason updated", order_id)
+    _refresh_chatbot_orders()
     return {"message": "Reason updated"}
 
 
