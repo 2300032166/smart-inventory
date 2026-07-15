@@ -57,7 +57,7 @@ def build_prompt(product: dict, pattern: dict, reorder: dict, weather_impact: di
 You are SIRA, the AI assistant for a grocery store. 
 Today's date is {today.strftime('%B %d, %Y')}.
 
-Analyze this product's data and provide a concise (1-2 sentence) replenishment recommendation.
+Analyze this product's data and provide a concise SINGLE sentence replenishment recommendation.
 Product: {product['name']}
 Category: {product.get('category', 'General')}
 Current Stock: {product['current_stock']} {product.get('unit', 'units')}
